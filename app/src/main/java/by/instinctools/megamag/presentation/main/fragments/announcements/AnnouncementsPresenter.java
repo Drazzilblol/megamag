@@ -1,4 +1,6 @@
 package by.instinctools.megamag.presentation.main.fragments.announcements;
 
-interface AnnouncementsPresenter {
+import by.instinctools.megamag.presentation.MVPPresenter;
+
+interface AnnouncementsPresenter extends MVPPresenter {
 }

@@ -1,9 +1,24 @@
 package by.instinctools.megamag.presentation;
 
+import java.lang.ref.WeakReference;
 
-public interface BasePresenter<V> {
+public abstract class BasePresenter<V extends MVPView> implements MVPPresenter {
+    private WeakReference<V> viewReference;
 
-    void attach(V v);
-    void detach();
+    @Override
+    public void attach(Object view) {
+        V thisView = (V) view;
+        this.viewReference = new WeakReference(thisView);
+    }
 
+    @Override
+    public void detach() {
+        if (viewReference != null) {
+            viewReference.clear();
+        }
+    }
+
+    public V getViewReference() {
+        return viewReference.get();
+    }
 }

@@ -1,4 +1,6 @@
 package by.instinctools.megamag.presentation.main.fragments.tickets;
 
-interface TicketsPresenter {
+import by.instinctools.megamag.presentation.MVPPresenter;
+
+interface TicketsPresenter extends MVPPresenter {
 }

@@ -1,5 +1,6 @@
 package by.instinctools.megamag.presentation.splash;
 
-interface SplashPresenter {
-    void onResume();
+import by.instinctools.megamag.presentation.MVPPresenter;
+
+interface SplashPresenter extends MVPPresenter {
 }

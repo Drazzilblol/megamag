@@ -18,12 +18,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".presentation.ticket_details.TicketDetailsActivity" />
-        <activity android:name=".presentation.announcement.AnnouncementActivity" />
-        <activity android:name=".presentation.tickets.TicketsActivity" />
-        <activity android:name=".presentation.info.activities.HowToBookActivity" />
-        <activity android:name=".presentation.info.activities.HowToPayActivity" />
-        <activity android:name=".presentation.info.activities.RulesActivity" />
-        <activity android:name=".presentation.info.activities.ContactUsActivity" />
+        <activity android:name=".presentation.info.InfoActivity" />
         <activity android:name=".presentation.theater_details.TheaterDetailsActivity" />
         <activity android:name=".presentation.profile.ProfileActivity" />
         <activity android:name=".presentation.main.MainActivity"></activity>

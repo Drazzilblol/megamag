@@ -1,6 +1,6 @@
 package by.instinctools.megamag.presentation.main.fragments.tickets;
 
-import by.instinctools.megamag.presentation.BaseView;
+import by.instinctools.megamag.presentation.MVPView;
 
-interface TicketsView extends BaseView {
+interface TicketsView extends MVPView {
 }

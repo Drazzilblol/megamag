@@ -3,10 +3,11 @@ package by.instinctools.megamag.presentation.splash;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
+import by.instinctools.megamag.common.errors.Error;
 import by.instinctools.megamag.common.utils.Navigator;
 
 public class SplashActivity extends AppCompatActivity implements SplashView {
-    private SplashPresenterImpl splashPresenter;
+    private SplashPresenter splashPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,7 +24,6 @@ public class SplashActivity extends AppCompatActivity implements SplashView {
 
     @Override
     protected void onResume() {
-        splashPresenter.onResume();
         super.onResume();
     }
 
@@ -31,5 +31,16 @@ public class SplashActivity extends AppCompatActivity implements SplashView {
     protected void onDestroy() {
         splashPresenter.detach();
         super.onDestroy();
+    }
+
+
+    @Override
+    public void showError(Error error) {
+
+    }
+
+    @Override
+    public void showProgress(boolean show) {
+
     }
 }

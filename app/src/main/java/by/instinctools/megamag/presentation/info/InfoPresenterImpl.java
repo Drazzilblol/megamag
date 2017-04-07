@@ -1,8 +1,8 @@
 package by.instinctools.megamag.presentation.info;
 
-import by.instinctools.megamag.presentation.AbstractPresenter;
+import by.instinctools.megamag.presentation.BasePresenter;
 
-public class InfoPresenterImpl extends AbstractPresenter<InfoView> implements InfoPresenter {
+class InfoPresenterImpl extends BasePresenter<InfoView> implements InfoPresenter {
 
     @Override
     public void onCreate(@ViewTypes int activityType) {

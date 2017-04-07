@@ -3,11 +3,12 @@ package by.instinctools.megamag.common.utils;
 import android.content.Context;
 import android.content.Intent;
 
-import by.instinctools.megamag.presentation.tickets.TicketsActivity;
+import by.instinctools.megamag.presentation.main.MainActivity;
+
 
 public final class Navigator {
     public static void goToTicketsScreen(Context context) {
-        Intent i = new Intent(context, TicketsActivity.class);
+        Intent i = new Intent(context, MainActivity.class);
         context.startActivity(i);
     }
 }

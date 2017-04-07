@@ -1,6 +1,6 @@
 package by.instinctools.megamag.presentation.main.fragments.announcements;
 
-import by.instinctools.megamag.presentation.BaseView;
+import by.instinctools.megamag.presentation.MVPView;
 
-interface AnnouncementsView extends BaseView {
+interface AnnouncementsView extends MVPView {
 }
