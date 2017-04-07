@@ -7,32 +7,32 @@ import by.instinctools.megamag.common.errors.Error;
 import by.instinctools.megamag.common.utils.Navigator;
 
 public class SplashActivity extends AppCompatActivity implements SplashView {
+
     private SplashPresenter splashPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         splashPresenter = new SplashPresenterImpl();
+    }
+
+    @Override
+    protected void onStart() {
         splashPresenter.attach(this);
+        super.onStart();
+    }
+
+    @Override
+    protected void onStop() {
+        splashPresenter.detach();
+        super.onStop();
     }
 
     @Override
     public void goToMainScreen() {
-        Navigator.goToTicketsScreen(this);
+        Navigator.goToMainScreen(this);
         finish();
     }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-    }
-
-    @Override
-    protected void onDestroy() {
-        splashPresenter.detach();
-        super.onDestroy();
-    }
-
 
     @Override
     public void showError(Error error) {

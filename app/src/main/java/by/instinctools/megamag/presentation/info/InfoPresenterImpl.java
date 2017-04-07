@@ -5,7 +5,7 @@ import by.instinctools.megamag.presentation.BasePresenter;
 class InfoPresenterImpl extends BasePresenter<InfoView> implements InfoPresenter {
 
     @Override
-    public void onCreate(@ViewTypes int activityType) {
+    public void setInitialData(String activityId) {
 
     }
 }

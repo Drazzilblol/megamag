@@ -5,7 +5,10 @@ import android.os.Handler;
 import by.instinctools.megamag.presentation.BasePresenter;
 
 class SplashPresenterImpl extends BasePresenter<SplashView> implements SplashPresenter {
-    private static Handler handler = new Handler();
+
+    private static final int DELAY_MILLIS = 1000;
+
+    private final Handler handler = new Handler();
 
     private Runnable splashRunnable = new Runnable() {
         @Override
@@ -15,8 +18,8 @@ class SplashPresenterImpl extends BasePresenter<SplashView> implements SplashPre
     };
 
     @Override
-    public void attach(Object view) {
+    public void attach(SplashView view) {
         super.attach(view);
-        handler.postDelayed(splashRunnable, 1000);
+        handler.postDelayed(splashRunnable, DELAY_MILLIS);
     }
 }

@@ -14,7 +14,6 @@ public class MainActivity extends AppCompatActivity implements MainView {
         setContentView(R.layout.activity_main);
     }
 
-
     @Override
     public void showError(Error error) {
 
