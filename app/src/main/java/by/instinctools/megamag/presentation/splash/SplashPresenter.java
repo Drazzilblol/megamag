@@ -1,5 +1,5 @@
 package by.instinctools.megamag.presentation.splash;
 
-public interface SplashPresenter {
+interface SplashPresenter {
     void onResume();
 }

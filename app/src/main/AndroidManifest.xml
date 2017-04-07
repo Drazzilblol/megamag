@@ -20,10 +20,10 @@
         <activity android:name=".presentation.ticket_details.TicketDetailsActivity" />
         <activity android:name=".presentation.announcement.AnnouncementActivity" />
         <activity android:name=".presentation.tickets.TicketsActivity" />
-        <activity android:name=".presentation.how_to_book.HowToBookActivity" />
-        <activity android:name=".presentation.how_to_pay.HowToPayActivity" />
-        <activity android:name=".presentation.rules.RulesActivity" />
-        <activity android:name=".presentation.contact_us.ContactUsActivity" />
+        <activity android:name=".presentation.info.activities.HowToBookActivity" />
+        <activity android:name=".presentation.info.activities.HowToPayActivity" />
+        <activity android:name=".presentation.info.activities.RulesActivity" />
+        <activity android:name=".presentation.info.activities.ContactUsActivity" />
         <activity android:name=".presentation.theater_details.TheaterDetailsActivity" />
         <activity android:name=".presentation.profile.ProfileActivity"></activity>
     </application>

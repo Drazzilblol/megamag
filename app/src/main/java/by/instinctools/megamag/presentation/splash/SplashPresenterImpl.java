@@ -4,7 +4,7 @@ import android.os.Handler;
 
 import by.instinctools.megamag.presentation.AbstractPresenter;
 
-public class SplashPresenterImpl extends AbstractPresenter<SplashView> implements SplashPresenter  {
+class SplashPresenterImpl extends AbstractPresenter<SplashView> implements SplashPresenter  {
     private static Handler handler = new Handler();
 
     private Runnable splashRunnable = new Runnable() {
