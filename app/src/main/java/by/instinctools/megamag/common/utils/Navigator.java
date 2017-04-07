@@ -1,4 +1,4 @@
-package by.instinctools.megamag.presentation.utils;
+package by.instinctools.megamag.common.utils;
 
 import android.content.Context;
 import android.content.Intent;
