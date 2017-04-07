@@ -10,7 +10,7 @@ class SplashPresenterImpl extends BasePresenter<SplashView> implements SplashPre
     private Runnable splashRunnable = new Runnable() {
         @Override
         public void run() {
-            getViewReference().goToMainScreen();
+            getView().goToMainScreen();
         }
     };
 

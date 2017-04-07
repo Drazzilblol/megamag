@@ -7,8 +7,7 @@ public abstract class BasePresenter<V extends MVPView> implements MVPPresenter {
 
     @Override
     public void attach(Object view) {
-        V thisView = (V) view;
-        this.viewReference = new WeakReference(thisView);
+        this.viewReference = new WeakReference((V) view);
     }
 
     @Override
@@ -18,7 +17,11 @@ public abstract class BasePresenter<V extends MVPView> implements MVPPresenter {
         }
     }
 
-    public V getViewReference() {
-        return viewReference.get();
+    public V getView() {
+        if (viewReference != null) {
+            return viewReference.get();
+        }else {
+            return null;
+        }
     }
 }
