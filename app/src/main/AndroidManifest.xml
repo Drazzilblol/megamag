@@ -25,7 +25,8 @@
         <activity android:name=".presentation.info.activities.RulesActivity" />
         <activity android:name=".presentation.info.activities.ContactUsActivity" />
         <activity android:name=".presentation.theater_details.TheaterDetailsActivity" />
-        <activity android:name=".presentation.profile.ProfileActivity"></activity>
+        <activity android:name=".presentation.profile.ProfileActivity" />
+        <activity android:name=".presentation.main.MainActivity"></activity>
     </application>
 
 </manifest>

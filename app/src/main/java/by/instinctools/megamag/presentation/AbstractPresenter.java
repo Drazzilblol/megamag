@@ -1,7 +1,5 @@
 package by.instinctools.megamag.presentation;
 
-import java.util.Objects;
-
 public abstract class AbstractPresenter<V extends BaseView> implements BasePresenter {
     private V view;
 

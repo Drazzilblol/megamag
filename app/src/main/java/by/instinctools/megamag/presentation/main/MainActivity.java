@@ -1,15 +1,16 @@
-package by.instinctools.megamag.presentation.tickets;
+package by.instinctools.megamag.presentation.main;
 
-import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 
 import by.instinctools.megamag.R;
 
-public class TicketsActivity extends AppCompatActivity {
+
+public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tickets);
+        setContentView(R.layout.activity_main);
     }
 }
