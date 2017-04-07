@@ -8,6 +8,6 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.training.dr.presentation.contact_us.ContactUsActivity">
+    tools:context="by.instinctools.megamag.presentation.contact_us.ContactUsActivity">
 
 </RelativeLayout>

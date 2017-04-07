@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.training.dr.megamag">
+    package="by.instinctools.megamag">
 
     <application
         android:allowBackup="true"
@@ -9,7 +9,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name="com.training.dr.presentation.splash.SplashActivity"
+            android:name=".presentation.splash.SplashActivity"
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -17,15 +17,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.training.dr.presentation.ticket_details.TicketDetailsActivity" />
-        <activity android:name="com.training.dr.presentation.announcement.AnnouncementActivity" />
-        <activity android:name="com.training.dr.presentation.tickets.TicketsActivity" />
-        <activity android:name="com.training.dr.presentation.how_to_book.HowToBookActivity" />
-        <activity android:name="com.training.dr.presentation.how_to_pay.HowToPayActivity" />
-        <activity android:name="com.training.dr.presentation.rules.RulesActivity" />
-        <activity android:name="com.training.dr.presentation.contact_us.ContactUsActivity" />
-        <activity android:name="com.training.dr.presentation.theater_details.TheaterDetailsActivity" />
-        <activity android:name="com.training.dr.presentation.profile.ProfileActivity"></activity>
+        <activity android:name=".presentation.ticket_details.TicketDetailsActivity" />
+        <activity android:name=".presentation.announcement.AnnouncementActivity" />
+        <activity android:name=".presentation.tickets.TicketsActivity" />
+        <activity android:name=".presentation.how_to_book.HowToBookActivity" />
+        <activity android:name=".presentation.how_to_pay.HowToPayActivity" />
+        <activity android:name=".presentation.rules.RulesActivity" />
+        <activity android:name=".presentation.contact_us.ContactUsActivity" />
+        <activity android:name=".presentation.theater_details.TheaterDetailsActivity" />
+        <activity android:name=".presentation.profile.ProfileActivity"></activity>
     </application>
 
 </manifest>
