@@ -1,4 +1,4 @@
-package by.instinctools.megamag.presentation.main.fragments.announcements;
+package by.instinctools.megamag.presentation.main.announcements;
 
 import android.support.v4.app.Fragment;
 

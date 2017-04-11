@@ -1,6 +1,7 @@
 package by.instinctools.megamag.presentation.splash;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 
 import by.instinctools.megamag.common.errors.Error;
@@ -35,7 +36,7 @@ public class SplashActivity extends AppCompatActivity implements SplashView {
     }
 
     @Override
-    public void showError(Error error) {
+    public void showError(@NonNull Error error) {
 
     }
 

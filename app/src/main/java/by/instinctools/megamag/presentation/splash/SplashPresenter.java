@@ -1,6 +1,6 @@
 package by.instinctools.megamag.presentation.splash;
 
-import by.instinctools.megamag.presentation.MVPPresenter;
+import by.instinctools.megamag.presentation.MvpPresenter;
 
-interface SplashPresenter extends MVPPresenter<SplashView> {
+interface SplashPresenter extends MvpPresenter<SplashView> {
 }

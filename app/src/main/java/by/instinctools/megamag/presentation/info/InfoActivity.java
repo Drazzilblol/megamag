@@ -3,6 +3,7 @@ package by.instinctools.megamag.presentation.info;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 
 import by.instinctools.megamag.R;
@@ -10,6 +11,7 @@ import by.instinctools.megamag.common.errors.Error;
 
 public class InfoActivity extends AppCompatActivity implements InfoView {
 
+    @NonNull
     public static final String INFO_ACTIVITY_SCREEN_ID = "INFO_ACTIVITY_SCREEN_ID";
 
     private InfoPresenter infoPresenter;
@@ -28,17 +30,12 @@ public class InfoActivity extends AppCompatActivity implements InfoView {
         infoPresenter.attach(this);
         Intent intent = getIntent();
         if (intent != null) {
-            infoPresenter.setInitialData(intent.getStringExtra(INFO_ACTIVITY_SCREEN_ID));
+            infoPresenter.setInitialValue(intent.getStringExtra(INFO_ACTIVITY_SCREEN_ID));
         }
     }
 
     @Override
-    public void setText() {
-
-    }
-
-    @Override
-    public void showError(Error error) {
+    public void showError(@NonNull Error error) {
 
     }
 

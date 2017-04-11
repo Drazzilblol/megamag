@@ -1,5 +1,6 @@
 package by.instinctools.megamag.presentation.main;
 
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -15,7 +16,7 @@ public class MainActivity extends AppCompatActivity implements MainView {
     }
 
     @Override
-    public void showError(Error error) {
+    public void showError(@NonNull Error error) {
 
     }
 

@@ -1,4 +1,4 @@
-package by.instinctools.megamag.presentation.main.fragments.tickets;
+package by.instinctools.megamag.presentation.main.tickets;
 
 import by.instinctools.megamag.presentation.BasePresenter;
 

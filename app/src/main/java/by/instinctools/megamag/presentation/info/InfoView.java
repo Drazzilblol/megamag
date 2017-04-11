@@ -1,8 +1,7 @@
 package by.instinctools.megamag.presentation.info;
 
-import by.instinctools.megamag.presentation.MVPView;
+import by.instinctools.megamag.presentation.MvpView;
 
-interface InfoView extends MVPView {
+interface InfoView extends MvpView {
 
-    void setText();
 }

@@ -1,8 +1,8 @@
 package by.instinctools.megamag.presentation.splash;
 
-import by.instinctools.megamag.presentation.MVPView;
+import by.instinctools.megamag.presentation.MvpView;
 
-interface SplashView extends MVPView {
+interface SplashView extends MvpView {
 
     void goToMainScreen();
 }

@@ -1,6 +1,6 @@
 package by.instinctools.megamag.presentation.main;
 
-import by.instinctools.megamag.presentation.MVPView;
+import by.instinctools.megamag.presentation.MvpView;
 
-interface MainView extends MVPView {
+interface MainView extends MvpView {
 }

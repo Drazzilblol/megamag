@@ -1,8 +1,10 @@
 package by.instinctools.megamag.presentation.info;
 
-import by.instinctools.megamag.presentation.MVPPresenter;
+import android.support.annotation.NonNull;
 
-interface InfoPresenter extends MVPPresenter<InfoView> {
+import by.instinctools.megamag.presentation.MvpPresenter;
 
-    void setInitialData(String activityId);
+interface InfoPresenter extends MvpPresenter<InfoView> {
+
+    void setInitialValue(@NonNull String activityId);
 }
