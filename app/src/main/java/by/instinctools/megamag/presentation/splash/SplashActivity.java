@@ -36,6 +36,12 @@ public class SplashActivity extends AppCompatActivity implements SplashView {
     }
 
     @Override
+    public void goToProfileScreen() {
+        Navigator.goToProfileScreen(this);
+        finish();
+    }
+
+    @Override
     public void showError(@NonNull Error error) {
 
     }

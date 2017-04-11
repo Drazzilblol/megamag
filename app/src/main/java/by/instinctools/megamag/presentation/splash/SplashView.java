@@ -5,4 +5,7 @@ import by.instinctools.megamag.presentation.MvpView;
 interface SplashView extends MvpView {
 
     void goToMainScreen();
+
+    void goToProfileScreen();
+
 }
