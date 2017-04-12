@@ -11,14 +11,14 @@ import by.instinctools.megamag.common.SharedPrefs;
 import by.instinctools.megamag.common.errors.NoDataException;
 import io.reactivex.Observable;
 
-class LocalPreferencesDataSource implements PreferencesDataSource {
+class LocalPreferenceDataSource implements PreferenceDataSource {
 
     private static final String DEF_VALUE = " ";
 
     @NonNull
     private SharedPreferences sharedPreferences;
 
-    LocalPreferencesDataSource() {
+    LocalPreferenceDataSource() {
         sharedPreferences = SharedPrefs.getInstance().getSharedPreferences();
     }
 
@@ -119,24 +119,16 @@ class LocalPreferencesDataSource implements PreferencesDataSource {
 
     private Integer parseInteger(@NonNull String value) {
         try {
-            if (!TextUtils.equals(value, DEF_VALUE)) {
-                return Integer.parseInt(value);
-            } else {
-                return 0;
-            }
+            return Integer.parseInt(value);
         } catch (NumberFormatException ex) {
             throw new NoDataException();
         }
     }
 
     private Boolean parseBoolean(@NonNull String value) {
-        try {
-            if (TextUtils.equals(value, "false") || TextUtils.equals(value, "true")) {
-                return Boolean.parseBoolean(value);
-            } else {
-                throw new NoDataException();
-            }
-        } catch (NumberFormatException ex) {
+        if (TextUtils.equals(value, "false") || TextUtils.equals(value, "true")) {
+            return Boolean.parseBoolean(value);
+        } else {
             throw new NoDataException();
         }
     }

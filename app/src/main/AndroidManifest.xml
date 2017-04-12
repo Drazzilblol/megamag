@@ -26,7 +26,7 @@
             android:label="@string/app_bar_title_profile" />
         <activity
             android:name=".presentation.main.MainActivity"
-            android:label="@string/app_bar_title_main" />
+            android:theme="@style/AppTheme" />
     </application>
 
 </manifest>

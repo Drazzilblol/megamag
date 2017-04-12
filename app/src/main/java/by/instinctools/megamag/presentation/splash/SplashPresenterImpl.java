@@ -15,6 +15,7 @@ import io.reactivex.schedulers.Schedulers;
 class SplashPresenterImpl extends DisposablePresenter<SplashView> implements SplashPresenter {
 
     private static final long DELAY_MILLIS = 1000L;
+    public static final int INT = 1;
 
     @NonNull
     UseCase<Integer> incrementAndGetCounterUseCase = new IncrementAndGetStartupCounterUseCase();
@@ -36,7 +37,7 @@ class SplashPresenterImpl extends DisposablePresenter<SplashView> implements Spl
         if (isViewAttached()) {
             SplashView view = getView();
             view.showProgress(false);
-            if (value == 1) {
+            if (value == INT) {
                 view.goToProfileScreen();
             } else {
                 view.goToMainScreen();
@@ -51,6 +52,8 @@ class SplashPresenterImpl extends DisposablePresenter<SplashView> implements Spl
                 view.showProgress(false);
                 view.showError((NoDataException) throwable);
             }
+        } else {
+
         }
     }
 }

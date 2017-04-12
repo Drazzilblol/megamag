@@ -2,14 +2,14 @@ package by.instinctools.megamag.domain;
 
 import android.support.annotation.NonNull;
 
-import by.instinctools.megamag.data.preferences.PreferencesRepository;
-import by.instinctools.megamag.data.preferences.PreferencesRepositoryImpl;
+import by.instinctools.megamag.data.preferences.PreferenceRepository;
+import by.instinctools.megamag.data.preferences.PreferenceRepositoryImpl;
 import io.reactivex.Observable;
 
 public class IncrementAndGetStartupCounterUseCase implements UseCase<Integer> {
 
     @NonNull
-    private PreferencesRepository repository = new PreferencesRepositoryImpl();
+    private PreferenceRepository repository = new PreferenceRepositoryImpl();
 
     @Override
     public Observable<Integer> execute() {

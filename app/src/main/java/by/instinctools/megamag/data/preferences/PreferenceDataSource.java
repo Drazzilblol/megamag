@@ -6,7 +6,7 @@ import android.support.annotation.Nullable;
 import by.instinctools.megamag.data.DataSource;
 import io.reactivex.Observable;
 
-interface PreferencesDataSource extends DataSource<String, String> {
+interface PreferenceDataSource extends DataSource<String, String> {
 
     Observable<Integer> getInteger(@NonNull String key);
 
