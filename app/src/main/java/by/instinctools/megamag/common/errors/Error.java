@@ -1,14 +1,14 @@
 package by.instinctools.megamag.common.errors;
 
+import android.net.Uri;
 import android.support.annotation.NonNull;
-
-import java.net.URI;
+import android.support.annotation.Nullable;
 
 public interface Error {
 
     @NonNull
-    String getMessage();
+    String getErrorMessage();
 
-    @NonNull
-    URI getUri();
+    @Nullable
+    Uri getUri();
 }

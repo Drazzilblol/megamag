@@ -14,7 +14,7 @@ public class IncrementAndGetStartupCounterUseCase implements UseCase<Integer> {
     @Override
     public Observable<Integer> execute() {
         return repository.getStartupCounter()
-                .map(c -> ++c)
-                .flatMap(integer -> repository.setStartupCounter(integer));
+                .map(counter -> ++counter)
+                .flatMap(repository::setStartupCounter);
     }
 }

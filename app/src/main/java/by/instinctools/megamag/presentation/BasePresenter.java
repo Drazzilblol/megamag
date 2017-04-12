@@ -1,7 +1,6 @@
 package by.instinctools.megamag.presentation;
 
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 
 import java.lang.ref.WeakReference;
 
@@ -21,16 +20,17 @@ public abstract class BasePresenter<V extends MvpView> implements MvpPresenter<V
         }
     }
 
-    @Nullable
-    public V getView() {
-        if (isViewAttached()) {
-            return viewReference.get();
+    @NonNull
+    protected V getView() {
+        V view = viewReference.get();
+        if (view != null) {
+            return view;
         } else {
             throw new RuntimeException();
         }
     }
 
-    private boolean isViewAttached() {
+    protected boolean isViewAttached() {
         return viewReference != null;
     }
 }

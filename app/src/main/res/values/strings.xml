@@ -2,4 +2,5 @@
     <string name="app_name">Megamag</string>
     <string name="app_bar_title_main">Main</string>
     <string name="app_bar_title_profile">Profile</string>
+    <string name="no_data_exception_message">Bad data</string>
 </resources>

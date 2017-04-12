@@ -8,7 +8,6 @@ import android.support.v7.app.AppCompatActivity;
 
 import by.instinctools.megamag.R;
 import by.instinctools.megamag.common.errors.Error;
-import by.instinctools.megamag.presentation.info.InfoActivity;
 
 public class MainActivity extends AppCompatActivity implements MainView {
 

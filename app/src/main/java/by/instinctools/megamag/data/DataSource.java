@@ -2,7 +2,7 @@ package by.instinctools.megamag.data;
 
 import android.support.annotation.NonNull;
 
-import java.util.Map;
+import java.util.List;
 
 import io.reactivex.Observable;
 
@@ -12,7 +12,7 @@ public interface DataSource<K, V> {
 
     Observable<V> saveValue(@NonNull K key, @NonNull V value);
 
-    Observable<Map<K, ?>> getAll();
+    Observable<List<V>> getAll();
 
-    Observable<Map<K, V>> saveAll(Map<K, V> collection);
+    Observable<List<V>> saveAll(List<V> collection);
 }

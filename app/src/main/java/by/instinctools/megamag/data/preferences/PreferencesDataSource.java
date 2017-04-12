@@ -1,28 +1,31 @@
 package by.instinctools.megamag.data.preferences;
 
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+
 import by.instinctools.megamag.data.DataSource;
 import io.reactivex.Observable;
 
 interface PreferencesDataSource extends DataSource<String, String> {
 
-    Observable<Integer> getInteger(String key);
+    Observable<Integer> getInteger(@NonNull String key);
 
-    Observable<Integer> saveInteger(String key, Integer value);
+    Observable<Integer> saveInteger(@NonNull String key, @Nullable Integer value);
 
-    Observable<Float> getFloat(String key);
+    Observable<Float> getFloat(@NonNull String key);
 
-    Observable<Float> saveFloat(String key, Float value);
+    Observable<Float> saveFloat(@NonNull String key, @Nullable Float value);
 
-    Observable<Long> getLong(String key);
+    Observable<Long> getLong(@NonNull String key);
 
-    Observable<Long> saveLong(String key, Long value);
+    Observable<Long> saveLong(@NonNull String key, @Nullable Long value);
 
-    Observable<String> getString(String key);
+    Observable<String> getString(@NonNull String key);
 
-    Observable<String> saveString(String key, String value);
+    Observable<String> saveString(@NonNull String key, @Nullable String value);
 
-    Observable<Boolean> getBoolean(String key);
+    Observable<Boolean> getBoolean(@NonNull String key);
 
-    Observable<Boolean> saveBoolean(String key, Boolean value);
+    Observable<Boolean> saveBoolean(@NonNull String key, @Nullable Boolean value);
 
 }
