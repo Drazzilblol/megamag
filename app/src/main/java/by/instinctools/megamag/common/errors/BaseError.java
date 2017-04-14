@@ -5,7 +5,7 @@ import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
-abstract class BaseError extends RuntimeException implements Error {
+abstract class BaseError implements Error {
 
     @NonNull
     private String errorMessage;

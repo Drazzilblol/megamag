@@ -8,7 +8,8 @@ import android.text.TextUtils;
 import java.util.List;
 
 import by.instinctools.megamag.common.SharedPrefs;
-import by.instinctools.megamag.common.errors.NoDataException;
+import by.instinctools.megamag.common.errors.ErrorException;
+import by.instinctools.megamag.common.errors.NoDataError;
 import io.reactivex.Observable;
 
 class LocalPreferenceDataSource implements PreferenceDataSource {
@@ -115,7 +116,7 @@ class LocalPreferenceDataSource implements PreferenceDataSource {
         try {
             return Long.parseLong(value);
         } catch (NumberFormatException ex) {
-            throw new NoDataException();
+            throw new ErrorException(new NoDataError());
         }
     }
 
@@ -123,7 +124,7 @@ class LocalPreferenceDataSource implements PreferenceDataSource {
         try {
             return Integer.parseInt(value);
         } catch (NumberFormatException ex) {
-            throw new NoDataException();
+            throw new ErrorException(new NoDataError());
         }
     }
 
@@ -131,7 +132,7 @@ class LocalPreferenceDataSource implements PreferenceDataSource {
         if (TextUtils.equals(value, FALSE) || TextUtils.equals(value, TRUE)) {
             return Boolean.parseBoolean(value);
         } else {
-            throw new NoDataException();
+            throw new ErrorException(new NoDataError());
         }
     }
 
@@ -139,7 +140,7 @@ class LocalPreferenceDataSource implements PreferenceDataSource {
         try {
             return Float.parseFloat(value);
         } catch (NumberFormatException ex) {
-            throw new NoDataException();
+            throw new ErrorException(new NoDataError());
         }
     }
 }
