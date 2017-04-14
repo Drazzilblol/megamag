@@ -18,12 +18,11 @@ import android.view.MenuItem;
 import by.instinctools.megamag.R;
 import by.instinctools.megamag.common.errors.Error;
 import by.instinctools.megamag.presentation.main.announcements.AnnouncementsFragment;
-import by.instinctools.megamag.presentation.main.tickets.TicketsFragment;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, MainView {
 
-    private MainPresenter presenter;
+    private MainPresenter presenter = new MainPresenterImpl();
 
     public static Intent createIntent(Context context) {
         return new Intent(context, MainActivity.class);
@@ -45,8 +44,15 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+    }
 
-        presenter = new MainPresenterImpl();
+    @Override
+    public void goToAnnouncementsScreen() {
+        Fragment fragment = AnnouncementsFragment.newInstance();
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction()
+                .replace(R.id.activity_main_fragment_container, fragment)
+                .commit();
     }
 
     @Override
@@ -77,7 +83,7 @@ public class MainActivity extends AppCompatActivity
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
 
         if (id == R.id.nav_camera) {
@@ -117,22 +123,17 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public void showProgress(boolean show) {
+    public void hideError() {
 
     }
 
     @Override
-    public void addFragment(int fragmentId) {
-        Fragment fragment;
-        if (fragmentId == 0) {
-            fragment = AnnouncementsFragment.newInstance();
-        } else {
-            fragment = TicketsFragment.newInstance();
-        }
+    public void showProgress() {
 
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction()
-                .add(R.id.activity_main_fragment_container, fragment)
-                .commit();
+    }
+
+    @Override
+    public void hideProgress() {
+
     }
 }

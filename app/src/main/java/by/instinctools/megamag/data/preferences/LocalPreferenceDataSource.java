@@ -14,6 +14,8 @@ import io.reactivex.Observable;
 class LocalPreferenceDataSource implements PreferenceDataSource {
 
     private static final String DEF_VALUE = " ";
+    private static final String FALSE = "false";
+    private static final String TRUE = "true";
 
     @NonNull
     private SharedPreferences sharedPreferences;
@@ -126,7 +128,7 @@ class LocalPreferenceDataSource implements PreferenceDataSource {
     }
 
     private Boolean parseBoolean(@NonNull String value) {
-        if (TextUtils.equals(value, "false") || TextUtils.equals(value, "true")) {
+        if (TextUtils.equals(value, FALSE) || TextUtils.equals(value, TRUE)) {
             return Boolean.parseBoolean(value);
         } else {
             throw new NoDataException();

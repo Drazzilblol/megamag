@@ -8,10 +8,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 public class OffsetItemDecorator extends RecyclerView.ItemDecoration {
-    private int mItemOffset;
+    private int itemOffset;
 
     public OffsetItemDecorator(int itemOffset) {
-        mItemOffset = itemOffset;
+        this.itemOffset = itemOffset;
     }
 
     public OffsetItemDecorator(@NonNull Context context, @DimenRes int itemOffsetId) {
@@ -22,6 +22,10 @@ public class OffsetItemDecorator extends RecyclerView.ItemDecoration {
     public void getItemOffsets(Rect outRect, View view, RecyclerView parent,
                                RecyclerView.State state) {
         super.getItemOffsets(outRect, view, parent, state);
-        outRect.set(mItemOffset, mItemOffset / 2, mItemOffset, mItemOffset / 2);
+        if (parent.getChildAdapterPosition(view) == 0) {
+            outRect.set(0, 0, 0, 0);
+        } else {
+            outRect.set(0, itemOffset, 0, 0);
+        }
     }
 }

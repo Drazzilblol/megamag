@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--common-->
+    <string name="no_data_exception_message">Нет данных</string>
+    <string name="unknown_error_message">Неизвестаня ошибка</string>
+    <string name="action_settings">Настройки</string>
+
+    <!--main-->
+    <string name="announcements_toolbar_title">Анонсы</string>
+    <string name="tickets_toolbar_title">Билеты</string>
+</resources>

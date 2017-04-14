@@ -40,7 +40,18 @@ public class InfoActivity extends AppCompatActivity implements InfoView {
     }
 
     @Override
-    public void showProgress(boolean show) {
+    public void hideError() {
 
     }
+
+    @Override
+    public void showProgress() {
+
+    }
+
+    @Override
+    public void hideProgress() {
+
+    }
+
 }

@@ -16,6 +16,7 @@ public class AnnouncementImpl implements Announcement {
     }
 
     @Nullable
+    @Override
     public String getDetails() {
         return details;
     }
@@ -25,6 +26,7 @@ public class AnnouncementImpl implements Announcement {
     }
 
     @Nullable
+    @Override
     public String getDescription() {
         return description;
     }

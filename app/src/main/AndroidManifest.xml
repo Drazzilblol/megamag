@@ -21,9 +21,7 @@
         <activity android:name=".presentation.ticket_details.TicketDetailsActivity" />
         <activity android:name=".presentation.info.InfoActivity" />
         <activity android:name=".presentation.theater_details.TheaterDetailsActivity" />
-        <activity
-            android:name=".presentation.profile.ProfileActivity"
-            android:label="@string/app_bar_title_profile" />
+        <activity android:name=".presentation.profile.ProfileActivity" />
         <activity
             android:name=".presentation.main.MainActivity"
             android:theme="@style/AppTheme" />

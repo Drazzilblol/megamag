@@ -13,7 +13,7 @@ abstract class BaseError extends RuntimeException implements Error {
     @Nullable
     private Uri errorUri;
 
-    protected BaseError(@NonNull String message, @Nullable Uri uri) {
+    BaseError(@NonNull String message, @Nullable Uri uri) {
         errorMessage = message;
         errorUri = uri;
     }

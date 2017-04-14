@@ -4,5 +4,5 @@ import by.instinctools.megamag.presentation.MvpView;
 
 interface MainView extends MvpView {
 
-    void addFragment(int fragmentId);
+    void goToAnnouncementsScreen();
 }

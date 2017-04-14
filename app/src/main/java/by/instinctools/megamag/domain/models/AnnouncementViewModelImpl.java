@@ -1,5 +1,7 @@
 package by.instinctools.megamag.domain.models;
 
+import by.instinctools.megamag.data.models.Announcement;
+
 public class AnnouncementViewModelImpl implements AnnouncementViewModel {
 
     private String details;
@@ -11,14 +13,17 @@ public class AnnouncementViewModelImpl implements AnnouncementViewModel {
         this.description = description;
     }
 
+    public AnnouncementViewModelImpl(Announcement announcement) {
+        this(announcement.getDetails(), announcement.getDescription());
+    }
+
     @Override
     public String getDetails() {
         return details;
     }
 
-    @Override
     public void setDetails(String details) {
-
+        this.details = details;
     }
 
     @Override
@@ -26,8 +31,7 @@ public class AnnouncementViewModelImpl implements AnnouncementViewModel {
         return description;
     }
 
-    @Override
     public void setDescription(String description) {
-
+        this.description = description;
     }
 }

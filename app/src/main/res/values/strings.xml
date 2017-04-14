@@ -1,9 +1,9 @@
 <resources>
     <!--common-->
     <string name="app_name">Megamag</string>
-    <string name="app_bar_title_main">Main</string>
-    <string name="app_bar_title_profile">Profile</string>
-    <string name="no_data_exception_message">Bad data</string>
+
+    <string name="no_data_exception_message">No data</string>
+    <string name="unknown_error_message">Unknown error</string>
 
     <!--drawer-->
     <string name="navigation_drawer_open">Open navigation drawer</string>
@@ -13,5 +13,5 @@
 
     <!--main-->
     <string name="announcements_toolbar_title">Announcements</string>
-    <string name="Tickets_toolbar_title">Tickets</string>
+    <string name="tickets_toolbar_title">Tickets</string>
 </resources>

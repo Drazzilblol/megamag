@@ -8,8 +8,10 @@ import android.support.annotation.DrawableRes;
 
 public final class DrawableUtils {
 
+    public static final int NO_URI_ID = 0;
+
     public static Uri getDrawableUri(@DrawableRes int uriId, Context context) {
-        if (uriId > 0) {
+        if (uriId > NO_URI_ID) {
             Resources resources = context.getResources();
             return Uri.parse(
                     ContentResolver.SCHEME_ANDROID_RESOURCE +
