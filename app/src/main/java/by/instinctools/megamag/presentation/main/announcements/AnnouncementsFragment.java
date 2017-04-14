@@ -62,7 +62,7 @@ public class AnnouncementsFragment extends Fragment implements AnnouncementsView
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.addItemDecoration(new OffsetItemDecorator(
                 getContext(),
-                R.dimen.announcement_recycler_item_offset)
+                R.dimen.announcement_list_item_offset)
         );
         recyclerView.setAdapter(adapter);
     }

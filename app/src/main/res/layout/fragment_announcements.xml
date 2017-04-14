@@ -11,7 +11,7 @@
         android:layout_height="match_parent"
         android:clipToPadding="false"
         android:orientation="vertical"
-        android:padding="@dimen/announcement_recycler_padding"
+        android:padding="@dimen/announcement_list_padding"
         android:visibility="gone" />
 
     <TextView
@@ -19,7 +19,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|center"
-        android:padding="@dimen/announcement_fragment_error_padding"
+        android:padding="@dimen/announcement_list_error_padding"
         android:visibility="gone" />
 
     <ProgressBar

@@ -13,7 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|center"
-        android:padding="@dimen/splash_activity_progress_padding"
+        android:padding="@dimen/splash_progress_padding"
         android:visibility="gone" />
 
     <TextView
@@ -21,7 +21,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|center"
-        android:padding="@dimen/splash_activity_error_padding"
+        android:padding="@dimen/splash_error_padding"
         android:visibility="gone" />
 
 </FrameLayout>
