@@ -34,9 +34,9 @@ public class TicketDataSourceImpl implements TicketDataSource {
 
     private List<Ticket> getStubTickets() {
         List<Ticket> tickets = new ArrayList<>();
-        tickets.add(new TicketImpl("3", "3", "3"));
-        tickets.add(new TicketImpl("2", "2", "2"));
-        tickets.add(new TicketImpl("1", "1", "1"));
+        tickets.add(TicketImpl.create("3", "3", "3"));
+        tickets.add(TicketImpl.create("2", "2", "2"));
+        tickets.add(TicketImpl.create("1", "1", "1"));
         return tickets;
     }
 }

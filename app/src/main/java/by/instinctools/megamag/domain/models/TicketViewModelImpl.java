@@ -15,7 +15,7 @@ public class TicketViewModelImpl implements TicketViewModel {
     }
 
     public TicketViewModelImpl(Ticket ticket) {
-        this(ticket.getTitle(), ticket.getBeginsWith(), ticket.getCoverUri());
+        this(ticket.getTitle(), ticket.getBeginWith(), ticket.getCoverUri());
     }
 
     @Override

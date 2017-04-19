@@ -4,7 +4,7 @@ public interface Ticket {
 
     String getTitle();
 
-    String getBeginsWith();
+    String getBeginWith();
 
     String getCoverUri();
 }

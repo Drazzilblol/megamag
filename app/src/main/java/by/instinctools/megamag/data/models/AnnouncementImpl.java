@@ -2,36 +2,12 @@ package by.instinctools.megamag.data.models;
 
 import android.support.annotation.Nullable;
 
-public class AnnouncementImpl implements Announcement {
+import com.google.auto.value.AutoValue;
 
-    @Nullable
-    private String details;
+@AutoValue
+public abstract class AnnouncementImpl implements Announcement {
 
-    @Nullable
-    private String description;
-
-    public AnnouncementImpl(@Nullable String details, @Nullable String description) {
-        this.details = details;
-        this.description = description;
-    }
-
-    @Nullable
-    @Override
-    public String getDetails() {
-        return details;
-    }
-
-    public void setDetails(@Nullable String details) {
-        this.details = details;
-    }
-
-    @Nullable
-    @Override
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(@Nullable String description) {
-        this.description = description;
+    public static Announcement create(String details, String description){
+        return new AutoValue_AnnouncementImpl(details, description);
     }
 }

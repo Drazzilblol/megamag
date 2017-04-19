@@ -35,9 +35,9 @@ class RemoteAnnouncementDataSource implements AnnouncementDataSource {
 
     private List<Announcement> getStubAnnouncements() {
         List<Announcement> announcements = new ArrayList<>();
-        announcements.add(new AnnouncementImpl("1", "1"));
-        announcements.add(new AnnouncementImpl("2", "2"));
-        announcements.add(new AnnouncementImpl("3", "3"));
+        announcements.add(AnnouncementImpl.create("1", "1"));
+        announcements.add(AnnouncementImpl.create("2", "2"));
+        announcements.add(AnnouncementImpl.create("3", "3"));
         return announcements;
     }
 }
