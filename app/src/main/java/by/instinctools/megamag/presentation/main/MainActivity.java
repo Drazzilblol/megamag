@@ -18,6 +18,7 @@ import android.view.MenuItem;
 import by.instinctools.megamag.R;
 import by.instinctools.megamag.common.errors.Error;
 import by.instinctools.megamag.presentation.main.announcements.AnnouncementsFragment;
+import by.instinctools.megamag.presentation.main.tickets.TicketsFragment;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, MainView {
@@ -49,6 +50,15 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void goToAnnouncementsScreen() {
         Fragment fragment = AnnouncementsFragment.newInstance();
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction()
+                .replace(R.id.activity_main_fragment_container, fragment)
+                .commit();
+    }
+
+    @Override
+    public void goToTicketsScreen() {
+        Fragment fragment = TicketsFragment.newInstance();
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction()
                 .replace(R.id.activity_main_fragment_container, fragment)

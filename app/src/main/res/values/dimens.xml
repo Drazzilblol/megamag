@@ -20,6 +20,10 @@
     <dimen name="announcement_list_padding">@dimen/item_padding_normal</dimen>
     <dimen name="announcement_list_error_padding">@dimen/item_padding_large</dimen>
 
+    <dimen name="ticket_list_item_offset">@dimen/item_padding_normal</dimen>
+    <dimen name="ticket_list_padding">@dimen/item_padding_normal</dimen>
+    <dimen name="ticket_list_error_padding">@dimen/item_padding_large</dimen>
+
     <dimen name="splash_progress_padding">@dimen/item_padding_large</dimen>
     <dimen name="splash_error_padding">@dimen/item_padding_large</dimen>
 

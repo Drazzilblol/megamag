@@ -1,6 +1,59 @@
 package by.instinctools.megamag.presentation.main.tickets;
 
-import by.instinctools.megamag.presentation.BasePresenter;
+import android.support.annotation.NonNull;
 
-class TicketsPresenterImpl extends BasePresenter<TicketsView> implements TicketsPresenter {
+import java.util.List;
+
+import by.instinctools.megamag.common.errors.ErrorException;
+import by.instinctools.megamag.common.errors.NoDataError;
+import by.instinctools.megamag.domain.GetTicketsUseCase;
+import by.instinctools.megamag.domain.UseCase;
+import by.instinctools.megamag.domain.models.TicketViewModel;
+import by.instinctools.megamag.presentation.DisposablePresenter;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
+
+class TicketsPresenterImpl extends DisposablePresenter<TicketsView> implements TicketsPresenter {
+
+    private static final int EMPTY_LIST_SIZE = 0;
+
+    @NonNull
+    UseCase<List<TicketViewModel>> getTicketsUseCase = new GetTicketsUseCase();
+
+    @Override
+    public void attach(@NonNull TicketsView view) {
+        super.attach(view);
+        view.showProgress();
+        addDisposable(
+                getTicketsUseCase.execute()
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe(
+                                this::onLoadSuccess,
+                                this::onLoadError
+                        )
+        );
+    }
+
+    private void onLoadSuccess(@NonNull List<TicketViewModel> ticketsList) {
+        if (isViewAttached()) {
+            if (ticketsList.size() != EMPTY_LIST_SIZE) {
+                TicketsView view = getView();
+                view.hideProgress();
+                view.hideError();
+                view.showData(ticketsList);
+            } else {
+                onLoadError(new ErrorException(new NoDataError()));
+            }
+        }
+    }
+
+    private void onLoadError(@NonNull Throwable throwable) {
+        if (isViewAttached()) {
+            TicketsView view = getView();
+            view.hideProgress();
+            view.hideData();
+            showError(throwable);
+        }
+    }
 }

@@ -19,8 +19,8 @@ import butterknife.ButterKnife;
 import by.instinctools.megamag.R;
 import by.instinctools.megamag.common.errors.Error;
 import by.instinctools.megamag.domain.models.AnnouncementViewModel;
+import by.instinctools.megamag.presentation.common.decorator.OffsetItemDecorator;
 import by.instinctools.megamag.presentation.main.announcements.adapter.AnnouncementsListAdapter;
-import by.instinctools.megamag.presentation.main.announcements.decorator.OffsetItemDecorator;
 import hugo.weaving.DebugLog;
 
 public class AnnouncementsFragment extends Fragment implements AnnouncementsView {
