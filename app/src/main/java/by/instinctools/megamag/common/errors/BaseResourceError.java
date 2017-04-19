@@ -14,7 +14,7 @@ abstract class BaseResourceError extends BaseError {
     private static Context context = Application.getAppContext();
 
     BaseResourceError(@StringRes int messageId, @DrawableRes int uriId) {
-        super(context.getString(messageId), DrawableUtils.getDrawableUri(uriId, context));
+        super(context.getString(messageId), DrawableUtils.getDrawableUri(context, uriId));
     }
 
 }
