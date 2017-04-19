@@ -28,9 +28,11 @@ class SplashPresenterImpl extends DisposablePresenter<SplashView> implements Spl
         addDisposable(
                 Observable.timer(DELAY_MILLIS, TimeUnit.MILLISECONDS)
                         .flatMap(c -> incrementAndGetCounterUseCase.execute())
+                        .filter(counter -> counter > 0)
                         .map(counter -> counter == FRESH_START_COUNT)
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
+                        .firstOrError()
                         .subscribe(
                                 this::onLoadSuccess,
                                 this::onLoadError
