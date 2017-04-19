@@ -11,6 +11,7 @@ import butterknife.ButterKnife;
 import by.instinctools.megamag.R;
 import by.instinctools.megamag.common.errors.Error;
 import by.instinctools.megamag.common.utils.Navigator;
+import hugo.weaving.DebugLog;
 
 public class SplashActivity extends AppCompatActivity implements SplashView {
 
@@ -41,12 +42,14 @@ public class SplashActivity extends AppCompatActivity implements SplashView {
         super.onStop();
     }
 
+    @DebugLog
     @Override
     public void goToMainScreen() {
         Navigator.goToMainScreen(this);
         finish();
     }
 
+    @DebugLog
     @Override
     public void goToProfileScreen() {
         Navigator.goToProfileScreen(this);

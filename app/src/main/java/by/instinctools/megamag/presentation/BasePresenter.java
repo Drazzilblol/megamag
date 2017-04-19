@@ -6,6 +6,7 @@ import java.lang.ref.WeakReference;
 
 import by.instinctools.megamag.common.errors.ErrorException;
 import by.instinctools.megamag.common.errors.UnknownError;
+import timber.log.Timber;
 
 public abstract class BasePresenter<V extends MvpView> implements MvpPresenter<V> {
 
@@ -39,8 +40,10 @@ public abstract class BasePresenter<V extends MvpView> implements MvpPresenter<V
 
     protected void showError(@NonNull Throwable throwable) {
         if (throwable instanceof ErrorException) {
+            Timber.i(throwable.getMessage());
             showError((ErrorException) throwable);
         } else {
+            Timber.e(throwable, throwable.getMessage());
             showUnknownError();
         }
     }
