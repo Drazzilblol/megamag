@@ -2,13 +2,13 @@ package by.instinctools.megamag.common.errors;
 
 public class ErrorException extends RuntimeException {
 
-    private Error error;
+    private final Error ERROR;
 
     public ErrorException(Error error){
-        this.error = error;
+        this.ERROR = error;
     }
 
     public Error getError() {
-        return error;
+        return ERROR;
     }
 }

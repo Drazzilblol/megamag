@@ -8,25 +8,24 @@ import android.support.annotation.Nullable;
 abstract class BaseError implements Error {
 
     @NonNull
-    private String errorMessage;
+    private final String ERROR_MESSAGE;
 
     @Nullable
-    private Uri errorUri;
+    private final Uri ERROR_URI;
 
     BaseError(@NonNull String message, @Nullable Uri uri) {
-        errorMessage = message;
-        errorUri = uri;
+        ERROR_MESSAGE = message;
+        ERROR_URI = uri;
     }
 
     @Nullable
     @Override
     public Uri getUri() {
-        return errorUri;
+        return ERROR_URI;
     }
 
     @NonNull
-    @Override
     public String getErrorMessage() {
-        return errorMessage;
+        return ERROR_MESSAGE;
     }
 }
