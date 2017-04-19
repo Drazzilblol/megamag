@@ -28,6 +28,7 @@ class SplashPresenterImpl extends DisposablePresenter<SplashView> implements Spl
         addDisposable(
                 Observable.timer(DELAY_MILLIS, TimeUnit.MILLISECONDS)
                         .flatMap(c -> incrementAndGetCounterUseCase.execute())
+                        .map(counter -> counter == FRESH_START_COUNT)
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(
@@ -37,11 +38,11 @@ class SplashPresenterImpl extends DisposablePresenter<SplashView> implements Spl
         );
     }
 
-    private void onLoadSuccess(int counter) {
+    private void onLoadSuccess(boolean isFreshStart) {
         if (isViewAttached()) {
             SplashView view = getView();
             view.hideProgress();
-            if (isFreshStart(counter)) {
+            if (isFreshStart) {
                 view.goToProfileScreen();
             } else {
                 view.goToMainScreen();
@@ -59,9 +60,5 @@ class SplashPresenterImpl extends DisposablePresenter<SplashView> implements Spl
                 view.showError(new UnknownError());
             }
         }
-    }
-
-    private boolean isFreshStart(int counter) {
-        return counter == FRESH_START_COUNT;
     }
 }
