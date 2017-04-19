@@ -1,0 +1,41 @@
+package by.instinctools.megamag.data.announcements;
+
+import android.support.annotation.NonNull;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import by.instinctools.megamag.data.models.Announcement;
+import by.instinctools.megamag.data.models.AnnouncementImpl;
+import io.reactivex.Observable;
+
+class RemoteAnnouncementDataSource implements AnnouncementDataSource {
+
+    @Override
+    public Observable<Announcement> getValue(@NonNull String key) {
+        return null;
+    }
+
+    @Override
+    public Observable<Announcement> saveValue(@NonNull String key, @NonNull Announcement value) {
+        return null;
+    }
+
+    @Override
+    public Observable<List<Announcement>> getAll() {
+        return Observable.just(getStubAnnouncements());
+    }
+
+    @Override
+    public Observable<List<Announcement>> saveAll(List<Announcement> collection) {
+        return null;
+    }
+
+    private List<Announcement> getStubAnnouncements() {
+        List<Announcement> announcements = new ArrayList<>();
+        announcements.add(new AnnouncementImpl("1", "1"));
+        announcements.add(new AnnouncementImpl("2", "2"));
+        announcements.add(new AnnouncementImpl("3", "3"));
+        return announcements;
+    }
+}

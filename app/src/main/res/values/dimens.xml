@@ -1,8 +1,26 @@
 <resources>
-    <!-- Default screen margins, per the Android Design guidelines. -->
-    <dimen name="activity_horizontal_margin">16dp</dimen>
-    <dimen name="activity_vertical_margin">16dp</dimen>
+    <!--common-->
+    <dimen name="std_padding_large">16dp</dimen>
+    <dimen name="std_padding_normal">8dp</dimen>
 
-    <dimen name="default_padding_large">16dp</dimen>
+    <!--base-->
+    <dimen name="item_padding_large">@dimen/std_padding_large</dimen>
+    <dimen name="item_padding_normal">@dimen/std_padding_normal</dimen>
+    <dimen name="header_height">160dp</dimen>
+
+    <dimen name="activity_horizontal_margin">@dimen/item_padding_large</dimen>
+    <dimen name="activity_vertical_margin">@dimen/item_padding_large</dimen>
+
+    <dimen name="nav_header_vertical_spacing">@dimen/item_padding_large</dimen>
+    <dimen name="nav_header_height">@dimen/header_height</dimen>
+
+    <!--specific-->
+
+    <dimen name="announcement_list_item_offset">@dimen/item_padding_normal</dimen>
+    <dimen name="announcement_list_padding">@dimen/item_padding_normal</dimen>
+    <dimen name="announcement_list_error_padding">@dimen/item_padding_large</dimen>
+
+    <dimen name="splash_progress_padding">@dimen/item_padding_large</dimen>
+    <dimen name="splash_error_padding">@dimen/item_padding_large</dimen>
 
 </resources>

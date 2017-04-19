@@ -5,21 +5,22 @@ import android.support.annotation.NonNull;
 
 import io.reactivex.Observable;
 
-public class PreferencesRepositoryImpl implements PreferencesRepository {
+public class PreferenceRepositoryImpl implements PreferenceRepository {
 
     @NonNull
     private static final String STARTUP_COUNTER = "STARTUP_COUNTER";
 
     @NonNull
-    private PreferencesDataSource dataSource;
+    private PreferenceDataSource dataSource;
 
-    public PreferencesRepositoryImpl() {
-        dataSource = new LocalPreferencesDataSource();
+    public PreferenceRepositoryImpl() {
+        dataSource = new LocalPreferenceDataSource();
     }
 
     @Override
     public Observable<Integer> getStartupCounter() {
-        return dataSource.getInteger(STARTUP_COUNTER);
+        return dataSource.getInteger(STARTUP_COUNTER)
+                .onErrorReturnItem(0);
     }
 
     @Override
