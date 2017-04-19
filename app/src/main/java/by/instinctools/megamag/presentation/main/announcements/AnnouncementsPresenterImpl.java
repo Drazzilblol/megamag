@@ -6,7 +6,6 @@ import java.util.List;
 
 import by.instinctools.megamag.common.errors.ErrorException;
 import by.instinctools.megamag.common.errors.NoDataError;
-import by.instinctools.megamag.common.errors.UnknownError;
 import by.instinctools.megamag.domain.GetAnnouncementsUseCase;
 import by.instinctools.megamag.domain.UseCase;
 import by.instinctools.megamag.domain.models.AnnouncementViewModel;
@@ -55,11 +54,7 @@ class AnnouncementsPresenterImpl extends DisposablePresenter<AnnouncementsView>
             AnnouncementsView view = getView();
             view.hideProgress();
             view.hideData();
-            if (throwable instanceof ErrorException) {
-                view.showError(((ErrorException) throwable).getError());
-            } else {
-                view.showError(new UnknownError());
-            }
+            showError(throwable);
         }
     }
 }

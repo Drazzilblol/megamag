@@ -56,11 +56,7 @@ class SplashPresenterImpl extends DisposablePresenter<SplashView> implements Spl
         if (isViewAttached()) {
             SplashView view = getView();
             view.hideProgress();
-            if (throwable instanceof ErrorException) {
-                view.showError(((ErrorException) throwable).getError());
-            } else {
-                view.showError(new UnknownError());
-            }
+            showError(throwable);
         }
     }
 }
