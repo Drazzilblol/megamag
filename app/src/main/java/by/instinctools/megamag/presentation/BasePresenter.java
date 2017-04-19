@@ -37,7 +37,7 @@ public abstract class BasePresenter<V extends MvpView> implements MvpPresenter<V
         return viewReference != null;
     }
 
-    protected void showError(Throwable throwable) {
+    protected void showError(@NonNull Throwable throwable) {
         if (throwable instanceof ErrorException) {
             showError((ErrorException) throwable);
         } else {
@@ -45,11 +45,15 @@ public abstract class BasePresenter<V extends MvpView> implements MvpPresenter<V
         }
     }
 
-    protected void showError(ErrorException error) {
-        getView().showError(error.getError());
+    protected void showError(@NonNull ErrorException error) {
+        if(isViewAttached()){
+            getView().showError(error.getError());
+        }
     }
 
     protected void showUnknownError() {
-        getView().showError(new UnknownError());
+        if (isViewAttached()){
+            getView().showError(new UnknownError());
+        }
     }
 }
