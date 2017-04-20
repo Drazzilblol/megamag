@@ -21,8 +21,11 @@ public class GetAnnouncementsUseCase implements UseCase<List<AnnouncementViewMod
     public Observable<List<AnnouncementViewModel>> execute() {
         return repository.getAnnouncementList()
                 .flatMap(Observable::fromIterable)
-                .map(AnnouncementViewModelImpl::new)
-                .map(a -> (AnnouncementViewModel) a)
+                .map(announcement -> AnnouncementViewModelImpl.create(
+                        announcement.getDetails(),
+                        announcement.getDescription()
+                        )
+                )
                 .toList()
                 .toObservable();
     }

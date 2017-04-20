@@ -21,8 +21,12 @@ public class GetTicketsUseCase implements UseCase<List<TicketViewModel>> {
     public Observable<List<TicketViewModel>> execute() {
         return ticketRepository.getTicketList()
                 .flatMap(Observable::fromIterable)
-                .map(TicketViewModelImpl::new)
-                .map(ticket -> (TicketViewModel) ticket)
+                .map(ticket -> TicketViewModelImpl.create(
+                        ticket.getTitle(),
+                        ticket.getBeginWith(),
+                        ticket.getCoverUri()
+                        )
+                )
                 .toList()
                 .toObservable();
     }
