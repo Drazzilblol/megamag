@@ -11,7 +11,7 @@ import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import by.instinctools.megamag.R;
-import by.instinctools.megamag.domain.models.TicketViewModel;
+import by.instinctools.megamag.domain.models.Ticket;
 
 public class TicketHolder extends RecyclerView.ViewHolder {
 
@@ -34,7 +34,7 @@ public class TicketHolder extends RecyclerView.ViewHolder {
         ButterKnife.bind(this, itemView);
     }
 
-    void bindData(@NonNull TicketViewModel ticket) {
+    void bindData(@NonNull Ticket ticket) {
         titleTextView.setText(ticket.getTitle());
         beginWithTextView.setText(ticket.getBeginsWith());
     }

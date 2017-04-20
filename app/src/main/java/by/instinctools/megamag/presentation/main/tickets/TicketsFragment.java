@@ -18,7 +18,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import by.instinctools.megamag.R;
 import by.instinctools.megamag.common.errors.Error;
-import by.instinctools.megamag.domain.models.TicketViewModel;
+import by.instinctools.megamag.domain.models.Ticket;
 import by.instinctools.megamag.presentation.common.decorator.OffsetItemDecorator;
 import by.instinctools.megamag.presentation.main.tickets.adapter.TicketsListAdapter;
 import hugo.weaving.DebugLog;
@@ -82,7 +82,7 @@ public class TicketsFragment extends Fragment implements TicketsView {
     }
 
     @Override
-    public void showData(@NonNull List<TicketViewModel> ticketsList) {
+    public void showData(@NonNull List<Ticket> ticketsList) {
         adapter.setTickets(ticketsList);
         recyclerView.setVisibility(View.VISIBLE);
     }
@@ -91,7 +91,6 @@ public class TicketsFragment extends Fragment implements TicketsView {
     public void hideData() {
         recyclerView.setVisibility(View.GONE);
     }
-
 
     @Override
     public void showError(@NonNull Error error) {
@@ -113,5 +112,4 @@ public class TicketsFragment extends Fragment implements TicketsView {
     public void hideProgress() {
         progressBar.setVisibility(View.GONE);
     }
-
 }

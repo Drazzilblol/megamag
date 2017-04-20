@@ -4,16 +4,15 @@ import android.support.annotation.NonNull;
 
 import java.util.List;
 
-import by.instinctools.megamag.data.models.Ticket;
 import io.reactivex.Observable;
 
 public class TicketRepositoryImpl implements TicketRepository {
 
     @NonNull
-    private TicketDataSource ticketDataSource = new TicketDataSourceImpl();
+    private TicketDataSource ticketDataSource = new RemoteTicketDataSource();
 
     @Override
-    public Observable<List<Ticket>> getTicketList() {
+    public Observable<List<TicketData>> getTicketList() {
         return ticketDataSource.getAll();
     }
 

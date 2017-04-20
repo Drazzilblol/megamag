@@ -8,7 +8,7 @@ import by.instinctools.megamag.common.errors.ErrorException;
 import by.instinctools.megamag.common.errors.NoDataError;
 import by.instinctools.megamag.domain.GetTicketsUseCase;
 import by.instinctools.megamag.domain.UseCase;
-import by.instinctools.megamag.domain.models.TicketViewModel;
+import by.instinctools.megamag.domain.models.Ticket;
 import by.instinctools.megamag.presentation.DisposablePresenter;
 import hugo.weaving.DebugLog;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -19,7 +19,7 @@ class TicketsPresenterImpl extends DisposablePresenter<TicketsView> implements T
     private static final int EMPTY_LIST_SIZE = 0;
 
     @NonNull
-    UseCase<List<TicketViewModel>> getTicketsUseCase = new GetTicketsUseCase();
+    UseCase<List<Ticket>> getTicketsUseCase = new GetTicketsUseCase();
 
     @Override
     public void attach(@NonNull TicketsView view) {
@@ -37,7 +37,7 @@ class TicketsPresenterImpl extends DisposablePresenter<TicketsView> implements T
     }
 
     @DebugLog
-    private void onLoadSuccess(@NonNull List<TicketViewModel> ticketsList) {
+    private void onLoadSuccess(@NonNull List<Ticket> ticketsList) {
         if (isViewAttached()) {
             if (ticketsList.size() != EMPTY_LIST_SIZE) {
                 TicketsView view = getView();

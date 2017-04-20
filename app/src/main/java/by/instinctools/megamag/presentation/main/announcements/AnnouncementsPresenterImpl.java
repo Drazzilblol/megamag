@@ -8,7 +8,7 @@ import by.instinctools.megamag.common.errors.ErrorException;
 import by.instinctools.megamag.common.errors.NoDataError;
 import by.instinctools.megamag.domain.GetAnnouncementsUseCase;
 import by.instinctools.megamag.domain.UseCase;
-import by.instinctools.megamag.domain.models.AnnouncementViewModel;
+import by.instinctools.megamag.domain.models.Announcement;
 import by.instinctools.megamag.presentation.DisposablePresenter;
 import hugo.weaving.DebugLog;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -20,7 +20,7 @@ class AnnouncementsPresenterImpl extends DisposablePresenter<AnnouncementsView>
     private static final int EMPTY_LIST_SIZE = 0;
 
     @NonNull
-    UseCase<List<AnnouncementViewModel>> getAnnouncementsUseCase = new GetAnnouncementsUseCase();
+    UseCase<List<Announcement>> getAnnouncementsUseCase = new GetAnnouncementsUseCase();
 
     @DebugLog
     @Override
@@ -39,7 +39,7 @@ class AnnouncementsPresenterImpl extends DisposablePresenter<AnnouncementsView>
     }
 
     @DebugLog
-    private void onLoadSuccess(@NonNull List<AnnouncementViewModel> announcementList) {
+    private void onLoadSuccess(@NonNull List<Announcement> announcementList) {
         if (isViewAttached()) {
             if (announcementList.size() != EMPTY_LIST_SIZE) {
                 AnnouncementsView view = getView();

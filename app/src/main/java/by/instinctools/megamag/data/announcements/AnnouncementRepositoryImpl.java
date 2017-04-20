@@ -4,7 +4,6 @@ import android.support.annotation.NonNull;
 
 import java.util.List;
 
-import by.instinctools.megamag.data.models.Announcement;
 import hugo.weaving.DebugLog;
 import io.reactivex.Observable;
 
@@ -19,7 +18,7 @@ public class AnnouncementRepositoryImpl implements AnnouncementRepository {
 
     @DebugLog
     @Override
-    public Observable<List<Announcement>> getAnnouncementList() {
+    public Observable<List<AnnouncementData>> getAnnouncementList() {
         return dataSource.getAll();
     }
 }

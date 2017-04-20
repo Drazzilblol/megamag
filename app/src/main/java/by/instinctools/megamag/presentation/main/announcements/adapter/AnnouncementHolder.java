@@ -11,7 +11,7 @@ import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import by.instinctools.megamag.R;
-import by.instinctools.megamag.domain.models.AnnouncementViewModel;
+import by.instinctools.megamag.domain.models.Announcement;
 
 class AnnouncementHolder extends RecyclerView.ViewHolder {
 
@@ -34,7 +34,7 @@ class AnnouncementHolder extends RecyclerView.ViewHolder {
         ButterKnife.bind(this, itemView);
     }
 
-    void bindData(@NonNull AnnouncementViewModel announcement) {
+    void bindData(@NonNull Announcement announcement) {
         detailsTextView.setText(announcement.getDetails());
         descriptionTextView.setText(announcement.getDescription());
     }

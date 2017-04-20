@@ -7,12 +7,12 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import java.util.List;
 
-import by.instinctools.megamag.domain.models.TicketViewModel;
+import by.instinctools.megamag.domain.models.Ticket;
 
 public class TicketsListAdapter extends RecyclerView.Adapter<TicketHolder> {
 
     @NonNull
-    private final List<TicketViewModel> tickets = new ArrayList<>();
+    private final List<Ticket> tickets = new ArrayList<>();
 
     @Override
     public TicketHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -29,7 +29,7 @@ public class TicketsListAdapter extends RecyclerView.Adapter<TicketHolder> {
         return tickets.size();
     }
 
-    public void setTickets(@NonNull List<TicketViewModel> tickets) {
+    public void setTickets(@NonNull List<Ticket> tickets) {
         this.tickets.clear();
         this.tickets.addAll(tickets);
         notifyDataSetChanged();
