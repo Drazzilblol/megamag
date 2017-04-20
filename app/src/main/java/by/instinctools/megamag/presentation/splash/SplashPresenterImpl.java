@@ -4,8 +4,6 @@ import android.support.annotation.NonNull;
 
 import java.util.concurrent.TimeUnit;
 
-import by.instinctools.megamag.common.errors.NoDataException;
-import by.instinctools.megamag.common.errors.UnknownError;
 import by.instinctools.megamag.domain.IncrementAndGetStartupCounterUseCase;
 import by.instinctools.megamag.domain.UseCase;
 import by.instinctools.megamag.presentation.DisposablePresenter;
@@ -56,11 +54,7 @@ class SplashPresenterImpl extends DisposablePresenter<SplashView> implements Spl
         if (isViewAttached()) {
             SplashView view = getView();
             view.hideProgress();
-            if (throwable instanceof NoDataException) {
-                view.showError((NoDataException) throwable);
-            } else {
-                view.showError(new UnknownError());
-            }
+            showError(throwable);
         }
     }
 }

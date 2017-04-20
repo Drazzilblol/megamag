@@ -4,8 +4,8 @@ import android.support.annotation.NonNull;
 
 import java.util.List;
 
-import by.instinctools.megamag.common.errors.NoDataException;
-import by.instinctools.megamag.common.errors.UnknownError;
+import by.instinctools.megamag.common.errors.ErrorException;
+import by.instinctools.megamag.common.errors.NoDataError;
 import by.instinctools.megamag.domain.GetAnnouncementsUseCase;
 import by.instinctools.megamag.domain.UseCase;
 import by.instinctools.megamag.domain.models.AnnouncementViewModel;
@@ -44,7 +44,7 @@ class AnnouncementsPresenterImpl extends DisposablePresenter<AnnouncementsView>
                 view.hideError();
                 view.showData(announcementList);
             } else {
-                onLoadError(new NoDataException());
+                onLoadError(new ErrorException(new NoDataError()));
             }
         }
     }
@@ -54,11 +54,7 @@ class AnnouncementsPresenterImpl extends DisposablePresenter<AnnouncementsView>
             AnnouncementsView view = getView();
             view.hideProgress();
             view.hideData();
-            if (throwable instanceof NoDataException) {
-                view.showError((NoDataException) throwable);
-            } else {
-                view.showError(new UnknownError());
-            }
+            showError(throwable);
         }
     }
 }

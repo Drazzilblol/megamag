@@ -4,6 +4,9 @@ import android.support.annotation.NonNull;
 
 import java.lang.ref.WeakReference;
 
+import by.instinctools.megamag.common.errors.ErrorException;
+import by.instinctools.megamag.common.errors.UnknownError;
+
 public abstract class BasePresenter<V extends MvpView> implements MvpPresenter<V> {
 
     private WeakReference<V> viewReference;
@@ -32,5 +35,25 @@ public abstract class BasePresenter<V extends MvpView> implements MvpPresenter<V
 
     protected boolean isViewAttached() {
         return viewReference != null;
+    }
+
+    protected void showError(@NonNull Throwable throwable) {
+        if (throwable instanceof ErrorException) {
+            showError((ErrorException) throwable);
+        } else {
+            showUnknownError();
+        }
+    }
+
+    protected void showError(@NonNull ErrorException error) {
+        if (isViewAttached()) {
+            getView().showError(error.getError());
+        }
+    }
+
+    protected void showUnknownError() {
+        if (isViewAttached()) {
+            getView().showError(new UnknownError());
+        }
     }
 }

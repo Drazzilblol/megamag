@@ -5,13 +5,13 @@ import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
-abstract class BaseError extends RuntimeException implements Error {
+abstract class BaseError implements Error {
 
     @NonNull
-    private String errorMessage;
+    private final String errorMessage;
 
     @Nullable
-    private Uri errorUri;
+    private final Uri errorUri;
 
     BaseError(@NonNull String message, @Nullable Uri uri) {
         errorMessage = message;
@@ -25,7 +25,6 @@ abstract class BaseError extends RuntimeException implements Error {
     }
 
     @NonNull
-    @Override
     public String getErrorMessage() {
         return errorMessage;
     }
