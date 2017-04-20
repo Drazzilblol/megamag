@@ -2,6 +2,7 @@ package by.instinctools.megamag.presentation.splash;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v4.widget.ContentLoadingProgressBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
@@ -18,7 +19,7 @@ public class SplashActivity extends AppCompatActivity implements SplashView {
     private SplashPresenter splashPresenter = new SplashPresenterImpl();
 
     @BindView(R.id.activity_splash_progress_bar)
-    View progressBar;
+    ContentLoadingProgressBar progressBar;
 
     @BindView(R.id.splash_error_view)
     TextView errorView;
@@ -69,11 +70,11 @@ public class SplashActivity extends AppCompatActivity implements SplashView {
 
     @Override
     public void showProgress() {
-        progressBar.setVisibility(View.VISIBLE);
+        progressBar.show();
     }
 
     @Override
     public void hideProgress() {
-        progressBar.setVisibility(View.GONE);
+        progressBar.hide();
     }
 }

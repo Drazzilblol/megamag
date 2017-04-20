@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.ContentLoadingProgressBar;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -32,7 +33,7 @@ public class TicketsFragment extends Fragment implements TicketsView {
     TextView errorView;
 
     @BindView(R.id.tickets_progress_bar)
-    View progressBar;
+    ContentLoadingProgressBar progressBar;
 
     @NonNull
     private TicketsPresenter presenter = new TicketsPresenterImpl();
@@ -105,11 +106,11 @@ public class TicketsFragment extends Fragment implements TicketsView {
 
     @Override
     public void showProgress() {
-        progressBar.setVisibility(View.VISIBLE);
+        progressBar.show();
     }
 
     @Override
     public void hideProgress() {
-        progressBar.setVisibility(View.GONE);
+        progressBar.hide();
     }
 }
