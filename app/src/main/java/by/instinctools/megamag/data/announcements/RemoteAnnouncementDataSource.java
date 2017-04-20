@@ -7,6 +7,7 @@ import java.util.List;
 
 import by.instinctools.megamag.data.models.Announcement;
 import by.instinctools.megamag.data.models.AnnouncementImpl;
+import hugo.weaving.DebugLog;
 import io.reactivex.Observable;
 
 class RemoteAnnouncementDataSource implements AnnouncementDataSource {
@@ -21,6 +22,7 @@ class RemoteAnnouncementDataSource implements AnnouncementDataSource {
         return null;
     }
 
+    @DebugLog
     @Override
     public Observable<List<Announcement>> getAll() {
         return Observable.just(getStubAnnouncements());

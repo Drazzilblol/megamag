@@ -21,6 +21,7 @@ import by.instinctools.megamag.common.errors.Error;
 import by.instinctools.megamag.domain.models.AnnouncementViewModel;
 import by.instinctools.megamag.presentation.main.announcements.adapter.AnnouncementsListAdapter;
 import by.instinctools.megamag.presentation.main.announcements.decorator.OffsetItemDecorator;
+import hugo.weaving.DebugLog;
 
 public class AnnouncementsFragment extends Fragment implements AnnouncementsView {
 
@@ -43,6 +44,7 @@ public class AnnouncementsFragment extends Fragment implements AnnouncementsView
         return new AnnouncementsFragment();
     }
 
+    @DebugLog
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

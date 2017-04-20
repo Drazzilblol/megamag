@@ -10,6 +10,7 @@ import java.util.List;
 import by.instinctools.megamag.common.SharedPrefs;
 import by.instinctools.megamag.common.errors.ErrorException;
 import by.instinctools.megamag.common.errors.NoDataError;
+import hugo.weaving.DebugLog;
 import io.reactivex.Observable;
 
 class LocalPreferenceDataSource implements PreferenceDataSource {
@@ -25,12 +26,14 @@ class LocalPreferenceDataSource implements PreferenceDataSource {
         sharedPreferences = SharedPrefs.getInstance().getSharedPreferences();
     }
 
+    @DebugLog
     @Override
     public Observable<String> getValue(@NonNull final String key) {
         return Observable.just(sharedPreferences)
                 .map(string -> string.getString(key, DEF_VALUE));
     }
 
+    @DebugLog
     @Override
     public Observable<String> saveValue(@NonNull final String key, @NonNull final String value) {
         return Observable.just(sharedPreferences)
