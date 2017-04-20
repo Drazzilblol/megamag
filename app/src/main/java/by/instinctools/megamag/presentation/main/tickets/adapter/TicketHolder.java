@@ -24,7 +24,7 @@ public class TicketHolder extends RecyclerView.ViewHolder {
     @BindView(R.id.ticket_cover)
     ImageView imageView;
 
-    private static View getView(ViewGroup parent) {
+    private static View getView(@NonNull ViewGroup parent) {
         return LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.ticket_item, parent, false);
     }

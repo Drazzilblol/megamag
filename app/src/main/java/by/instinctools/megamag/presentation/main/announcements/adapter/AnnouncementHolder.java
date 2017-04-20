@@ -24,7 +24,7 @@ class AnnouncementHolder extends RecyclerView.ViewHolder {
     @BindView(R.id.announcement_cover)
     ImageView imageView;
 
-    private static View getView(ViewGroup parent) {
+    private static View getView(@NonNull ViewGroup parent) {
         return LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.announcements_item, parent, false);
     }

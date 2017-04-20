@@ -7,10 +7,10 @@ import java.util.List;
 
 import by.instinctools.megamag.data.models.Ticket;
 import by.instinctools.megamag.data.models.TicketImpl;
+import hugo.weaving.DebugLog;
 import io.reactivex.Observable;
 
 public class TicketDataSourceImpl implements TicketDataSource {
-
 
     @Override
     public Observable<Ticket> getValue(@NonNull String key) {
@@ -22,6 +22,7 @@ public class TicketDataSourceImpl implements TicketDataSource {
         return null;
     }
 
+    @DebugLog
     @Override
     public Observable<List<Ticket>> getAll() {
         return Observable.just(getStubTickets());

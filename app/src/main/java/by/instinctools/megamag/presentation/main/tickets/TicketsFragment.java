@@ -21,6 +21,7 @@ import by.instinctools.megamag.common.errors.Error;
 import by.instinctools.megamag.domain.models.TicketViewModel;
 import by.instinctools.megamag.presentation.common.decorator.OffsetItemDecorator;
 import by.instinctools.megamag.presentation.main.tickets.adapter.TicketsListAdapter;
+import hugo.weaving.DebugLog;
 
 public class TicketsFragment extends Fragment implements TicketsView {
 
@@ -43,6 +44,7 @@ public class TicketsFragment extends Fragment implements TicketsView {
         return new TicketsFragment();
     }
 
+    @DebugLog
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

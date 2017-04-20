@@ -10,6 +10,7 @@ import by.instinctools.megamag.domain.GetTicketsUseCase;
 import by.instinctools.megamag.domain.UseCase;
 import by.instinctools.megamag.domain.models.TicketViewModel;
 import by.instinctools.megamag.presentation.DisposablePresenter;
+import hugo.weaving.DebugLog;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
@@ -35,6 +36,7 @@ class TicketsPresenterImpl extends DisposablePresenter<TicketsView> implements T
         );
     }
 
+    @DebugLog
     private void onLoadSuccess(@NonNull List<TicketViewModel> ticketsList) {
         if (isViewAttached()) {
             if (ticketsList.size() != EMPTY_LIST_SIZE) {
@@ -48,6 +50,7 @@ class TicketsPresenterImpl extends DisposablePresenter<TicketsView> implements T
         }
     }
 
+    @DebugLog
     private void onLoadError(@NonNull Throwable throwable) {
         if (isViewAttached()) {
             TicketsView view = getView();

@@ -6,6 +6,6 @@ import com.google.auto.value.AutoValue;
 public abstract class TicketImpl implements Ticket {
 
     public static Ticket create(String title, String beginWith, String coverUri) {
-        return new  AutoValue_TicketImpl(title, beginWith, coverUri);
+        return new AutoValue_TicketImpl(title, beginWith, coverUri);
     }
 }
