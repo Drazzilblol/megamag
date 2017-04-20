@@ -5,7 +5,7 @@ import android.support.annotation.NonNull;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class BaseListConverter<IN, OUT> implements ListConverter<IN, OUT> {
+public abstract class BaseConverter<IN, OUT> implements ListConverter<IN, OUT>, Converter<IN, OUT> {
 
     @NonNull
     @Override
