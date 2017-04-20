@@ -7,14 +7,13 @@
     android:background="@drawable/splash"
     tools:context="by.instinctools.megamag.presentation.splash.SplashActivity">
 
-    <ProgressBar
+    <android.support.v4.widget.ContentLoadingProgressBar
         android:id="@+id/activity_splash_progress_bar"
         style="?android:attr/progressBarStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|center"
-        android:padding="@dimen/splash_progress_padding"
-        android:visibility="gone" />
+        android:padding="@dimen/splash_progress_padding" />
 
     <TextView
         android:id="@+id/splash_error_view"
