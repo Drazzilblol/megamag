@@ -1,4 +1,4 @@
-package by.instinctools.megamag.presentation.main.announcements.decorator;
+package by.instinctools.megamag.presentation.common.decorator;
 
 import android.content.Context;
 import android.graphics.Rect;

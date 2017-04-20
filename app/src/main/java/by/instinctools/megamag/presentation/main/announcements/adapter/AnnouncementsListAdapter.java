@@ -7,12 +7,12 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import java.util.List;
 
-import by.instinctools.megamag.domain.models.AnnouncementViewModel;
+import by.instinctools.megamag.domain.models.Announcement;
 
 public class AnnouncementsListAdapter extends RecyclerView.Adapter<AnnouncementHolder> {
 
     @NonNull
-    private final List<AnnouncementViewModel> announcements = new ArrayList<>();
+    private final List<Announcement> announcements = new ArrayList<>();
 
     @Override
     public AnnouncementHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -29,7 +29,7 @@ public class AnnouncementsListAdapter extends RecyclerView.Adapter<AnnouncementH
         return announcements.size();
     }
 
-    public void setAnnouncements(@NonNull List<AnnouncementViewModel> announcements) {
+    public void setAnnouncements(@NonNull List<Announcement> announcements) {
         this.announcements.clear();
         this.announcements.addAll(announcements);
         notifyDataSetChanged();

@@ -11,7 +11,7 @@ import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import by.instinctools.megamag.R;
-import by.instinctools.megamag.domain.models.AnnouncementViewModel;
+import by.instinctools.megamag.domain.models.Announcement;
 
 class AnnouncementHolder extends RecyclerView.ViewHolder {
 
@@ -24,7 +24,7 @@ class AnnouncementHolder extends RecyclerView.ViewHolder {
     @BindView(R.id.announcement_cover)
     ImageView imageView;
 
-    private static View getView(ViewGroup parent) {
+    private static View getView(@NonNull ViewGroup parent) {
         return LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.announcements_item, parent, false);
     }
@@ -34,7 +34,7 @@ class AnnouncementHolder extends RecyclerView.ViewHolder {
         ButterKnife.bind(this, itemView);
     }
 
-    void bindData(@NonNull AnnouncementViewModel announcement) {
+    void bindData(@NonNull Announcement announcement) {
         detailsTextView.setText(announcement.getDetails());
         descriptionTextView.setText(announcement.getDescription());
     }
