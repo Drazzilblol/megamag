@@ -14,6 +14,8 @@
     <dimen name="nav_header_vertical_spacing">@dimen/item_padding_large</dimen>
     <dimen name="nav_header_height">@dimen/header_height</dimen>
 
+    <dimen name="card_view_items_padding">@dimen/std_padding_normal</dimen>
+
     <!--specific-->
 
     <dimen name="announcement_list_item_offset">@dimen/item_padding_normal</dimen>
@@ -26,5 +28,7 @@
 
     <dimen name="splash_progress_padding">@dimen/item_padding_large</dimen>
     <dimen name="splash_error_padding">@dimen/item_padding_large</dimen>
+
+    <dimen name="announcement_card_items_padding">@dimen/card_view_items_padding</dimen>
 
 </resources>
