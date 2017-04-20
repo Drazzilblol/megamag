@@ -46,13 +46,13 @@ public abstract class BasePresenter<V extends MvpView> implements MvpPresenter<V
     }
 
     protected void showError(@NonNull ErrorException error) {
-        if(isViewAttached()){
+        if (isViewAttached()) {
             getView().showError(error.getError());
         }
     }
 
     protected void showUnknownError() {
-        if (isViewAttached()){
+        if (isViewAttached()) {
             getView().showError(new UnknownError());
         }
     }

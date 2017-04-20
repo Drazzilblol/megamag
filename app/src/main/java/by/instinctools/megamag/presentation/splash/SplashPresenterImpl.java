@@ -4,8 +4,6 @@ import android.support.annotation.NonNull;
 
 import java.util.concurrent.TimeUnit;
 
-import by.instinctools.megamag.common.errors.ErrorException;
-import by.instinctools.megamag.common.errors.UnknownError;
 import by.instinctools.megamag.domain.IncrementAndGetStartupCounterUseCase;
 import by.instinctools.megamag.domain.UseCase;
 import by.instinctools.megamag.presentation.DisposablePresenter;

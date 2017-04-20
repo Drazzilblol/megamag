@@ -4,7 +4,7 @@ public class ErrorException extends RuntimeException {
 
     private final Error error;
 
-    public ErrorException(Error error){
+    public ErrorException(Error error) {
         this.error = error;
     }
 
