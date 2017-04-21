@@ -15,7 +15,17 @@ public abstract class AnnouncementData {
 
     public abstract String getCoverUri();
 
-    public static AnnouncementData create(String title, String place, String details, String description, String coverUri) {
-        return new AutoValue_AnnouncementData(title, place, details, description, coverUri);
+    static Builder builder() {
+        return new AutoValue_AnnouncementData.Builder();
+    }
+
+    @AutoValue.Builder
+    abstract static class Builder {
+        abstract Builder title(String value);
+        abstract Builder place(String value);
+        abstract Builder details(String value);
+        abstract Builder description(String value);
+        abstract Builder coverUri(String value);
+        abstract AnnouncementData build();
     }
 }

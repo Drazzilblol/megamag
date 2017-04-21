@@ -48,7 +48,7 @@ class AnnouncementHolder extends RecyclerView.ViewHolder {
         placeView.setText(announcement.getPlace());
         detailsTextView.setText(announcement.getDetails());
         descriptionTextView.setText(announcement.getDescription());
-        Picasso.with(Application.getAppContext())
+        Picasso.with(imageView.getContext())
                 .load(announcement.getCoverUri())
                 .into(imageView);
     }
