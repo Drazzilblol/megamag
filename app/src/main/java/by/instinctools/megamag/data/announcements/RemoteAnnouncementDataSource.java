@@ -35,19 +35,19 @@ class RemoteAnnouncementDataSource implements AnnouncementDataSource {
         List<AnnouncementData> announcements = new ArrayList<>();
         announcements.add(AnnouncementData.create("Затерянный город Z",
                 "Анонсы ",
-                "Год: 2016\n" +
+                "Год: 2016 " +
                         "Страна: США",
                 "Эльдорадо, таинственная столица инков, загадочный Город Z… Вымысел или реальность? В 1925 году экспедиция полковника Фоссета, члена Королевского Географического общества, бесследно исчезла в джунглях Амазонии в поисках Города Z…",
                 "http://kinoteatr.megamag.by/images/newsdesk_img/zateryanniy_gorod_b1.jpg"));
         announcements.add(AnnouncementData.create("Затерянный город Z",
                 "Анонсы ",
-                "Год: 2016\n" +
+                "Год: 2016 " +
                         "Страна: США",
                 "Эльдорадо, таинственная столица инков, загадочный Город Z… Вымысел или реальность? В 1925 году экспедиция полковника Фоссета, члена Королевского Географического общества, бесследно исчезла в джунглях Амазонии в поисках Города Z…",
                 "http://kinoteatr.megamag.by/images/newsdesk_img/zateryanniy_gorod_b1.jpg"));
         announcements.add(AnnouncementData.create("Затерянный город Z",
                 "Анонсы ",
-                "Год: 2016\n" +
+                "Год: 2016 " +
                         "Страна: США",
                 "Эльдорадо, таинственная столица инков, загадочный Город Z… Вымысел или реальность? В 1925 году экспедиция полковника Фоссета, члена Королевского Географического общества, бесследно исчезла в джунглях Амазонии в поисках Города Z…",
                 "http://kinoteatr.megamag.by/images/newsdesk_img/zateryanniy_gorod_b1.jpg"));
