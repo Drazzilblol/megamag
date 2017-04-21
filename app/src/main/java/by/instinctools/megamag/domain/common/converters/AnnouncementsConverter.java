@@ -11,13 +11,12 @@ public class AnnouncementsConverter extends BaseConverter<AnnouncementData, Anno
     @NonNull
     @Override
     public Announcement convert(@NonNull AnnouncementData announcementData) {
-        return Announcement.create(
-                announcementData.getTitle(),
-                announcementData.getPlace(),
-                announcementData.getDetails(),
-                announcementData.getDescription(),
-                announcementData.getCoverUri()
-        );
+        return Announcement.builder()
+                .title(announcementData.getTitle())
+                .place(announcementData.getPlace())
+                .details(announcementData.getDetails())
+                .description(announcementData.getDescription())
+                .coverUri(announcementData.getCoverUri())
+                .build();
     }
-
 }

@@ -30,15 +30,16 @@ public abstract class AnnouncementData {
 
     @AutoValue.Builder
     abstract static class Builder {
-        abstract Builder title(String value);
 
-        abstract Builder place(String value);
+        abstract Builder title(@NonNull String value);
 
-        abstract Builder details(String value);
+        abstract Builder place(@NonNull String value);
 
-        abstract Builder description(String value);
+        abstract Builder details(@Nullable String value);
 
-        abstract Builder coverUri(String value);
+        abstract Builder description(@Nullable String value);
+
+        abstract Builder coverUri(@Nullable String value);
 
         abstract AnnouncementData build();
     }
