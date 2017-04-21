@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.squareup.picasso.Picasso;
+import com.bumptech.glide.Glide;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -34,6 +34,7 @@ class TicketHolder extends RecyclerView.ViewHolder {
         return layoutInflater.inflate(R.layout.item_ticket, parent, false);
     }
 
+
     TicketHolder(@NonNull ViewGroup parent) {
         super(inflateView(parent));
         ButterKnife.bind(this, itemView);
@@ -42,7 +43,7 @@ class TicketHolder extends RecyclerView.ViewHolder {
     void bindData(@NonNull Ticket ticket) {
         titleTextView.setText(ticket.getTitle());
         beginWithTextView.setText(ticket.getBeginsWith());
-        Picasso.with(itemView.getContext())
+        Glide.with(Application.getAppContext())
                 .load(ticket.getCoverUri())
                 .into(imageView);
     }
