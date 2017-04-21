@@ -1,6 +1,7 @@
 package by.instinctools.megamag.domain.models;
 
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
 import com.google.auto.value.AutoValue;
 
@@ -16,7 +17,20 @@ public abstract class Ticket {
     @NonNull
     public abstract String getCoverUri();
 
-    public static Ticket create(String title, String beginWith, String coverUri) {
-        return new AutoValue_Ticket(title, beginWith, coverUri);
+    @NonNull
+    public static Ticket.Builder builder() {
+        return new AutoValue_Ticket.Builder();
+    }
+
+    @AutoValue.Builder
+    public abstract static class Builder {
+
+        public abstract Ticket.Builder title(@NonNull String value);
+
+        public abstract Ticket.Builder beginsWith(@NonNull String value);
+
+        public abstract Ticket.Builder coverUri(@Nullable String value);
+
+        public abstract Ticket build();
     }
 }
