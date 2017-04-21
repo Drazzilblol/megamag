@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/announcements_fragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -12,7 +13,8 @@
         android:clipToPadding="false"
         android:orientation="vertical"
         android:padding="@dimen/announcement_list_padding"
-        android:visibility="gone" />
+        android:visibility="gone"
+        app:layoutManager="android.support.v7.widget.LinearLayoutManager"/>
 
     <TextView
         android:id="@+id/tickets_error_view"

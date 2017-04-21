@@ -1,5 +1,6 @@
 package by.instinctools.megamag.presentation.main.tickets.adapter;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -16,7 +17,7 @@ import by.instinctools.megamag.Application;
 import by.instinctools.megamag.R;
 import by.instinctools.megamag.domain.models.Ticket;
 
-public class TicketHolder extends RecyclerView.ViewHolder {
+class TicketHolder extends RecyclerView.ViewHolder {
 
     @BindView(R.id.ticket_title_view)
     TextView titleTextView;
@@ -27,23 +28,22 @@ public class TicketHolder extends RecyclerView.ViewHolder {
     @BindView(R.id.ticket_cover)
     ImageView imageView;
 
-    private static View getView(@NonNull ViewGroup parent) {
-        return LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_ticket, parent, false);
+    private static View inflateView(@NonNull ViewGroup parent) {
+        Context context = parent.getContext();
+        LayoutInflater layoutInflater = LayoutInflater.from(context);
+        return layoutInflater.inflate(R.layout.item_ticket, parent, false);
     }
 
-    public TicketHolder(@NonNull ViewGroup parent) {
-        super(getView(parent));
+    TicketHolder(@NonNull ViewGroup parent) {
+        super(inflateView(parent));
         ButterKnife.bind(this, itemView);
     }
 
     void bindData(@NonNull Ticket ticket) {
         titleTextView.setText(ticket.getTitle());
         beginWithTextView.setText(ticket.getBeginsWith());
-        Picasso.with(Application.getAppContext())
+        Picasso.with(itemView.getContext())
                 .load(ticket.getCoverUri())
                 .into(imageView);
     }
-
-
 }
