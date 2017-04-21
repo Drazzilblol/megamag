@@ -32,7 +32,7 @@
     <style name="AnnouncementCardSubtitle" parent="BaseAnnouncementCardViewItem">
         <item name="android:textColor">@color/announcement_text_disabled</item>
         <item name="android:textSize">@dimen/announcement_card_text_sub</item>
-        <item name="android:layout_marginTop">@dimen/card_view_items_top_padding</item>
+        <item name="android:layout_marginTop">@dimen/announcement_card_items_top_padding</item>
     </style>
 
     <style name="AnnouncementCardDetails" parent="BaseAnnouncementCardViewItem">
@@ -44,6 +44,26 @@
         <item name="android:maxLines">8</item>
         <item name="android:layout_marginBottom">@dimen/card_view_items_padding</item>
         <item name="android:layout_marginTop">@dimen/announcement_card_items_padding</item>
+    </style>
+
+    <style name="BaseTicketCardViewItem">
+        <item name="android:layout_marginLeft">@dimen/announcement_card_items_padding</item>
+        <item name="android:layout_marginRight">@dimen/announcement_card_items_padding</item>
+        <item name="android:textSize">@dimen/ticket_card_text_sub</item>
+        <item name="android:textColor">@color/announcement_text_secondary</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:maxLines">1</item>
+    </style>
+
+    <style name="CardViewTicketTitleTheme" parent="BaseTicketCardViewItem">
+        <item name="android:maxLines">2</item>
+        <item name="android:textColor">@color/ticket_text_primary</item>
+        <item name="android:textSize">@dimen/ticket_card_text_primary</item>
+        <item name="android:layout_marginTop">@dimen/ticket_card_items_top_padding</item>
+    </style>
+
+    <style name="CardViewTicketSubtitleTheme" parent="BaseTicketCardViewItem">
+        <item name="android:layout_marginBottom">@dimen/ticket_card_items_padding</item>
     </style>
 
 </resources>
