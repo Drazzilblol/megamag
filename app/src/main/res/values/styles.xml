@@ -14,4 +14,11 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="CardViewItemsAnnouncementsTheme">
+        <item name="android:paddingLeft">@dimen/announcement_card_items_padding</item>
+        <item name="android:paddingRight">@dimen/announcement_card_items_padding</item>
+    </style>
+
+
+
 </resources>

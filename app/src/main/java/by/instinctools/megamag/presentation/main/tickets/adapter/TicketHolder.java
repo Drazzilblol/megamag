@@ -26,7 +26,7 @@ public class TicketHolder extends RecyclerView.ViewHolder {
 
     private static View getView(@NonNull ViewGroup parent) {
         return LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.ticket_item, parent, false);
+                .inflate(R.layout.item_ticket, parent, false);
     }
 
     public TicketHolder(@NonNull ViewGroup parent) {

@@ -9,7 +9,6 @@
     <dimen name="std_text_size_subtext">14sp</dimen>
     <dimen name="std_text_size_supporting">14sp</dimen>
 
-
     <!--base-->
     <dimen name="item_padding_large">@dimen/std_padding_large</dimen>
     <dimen name="item_padding_normal">@dimen/std_padding_normal</dimen>
@@ -30,13 +29,7 @@
     <dimen name="card_view_text_sub">@dimen/std_text_size_subtext</dimen>
     <dimen name="card_view_text_support">@dimen/std_text_size_supporting</dimen>
 
-
-
     <!--specific-->
-
-    <dimen name="announcement_list_item_offset">@dimen/item_padding_normal</dimen>
-    <dimen name="announcement_list_padding">@dimen/item_padding_normal</dimen>
-    <dimen name="announcement_list_error_padding">@dimen/item_padding_large</dimen>
 
     <dimen name="ticket_list_item_offset">@dimen/item_padding_normal</dimen>
     <dimen name="ticket_list_padding">@dimen/item_padding_normal</dimen>
@@ -44,6 +37,10 @@
 
     <dimen name="splash_progress_padding">@dimen/item_padding_large</dimen>
     <dimen name="splash_error_padding">@dimen/item_padding_large</dimen>
+
+    <dimen name="announcement_list_item_offset">@dimen/item_padding_normal</dimen>
+    <dimen name="announcement_list_padding">@dimen/item_padding_normal</dimen>
+    <dimen name="announcement_list_error_padding">@dimen/item_padding_large</dimen>
 
     <dimen name="announcement_card_items_padding">@dimen/card_view_items_padding</dimen>
     <dimen name="announcement_card_items_top_padding">@dimen/card_view_items_top_padding</dimen>

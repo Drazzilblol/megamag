@@ -7,6 +7,10 @@
     <color name="gray">#607D8B</color>
     <color name="material_gray">#9E9E9E</color>
 
+    <color name="textPrimary">#de000000</color>
+    <color name="textSecondary">#c8000000</color>
+    <color name="textDisabled">#89000000</color>
+
     <!--base-->
     <color name="colorPrimary">@color/gray</color>
     <color name="colorPrimaryDark">@color/dark_gray</color>
