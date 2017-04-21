@@ -8,8 +8,11 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import by.instinctools.megamag.Application;
 import by.instinctools.megamag.R;
 import by.instinctools.megamag.domain.models.Ticket;
 
@@ -37,6 +40,9 @@ public class TicketHolder extends RecyclerView.ViewHolder {
     void bindData(@NonNull Ticket ticket) {
         titleTextView.setText(ticket.getTitle());
         beginWithTextView.setText(ticket.getBeginsWith());
+        Picasso.with(Application.getAppContext())
+                .load(ticket.getCoverUri())
+                .into(imageView);
     }
 
 

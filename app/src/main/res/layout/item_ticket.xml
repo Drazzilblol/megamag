@@ -15,8 +15,7 @@
 
         <android.support.percent.PercentFrameLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="0">
+            android:layout_height="wrap_content">
 
             <ImageView
                 android:id="@+id/ticket_cover"
@@ -25,23 +24,30 @@
                 app:layout_aspectRatio="178%"
                 app:layout_widthPercent="100%"
                 tools:ignore="ContentDescription" />
+
         </android.support.percent.PercentFrameLayout>
 
         <TextView
             android:id="@+id/ticket_title_view"
+            style="@style/CardViewTitleTheme"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="0"
             android:ellipsize="end"
-            android:maxLines="1" />
+            android:maxLines="2"
+            android:paddingTop="@dimen/ticket_card_items_top_padding"
+            android:textColor="@color/textPrimary"
+            android:textSize="@dimen/announcement_card_text_primary" />
 
         <TextView
             android:id="@+id/ticket_begin_with_view"
+            style="@style/CardViewSubtitleTheme"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="0"
             android:ellipsize="end"
-            android:maxLines="2" />
+            android:maxLines="1"
+            android:paddingBottom="@dimen/ticket_card_items_padding"
+            android:textColor="@color/textSecondary"
+            android:textSize="@dimen/announcement_card_text_sub" />
 
     </LinearLayout>
 </android.support.v7.widget.CardView>

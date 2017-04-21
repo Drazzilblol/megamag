@@ -22,18 +22,14 @@
 
     <dimen name="card_view_items_padding">@dimen/std_padding_large</dimen>
     <dimen name="card_view_items_top_padding">@dimen/std_top_or_bottom_item_padding</dimen>
-    <dimen name="card_view_items_bottom_padding">@dimen/std_top_or_bottom_item_padding</dimen>
     <dimen name="card_view_subtitle_top_padding">@dimen/std_subtitle_top_padding</dimen>
 
     <dimen name="card_view_text_primary">@dimen/std_text_size_primary</dimen>
     <dimen name="card_view_text_sub">@dimen/std_text_size_subtext</dimen>
     <dimen name="card_view_text_support">@dimen/std_text_size_supporting</dimen>
 
-    <!--specific-->
 
-    <dimen name="ticket_list_item_offset">@dimen/item_padding_normal</dimen>
-    <dimen name="ticket_list_padding">@dimen/item_padding_normal</dimen>
-    <dimen name="ticket_list_error_padding">@dimen/item_padding_large</dimen>
+    <!--specific-->
 
     <dimen name="splash_progress_padding">@dimen/item_padding_large</dimen>
     <dimen name="splash_error_padding">@dimen/item_padding_large</dimen>
@@ -44,11 +40,22 @@
 
     <dimen name="announcement_card_items_padding">@dimen/card_view_items_padding</dimen>
     <dimen name="announcement_card_items_top_padding">@dimen/card_view_items_top_padding</dimen>
-    <dimen name="announcement_card_items_bot_padding">@dimen/card_view_items_bottom_padding</dimen>
     <dimen name="announcement_card_subtitle_padding">@dimen/card_view_subtitle_top_padding</dimen>
 
     <dimen name="announcement_card_text_primary">@dimen/card_view_text_primary</dimen>
     <dimen name="announcement_card_text_sub">@dimen/card_view_text_sub</dimen>
     <dimen name="announcement_card_text_support">@dimen/card_view_text_support</dimen>
+
+    <dimen name="ticket_list_item_offset">@dimen/item_padding_normal</dimen>
+    <dimen name="ticket_list_padding">@dimen/item_padding_normal</dimen>
+    <dimen name="ticket_list_error_padding">@dimen/item_padding_large</dimen>
+
+    <dimen name="ticket_card_items_padding">@dimen/card_view_items_padding</dimen>
+    <dimen name="ticket_card_items_top_padding">@dimen/card_view_items_top_padding</dimen>
+    <dimen name="ticket_card_subtitle_padding">@dimen/card_view_subtitle_top_padding</dimen>
+
+    <dimen name="ticket_card_text_primary">@dimen/card_view_text_primary</dimen>
+    <dimen name="ticket_card_text_sub">@dimen/card_view_text_sub</dimen>
+    <dimen name="ticket_card_text_support">@dimen/card_view_text_support</dimen>
 
 </resources>
