@@ -34,6 +34,7 @@ class TicketHolder extends RecyclerView.ViewHolder {
         return layoutInflater.inflate(R.layout.item_ticket, parent, false);
     }
 
+
     TicketHolder(@NonNull ViewGroup parent) {
         super(inflateView(parent));
         ButterKnife.bind(this, itemView);
