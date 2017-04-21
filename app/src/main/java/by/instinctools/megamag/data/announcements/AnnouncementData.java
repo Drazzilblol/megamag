@@ -24,23 +24,23 @@ public abstract class AnnouncementData {
     public abstract String getCoverUri();
 
     @NonNull
-    static Builder builder() {
+    public static Builder builder() {
         return new AutoValue_AnnouncementData.Builder();
     }
 
     @AutoValue.Builder
-    abstract static class Builder {
+    public abstract static class Builder {
 
-        abstract Builder title(@NonNull String value);
+        public abstract Builder title(@NonNull String value);
 
-        abstract Builder place(@NonNull String value);
+        public abstract Builder place(@NonNull String value);
 
-        abstract Builder details(@Nullable String value);
+        public abstract Builder details(@Nullable String value);
 
-        abstract Builder description(@Nullable String value);
+        public abstract Builder description(@Nullable String value);
 
-        abstract Builder coverUri(@Nullable String value);
+        public abstract Builder coverUri(@Nullable String value);
 
-        abstract AnnouncementData build();
+        public abstract AnnouncementData build();
     }
 }

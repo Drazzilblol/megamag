@@ -14,11 +14,41 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
-    <style name="CardViewItemsAnnouncementsTheme">
-        <item name="android:paddingLeft">@dimen/announcement_card_items_padding</item>
-        <item name="android:paddingRight">@dimen/announcement_card_items_padding</item>
+    <style name="CardViewItemsTheme">
+        <item name="android:layout_marginLeft">@dimen/announcement_card_items_padding</item>
+        <item name="android:layout_marginRight">@dimen/announcement_card_items_padding</item>
     </style>
 
+    <style name="CardViewTitleTheme" parent="CardViewItemsTheme">
+        <item name="android:maxLines">1</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:textColor">@color/textPrimary</item>
+        <item name="android:textSize">@dimen/announcement_card_text_primary</item>
+    </style>
 
+    <style name="CardViewSubtitleTheme" parent="CardViewItemsTheme">
+        <item name="android:maxLines">1</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:textColor">@color/textDisabled</item>
+        <item name="android:textSize">@dimen/announcement_card_text_sub</item>
+        <item name="android:layout_marginTop">@dimen/card_view_items_top_padding</item>
+    </style>
+
+    <style name="CardViewDetailsTheme" parent="CardViewItemsTheme">
+        <item name="android:maxLines">1</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:textColor">@color/textSecondary</item>
+        <item name="android:textSize">@dimen/announcement_card_text_support</item>
+        <item name="android:layout_marginTop">@dimen/announcement_card_items_padding</item>
+    </style>
+
+    <style name="CardViewDescriptionTheme" parent="CardViewItemsTheme">
+        <item name="android:maxLines">8</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:textColor">@color/textSecondary</item>
+        <item name="android:textSize">@dimen/announcement_card_text_support</item>
+        <item name="android:layout_marginBottom">@dimen/card_view_items_padding</item>
+        <item name="android:layout_marginTop">@dimen/announcement_card_items_padding</item>
+    </style>
 
 </resources>

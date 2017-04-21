@@ -36,7 +36,7 @@ class AnnouncementHolder extends RecyclerView.ViewHolder {
     private static View inflateView(@NonNull ViewGroup parent) {
         Context context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
-        return inflater.inflate(R.layout.item_announcements, parent, false);
+        return inflater.inflate(R.layout.item_announcement, parent, false);
     }
 
     AnnouncementHolder(@NonNull ViewGroup parent) {
