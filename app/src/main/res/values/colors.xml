@@ -23,4 +23,8 @@
     <color name="announcement_text_secondary">@color/text_secondary</color>
     <color name="announcement_text_disabled">@color/text_disabled</color>
 
+    <color name="ticket_text_primary">@color/text_primary</color>
+    <color name="ticket_text_secondary">@color/text_secondary</color>
+    <color name="ticket_text_disabled">@color/text_disabled</color>
+
 </resources>

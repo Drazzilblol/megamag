@@ -6,7 +6,6 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.ContentLoadingProgressBar;
 import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -57,16 +56,14 @@ public class TicketsFragment extends Fragment implements TicketsView {
     }
 
     private void initRecyclerView() {
-        recyclerView.setLayoutManager(new LinearLayoutManager(
-                getContext(),
-                LinearLayoutManager.VERTICAL,
-                false)
-        );
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-        recyclerView.addItemDecoration(new OffsetItemDecorator(
+
+        OffsetItemDecorator itemDecorator = new OffsetItemDecorator(
                 getContext(),
-                R.dimen.ticket_list_item_offset)
+                R.dimen.ticket_list_item_offset
         );
+        recyclerView.addItemDecoration(itemDecorator);
+
         recyclerView.setAdapter(adapter);
     }
 

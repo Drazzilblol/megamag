@@ -14,7 +14,7 @@
         android:orientation="vertical"
         android:padding="@dimen/announcement_list_padding"
         android:visibility="gone"
-        app:layoutManager="android.support.v7.widget.LinearLayoutManager"/>
+        app:layoutManager="android.support.v7.widget.LinearLayoutManager" />
 
     <TextView
         android:id="@+id/announcements_error_view"

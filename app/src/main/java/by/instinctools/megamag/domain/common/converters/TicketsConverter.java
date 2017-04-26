@@ -11,10 +11,10 @@ public class TicketsConverter extends BaseConverter<TicketData, Ticket> {
     @NonNull
     @Override
     public Ticket convert(@NonNull TicketData ticketData) {
-        return Ticket.create(
-                ticketData.getTitle(),
-                ticketData.getBeginWith(),
-                ticketData.getCoverUri()
-        );
+        return Ticket.builder()
+                .title(ticketData.getTitle())
+                .beginsWith(ticketData.getBeginsWith())
+                .coverUri(ticketData.getCoverUri())
+                .build();
     }
 }

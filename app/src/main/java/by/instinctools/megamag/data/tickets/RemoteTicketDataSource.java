@@ -33,9 +33,21 @@ public class RemoteTicketDataSource implements TicketDataSource {
 
     private List<TicketData> getStubTickets() {
         List<TicketData> tickets = new ArrayList<>();
-        tickets.add(TicketData.create("3", "3", "3"));
-        tickets.add(TicketData.create("2", "2", "2"));
-        tickets.add(TicketData.create("1", "1", "1"));
+        tickets.add(TicketData.builder()
+                .title("Форсаж 8 16+ 3D Atmos")
+                .beginsWith("билеты с 21/04/2017")
+                .coverUri("http://kinoteatr.megamag.by/images/categories_sec/forsazh_8_6.jpg")
+                .build());
+        tickets.add(TicketData.builder()
+                .title("Форсаж 8 16+ 3D Atmos")
+                .beginsWith("билеты с 21/04/2017")
+                .coverUri("http://kinoteatr.megamag.by/images/categories_sec/forsazh_8_6.jpg")
+                .build());
+        tickets.add(TicketData.builder()
+                .title("Форсаж 8 16+ 3D Atmos")
+                .beginsWith("билеты с 21/04/2017")
+                .coverUri("http://kinoteatr.megamag.by/images/categories_sec/forsazh_8_6.jpg")
+                .build());
         return tickets;
     }
 }
