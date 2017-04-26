@@ -1,6 +1,7 @@
 package by.instinctools.megamag.presentation.main.announcements.adapter;
 
 import android.content.Context;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -9,11 +10,10 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import by.instinctools.megamag.R;
+import by.instinctools.megamag.common.utils.ImageUtils;
 import by.instinctools.megamag.domain.models.Announcement;
 
 class AnnouncementHolder extends RecyclerView.ViewHolder {
@@ -49,8 +49,9 @@ class AnnouncementHolder extends RecyclerView.ViewHolder {
         placeView.setText(announcement.getPlace());
         detailsTextView.setText(announcement.getDetails());
         descriptionTextView.setText(announcement.getDescription());
-        Glide.with(itemView.getContext())
-                .load(announcement.getCoverUri())
-                .into(imageView);
+        ImageUtils.loadImage(
+                itemView.getContext(),
+                imageView,
+                Uri.parse(announcement.getCoverUri()));
     }
 }

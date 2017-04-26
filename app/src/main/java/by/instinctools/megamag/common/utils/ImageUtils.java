@@ -6,12 +6,26 @@ import android.content.res.Resources;
 import android.net.Uri;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.widget.ImageView;
 
-public final class DrawableUtils {
+import com.bumptech.glide.Glide;
+
+public final class ImageUtils {
 
     public static final int NO_URI_ID = 0;
 
-    public static Uri getDrawableUri(@NonNull Context context, @DrawableRes int uriId) {
+    public static void loadImage(@NonNull Context context, @NonNull ImageView imageView, @Nullable Uri imageUri) {
+        if (imageUri != null && imageUri.getScheme().contains(ContentResolver.SCHEME_ANDROID_RESOURCE)) {
+            imageView.setImageURI(imageUri);
+        } else {
+            Glide.with(context)
+                    .load(imageUri)
+                    .into(imageView);
+        }
+    }
+
+    public static Uri getResourceUri(@NonNull Context context, @DrawableRes int uriId) {
         if (uriId > NO_URI_ID) {
             Resources resources = context.getResources();
             return Uri.parse(

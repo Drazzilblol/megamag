@@ -1,6 +1,7 @@
 package by.instinctools.megamag.presentation.main.tickets.adapter;
 
 import android.content.Context;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -9,12 +10,10 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import by.instinctools.megamag.Application;
 import by.instinctools.megamag.R;
+import by.instinctools.megamag.common.utils.ImageUtils;
 import by.instinctools.megamag.domain.models.Ticket;
 
 class TicketHolder extends RecyclerView.ViewHolder {
@@ -34,7 +33,6 @@ class TicketHolder extends RecyclerView.ViewHolder {
         return layoutInflater.inflate(R.layout.item_ticket, parent, false);
     }
 
-
     TicketHolder(@NonNull ViewGroup parent) {
         super(inflateView(parent));
         ButterKnife.bind(this, itemView);
@@ -43,8 +41,9 @@ class TicketHolder extends RecyclerView.ViewHolder {
     void bindData(@NonNull Ticket ticket) {
         titleTextView.setText(ticket.getTitle());
         beginWithTextView.setText(ticket.getBeginsWith());
-        Glide.with(Application.getAppContext())
-                .load(ticket.getCoverUri())
-                .into(imageView);
+        ImageUtils.loadImage(
+                itemView.getContext(),
+                imageView,
+                Uri.parse(ticket.getCoverUri()));
     }
 }
