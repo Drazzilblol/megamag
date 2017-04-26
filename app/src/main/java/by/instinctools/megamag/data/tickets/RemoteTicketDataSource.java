@@ -36,17 +36,17 @@ public class RemoteTicketDataSource implements TicketDataSource {
         tickets.add(TicketData.builder()
                 .title("Форсаж 8 16+ 3D Atmos")
                 .beginsWith("билеты с 21/04/2017")
-                .coverUri("http://kinoteatr.megamag.by/images/categories_sec/forsazh_8_6.jpg")
+                .coverUrl("http://kinoteatr.megamag.by/images/categories_sec/forsazh_8_6.jpg")
                 .build());
         tickets.add(TicketData.builder()
                 .title("Форсаж 8 16+ 3D Atmos")
                 .beginsWith("билеты с 21/04/2017")
-                .coverUri("http://kinoteatr.megamag.by/images/categories_sec/forsazh_8_6.jpg")
+                .coverUrl("http://kinoteatr.megamag.by/images/categories_sec/forsazh_8_6.jpg")
                 .build());
         tickets.add(TicketData.builder()
                 .title("Форсаж 8 16+ 3D Atmos")
                 .beginsWith("билеты с 21/04/2017")
-                .coverUri("http://kinoteatr.megamag.by/images/categories_sec/forsazh_8_6.jpg")
+                .coverUrl("http://kinoteatr.megamag.by/images/categories_sec/forsazh_8_6.jpg")
                 .build());
         return tickets;
     }

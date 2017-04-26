@@ -15,7 +15,7 @@ public abstract class TicketData {
     public abstract String getBeginsWith();
 
     @Nullable
-    public abstract String getCoverUri();
+    public abstract String getCoverUrl();
 
     @NonNull
     public static TicketData.Builder builder() {
@@ -29,7 +29,7 @@ public abstract class TicketData {
 
         public abstract TicketData.Builder beginsWith(@NonNull String value);
 
-        public abstract TicketData.Builder coverUri(@Nullable String value);
+        public abstract TicketData.Builder coverUrl(@Nullable String value);
 
         public abstract TicketData build();
     }

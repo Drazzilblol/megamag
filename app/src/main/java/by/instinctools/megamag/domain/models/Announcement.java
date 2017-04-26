@@ -22,7 +22,7 @@ public abstract class Announcement {
     public abstract String getDescription();
 
     @Nullable
-    public abstract String getCoverUri();
+    public abstract String getCoverUrl();
 
     @NonNull
     public static Announcement.Builder builder() {
@@ -40,7 +40,7 @@ public abstract class Announcement {
 
         public abstract Announcement.Builder description(@Nullable String value);
 
-        public abstract Announcement.Builder coverUri(@Nullable String value);
+        public abstract Announcement.Builder coverUrl(@Nullable String value);
 
         public abstract Announcement build();
     }

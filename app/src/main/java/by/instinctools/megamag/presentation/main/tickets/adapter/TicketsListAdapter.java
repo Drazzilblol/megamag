@@ -34,5 +34,4 @@ public class TicketsListAdapter extends RecyclerView.Adapter<TicketHolder> {
         this.tickets.addAll(tickets);
         notifyDataSetChanged();
     }
-
 }
