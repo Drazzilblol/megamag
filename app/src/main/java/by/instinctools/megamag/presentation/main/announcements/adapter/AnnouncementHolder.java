@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.squareup.picasso.Picasso;
+import com.bumptech.glide.Glide;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -49,7 +49,7 @@ class AnnouncementHolder extends RecyclerView.ViewHolder {
         placeView.setText(announcement.getPlace());
         detailsTextView.setText(announcement.getDetails());
         descriptionTextView.setText(announcement.getDescription());
-        Picasso.with(itemView.getContext())
+        Glide.with(itemView.getContext())
                 .load(announcement.getCoverUri())
                 .into(imageView);
     }
