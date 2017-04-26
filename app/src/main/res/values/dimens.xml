@@ -2,6 +2,12 @@
     <!--common-->
     <dimen name="std_padding_large">16dp</dimen>
     <dimen name="std_padding_normal">8dp</dimen>
+    <dimen name="std_top_or_bottom_item_padding">24dp</dimen>
+    <dimen name="std_subtitle_top_padding">12dp</dimen>
+
+    <dimen name="std_text_size_primary">24sp</dimen>
+    <dimen name="std_text_size_subtext">14sp</dimen>
+    <dimen name="std_text_size_supporting">14sp</dimen>
 
     <!--base-->
     <dimen name="item_padding_large">@dimen/std_padding_large</dimen>
@@ -14,11 +20,16 @@
     <dimen name="nav_header_vertical_spacing">@dimen/item_padding_large</dimen>
     <dimen name="nav_header_height">@dimen/header_height</dimen>
 
-    <!--specific-->
+    <dimen name="card_view_items_padding">@dimen/std_padding_large</dimen>
+    <dimen name="card_view_items_top_padding">@dimen/std_top_or_bottom_item_padding</dimen>
+    <dimen name="card_view_items_bottom_padding">@dimen/std_top_or_bottom_item_padding</dimen>
+    <dimen name="card_view_subtitle_top_padding">@dimen/std_subtitle_top_padding</dimen>
 
-    <dimen name="announcement_list_item_offset">@dimen/item_padding_normal</dimen>
-    <dimen name="announcement_list_padding">@dimen/item_padding_normal</dimen>
-    <dimen name="announcement_list_error_padding">@dimen/item_padding_large</dimen>
+    <dimen name="card_view_text_primary">@dimen/std_text_size_primary</dimen>
+    <dimen name="card_view_text_sub">@dimen/std_text_size_subtext</dimen>
+    <dimen name="card_view_text_support">@dimen/std_text_size_supporting</dimen>
+
+    <!--specific-->
 
     <dimen name="ticket_list_item_offset">@dimen/item_padding_normal</dimen>
     <dimen name="ticket_list_padding">@dimen/item_padding_normal</dimen>
@@ -26,5 +37,18 @@
 
     <dimen name="splash_progress_padding">@dimen/item_padding_large</dimen>
     <dimen name="splash_error_padding">@dimen/item_padding_large</dimen>
+
+    <dimen name="announcement_list_item_offset">@dimen/item_padding_normal</dimen>
+    <dimen name="announcement_list_padding">@dimen/item_padding_normal</dimen>
+    <dimen name="announcement_list_error_padding">@dimen/item_padding_large</dimen>
+
+    <dimen name="announcement_card_items_padding">@dimen/card_view_items_padding</dimen>
+    <dimen name="announcement_card_items_top_padding">@dimen/card_view_items_top_padding</dimen>
+    <dimen name="announcement_card_items_bot_padding">@dimen/card_view_items_bottom_padding</dimen>
+    <dimen name="announcement_card_subtitle_padding">@dimen/card_view_subtitle_top_padding</dimen>
+
+    <dimen name="announcement_card_text_primary">@dimen/card_view_text_primary</dimen>
+    <dimen name="announcement_card_text_sub">@dimen/card_view_text_sub</dimen>
+    <dimen name="announcement_card_text_support">@dimen/card_view_text_support</dimen>
 
 </resources>

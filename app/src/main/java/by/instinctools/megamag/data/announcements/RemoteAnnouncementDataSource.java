@@ -33,9 +33,32 @@ class RemoteAnnouncementDataSource implements AnnouncementDataSource {
 
     private List<AnnouncementData> getStubAnnouncements() {
         List<AnnouncementData> announcements = new ArrayList<>();
-        announcements.add(AnnouncementData.create("1", "1", "1"));
-        announcements.add(AnnouncementData.create("2", "2", "1"));
-        announcements.add(AnnouncementData.create("3", "3", "1"));
+        announcements.add(AnnouncementData.builder()
+                .title("Затерянный город Z")
+                .place("Анонсы")
+                .details("США (2016) боевик, драма, приключения, биография, история")
+                .description("Эльдорадо, таинственная столица инков, загадочный Город Z… Вымысел или реальность? В 1925 году экспедиция полковника Фоссета, члена Королевского Географического общества, бесследно исчезла в джунглях Амазонии в поисках Города Z…")
+                .coverUri("http://kinoteatr.megamag.by/images/newsdesk_img/zateryanniy_gorod_b1.jpg")
+                .build()
+        );
+
+        announcements.add(AnnouncementData.builder()
+                .title("Затерянный город Z")
+                .place("Анонсы")
+                .details("США (2016) боевик, драма, приключения, биография, история")
+                .description("Эльдорадо, таинственная столица инков, загадочный Город Z… Вымысел или реальность? В 1925 году экспедиция полковника Фоссета, члена Королевского Географического общества, бесследно исчезла в джунглях Амазонии в поисках Города Z…")
+                .coverUri("http://kinoteatr.megamag.by/images/newsdesk_img/zateryanniy_gorod_b1.jpg")
+                .build()
+        );
+
+        announcements.add(AnnouncementData.builder()
+                .title("Затерянный город Z")
+                .place("Анонсы")
+                .details("США (2016) боевик, драма, приключения, биография, история")
+                .description("Эльдорадо, таинственная столица инков, загадочный Город Z… Вымысел или реальность? В 1925 году экспедиция полковника Фоссета, члена Королевского Географического общества, бесследно исчезла в джунглях Амазонии в поисках Города Z…")
+                .coverUri("http://kinoteatr.megamag.by/images/newsdesk_img/zateryanniy_gorod_b1.jpg")
+                .build()
+        );
         return announcements;
     }
 }

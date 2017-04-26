@@ -7,6 +7,10 @@
     <color name="gray">#607D8B</color>
     <color name="material_gray">#9E9E9E</color>
 
+    <color name="text_primary">#de000000</color>
+    <color name="text_secondary">#c8000000</color>
+    <color name="text_disabled">#89000000</color>
+
     <!--base-->
     <color name="colorPrimary">@color/gray</color>
     <color name="colorPrimaryDark">@color/dark_gray</color>
@@ -14,5 +18,9 @@
     <color name="colorAccent">@color/material_gray</color>
 
     <!--specific-->
+
+    <color name="announcement_text_primary">@color/text_primary</color>
+    <color name="announcement_text_secondary">@color/text_secondary</color>
+    <color name="announcement_text_disabled">@color/text_disabled</color>
 
 </resources>
