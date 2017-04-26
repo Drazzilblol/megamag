@@ -2,10 +2,10 @@
 <resources>
     <!--common-->
     <color name="white">#ffffff</color>
-    <color name="dark_gray">#455A64</color>
-    <color name="light_gray">#CFD8DC</color>
-    <color name="gray">#607D8B</color>
-    <color name="material_gray">#9E9E9E</color>
+    <color name="gray_dark">#424242</color>
+    <color name="gray_light">#CFD8DC</color>
+    <color name="gray">#838383</color>
+    <color name="green">#00b44b</color>
 
     <color name="text_primary">#de000000</color>
     <color name="text_secondary">#c8000000</color>
@@ -13,9 +13,9 @@
 
     <!--base-->
     <color name="colorPrimary">@color/gray</color>
-    <color name="colorPrimaryDark">@color/dark_gray</color>
-    <color name="colorPrimaryLight">@color/light_gray</color>
-    <color name="colorAccent">@color/material_gray</color>
+    <color name="colorPrimaryDark">@color/gray_dark</color>
+    <color name="colorPrimaryLight">@color/gray_light</color>
+    <color name="colorAccent">@color/green</color>
 
     <!--specific-->
 
