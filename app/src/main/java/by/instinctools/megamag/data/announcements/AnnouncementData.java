@@ -21,7 +21,7 @@ public abstract class AnnouncementData {
     public abstract String getDescription();
 
     @Nullable
-    public abstract String getCoverUri();
+    public abstract String getCoverUrl();
 
     @NonNull
     public static Builder builder() {
@@ -39,7 +39,7 @@ public abstract class AnnouncementData {
 
         public abstract Builder description(@Nullable String value);
 
-        public abstract Builder coverUri(@Nullable String value);
+        public abstract Builder coverUrl(@Nullable String value);
 
         public abstract AnnouncementData build();
     }

@@ -16,7 +16,7 @@ public class AnnouncementsConverter extends BaseConverter<AnnouncementData, Anno
                 .place(announcementData.getPlace())
                 .details(announcementData.getDetails())
                 .description(announcementData.getDescription())
-                .coverUri(announcementData.getCoverUri())
+                .coverUrl(announcementData.getCoverUrl())
                 .build();
     }
 }
