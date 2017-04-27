@@ -14,7 +14,7 @@ public abstract class Ticket {
     @NonNull
     public abstract String getBeginsWith();
 
-    @NonNull
+    @Nullable
     public abstract String getCoverUrl();
 
     @NonNull
