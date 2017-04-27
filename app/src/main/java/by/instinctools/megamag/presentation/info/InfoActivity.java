@@ -24,6 +24,7 @@ import by.instinctools.megamag.domain.models.Info;
 import by.instinctools.megamag.domain.models.Node;
 import by.instinctools.megamag.presentation.info.expandable_recycler_view.binders.GroupBinder;
 import by.instinctools.megamag.presentation.info.expandable_recycler_view.binders.InfoBinder;
+import by.instinctools.megamag.presentation.info.expandable_recycler_view.holders.GroupViewHolder;
 import tellh.com.recyclertreeview_lib.TreeNode;
 import tellh.com.recyclertreeview_lib.TreeViewAdapter;
 
@@ -135,12 +136,11 @@ public class InfoActivity extends AppCompatActivity implements InfoView {
 
             @Override
             public void onToggle(boolean isExpand, RecyclerView.ViewHolder holder) {
-                GroupBinder.ViewHolder groupHolder = (GroupBinder.ViewHolder) holder;
+                GroupViewHolder groupHolder = (GroupViewHolder) holder;
                 final ImageView icon = groupHolder.getImageView();
-                if (isExpand){
+                if (isExpand) {
                     icon.setImageResource(R.drawable.ic_remove_black_24dp);
-                }
-                else {
+                } else {
                     icon.setImageResource(R.drawable.ic_add_black_24dp);
                 }
             }
