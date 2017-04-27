@@ -31,14 +31,14 @@
 
         <TextView
             android:id="@+id/ticket_title_view"
-            style="@style/CardViewTicketTitleTheme"
+            style="@style/CardViewTicketTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             tools:text="Форсаж 8 16+ 3D Atmos" />
 
         <TextView
             android:id="@+id/ticket_begin_with_view"
-            style="@style/CardViewTicketSubtitleTheme"
+            style="@style/CardViewTicketSubtitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             tools:text="билеты с 21/04/2017" />
