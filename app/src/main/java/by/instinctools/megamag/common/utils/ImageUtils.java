@@ -10,6 +10,7 @@ import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 
@@ -20,7 +21,7 @@ public final class ImageUtils {
     public static final int NO_URI_ID = 0;
 
     public static void loadImage(@NonNull Context context, @NonNull ImageView imageView, @Nullable Uri imageUri) {
-        if (imageUri != null && imageUri.toString().length() != 0) {
+        if (imageUri != null && TextUtils.isEmpty(imageUri.toString())) {
             imageView.setVisibility(View.VISIBLE);
             if (imageUri.getScheme().contains(ContentResolver.SCHEME_ANDROID_RESOURCE)) {
                 imageView.setImageURI(imageUri);
