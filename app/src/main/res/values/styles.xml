@@ -66,7 +66,7 @@
         <item name="android:layout_marginBottom">@dimen/ticket_card_items_padding</item>
     </style>
 
-    <style name="GroupTitle">
+    <style name="GroupTitleView">
         <item name="android:gravity">center_vertical</item>
         <item name="android:textSize">@dimen/item_group_text</item>
         <item name="android:textColor">@color/group_text_primary</item>
@@ -74,6 +74,12 @@
 
     <style name="GroupImage">
         <item name="android:gravity">center_vertical</item>
+    </style>
+
+    <style name="InfoTextView">
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textSize">@dimen/item_info_text</item>
+        <item name="android:textColor">@color/info_text_secondary</item>
     </style>
 
 </resources>

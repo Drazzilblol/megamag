@@ -63,4 +63,8 @@
 
     <dimen name="item_group_padding">@dimen/item_padding_normal</dimen>
 
+    <dimen name="item_info_text">@dimen/card_view_text_support</dimen>
+
+    <dimen name="item_info_padding">@dimen/item_padding_normal</dimen>
+
 </resources>
