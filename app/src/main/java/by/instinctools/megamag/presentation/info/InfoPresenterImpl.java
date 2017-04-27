@@ -8,7 +8,7 @@ import by.instinctools.megamag.common.errors.ErrorException;
 import by.instinctools.megamag.common.errors.NoDataError;
 import by.instinctools.megamag.domain.GetInfoUseCase;
 import by.instinctools.megamag.domain.UseCase;
-import by.instinctools.megamag.domain.models.Info;
+import by.instinctools.megamag.domain.models.Node;
 import by.instinctools.megamag.presentation.DisposablePresenter;
 import hugo.weaving.DebugLog;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -19,7 +19,7 @@ class InfoPresenterImpl extends DisposablePresenter<InfoView> implements InfoPre
     private static final int EMPTY_LIST_SIZE = 0;
 
     @NonNull
-    UseCase<List<Info>> infoUseCase = new GetInfoUseCase();
+    UseCase<List<Node>> infoUseCase = new GetInfoUseCase();
 
     @Override
     public void setInitialValue(@NonNull String activityId) {
@@ -42,7 +42,7 @@ class InfoPresenterImpl extends DisposablePresenter<InfoView> implements InfoPre
     }
 
     @DebugLog
-    private void onLoadSuccess(@NonNull List<Info> infoList) {
+    private void onLoadSuccess(@NonNull List<Node> infoList) {
         if (isViewAttached()) {
             if (infoList.size() != EMPTY_LIST_SIZE) {
                 InfoView view = getView();

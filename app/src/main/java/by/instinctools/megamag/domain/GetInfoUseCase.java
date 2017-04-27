@@ -2,27 +2,67 @@ package by.instinctools.megamag.domain;
 
 import android.support.annotation.NonNull;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import by.instinctools.megamag.common.converters.ListConverter;
-import by.instinctools.megamag.data.info.InfoData;
 import by.instinctools.megamag.data.info.InfoRepository;
 import by.instinctools.megamag.data.info.InfoRepositoryImpl;
-import by.instinctools.megamag.domain.common.converters.InfoConverter;
+import by.instinctools.megamag.domain.models.Group;
 import by.instinctools.megamag.domain.models.Info;
+import by.instinctools.megamag.domain.models.Node;
 import io.reactivex.Observable;
 
-public class GetInfoUseCase implements UseCase<List<Info>> {
+public class GetInfoUseCase implements UseCase<List<Node>> {
 
     @NonNull
     private InfoRepository repository = new InfoRepositoryImpl();
 
-    @NonNull
-    private ListConverter<InfoData, Info> converter = new InfoConverter();
-
     @Override
-    public Observable<List<Info>> execute() {
-        return repository.getInfoList()
-                .map(converter::convert);
+    public Observable<List<Node>> execute() {
+        Group g1 = Group.create("Метод оплаты \"ЕРИП\". Вариант оплаты с использованием Интернет-банкинга.");
+        Info i1 = Info.create("Пункт 1. Зайти на сайт Интернет-Банка\n" +
+                "Оплата ЕРИП поддерживается интернет-банкингом более 20 банков. Выберите свой банк из списка и нажмите для перехода на страницу авторизации):\n" +
+                "- ОАО «БПС-Сбербанк»\n" +
+                "- ОАО «Белагропромбанк»\n" +
+                "- ОАО «Хоум Кредит Банк»\n" +
+                "- ОАО «Паритетбанк»\n" +
+                "- ЗАО «Альфа-Банк»\n" +
+                "- ЗАО «БелСвиссБанк»\n" +
+                "- «Приорбанк» ОАО\n" +
+                "- «Франсабанк» ОАО\n" +
+                "- ЗАО «Трастбанк»\n" +
+                "- ОАО «АСБ Беларусбанк»\n" +
+                "- ЗАО «МТБанк»\n" +
+                "- ЗАО «Дельта Банк»\n" +
+                "- ОАО «Белгазпромбанк»\n" +
+                "- ЗАО «БТА Банк»\n" +
+                "- ОАО «Белорусский банк развития и реконструкции «Белинвестбанк»\n" +
+                "- ОАО «БНБ-Банк»\n" +
+                "- ОАО \"Банк БелВЭБ»\n" +
+                "- ОАО \"Технобанк\"\n" +
+                "- ОАО \"Банк Москва-Минск\"\n" +
+                "- ЗАО \"РРБ-Банк\"\n" +
+                "Изображение с примером (ниже текста) относится к интернет-банкингу от ОАО \"Банк БелВЭБ», ЗАО \"Альфа-Банк\", ОАО \"Банк Москва-Минск\", ЗАО \"БелСвиссБанк\", ЗАО \"РРБ-Банк\".\n" +
+                "Для остальных интернет-банкингов делать все по аналогии.\n" +
+                "\n" +
+                "Пункт 2. Выбрать в Платежах \"Билеты kinoteatr.megamag.by\"\n" +
+                "Найдите в меню платежей \"Платежи Расчет\",\"Система Расчет\", \"Оплата ЕРИП\" или т.п.\n" +
+                "Появится список категорий платежей, в котором нужно выбрать \"Оплата билетов\".\n" +
+                "Далее выбираем \"ООО МагСоюз\", а затем \"Билеты kinoteatr.megamag.by\"\n" +
+                "Изображение с примером (ниже текста) относится к интернет-банкингу от ОАО \"Технобанк\", ОАО \"Банк БелВЭБ», ЗАО \"Альфа-Банк\", ОАО \"Банк Москва-Минск\", ЗАО \"БелСвиссБанк\", ЗАО \"РРБ-Банк\".\n" +
+                "Для остальных интернет-банкингов делать все по аналогии.\n" +
+                "\n" +
+                "Пункт 3. Ввести номер заказа\n" +
+                "Введите номер Вашего заказа и нажмите кнопку \"Далее\". Номер заказа можно увидеть в Кабинете пользователя, в Истории заказов, а также в письме, которое автоматически отправляется на электронную почту после оформления заказа.\n" +
+                "\n" +
+                "Пункт 4. Подтвердить оплату\n" +
+                "В следующем окне будет отображена информация по заказу: содержание и стоимость. Проверьте информацию о билетах, которые собираетесь оплачивать, и нажмите кнопку \"Далее\".\n" +
+                "\n" +
+                "Пункт 5. Завершить оплату\n" +
+                "Завершите платеж путем ввода срока действия карточки и персонального пароля.");
+        g1.addNode(i1);
+        List<Node> list = new ArrayList<>();
+        list.add(g1);
+        return Observable.just(list);
     }
 }
