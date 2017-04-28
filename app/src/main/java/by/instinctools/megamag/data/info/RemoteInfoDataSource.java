@@ -11,12 +11,12 @@ public class RemoteInfoDataSource implements InfoDataSource {
 
     @Override
     public Observable<InfoData> getValue(@NonNull String key) {
-        return null;
+        throw new UnsupportedOperationException();
     }
 
     @Override
     public Observable<InfoData> saveValue(@NonNull String key, @NonNull InfoData value) {
-        return null;
+        throw new UnsupportedOperationException();
     }
 
     @Override
@@ -30,7 +30,7 @@ public class RemoteInfoDataSource implements InfoDataSource {
 
     @Override
     public Observable<List<InfoData>> saveAll(List<InfoData> collection) {
-        return null;
+        throw new UnsupportedOperationException();
     }
 
     private List<InfoData> getStubInfo() {

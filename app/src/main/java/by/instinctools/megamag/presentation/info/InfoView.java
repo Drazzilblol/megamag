@@ -12,5 +12,4 @@ interface InfoView extends MvpView {
     void showData(@NonNull List<Info> infoList);
 
     void hideData();
-
 }

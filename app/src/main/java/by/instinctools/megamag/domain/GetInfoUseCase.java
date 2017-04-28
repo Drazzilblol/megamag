@@ -27,6 +27,6 @@ public class GetInfoUseCase implements UseCase<List<Info>> {
 
     @Override
     public Observable<List<Info>> execute() {
-        return null;
+        throw new UnsupportedOperationException();
     }
 }
