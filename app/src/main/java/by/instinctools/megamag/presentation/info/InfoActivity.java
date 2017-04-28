@@ -19,12 +19,12 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import by.instinctools.megamag.R;
 import by.instinctools.megamag.common.errors.Error;
-import by.instinctools.megamag.domain.models.Group;
 import by.instinctools.megamag.domain.models.Info;
-import by.instinctools.megamag.domain.models.Node;
 import by.instinctools.megamag.presentation.info.expandable_recycler_view.binders.GroupBinder;
 import by.instinctools.megamag.presentation.info.expandable_recycler_view.binders.InfoBinder;
 import by.instinctools.megamag.presentation.info.expandable_recycler_view.holders.GroupViewHolder;
+import by.instinctools.megamag.presentation.info.expandable_recycler_view.nodes.NodeGroup;
+import by.instinctools.megamag.presentation.info.expandable_recycler_view.nodes.NodeInfo;
 import tellh.com.recyclertreeview_lib.TreeNode;
 import tellh.com.recyclertreeview_lib.TreeViewAdapter;
 
@@ -41,8 +41,6 @@ public class InfoActivity extends AppCompatActivity implements InfoView {
 
     @BindView(R.id.info_progress_bar)
     ContentLoadingProgressBar progressBar;
-
-    private TreeViewAdapter adapter;
 
     @NonNull
     private InfoPresenter infoPresenter = new InfoPresenterImpl();
@@ -77,10 +75,44 @@ public class InfoActivity extends AppCompatActivity implements InfoView {
     }
 
     @Override
-    public void showData(@NonNull List<Node> infoList) {
+    public void showData(@NonNull List<Info> infoList) {
         recyclerView.setVisibility(View.VISIBLE);
-        initData(infoList);
+        initTreeData(infoList);
     }
+
+    private void initTreeData(List<Info> list) {
+        List<TreeNode> nodes = new ArrayList<>();
+
+        for (Info info : list) {
+            TreeNode<NodeGroup> treeNode = new TreeNode<>(new NodeGroup(info.getTitle()));
+            treeNode.addChild(new TreeNode<>(new NodeInfo(info.getText())));
+            nodes.add(treeNode);
+        }
+
+        TreeViewAdapter adapter = new TreeViewAdapter(nodes, Arrays.asList(new InfoBinder(), new GroupBinder()));
+        adapter.setOnTreeNodeListener(new TreeViewAdapter.OnTreeNodeListener() {
+            @Override
+            public boolean onClick(TreeNode node, RecyclerView.ViewHolder holder) {
+                if (!node.isLeaf()) {
+                    onToggle(!node.isExpand(), holder);
+                }
+                return false;
+            }
+
+            @Override
+            public void onToggle(boolean isExpand, RecyclerView.ViewHolder holder) {
+                GroupViewHolder groupHolder = (GroupViewHolder) holder;
+                final ImageView icon = groupHolder.getImageView();
+                if (isExpand) {
+                    icon.setImageResource(R.drawable.ic_remove_black_24dp);
+                } else {
+                    icon.setImageResource(R.drawable.ic_add_black_24dp);
+                }
+            }
+        });
+        recyclerView.setAdapter(adapter);
+    }
+
 
     @Override
     public void hideData() {
@@ -106,59 +138,5 @@ public class InfoActivity extends AppCompatActivity implements InfoView {
     @Override
     public void hideProgress() {
         progressBar.hide();
-    }
-
-
-    private void initData(List<Node> list) {
-        List<TreeNode> nodes = new ArrayList<>();
-
-        for (Node node : list) {
-            if (node instanceof Group) {
-                TreeNode<Group> treeNode = new TreeNode<>(Group.create(((Group) node).getTitle()));
-                buildTree(node.getNodes(), treeNode);
-                nodes.add(treeNode);
-            }
-            if (node instanceof Info) {
-                TreeNode<Info> treeNode = new TreeNode<>(Info.create(((Info) node).getText()));
-                nodes.add(treeNode);
-            }
-        }
-
-        adapter = new TreeViewAdapter(nodes, Arrays.asList(new InfoBinder(), new GroupBinder()));
-        adapter.setOnTreeNodeListener(new TreeViewAdapter.OnTreeNodeListener() {
-            @Override
-            public boolean onClick(TreeNode node, RecyclerView.ViewHolder holder) {
-                if (!node.isLeaf()) {
-                    onToggle(!node.isExpand(), holder);
-                }
-                return false;
-            }
-
-            @Override
-            public void onToggle(boolean isExpand, RecyclerView.ViewHolder holder) {
-                GroupViewHolder groupHolder = (GroupViewHolder) holder;
-                final ImageView icon = groupHolder.getImageView();
-                if (isExpand) {
-                    icon.setImageResource(R.drawable.ic_remove_black_24dp);
-                } else {
-                    icon.setImageResource(R.drawable.ic_add_black_24dp);
-                }
-            }
-        });
-        recyclerView.setAdapter(adapter);
-    }
-
-    private void buildTree(List<Node> list, TreeNode<Group> groupNode) {
-        for (Node node : list) {
-            if (node instanceof Group) {
-                TreeNode<Group> treeNode = new TreeNode<>(Group.create(((Group) node).getTitle()));
-                buildTree(node.getNodes(), treeNode);
-                groupNode.addChild(treeNode);
-            }
-            if (node instanceof Info) {
-                TreeNode<Info> treeNode = new TreeNode<>(Info.create(((Info) node).getText()));
-                groupNode.addChild(treeNode);
-            }
-        }
     }
 }

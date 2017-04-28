@@ -12,10 +12,10 @@ import tellh.com.recyclertreeview_lib.TreeViewBinder;
 public class GroupViewHolder extends TreeViewBinder.ViewHolder {
 
     @BindView(R.id.group_title_view)
-    public TextView titleView;
+    TextView titleView;
 
     @BindView(R.id.group_image_view)
-    public ImageView imageView;
+    ImageView imageView;
 
     public GroupViewHolder(View rootView) {
         super(rootView);
@@ -24,6 +24,10 @@ public class GroupViewHolder extends TreeViewBinder.ViewHolder {
 
     public ImageView getImageView() {
         return imageView;
+    }
+
+    public TextView getTitleView() {
+        return titleView;
     }
 }
 

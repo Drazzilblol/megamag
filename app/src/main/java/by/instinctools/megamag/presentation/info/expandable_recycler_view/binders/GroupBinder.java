@@ -4,8 +4,8 @@ package by.instinctools.megamag.presentation.info.expandable_recycler_view.binde
 import android.view.View;
 
 import by.instinctools.megamag.R;
-import by.instinctools.megamag.domain.models.Group;
 import by.instinctools.megamag.presentation.info.expandable_recycler_view.holders.GroupViewHolder;
+import by.instinctools.megamag.presentation.info.expandable_recycler_view.nodes.NodeGroup;
 import tellh.com.recyclertreeview_lib.TreeNode;
 import tellh.com.recyclertreeview_lib.TreeViewBinder;
 
@@ -18,10 +18,9 @@ public class GroupBinder extends TreeViewBinder<GroupViewHolder> {
 
     @Override
     public void bindView(GroupViewHolder groupViewHolder, int i, TreeNode treeNode) {
-        Group group = (Group) treeNode.getContent();
-        groupViewHolder.titleView.setText(group.getTitle());
-
-        groupViewHolder.imageView.setImageResource(R.drawable.ic_add_black_24dp);
+        NodeGroup nodeGroup = (NodeGroup) treeNode.getContent();
+        groupViewHolder.getTitleView().setText(nodeGroup.getTitle());
+        groupViewHolder.getImageView().setImageResource(R.drawable.ic_add_black_24dp);
     }
 
     @Override

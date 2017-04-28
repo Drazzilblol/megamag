@@ -9,10 +9,10 @@ import io.reactivex.Observable;
 public class InfoRepositoryImpl implements InfoRepository {
 
     @NonNull
-    InfoDataSource dataSource = new RemoteInfoDataSource();
+    private RemoteInfoDataSource dataSource = new RemoteInfoDataSource();
 
     @Override
-    public Observable<List<InfoData>> getInfoList() {
-        return dataSource.getAll();
+    public Observable<List<InfoData>> getInfoList(String infoId) {
+        return dataSource.getAll(infoId);
     }
 }

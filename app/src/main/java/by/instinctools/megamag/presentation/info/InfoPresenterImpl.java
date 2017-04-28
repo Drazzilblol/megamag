@@ -7,8 +7,7 @@ import java.util.List;
 import by.instinctools.megamag.common.errors.ErrorException;
 import by.instinctools.megamag.common.errors.NoDataError;
 import by.instinctools.megamag.domain.GetInfoUseCase;
-import by.instinctools.megamag.domain.UseCase;
-import by.instinctools.megamag.domain.models.Node;
+import by.instinctools.megamag.domain.models.Info;
 import by.instinctools.megamag.presentation.DisposablePresenter;
 import hugo.weaving.DebugLog;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -18,12 +17,14 @@ class InfoPresenterImpl extends DisposablePresenter<InfoView> implements InfoPre
 
     private static final int EMPTY_LIST_SIZE = 0;
 
+    private String infoId;
+
     @NonNull
-    UseCase<List<Node>> infoUseCase = new GetInfoUseCase();
+    GetInfoUseCase infoUseCase = new GetInfoUseCase();
 
     @Override
-    public void setInitialValue(@NonNull String activityId) {
-
+    public void setInitialValue(@NonNull String infoId) {
+        this.infoId = infoId;
     }
 
     @Override
@@ -31,7 +32,7 @@ class InfoPresenterImpl extends DisposablePresenter<InfoView> implements InfoPre
         super.attach(view);
         view.showProgress();
         addDisposable(
-                infoUseCase.execute()
+                infoUseCase.execute(infoId)
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(
@@ -42,7 +43,7 @@ class InfoPresenterImpl extends DisposablePresenter<InfoView> implements InfoPre
     }
 
     @DebugLog
-    private void onLoadSuccess(@NonNull List<Node> infoList) {
+    private void onLoadSuccess(@NonNull List<Info> infoList) {
         if (isViewAttached()) {
             if (infoList.size() != EMPTY_LIST_SIZE) {
                 InfoView view = getView();
