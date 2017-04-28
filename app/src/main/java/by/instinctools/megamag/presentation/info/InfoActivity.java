@@ -32,7 +32,7 @@ import tellh.com.recyclertreeview_lib.TreeViewAdapter;
 public class InfoActivity extends AppCompatActivity implements InfoView {
 
     @NonNull
-    public static final String INFO_ACTIVITY_SCREEN_ID = "INFO_ACTIVITY_SCREEN_ID";
+    private static final String INFO_ACTIVITY_SCREEN_ID = "INFO_ACTIVITY_SCREEN_ID";
 
     @BindView(R.id.info_recycler_view)
     RecyclerView recyclerView;
@@ -116,18 +116,13 @@ public class InfoActivity extends AppCompatActivity implements InfoView {
         recyclerView.setAdapter(adapter);
     }
 
-    private TreeNode<NodeGroup> buildTree(Info info) {
+    private TreeNode<NodeGroup> buildTree(@NonNull Info info) {
         TreeNode<NodeGroup> root = new TreeNode<>(new NodeGroup(info.getTitle()));
         if (info.getInfoList().size() == 0 && !TextUtils.isEmpty(info.getText())) {
             root.addChild(new TreeNode<>(new NodeInfo(info.getText())));
         } else {
             for (Info i : info.getInfoList()) {
-                if (!TextUtils.isEmpty(i.getTitle())) {
-                    root.addChild(buildTree(i));
-                } else {
-                    TreeNode<NodeInfo> treeNode = new TreeNode<>(new NodeInfo(i.getText()));
-                    root.addChild(treeNode);
-                }
+                root.addChild(buildTree(i));
             }
         }
         return root;

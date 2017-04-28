@@ -59,12 +59,12 @@
     <dimen name="ticket_card_text_sub">@dimen/card_view_text_sub</dimen>
     <dimen name="ticket_card_text_support">@dimen/card_view_text_support</dimen>
 
-    <dimen name="item_group_text">@dimen/item_info_title_text</dimen>
+    <dimen name="info_group_text">@dimen/item_info_title_text</dimen>
 
-    <dimen name="item_group_padding">@dimen/item_padding_normal</dimen>
+    <dimen name="info_group_padding">@dimen/item_padding_normal</dimen>
 
-    <dimen name="item_info_text">@dimen/card_view_text_support</dimen>
+    <dimen name="info_text">@dimen/card_view_text_support</dimen>
 
-    <dimen name="item_info_padding">@dimen/item_padding_normal</dimen>
+    <dimen name="info_padding">@dimen/item_padding_normal</dimen>
 
 </resources>
