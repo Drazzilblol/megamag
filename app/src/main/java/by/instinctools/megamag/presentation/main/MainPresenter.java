@@ -4,5 +4,9 @@ import by.instinctools.megamag.presentation.MvpPresenter;
 
 interface MainPresenter extends MvpPresenter<MainView> {
 
-    void onMenuInfoPressed();
+    void onMenuPayPressed();
+
+    void onMenuBookPressed();
+
+    void onMenuRulesPressed();
 }
