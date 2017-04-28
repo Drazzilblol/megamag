@@ -24,7 +24,7 @@ public class RemoteInfoDataSource implements InfoDataSource {
         return Observable.just(getStubInfo());
     }
 
-    public Observable<List<InfoData>> getAll(String infoId) {
+    public Observable<List<InfoData>> getAll(@NonNull String infoId) {
         return Observable.just(getStubInfo());
     }
 

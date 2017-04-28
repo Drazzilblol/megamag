@@ -20,7 +20,7 @@ public class GetInfoUseCase implements UseCase<List<Info>> {
     @NonNull
     private ListConverter<InfoData, Info> converter = new InfoConverter();
 
-    public Observable<List<Info>> execute(String infoId) {
+    public Observable<List<Info>> execute(@NonNull String infoId) {
         return repository.getInfoList(infoId)
                 .map(converter::convert);
     }

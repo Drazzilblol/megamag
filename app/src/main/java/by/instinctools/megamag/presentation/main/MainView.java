@@ -1,5 +1,7 @@
 package by.instinctools.megamag.presentation.main;
 
+import android.support.annotation.NonNull;
+
 import by.instinctools.megamag.presentation.MvpView;
 
 interface MainView extends MvpView {
@@ -8,5 +10,5 @@ interface MainView extends MvpView {
 
     void goToTicketsScreen();
 
-    void goToInfoScreen(String infoId);
+    void goToInfoScreen(@NonNull String infoId);
 }
