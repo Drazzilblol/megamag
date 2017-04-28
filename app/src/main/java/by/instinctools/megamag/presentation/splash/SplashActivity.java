@@ -46,7 +46,7 @@ public class SplashActivity extends AppCompatActivity implements SplashView {
     @DebugLog
     @Override
     public void goToMainScreen() {
-        Navigator.goToInfoScreen(this);
+        Navigator.goToMainScreen(this);
         finish();
     }
 

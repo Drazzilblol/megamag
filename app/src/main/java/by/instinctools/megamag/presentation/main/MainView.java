@@ -7,4 +7,6 @@ interface MainView extends MvpView {
     void goToAnnouncementsScreen();
 
     void goToTicketsScreen();
+
+    void goToInfoScreen();
 }
