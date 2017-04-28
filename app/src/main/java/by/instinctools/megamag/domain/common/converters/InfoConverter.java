@@ -11,6 +11,9 @@ public class InfoConverter extends BaseConverter<InfoData, Info> {
     @NonNull
     @Override
     public Info convert(@NonNull InfoData infoData) {
-        return Info.create(infoData.getTitle(), infoData.getText());
+        return Info.builder()
+                .title(infoData.getTitle())
+                .text(infoData.getText())
+                .build();
     }
 }

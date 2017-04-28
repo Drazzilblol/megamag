@@ -15,7 +15,17 @@ public abstract class Info {
     public abstract String getText();
 
     @NonNull
-    public static Info create(@NonNull String title, @NonNull String text) {
-        return new AutoValue_Info(title, text);
+    public static Info.Builder builder() {
+        return new AutoValue_Info.Builder();
+    }
+
+    @AutoValue.Builder
+    public abstract static class Builder {
+
+        public abstract Info.Builder title(@Nullable String value);
+
+        public abstract Info.Builder text(@NonNull String value);
+
+        public abstract Info build();
     }
 }
