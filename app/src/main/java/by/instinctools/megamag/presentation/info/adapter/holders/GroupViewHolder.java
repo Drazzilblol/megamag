@@ -1,4 +1,4 @@
-package by.instinctools.megamag.presentation.info.expandable_recycler_view.holders;
+package by.instinctools.megamag.presentation.info.adapter.holders;
 
 import android.view.View;
 import android.widget.ImageView;

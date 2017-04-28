@@ -5,14 +5,29 @@ import android.support.annotation.Nullable;
 
 import com.google.auto.value.AutoValue;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @AutoValue
 public abstract class InfoData {
+
+    @NonNull
+    private List<InfoData> infoList = new ArrayList<>();
 
     @Nullable
     public abstract String getTitle();
 
     @NonNull
     public abstract String getText();
+
+    @NonNull
+    public List<InfoData> getInfoList() {
+        return infoList;
+    }
+
+    public void addToInfoList(InfoData infoData) {
+        infoList.add(infoData);
+    }
 
     @NonNull
     public static InfoData.Builder builder() {

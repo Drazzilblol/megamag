@@ -21,11 +21,11 @@ import butterknife.ButterKnife;
 import by.instinctools.megamag.R;
 import by.instinctools.megamag.common.errors.Error;
 import by.instinctools.megamag.domain.models.Info;
-import by.instinctools.megamag.presentation.info.expandable_recycler_view.binders.GroupBinder;
-import by.instinctools.megamag.presentation.info.expandable_recycler_view.binders.InfoBinder;
-import by.instinctools.megamag.presentation.info.expandable_recycler_view.holders.GroupViewHolder;
-import by.instinctools.megamag.presentation.info.expandable_recycler_view.nodes.NodeGroup;
-import by.instinctools.megamag.presentation.info.expandable_recycler_view.nodes.NodeInfo;
+import by.instinctools.megamag.presentation.info.adapter.binders.GroupBinder;
+import by.instinctools.megamag.presentation.info.adapter.binders.InfoBinder;
+import by.instinctools.megamag.presentation.info.adapter.holders.GroupViewHolder;
+import by.instinctools.megamag.presentation.info.adapter.nodes.NodeGroup;
+import by.instinctools.megamag.presentation.info.adapter.nodes.NodeInfo;
 import tellh.com.recyclertreeview_lib.TreeNode;
 import tellh.com.recyclertreeview_lib.TreeViewAdapter;
 
@@ -85,13 +85,10 @@ public class InfoActivity extends AppCompatActivity implements InfoView {
         List<TreeNode> nodes = new ArrayList<>();
 
         for (Info info : list) {
-            if (!TextUtils.isEmpty(info.getTitle())) {
-                TreeNode<NodeGroup> treeNode = new TreeNode<>(new NodeGroup(info.getTitle()));
-                treeNode.addChild(new TreeNode<>(new NodeInfo(info.getText())));
-                nodes.add(treeNode);
+            if (TextUtils.isEmpty(info.getTitle())) {
+                nodes.add(new TreeNode<>(new NodeInfo(info.getText())));
             } else {
-                TreeNode<NodeInfo> treeNode = new TreeNode<>(new NodeInfo(info.getText()));
-                nodes.add(treeNode);
+                nodes.add(buildTree(info));
             }
         }
 
@@ -119,6 +116,22 @@ public class InfoActivity extends AppCompatActivity implements InfoView {
         recyclerView.setAdapter(adapter);
     }
 
+    private TreeNode<NodeGroup> buildTree(Info info) {
+        TreeNode<NodeGroup> root = new TreeNode<>(new NodeGroup(info.getTitle()));
+        if (info.getInfoList().size() == 0 && !TextUtils.isEmpty(info.getText())) {
+            root.addChild(new TreeNode<>(new NodeInfo(info.getText())));
+        } else {
+            for (Info i : info.getInfoList()) {
+                if (!TextUtils.isEmpty(i.getTitle())) {
+                    root.addChild(buildTree(i));
+                } else {
+                    TreeNode<NodeInfo> treeNode = new TreeNode<>(new NodeInfo(i.getText()));
+                    root.addChild(treeNode);
+                }
+            }
+        }
+        return root;
+    }
 
     @Override
     public void hideData() {

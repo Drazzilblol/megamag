@@ -1,4 +1,4 @@
-package by.instinctools.megamag.presentation.info.expandable_recycler_view.nodes;
+package by.instinctools.megamag.presentation.info.adapter.nodes;
 
 import android.support.annotation.NonNull;
 

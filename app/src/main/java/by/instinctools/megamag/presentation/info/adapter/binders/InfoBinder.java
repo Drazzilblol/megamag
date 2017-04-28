@@ -1,11 +1,11 @@
-package by.instinctools.megamag.presentation.info.expandable_recycler_view.binders;
+package by.instinctools.megamag.presentation.info.adapter.binders;
 
 
 import android.view.View;
 
 import by.instinctools.megamag.R;
-import by.instinctools.megamag.presentation.info.expandable_recycler_view.holders.InfoViewHolder;
-import by.instinctools.megamag.presentation.info.expandable_recycler_view.nodes.NodeInfo;
+import by.instinctools.megamag.presentation.info.adapter.holders.InfoViewHolder;
+import by.instinctools.megamag.presentation.info.adapter.nodes.NodeInfo;
 import tellh.com.recyclertreeview_lib.TreeNode;
 import tellh.com.recyclertreeview_lib.TreeViewBinder;
 
