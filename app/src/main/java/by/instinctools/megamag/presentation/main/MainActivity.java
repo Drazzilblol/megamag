@@ -67,8 +67,8 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public void goToInfoScreen() {
-        Navigator.goToInfoScreen(this);
+    public void goToInfoScreen(String infoId) {
+        Navigator.goToInfoScreen(this, infoId);
     }
 
     @Override
@@ -102,7 +102,7 @@ public class MainActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.menu_info_test) {
-            goToInfoScreen();
+            presenter.onMenuInfoPressed();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

@@ -8,5 +8,5 @@ interface MainView extends MvpView {
 
     void goToTicketsScreen();
 
-    void goToInfoScreen();
+    void goToInfoScreen(String infoId);
 }
