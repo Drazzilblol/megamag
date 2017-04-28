@@ -6,10 +6,11 @@ import java.util.List;
 
 import by.instinctools.megamag.domain.models.Info;
 import by.instinctools.megamag.presentation.MvpView;
+import tellh.com.recyclertreeview_lib.TreeNode;
 
 interface InfoView extends MvpView {
 
-    void showData(@NonNull List<Info> infoList);
+    void showData(@NonNull List<TreeNode> infoList);
 
     void hideData();
 }

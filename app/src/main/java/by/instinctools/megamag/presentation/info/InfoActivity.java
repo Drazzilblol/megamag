@@ -76,23 +76,13 @@ public class InfoActivity extends AppCompatActivity implements InfoView {
     }
 
     @Override
-    public void showData(@NonNull List<Info> infoList) {
+    public void showData(@NonNull List<TreeNode> infoList) {
+        initRecyclerView(infoList);
         recyclerView.setVisibility(View.VISIBLE);
-        initTreeData(infoList);
     }
 
-    private void initTreeData(List<Info> list) {
-        List<TreeNode> nodes = new ArrayList<>();
-
-        for (Info info : list) {
-            if (TextUtils.isEmpty(info.getTitle())) {
-                nodes.add(new TreeNode<>(new NodeInfo(info.getText())));
-            } else {
-                nodes.add(buildTree(info));
-            }
-        }
-
-        TreeViewAdapter adapter = new TreeViewAdapter(nodes, Arrays.asList(new InfoBinder(), new GroupBinder()));
+    private void initRecyclerView(List<TreeNode> list) {
+        TreeViewAdapter adapter = new TreeViewAdapter(list, Arrays.asList(new InfoBinder(), new GroupBinder()));
         adapter.setOnTreeNodeListener(new TreeViewAdapter.OnTreeNodeListener() {
             @Override
             public boolean onClick(TreeNode node, RecyclerView.ViewHolder holder) {
@@ -114,18 +104,6 @@ public class InfoActivity extends AppCompatActivity implements InfoView {
             }
         });
         recyclerView.setAdapter(adapter);
-    }
-
-    private TreeNode<NodeGroup> buildTree(@NonNull Info info) {
-        TreeNode<NodeGroup> root = new TreeNode<>(new NodeGroup(info.getTitle()));
-        if (info.getInfoList().size() == 0 && !TextUtils.isEmpty(info.getText())) {
-            root.addChild(new TreeNode<>(new NodeInfo(info.getText())));
-        } else {
-            for (Info i : info.getInfoList()) {
-                root.addChild(buildTree(i));
-            }
-        }
-        return root;
     }
 
     @Override
