@@ -14,7 +14,7 @@ class MainPresenterImpl extends BasePresenter<MainView> implements MainPresenter
 
     @Override
     public void onMenuInfoPressed() {
-        if (isViewAttached()){
+        if (isViewAttached()) {
             getView().goToInfoScreen("howto_pay");
         }
     }

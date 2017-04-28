@@ -20,7 +20,7 @@ public final class Navigator {
         context.startActivity(i);
     }
 
-    public static void goToInfoScreen(@NonNull Context context,@NonNull String infoId) {
+    public static void goToInfoScreen(@NonNull Context context, @NonNull String infoId) {
         Intent i = InfoActivity.createIntent(context, infoId);
         context.startActivity(i);
     }
