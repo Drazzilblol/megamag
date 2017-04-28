@@ -69,7 +69,6 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void goToInfoScreen() {
         Navigator.goToInfoScreen(this);
-        finish();
     }
 
     @Override
