@@ -7,6 +7,7 @@ import android.support.annotation.NonNull;
 import android.support.v4.widget.ContentLoadingProgressBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -84,9 +85,14 @@ public class InfoActivity extends AppCompatActivity implements InfoView {
         List<TreeNode> nodes = new ArrayList<>();
 
         for (Info info : list) {
-            TreeNode<NodeGroup> treeNode = new TreeNode<>(new NodeGroup(info.getTitle()));
-            treeNode.addChild(new TreeNode<>(new NodeInfo(info.getText())));
-            nodes.add(treeNode);
+            if (!TextUtils.isEmpty(info.getTitle())) {
+                TreeNode<NodeGroup> treeNode = new TreeNode<>(new NodeGroup(info.getTitle()));
+                treeNode.addChild(new TreeNode<>(new NodeInfo(info.getText())));
+                nodes.add(treeNode);
+            } else {
+                TreeNode<NodeInfo> treeNode = new TreeNode<>(new NodeInfo(info.getText()));
+                nodes.add(treeNode);
+            }
         }
 
         TreeViewAdapter adapter = new TreeViewAdapter(nodes, Arrays.asList(new InfoBinder(), new GroupBinder()));

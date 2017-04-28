@@ -1,13 +1,14 @@
 package by.instinctools.megamag.data.info;
 
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
 import com.google.auto.value.AutoValue;
 
 @AutoValue
 public abstract class InfoData {
 
-    @NonNull
+    @Nullable
     public abstract String getTitle();
 
     @NonNull
