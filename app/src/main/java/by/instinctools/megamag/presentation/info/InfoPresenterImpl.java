@@ -41,6 +41,7 @@ class InfoPresenterImpl extends DisposablePresenter<InfoView> implements InfoPre
                 infoUseCase.execute(infoId)
                         .filter(infoList -> infoList.size() > EMPTY_LIST_SIZE)
                         .switchIfEmpty(Observable.error(new ErrorException(new NoDataError())))
+                        .map(this::initTreeData)
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(
@@ -51,12 +52,12 @@ class InfoPresenterImpl extends DisposablePresenter<InfoView> implements InfoPre
     }
 
     @DebugLog
-    private void onLoadSuccess(@NonNull List<Info> infoList) {
+    private void onLoadSuccess(@NonNull List<TreeNode> infoList) {
         if (isViewAttached()) {
             InfoView view = getView();
             view.hideProgress();
             view.hideError();
-            view.showData(initTreeData(infoList));
+            view.showData(infoList);
         }
     }
 
