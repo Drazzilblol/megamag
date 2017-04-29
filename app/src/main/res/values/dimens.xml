@@ -30,6 +30,8 @@
 
     <dimen name="item_title_text">16sp</dimen>
 
+    <dimen name="tree_item_left_padding">23dp</dimen>
+
     <!--specific-->
 
     <dimen name="splash_progress_padding">@dimen/item_padding_large</dimen>
@@ -66,5 +68,6 @@
     <dimen name="info_text">@dimen/card_view_text_support</dimen>
 
     <dimen name="info_padding">@dimen/item_padding_normal</dimen>
+    <dimen name="info_left_padding">@dimen/tree_item_left_padding</dimen>
 
 </resources>
