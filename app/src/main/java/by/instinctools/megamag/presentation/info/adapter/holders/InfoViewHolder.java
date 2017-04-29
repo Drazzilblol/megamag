@@ -1,7 +1,7 @@
 package by.instinctools.megamag.presentation.info.adapter.holders;
 
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.TextView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -10,15 +10,15 @@ import tellh.com.recyclertreeview_lib.TreeViewBinder;
 
 public class InfoViewHolder extends TreeViewBinder.ViewHolder {
 
-    @BindView(R.id.info_text_view)
-    TextView textView;
+    @BindView(R.id.item_info_recycler_view)
+    RecyclerView recyclerView;
 
     public InfoViewHolder(View rootView) {
         super(rootView);
         ButterKnife.bind(this, itemView);
     }
 
-    public TextView getTextView() {
-        return textView;
+    public RecyclerView getRecyclerView() {
+        return recyclerView;
     }
 }

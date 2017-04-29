@@ -5,6 +5,7 @@ import android.view.View;
 
 import by.instinctools.megamag.R;
 import by.instinctools.megamag.presentation.info.adapter.holders.InfoViewHolder;
+import by.instinctools.megamag.presentation.info.adapter.holders.child_adapter.InfoAdapter;
 import by.instinctools.megamag.presentation.info.adapter.nodes.NodeInfo;
 import tellh.com.recyclertreeview_lib.TreeNode;
 import tellh.com.recyclertreeview_lib.TreeViewBinder;
@@ -19,7 +20,9 @@ public class InfoBinder extends TreeViewBinder<InfoViewHolder> {
     @Override
     public void bindView(InfoViewHolder infoViewHolder, int i, TreeNode treeNode) {
         NodeInfo fileNode = (NodeInfo) treeNode.getContent();
-        infoViewHolder.getTextView().setText(fileNode.getText());
+
+        InfoAdapter adapter = new InfoAdapter(fileNode.getItems());
+        infoViewHolder.getRecyclerView().setAdapter(adapter);
     }
 
     @Override
