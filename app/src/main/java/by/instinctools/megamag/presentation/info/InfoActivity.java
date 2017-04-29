@@ -7,12 +7,10 @@ import android.support.annotation.NonNull;
 import android.support.v4.widget.ContentLoadingProgressBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -20,12 +18,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import by.instinctools.megamag.R;
 import by.instinctools.megamag.common.errors.Error;
-import by.instinctools.megamag.domain.models.Info;
 import by.instinctools.megamag.presentation.info.adapter.binders.GroupBinder;
 import by.instinctools.megamag.presentation.info.adapter.binders.InfoBinder;
 import by.instinctools.megamag.presentation.info.adapter.holders.GroupViewHolder;
-import by.instinctools.megamag.presentation.info.adapter.nodes.NodeGroup;
-import by.instinctools.megamag.presentation.info.adapter.nodes.NodeInfo;
 import tellh.com.recyclertreeview_lib.TreeNode;
 import tellh.com.recyclertreeview_lib.TreeViewAdapter;
 

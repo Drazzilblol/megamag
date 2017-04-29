@@ -21,11 +21,11 @@ public class RemoteInfoDataSource implements InfoDataSource {
 
     @Override
     public Observable<List<InfoData>> getAll() {
-        return Observable.just(getStubInfo());
+        throw new UnsupportedOperationException();
     }
 
     public Observable<List<InfoData>> getAll(@NonNull String infoId) {
-        return Observable.just(getStubInfo());
+        return Observable.just(getStubInfo(infoId));
     }
 
     @Override
@@ -33,7 +33,7 @@ public class RemoteInfoDataSource implements InfoDataSource {
         throw new UnsupportedOperationException();
     }
 
-    private List<InfoData> getStubInfo() {
+    private List<InfoData> getStubInfo(@NonNull String infoId) {
         List<InfoData> infoList = new ArrayList<>();
         InfoData infoData = InfoData.builder()
                 .title("Метод оплаты \"ЕРИП\". Вариант оплаты с использованием Интернет-банкинга.")
@@ -77,6 +77,7 @@ public class RemoteInfoDataSource implements InfoDataSource {
                         "\n" +
                         "Пункт 5. Завершить оплату\n" +
                         "Завершите платеж путем ввода срока действия карточки и персонального пароля.")
+                .infoId(infoId)
                 .build();
 
         InfoData infoData1 = InfoData.builder()
@@ -94,6 +95,7 @@ public class RemoteInfoDataSource implements InfoDataSource {
                         "\n" +
                         "Пункт 4. Завершить оплату\n" +
                         "Завершите платеж путем ввода персонального пин кода пластиковой банковской карточки.")
+                .infoId(infoId)
                 .build();
 
         infoData.addToInfoList(infoData1);

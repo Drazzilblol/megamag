@@ -4,7 +4,6 @@ import android.support.annotation.NonNull;
 
 import java.util.List;
 
-import by.instinctools.megamag.domain.models.Info;
 import by.instinctools.megamag.presentation.MvpView;
 import tellh.com.recyclertreeview_lib.TreeNode;
 

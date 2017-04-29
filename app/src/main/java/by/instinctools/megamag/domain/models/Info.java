@@ -14,6 +14,9 @@ public abstract class Info {
     @NonNull
     private List<Info> infoList = new ArrayList<>();
 
+    @NonNull
+    public abstract String getInfoId();
+
     @Nullable
     public abstract String getTitle();
 
@@ -36,6 +39,8 @@ public abstract class Info {
 
     @AutoValue.Builder
     public abstract static class Builder {
+
+        public abstract Info.Builder infoId(@NonNull String value);
 
         public abstract Info.Builder title(@Nullable String value);
 

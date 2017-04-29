@@ -12,7 +12,9 @@ public class InfoConverter extends BaseConverter<InfoData, Info> {
     @Override
     public Info convert(@NonNull InfoData infoData) {
         Info info = Info.builder()
-                .title(infoData.getTitle()).text(infoData.getText())
+                .title(infoData.getTitle())
+                .text(infoData.getText())
+                .infoId(infoData.getInfoId())
                 .build();
         for (InfoData infoD : infoData.getInfoList()) {
             info.addToInfoList(convert(infoD));
