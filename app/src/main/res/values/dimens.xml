@@ -30,7 +30,7 @@
 
     <dimen name="item_title_text">16sp</dimen>
 
-    <dimen name="tree_item_left_padding">23dp</dimen>
+    <dimen name="tree_item_left_padding">@dimen/std_top_or_bottom_item_padding</dimen>
 
     <!--specific-->
 
