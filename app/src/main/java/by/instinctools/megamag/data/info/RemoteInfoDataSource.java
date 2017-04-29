@@ -123,6 +123,7 @@ public class RemoteInfoDataSource implements InfoDataSource {
 
     private List<InfoData> getStubBookInfo(@NonNull String infoId) {
         List<InfoData> infoList = new ArrayList<>();
+
         infoList.add(
                 InfoData.builder()
                         .title("Регистрация. Если зарегистрированы, то пункт пропустить.")
@@ -134,6 +135,35 @@ public class RemoteInfoDataSource implements InfoDataSource {
                         .infoId(infoId)
                         .build()
         );
+
+        InfoData infoData1 = InfoData.builder()
+                .title("1. Выбор даты, места и время мероприятия.")
+                .text("")
+                .infoId(infoId)
+                .build();
+        InfoData infoData2 = InfoData.builder()
+                .title("1.1. Выбор по дате, по объекту через вспомогательную область сеансов.\t")
+                .text("1.1. Выбор по дате, по объекту через вспомогательную область сеансов.\n" +
+                        "Вспомогательная область сеансов находится в верхней части сайта.\n" +
+                        "\n" +
+                        "После выбора времени (нажатия на выбранное время) отобразиться план зала, где будет проходить выбранное мероприятие.\n" +
+                        "\n" +
+                        "На этом изображении необходимо выбрать места. Выбранные места на плане зала окрашиваются в фиолетовый цвет. После выбора мест можно переходить в следующий этап.")
+                .infoId(infoId)
+                .build();
+        InfoData infoData3 = InfoData.builder()
+                .title("1.2. Выбор по объекту из левого меню \"Кино и театры региона\".\t")
+                .text("Меню \"Кино и театры региона\" находится в левой части сайта, под главным меню.\n" +
+                        "\n" +
+                        "Выбрать (нажать на название) необходимый объект из списка\n" +
+                        "После выбора кино или мероприятия, ниже выбираем время (нажатие на выбранное время). Отобразиться план зала, где будет проходить выбранное мероприятие.\n" +
+                        "\n" +
+                        "На этом изображении необходимо выбрать места. Выбранные места на плане зала окрашиваются в фиолетовый цвет. После выбора мест можно переходить в следующий этап.")
+                .infoId(infoId)
+                .build();
+        infoData1.addToInfoList(infoData2);
+        infoData1.addToInfoList(infoData3);
+        infoList.add(infoData1);
 
         infoList.add(
                 InfoData.builder()
