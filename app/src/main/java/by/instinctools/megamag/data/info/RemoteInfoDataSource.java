@@ -77,6 +77,7 @@ public class RemoteInfoDataSource implements InfoDataSource {
                         "\n" +
                         "Пункт 5. Завершить оплату\n" +
                         "Завершите платеж путем ввода срока действия карточки и персонального пароля.")
+                .infoList(new ArrayList<InfoData>())
                 .infoId(infoId)
                 .build();
 
@@ -97,6 +98,7 @@ public class RemoteInfoDataSource implements InfoDataSource {
                         "Пункт 4. Завершить оплату\n" +
                         "Завершите платеж путем ввода персонального пин кода пластиковой банковской карточки.")
                 .infoId(infoId)
+                .infoList(new ArrayList<InfoData>())
                 .build());
 
         InfoData g1 = InfoData.builder()

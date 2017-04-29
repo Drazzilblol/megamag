@@ -19,7 +19,7 @@ public abstract class InfoData {
     @Nullable
     public abstract String getText();
 
-    @Nullable
+    @NonNull
     public abstract List<InfoData> getInfoList();
 
     @NonNull
@@ -36,7 +36,7 @@ public abstract class InfoData {
 
         public abstract InfoData.Builder text(@Nullable String value);
 
-        public abstract InfoData.Builder infoList(@Nullable List<InfoData> list);
+        public abstract InfoData.Builder infoList(@NonNull List<InfoData> list);
 
         public abstract InfoData build();
     }
