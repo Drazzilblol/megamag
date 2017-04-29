@@ -80,8 +80,9 @@ public class RemoteInfoDataSource implements InfoDataSource {
                 .infoId(infoId)
                 .build();
 
-        InfoData infoData1 = InfoData.builder()
-                .title("Метод оплаты \"ЕРИП\". Вариант оплаты с банкомата или инфокиоска.")
+
+        List<InfoData> list = new ArrayList<>();
+        list.add(InfoData.builder()
                 .text("Пункт 1. Выбрать в Платежах \"Билеты kinoteatr.megamag.by\".\n" +
                         "Оплата возможна с использованием следующих типов терминалов - скачать\n" +
                         "У каждого банкомата и инфокиоска свои особенности выбора пункта платежа \"Билеты kinoteatr.megamag.by\".\n" +
@@ -96,11 +97,16 @@ public class RemoteInfoDataSource implements InfoDataSource {
                         "Пункт 4. Завершить оплату\n" +
                         "Завершите платеж путем ввода персонального пин кода пластиковой банковской карточки.")
                 .infoId(infoId)
+                .build());
+
+        InfoData g1 = InfoData.builder()
+                .title("Метод оплаты \"ЕРИП\". Вариант оплаты с банкомата или инфокиоска.")
+                .infoId(infoId)
+                .infoList(list)
                 .build();
 
-        infoData.addToInfoList(infoData1);
         infoList.add(infoData);
-        infoList.add(infoData1);
+        infoList.add(g1);
         return infoList;
     }
 }

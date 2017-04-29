@@ -3,7 +3,6 @@ package by.instinctools.megamag.presentation.info;
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import by.instinctools.megamag.common.errors.ErrorException;
@@ -41,7 +40,10 @@ class InfoPresenterImpl extends DisposablePresenter<InfoView> implements InfoPre
                 infoUseCase.execute(infoId)
                         .filter(infoList -> infoList.size() > EMPTY_LIST_SIZE)
                         .switchIfEmpty(Observable.error(new ErrorException(new NoDataError())))
-                        .map(this::initTreeData)
+                        .flatMap(Observable::fromIterable)
+                        .map(this::buildTree)
+                        .toList()
+                        .toObservable()
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(
@@ -61,23 +63,14 @@ class InfoPresenterImpl extends DisposablePresenter<InfoView> implements InfoPre
         }
     }
 
-    @Override
-    public List<TreeNode> initTreeData(@NonNull List<Info> infoList) {
-        List<TreeNode> nodes = new ArrayList<>();
-        for (Info info : infoList) {
-            if (TextUtils.isEmpty(info.getTitle())) {
-                nodes.add(new TreeNode<>(new NodeInfo(info.getText())));
-            } else {
-                nodes.add(buildTree(info));
-            }
+    private TreeNode buildTree(@NonNull Info info) {
+        if (!TextUtils.isEmpty(info.getTitle()) && info.getInfoList().size() == 0 && TextUtils.isEmpty(info.getText())) {
+            onLoadError(new ErrorException(new NoDataError()));
         }
-        return nodes;
-    }
 
-    private TreeNode<NodeGroup> buildTree(@NonNull Info info) {
         TreeNode<NodeGroup> root = new TreeNode<>(new NodeGroup(info.getTitle()));
         if (info.getInfoList().size() == 0 && !TextUtils.isEmpty(info.getText())) {
-            root.addChild(new TreeNode<>(new NodeInfo(info.getText())));
+            return new TreeNode<>(new NodeInfo(info.getText()));
         } else {
             for (Info i : info.getInfoList()) {
                 root.addChild(buildTree(i));

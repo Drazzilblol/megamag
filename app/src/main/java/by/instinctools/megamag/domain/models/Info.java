@@ -5,14 +5,10 @@ import android.support.annotation.Nullable;
 
 import com.google.auto.value.AutoValue;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @AutoValue
 public abstract class Info {
-
-    @NonNull
-    private List<Info> infoList = new ArrayList<>();
 
     @NonNull
     public abstract String getInfoId();
@@ -20,17 +16,11 @@ public abstract class Info {
     @Nullable
     public abstract String getTitle();
 
-    @NonNull
+    @Nullable
     public abstract String getText();
 
     @NonNull
-    public List<Info> getInfoList() {
-        return infoList;
-    }
-
-    public void addToInfoList(Info info) {
-        infoList.add(info);
-    }
+    public abstract List<Info> getInfoList();
 
     @NonNull
     public static Info.Builder builder() {
@@ -44,7 +34,9 @@ public abstract class Info {
 
         public abstract Info.Builder title(@Nullable String value);
 
-        public abstract Info.Builder text(@NonNull String value);
+        public abstract Info.Builder text(@Nullable String value);
+
+        public abstract Info.Builder infoList(@NonNull List<Info> list);
 
         public abstract Info build();
     }
