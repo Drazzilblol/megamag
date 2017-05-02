@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 
+import by.instinctools.megamag.presentation.info.InfoActivity;
 import by.instinctools.megamag.presentation.main.MainActivity;
 import by.instinctools.megamag.presentation.profile.ProfileActivity;
 
@@ -19,4 +20,8 @@ public final class Navigator {
         context.startActivity(i);
     }
 
+    public static void goToInfoScreen(@NonNull Context context, @NonNull String infoId) {
+        Intent i = InfoActivity.createIntent(context, infoId);
+        context.startActivity(i);
+    }
 }

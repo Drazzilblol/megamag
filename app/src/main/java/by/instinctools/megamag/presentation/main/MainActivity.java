@@ -17,6 +17,7 @@ import android.view.MenuItem;
 
 import by.instinctools.megamag.R;
 import by.instinctools.megamag.common.errors.Error;
+import by.instinctools.megamag.common.utils.Navigator;
 import by.instinctools.megamag.presentation.main.announcements.AnnouncementsFragment;
 import by.instinctools.megamag.presentation.main.tickets.TicketsFragment;
 
@@ -66,6 +67,11 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
+    public void goToInfoScreen(@NonNull String infoId) {
+        Navigator.goToInfoScreen(this, infoId);
+    }
+
+    @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
@@ -77,7 +83,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main2, menu);
+        getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
 
@@ -95,18 +101,8 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
-
-        if (id == R.id.nav_camera) {
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
+        if (id == R.id.menu_info_test) {
+            presenter.onMenuInfoPressed();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

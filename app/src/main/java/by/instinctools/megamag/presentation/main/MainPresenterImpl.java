@@ -11,4 +11,11 @@ class MainPresenterImpl extends BasePresenter<MainView> implements MainPresenter
         super.attach(view);
         view.goToTicketsScreen();
     }
+
+    @Override
+    public void onMenuInfoPressed() {
+        if (isViewAttached()) {
+            getView().goToInfoScreen("howto_pay");
+        }
+    }
 }

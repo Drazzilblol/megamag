@@ -28,6 +28,7 @@
     <dimen name="card_view_text_sub">@dimen/std_text_size_subtext</dimen>
     <dimen name="card_view_text_support">@dimen/std_text_size_supporting</dimen>
 
+    <dimen name="item_title_text">16sp</dimen>
 
     <!--specific-->
 
@@ -57,5 +58,13 @@
     <dimen name="ticket_card_text_primary">@dimen/card_view_text_primary</dimen>
     <dimen name="ticket_card_text_sub">@dimen/card_view_text_sub</dimen>
     <dimen name="ticket_card_text_support">@dimen/card_view_text_support</dimen>
+
+    <dimen name="info_group_text">@dimen/item_title_text</dimen>
+
+    <dimen name="info_group_padding">@dimen/item_padding_normal</dimen>
+
+    <dimen name="info_text">@dimen/card_view_text_support</dimen>
+
+    <dimen name="info_padding">@dimen/item_padding_normal</dimen>
 
 </resources>

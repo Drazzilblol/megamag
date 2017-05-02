@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/card_view"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:clickable="true"
-    android:foreground="?attr/selectableItemBackground"
-    tools:layout_margin="8dp">
+                                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                                    xmlns:tools="http://schemas.android.com/tools"
+                                    android:id="@+id/card_view"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:clickable="true"
+                                    android:foreground="?attr/selectableItemBackground"
+                                    tools:layout_margin="8dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -25,7 +25,7 @@
                 app:layout_aspectRatio="178%"
                 app:layout_widthPercent="100%"
                 tools:ignore="ContentDescription"
-                tools:src="@drawable/splash" />
+                tools:src="@drawable/splash"/>
 
         </android.support.percent.PercentFrameLayout>
 
@@ -34,28 +34,28 @@
             style="@style/AnnouncementCardSubtitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:text="Анонсы" />
+            tools:text="Анонсы"/>
 
         <TextView
             android:id="@+id/announcement_title"
             style="@style/AnnouncementCardTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:text="Стражи Галактики. Часть 2" />
+            tools:text="Стражи Галактики. Часть 2"/>
 
         <TextView
             android:id="@+id/announcement_details_view"
             style="@style/AnnouncementCardDetails"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:text="США (2017) фантастика, боевик, приключения" />
+            tools:text="США (2017) фантастика, боевик, приключения"/>
 
         <TextView
             android:id="@+id/announcement_description_view"
             style="@style/AnnouncementCardDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:text="Все в сборе: землянин Питер Квилл (Звездный Лорд), молчаливый громила Дракс, зеленокожая наемница Гамора, живое дерево Грут и говорящий енот. Герои не изменяют себе и с завидной регулярностью продолжают попадать в немыслимые ситуации, выпутываясь из них почти без ущерба (а иногда даже с пользой) для окружающих. На этот раз им предстоит раскрыть одну из самых главных тайн во всей Галактике: кто же на самом деле отец Питера Квилла?" />
+            tools:text="Все в сборе: землянин Питер Квилл (Звездный Лорд), молчаливый громила Дракс, зеленокожая наемница Гамора, живое дерево Грут и говорящий енот. Герои не изменяют себе и с завидной регулярностью продолжают попадать в немыслимые ситуации, выпутываясь из них почти без ущерба (а иногда даже с пользой) для окружающих. На этот раз им предстоит раскрыть одну из самых главных тайн во всей Галактике: кто же на самом деле отец Питера Квилла?"/>
 
     </LinearLayout>
 

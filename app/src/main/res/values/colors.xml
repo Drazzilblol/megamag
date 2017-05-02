@@ -27,4 +27,8 @@
     <color name="ticket_text_secondary">@color/text_secondary</color>
     <color name="ticket_text_disabled">@color/text_disabled</color>
 
+    <color name="group_text_primary">@color/text_primary</color>
+
+    <color name="info_text_secondary">@color/text_secondary</color>
+
 </resources>
