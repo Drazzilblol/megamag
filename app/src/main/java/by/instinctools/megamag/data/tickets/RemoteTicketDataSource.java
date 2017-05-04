@@ -10,22 +10,26 @@ import io.reactivex.Observable;
 
 public class RemoteTicketDataSource implements TicketDataSource {
 
+    @NonNull
     @Override
     public Observable<TicketData> getValue(@NonNull String key) {
         return null;
     }
 
+    @NonNull
     @Override
     public Observable<TicketData> saveValue(@NonNull String key, @NonNull TicketData value) {
         return null;
     }
 
+    @NonNull
     @DebugLog
     @Override
     public Observable<List<TicketData>> getAll() {
         return Observable.just(getStubTickets());
     }
 
+    @NonNull
     @Override
     public Observable<List<TicketData>> saveAll(List<TicketData> collection) {
         return null;

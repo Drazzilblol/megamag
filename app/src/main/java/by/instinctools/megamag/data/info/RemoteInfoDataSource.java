@@ -9,16 +9,19 @@ import io.reactivex.Observable;
 
 public class RemoteInfoDataSource implements InfoDataSource {
 
+    @NonNull
     @Override
     public Observable<InfoData> getValue(@NonNull String key) {
         throw new UnsupportedOperationException();
     }
 
+    @NonNull
     @Override
     public Observable<InfoData> saveValue(@NonNull String key, @NonNull InfoData value) {
         throw new UnsupportedOperationException();
     }
 
+    @NonNull
     @Override
     public Observable<List<InfoData>> getAll() {
         throw new UnsupportedOperationException();
@@ -28,6 +31,7 @@ public class RemoteInfoDataSource implements InfoDataSource {
         return Observable.just(getStubInfo(infoId));
     }
 
+    @NonNull
     @Override
     public Observable<List<InfoData>> saveAll(List<InfoData> collection) {
         throw new UnsupportedOperationException();
