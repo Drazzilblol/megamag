@@ -101,15 +101,20 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
-        if (id == R.id.menu_info_test) {
-            presenter.onMenuInfoPressed();
+        if (id == R.id.menu_info_pay) {
+            presenter.onMenuPayPressed();
+        }
+        if (id == R.id.menu_info_book) {
+            presenter.onMenuBookPressed();
+        }
+        if (id == R.id.menu_info_rules) {
+            presenter.onMenuRulesPressed();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-
 
     @Override
     protected void onStart() {

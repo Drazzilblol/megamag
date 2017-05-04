@@ -15,11 +15,10 @@ public class InfoConverter extends BaseConverter<InfoData, Info> {
     @Override
     public Info convert(@NonNull InfoData infoData) {
         List<Info> infoList = new ArrayList<>();
-        if (infoData.getInfoList() != null) {
-            for (InfoData infoD : infoData.getInfoList()) {
-                infoList.add(convert(infoD));
-            }
+        for (InfoData infoD : infoData.getInfoList()) {
+            infoList.add(convert(infoD));
         }
+
         return Info.builder()
                 .title(infoData.getTitle())
                 .text(infoData.getText())
