@@ -12,9 +12,10 @@ import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import by.instinctools.megamag.R;
+import by.instinctools.megamag.data.info.items.InfoItem;
 import by.instinctools.megamag.data.info.items.InfoText;
 
-public class InfoTextViewHolder extends RecyclerView.ViewHolder {
+public class InfoTextViewHolder extends InfoViewHolder {
 
     @BindView(R.id.item_info_text_view)
     TextView textView;
@@ -30,8 +31,8 @@ public class InfoTextViewHolder extends RecyclerView.ViewHolder {
         return layoutInflater.inflate(R.layout.item_info_text, parent, false);
     }
 
-    void bindData(@NonNull InfoText infoText) {
-        textView.setText(Html.fromHtml(infoText.getText()));
+    @Override
+    void bind(@NonNull InfoItem item) {
+        textView.setText(Html.fromHtml(((InfoText)item).getText()));
     }
-
 }

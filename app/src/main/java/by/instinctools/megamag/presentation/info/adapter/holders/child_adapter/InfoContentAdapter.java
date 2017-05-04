@@ -11,7 +11,7 @@ import by.instinctools.megamag.data.info.items.InfoImage;
 import by.instinctools.megamag.data.info.items.InfoItem;
 import by.instinctools.megamag.data.info.items.InfoText;
 
-public class InfoContentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class InfoContentAdapter extends RecyclerView.Adapter<InfoViewHolder> {
 
     private static final int TYPE_TEXT = 0;
     private static final int TYPE_IMAGE = 1;
@@ -24,7 +24,7 @@ public class InfoContentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     }
 
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public InfoViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         if (viewType == TYPE_TEXT) {
             return new InfoTextViewHolder(parent);
         }
@@ -35,12 +35,13 @@ public class InfoContentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(InfoViewHolder holder, int position) {
+        InfoItem item = items.get(position);
         if (holder instanceof InfoTextViewHolder) {
-            ((InfoTextViewHolder) holder).bindData((InfoText) items.get(position));
+            holder.bind(item);
         }
         if (holder instanceof InfoImageViewHolder) {
-            ((InfoImageViewHolder) holder).bindData((InfoImage) items.get(position));
+            holder.bind(item);
         }
     }
 
@@ -52,10 +53,13 @@ public class InfoContentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
     @Override
     public int getItemViewType(int position) {
-        if (items.get(position) instanceof InfoText) {
+        InfoItem item = items.get(position);
+        if (item instanceof InfoText) {
             return TYPE_TEXT;
-        } else {
+        } else if (item instanceof InfoImage) {
             return TYPE_IMAGE;
+        } else {
+            throw new UnsupportedOperationException();
         }
     }
 
