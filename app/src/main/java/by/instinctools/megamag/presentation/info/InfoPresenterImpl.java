@@ -7,6 +7,7 @@ import java.util.List;
 
 import by.instinctools.megamag.common.errors.ErrorException;
 import by.instinctools.megamag.common.errors.NoDataError;
+import by.instinctools.megamag.data.info.items.InfoItem;
 import by.instinctools.megamag.domain.GetInfoUseCase;
 import by.instinctools.megamag.domain.models.Info;
 import by.instinctools.megamag.presentation.DisposablePresenter;
@@ -64,19 +65,27 @@ class InfoPresenterImpl extends DisposablePresenter<InfoView> implements InfoPre
     }
 
     private TreeNode buildTree(@NonNull Info info) {
-        if (!TextUtils.isEmpty(info.getTitle()) && info.getInfoList().size() == 0 && info.getItemList().size() != 0) {
+        List<InfoItem> infoItems = info.getItemList();
+        List<Info> infoList = info.getInfoList();
+
+        boolean hasTitle = !TextUtils.isEmpty(info.getTitle());
+        boolean hasChildes = infoList.size() > 0;
+        boolean hasContent = infoItems.size() > 0;
+
+        if (!hasTitle && !hasChildes && !hasContent) {
             onLoadError(new ErrorException(new NoDataError()));
         }
+
         TreeNode<NodeGroup> root = new TreeNode<>(new NodeGroup(info.getTitle()));
-        if (info.getInfoList().size() == 0 && info.getItemList().size() != 0) {
+        if (!hasChildes && hasContent) {
             if (TextUtils.isEmpty(info.getTitle())) {
-                return new TreeNode<>(new NodeInfo(info.getItemList()));
+                return new TreeNode<>(new NodeInfo(infoItems));
             } else {
-                root.addChild(new TreeNode<>(new NodeInfo(info.getItemList())));
+                root.addChild(new TreeNode<>(new NodeInfo(infoItems)));
                 return root;
             }
         } else {
-            for (Info i : info.getInfoList()) {
+            for (Info i : infoList) {
                 root.addChild(buildTree(i));
             }
         }

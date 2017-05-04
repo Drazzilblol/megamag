@@ -31,7 +31,7 @@ public class InfoTextViewHolder extends RecyclerView.ViewHolder {
     }
 
     void bindData(@NonNull InfoText infoText) {
-        textView.setText(Html.fromHtml(infoText.getData()));
+        textView.setText(Html.fromHtml(infoText.getText()));
     }
 
 }

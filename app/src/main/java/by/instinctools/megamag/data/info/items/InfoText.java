@@ -12,7 +12,7 @@ public abstract class InfoText implements InfoItem {
 
     @NonNull
     public static InfoText.Builder builder() {
-        return new AutoValue_Infotext.Builder();
+        return new AutoValue_InfoText.Builder();
     }
 
     @AutoValue.Builder

@@ -34,7 +34,7 @@ public class InfoImageViewHolder extends RecyclerView.ViewHolder {
         ImageUtils.loadImage(
                 itemView.getContext(),
                 imageView,
-                infoImage.getData()
+                infoImage.getImageUrl()
         );
     }
 
