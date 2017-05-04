@@ -2,18 +2,26 @@ package by.instinctools.megamag.data.info.items;
 
 import android.support.annotation.NonNull;
 
-public class InfoImage implements InfoItem {
+import com.google.auto.value.AutoValue;
+
+import by.instinctools.megamag.data.info.InfoData;
+
+@AutoValue
+public abstract class InfoImage implements InfoItem {
 
     @NonNull
-    private String imageUrl;
+    public abstract String getImageUrl();
 
-    public InfoImage(@NonNull String imageUrl) {
-        this.imageUrl = imageUrl;
+    @NonNull
+    public static InfoImage.Builder builder() {
+        return new AutoValue_InfoImage.Builder();
     }
 
-    @NonNull
-    @Override
-    public String getData() {
-        return imageUrl;
+    @AutoValue.Builder
+    public abstract static class Builder {
+
+        public abstract InfoImage.Builder imageUrl(@NonNull String value);
+
+        public abstract InfoImage build();
     }
 }

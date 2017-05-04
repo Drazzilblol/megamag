@@ -2,18 +2,24 @@ package by.instinctools.megamag.data.info.items;
 
 import android.support.annotation.NonNull;
 
-public class InfoText implements InfoItem {
+import com.google.auto.value.AutoValue;
+
+@AutoValue
+public abstract class InfoText implements InfoItem {
 
     @NonNull
-    private String text;
+    public abstract String getText();
 
-    public InfoText(@NonNull String text) {
-        this.text = text;
+    @NonNull
+    public static InfoText.Builder builder() {
+        return new AutoValue_Infotext.Builder();
     }
 
-    @NonNull
-    @Override
-    public String getData() {
-        return text;
+    @AutoValue.Builder
+    public abstract static class Builder {
+
+        public abstract InfoText.Builder text(@NonNull String value);
+
+        public abstract InfoText build();
     }
 }
