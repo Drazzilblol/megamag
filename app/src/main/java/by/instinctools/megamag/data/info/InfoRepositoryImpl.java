@@ -11,6 +11,7 @@ public class InfoRepositoryImpl implements InfoRepository {
     @NonNull
     private RemoteInfoDataSource dataSource = new RemoteInfoDataSource();
 
+    @NonNull
     @Override
     public Observable<List<InfoData>> getInfoList(String infoId) {
         return dataSource.getAll(infoId);
