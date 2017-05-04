@@ -29,6 +29,8 @@ public class InfoActivity extends AppCompatActivity implements InfoView {
     @NonNull
     private static final String INFO_ACTIVITY_SCREEN_ID = "INFO_ACTIVITY_SCREEN_ID";
 
+    private static final int DEFAULT_VALUE = 0;
+
     @BindView(R.id.info_recycler_view)
     RecyclerView recyclerView;
 
@@ -41,7 +43,7 @@ public class InfoActivity extends AppCompatActivity implements InfoView {
     @NonNull
     private InfoPresenter infoPresenter = new InfoPresenterImpl();
 
-    public static Intent createIntent(Context context, String id) {
+    public static Intent createIntent(@NonNull Context context, int id) {
         Intent intent = new Intent(context, InfoActivity.class);
         intent.putExtra(INFO_ACTIVITY_SCREEN_ID, id);
         return intent;
@@ -54,7 +56,7 @@ public class InfoActivity extends AppCompatActivity implements InfoView {
         ButterKnife.bind(this);
         Intent intent = getIntent();
         if (intent != null) {
-            infoPresenter.setInitialValue(intent.getStringExtra(INFO_ACTIVITY_SCREEN_ID));
+            infoPresenter.setInitialValue(intent.getIntExtra(INFO_ACTIVITY_SCREEN_ID, DEFAULT_VALUE));
         }
     }
 

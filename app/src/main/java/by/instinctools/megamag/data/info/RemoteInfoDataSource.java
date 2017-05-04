@@ -33,13 +33,12 @@ public class RemoteInfoDataSource implements InfoDataSource {
     @NonNull
     @Override
     public Observable<List<InfoData>> getAll() {
-
         throw new UnsupportedOperationException();
     }
 
     @DebugLog
     @NonNull
-    public Observable<List<InfoData>> getAll(@NonNull String infoId) {
+    public Observable<List<InfoData>> getAll(int infoId) {
         if (TextUtils.equals(infoId, HOW_PAY)) {
             return Observable.just(getStubPayInfo(infoId));
         } else if (TextUtils.equals(infoId, HOW_BOOK)) {

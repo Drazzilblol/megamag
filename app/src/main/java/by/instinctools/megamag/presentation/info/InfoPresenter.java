@@ -6,5 +6,5 @@ import by.instinctools.megamag.presentation.MvpPresenter;
 
 interface InfoPresenter extends MvpPresenter<InfoView> {
 
-    void setInitialValue(@NonNull String activityId);
+    void setInitialValue(int activityId);
 }

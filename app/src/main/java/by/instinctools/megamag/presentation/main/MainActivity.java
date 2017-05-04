@@ -15,16 +15,31 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import java.util.List;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import by.instinctools.megamag.R;
 import by.instinctools.megamag.common.errors.Error;
 import by.instinctools.megamag.common.utils.Navigator;
+import by.instinctools.megamag.domain.models.MenuV;
 import by.instinctools.megamag.presentation.main.announcements.AnnouncementsFragment;
+import by.instinctools.megamag.presentation.main.menu.MenuPresenter;
+import by.instinctools.megamag.presentation.main.menu.MenuPresenterImpl;
+import by.instinctools.megamag.presentation.main.menu.MenuView;
 import by.instinctools.megamag.presentation.main.tickets.TicketsFragment;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, MainView {
+        implements NavigationView.OnNavigationItemSelectedListener, MainView, MenuView {
 
-    private MainPresenter presenter = new MainPresenterImpl();
+    @BindView(R.id.nav_view)
+    NavigationView navigationView;
+
+    @NonNull
+    private MainPresenter mainPresenter = new MainPresenterImpl();
+
+    @NonNull
+    private MenuPresenter menuPresenter = new MenuPresenterImpl();
 
     public static Intent createIntent(Context context) {
         return new Intent(context, MainActivity.class);
@@ -33,6 +48,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ButterKnife.bind(this);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle(R.string.announcements_toolbar_title);
@@ -44,7 +60,7 @@ public class MainActivity extends AppCompatActivity
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+
         navigationView.setNavigationItemSelectedListener(this);
     }
 
@@ -66,10 +82,6 @@ public class MainActivity extends AppCompatActivity
                 .commit();
     }
 
-    @Override
-    public void goToInfoScreen(@NonNull String infoId) {
-        Navigator.goToInfoScreen(this, infoId);
-    }
 
     @Override
     public void onBackPressed() {
@@ -101,15 +113,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
-        if (id == R.id.menu_info_pay) {
-            presenter.onMenuPayPressed();
-        }
-        if (id == R.id.menu_info_book) {
-            presenter.onMenuBookPressed();
-        }
-        if (id == R.id.menu_info_rules) {
-            presenter.onMenuRulesPressed();
-        }
+        menuPresenter.onMenuPressed(id);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
@@ -119,13 +123,15 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onStart() {
         super.onStart();
-        presenter.attach(this);
+        mainPresenter.attach(this);
+        menuPresenter.attach(this);
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        presenter.detach();
+        mainPresenter.detach();
+        menuPresenter.detach();
     }
 
     @Override
@@ -146,5 +152,18 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void hideProgress() {
 
+    }
+
+    @Override
+    public void goToInfoScreen(int infoId) {
+        Navigator.goToInfoScreen(this, infoId);
+    }
+
+    @Override
+    public void showMenu(@NonNull List<MenuV> menuList) {
+        Menu menu = navigationView.getMenu();
+        for (MenuV menuView : menuList) {
+            menu.add(menuView.getTitle());
+        }
     }
 }

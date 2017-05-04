@@ -23,14 +23,14 @@ class InfoPresenterImpl extends DisposablePresenter<InfoView> implements InfoPre
 
     private static final int EMPTY_LIST_SIZE = 0;
 
-    private String infoId;
+    private int infoId;
 
     @NonNull
     GetInfoUseCase infoUseCase = new GetInfoUseCase();
 
     @Override
-    public void setInitialValue(@NonNull String infoId) {
-        this.infoId = infoId;
+    public void setInitialValue(int activityId) {
+        infoId = activityId;
     }
 
     @Override
@@ -103,4 +103,6 @@ class InfoPresenterImpl extends DisposablePresenter<InfoView> implements InfoPre
             showError(throwable);
         }
     }
+
+
 }
