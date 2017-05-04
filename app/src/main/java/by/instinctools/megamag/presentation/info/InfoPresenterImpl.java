@@ -69,7 +69,12 @@ class InfoPresenterImpl extends DisposablePresenter<InfoView> implements InfoPre
         }
         TreeNode<NodeGroup> root = new TreeNode<>(new NodeGroup(info.getTitle()));
         if (info.getInfoList().size() == 0 && info.getItemList().size() != 0) {
-            return new TreeNode<>(new NodeInfo(info.getItemList()));
+            if (TextUtils.isEmpty(info.getTitle())) {
+                return new TreeNode<>(new NodeInfo(info.getItemList()));
+            } else {
+                root.addChild(new TreeNode<>(new NodeInfo(info.getItemList())));
+                return root;
+            }
         } else {
             for (Info i : info.getInfoList()) {
                 root.addChild(buildTree(i));
