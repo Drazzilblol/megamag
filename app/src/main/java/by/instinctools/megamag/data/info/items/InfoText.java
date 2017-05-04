@@ -4,9 +4,10 @@ import android.support.annotation.NonNull;
 
 public class InfoText implements InfoItem {
 
+    @NonNull
     private String text;
 
-    public InfoText(String text) {
+    public InfoText(@NonNull String text) {
         this.text = text;
     }
 

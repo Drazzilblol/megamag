@@ -1,5 +1,6 @@
 package by.instinctools.megamag.presentation.info.adapter.holders;
 
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
@@ -18,6 +19,7 @@ public class InfoViewHolder extends TreeViewBinder.ViewHolder {
         ButterKnife.bind(this, itemView);
     }
 
+    @NonNull
     public RecyclerView getRecyclerView() {
         return recyclerView;
     }

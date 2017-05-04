@@ -10,6 +10,7 @@ import by.instinctools.megamag.data.info.InfoRepository;
 import by.instinctools.megamag.data.info.InfoRepositoryImpl;
 import by.instinctools.megamag.domain.common.converters.InfoConverter;
 import by.instinctools.megamag.domain.models.Info;
+import hugo.weaving.DebugLog;
 import io.reactivex.Observable;
 
 public class GetInfoUseCase implements UseCase<List<Info>> {
@@ -20,6 +21,7 @@ public class GetInfoUseCase implements UseCase<List<Info>> {
     @NonNull
     private ListConverter<InfoData, Info> converter = new InfoConverter();
 
+    @DebugLog
     public Observable<List<Info>> execute(@NonNull String infoId) {
         return repository.getInfoList(infoId)
                 .map(converter::convert);

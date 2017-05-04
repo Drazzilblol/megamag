@@ -9,6 +9,7 @@ import java.util.List;
 import by.instinctools.megamag.data.info.items.InfoImage;
 import by.instinctools.megamag.data.info.items.InfoItem;
 import by.instinctools.megamag.data.info.items.InfoText;
+import hugo.weaving.DebugLog;
 import io.reactivex.Observable;
 
 public class RemoteInfoDataSource implements InfoDataSource {
@@ -36,6 +37,7 @@ public class RemoteInfoDataSource implements InfoDataSource {
         throw new UnsupportedOperationException();
     }
 
+    @DebugLog
     @NonNull
     public Observable<List<InfoData>> getAll(@NonNull String infoId) {
         if (TextUtils.equals(infoId, HOW_PAY)) {
@@ -143,7 +145,6 @@ public class RemoteInfoDataSource implements InfoDataSource {
                 .itemList(items1)
                 .build();
 
-
         List<InfoItem> items2 = new ArrayList<>();
         items2.add(new InfoText("1.1. Выбор по дате, по объекту через вспомогательную область сеансов.\n"
                 + "Вспомогательная область сеансов находится в верхней части сайта.\n"));
@@ -151,7 +152,6 @@ public class RemoteInfoDataSource implements InfoDataSource {
         items2.add(new InfoText("После выбора времени (нажатия на выбранное время) отобразиться план зала, где будет проходить выбранное мероприятие.\n"));
         items2.add(new InfoImage("http://kinoteatr.megamag.by/templates/Cinema-new/images/howbronned/step1_1_2.jpg"));
         items2.add(new InfoText("На этом изображении необходимо выбрать места. Выбранные места на плане зала окрашиваются в фиолетовый цвет. После выбора мест можно переходить в следующий этап."));
-
 
         List<InfoData> groups = new ArrayList<>();
         groups.add(InfoData.builder()
@@ -190,6 +190,7 @@ public class RemoteInfoDataSource implements InfoDataSource {
 
     private List<InfoData> getStubRulesInfo(@NonNull String infoId) {
         List<InfoData> infoList = new ArrayList<>();
+        
         List<InfoItem> itemList = new ArrayList<>();
         itemList.add(new InfoText("<b>Правила киновидеообслуживания населения</b><br>\n" +
                 "Договор на оказание услуг между пользователем и ООО «МагСоюз»\n" +
@@ -251,7 +252,7 @@ public class RemoteInfoDataSource implements InfoDataSource {
         infoList.add(
                 InfoData.builder()
                         .infoId(infoId)
-                        .infoList(new ArrayList<InfoData>())
+                        .infoList(new ArrayList<>())
                         .itemList(itemList)
                         .build()
         );
