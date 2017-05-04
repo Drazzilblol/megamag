@@ -21,13 +21,17 @@ public class InfoBinder extends TreeViewBinder<InfoViewHolder> {
     public void bindView(InfoViewHolder infoViewHolder, int i, TreeNode treeNode) {
         NodeInfo fileNode = (NodeInfo) treeNode.getContent();
 
-        InfoContentAdapter adapter = new InfoContentAdapter(fileNode.getItems());
-        infoViewHolder.getRecyclerView().setAdapter(adapter);
+        InfoContentAdapter infoContentAdapter = (InfoContentAdapter) infoViewHolder.getRecyclerView().getAdapter();
+        if (infoContentAdapter == null) {
+            InfoContentAdapter adapter = new InfoContentAdapter(fileNode.getItems());
+            infoViewHolder.getRecyclerView().setAdapter(adapter);
+        } else {
+            infoContentAdapter.setItems(fileNode.getItems());
+        }
     }
 
     @Override
     public int getLayoutId() {
         return R.layout.item_info;
     }
-
 }

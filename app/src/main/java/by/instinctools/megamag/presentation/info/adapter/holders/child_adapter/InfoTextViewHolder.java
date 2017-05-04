@@ -2,7 +2,6 @@ package by.instinctools.megamag.presentation.info.adapter.holders.child_adapter;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,6 +32,6 @@ public class InfoTextViewHolder extends InfoViewHolder {
 
     @Override
     void bind(@NonNull InfoItem item) {
-        textView.setText(Html.fromHtml(((InfoText)item).getText()));
+        textView.setText(Html.fromHtml(((InfoText) item).getText()));
     }
 }

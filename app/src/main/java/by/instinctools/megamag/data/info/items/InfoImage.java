@@ -4,8 +4,6 @@ import android.support.annotation.NonNull;
 
 import com.google.auto.value.AutoValue;
 
-import by.instinctools.megamag.data.info.InfoData;
-
 @AutoValue
 public abstract class InfoImage implements InfoItem {
 
