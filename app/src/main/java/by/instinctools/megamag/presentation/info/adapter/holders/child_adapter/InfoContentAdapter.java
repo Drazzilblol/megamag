@@ -11,7 +11,7 @@ import by.instinctools.megamag.data.info.items.InfoImage;
 import by.instinctools.megamag.data.info.items.InfoItem;
 import by.instinctools.megamag.data.info.items.InfoText;
 
-public class InfoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class InfoContentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private static final int TYPE_TEXT = 0;
     private static final int TYPE_IMAGE = 1;
@@ -19,7 +19,7 @@ public class InfoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     @NonNull
     private final List<InfoItem> items = new ArrayList<>();
 
-    public InfoAdapter(List<InfoItem> items) {
+    public InfoContentAdapter(List<InfoItem> items) {
         setItems(items);
     }
 
