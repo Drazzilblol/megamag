@@ -18,6 +18,7 @@ public class PreferenceRepositoryImpl implements PreferenceRepository {
         dataSource = new LocalPreferenceDataSource();
     }
 
+    @NonNull
     @DebugLog
     @Override
     public Observable<Integer> getStartupCounter() {
@@ -25,6 +26,7 @@ public class PreferenceRepositoryImpl implements PreferenceRepository {
                 .onErrorReturnItem(0);
     }
 
+    @NonNull
     @DebugLog
     @Override
     public Observable<Integer> setStartupCounter(int counter) {

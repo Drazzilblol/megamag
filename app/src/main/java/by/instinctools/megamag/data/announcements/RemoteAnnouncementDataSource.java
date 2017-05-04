@@ -10,22 +10,26 @@ import io.reactivex.Observable;
 
 class RemoteAnnouncementDataSource implements AnnouncementDataSource {
 
+    @NonNull
     @Override
     public Observable<AnnouncementData> getValue(@NonNull String key) {
         return null;
     }
 
+    @NonNull
     @Override
     public Observable<AnnouncementData> saveValue(@NonNull String key, @NonNull AnnouncementData value) {
         return null;
     }
 
+    @NonNull
     @DebugLog
     @Override
     public Observable<List<AnnouncementData>> getAll() {
         return Observable.just(getStubAnnouncements());
     }
 
+    @NonNull
     @Override
     public Observable<List<AnnouncementData>> saveAll(List<AnnouncementData> collection) {
         return null;

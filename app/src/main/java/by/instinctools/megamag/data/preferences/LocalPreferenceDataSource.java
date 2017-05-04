@@ -26,6 +26,7 @@ class LocalPreferenceDataSource implements PreferenceDataSource {
         sharedPreferences = SharedPrefs.getInstance().getSharedPreferences();
     }
 
+    @NonNull
     @DebugLog
     @Override
     public Observable<String> getValue(@NonNull final String key) {
@@ -33,6 +34,7 @@ class LocalPreferenceDataSource implements PreferenceDataSource {
                 .map(string -> string.getString(key, DEF_VALUE));
     }
 
+    @NonNull
     @DebugLog
     @Override
     public Observable<String> saveValue(@NonNull final String key, @NonNull final String value) {
@@ -43,6 +45,7 @@ class LocalPreferenceDataSource implements PreferenceDataSource {
                 .flatMap(result -> this.getValue(key));
     }
 
+    @NonNull
     @Override
     public Observable<List<String>> getAll() {
         return Observable.fromIterable(sharedPreferences.getAll()
@@ -52,63 +55,74 @@ class LocalPreferenceDataSource implements PreferenceDataSource {
                 .toObservable();
     }
 
+    @NonNull
     @Override
     public Observable<List<String>> saveAll(List<String> collection) {
         throw new UnsupportedOperationException("Can't save values without keys");
     }
 
+    @NonNull
     @Override
     public Observable<Integer> getInteger(@NonNull String key) {
         return getValue(key)
                 .map(this::parseInteger);
     }
 
+    @NonNull
     @Override
     public Observable<Integer> saveInteger(@NonNull String key, Integer value) {
         return saveValue(key, String.valueOf(value))
                 .map(this::parseInteger);
     }
 
+    @NonNull
     @Override
     public Observable<Float> getFloat(@NonNull String key) {
         return getValue(key)
                 .map(this::parseFloat);
     }
 
+    @NonNull
     @Override
     public Observable<Float> saveFloat(@NonNull String key, Float value) {
         return saveValue(key, value.toString())
                 .map(this::parseFloat);
     }
 
+    @NonNull
     @Override
     public Observable<Long> getLong(@NonNull String key) {
         return getValue(key)
                 .map(this::parseLong);
     }
 
+    @NonNull
     @Override
     public Observable<Long> saveLong(@NonNull String key, Long value) {
         return saveValue(key, value.toString())
                 .map(this::parseLong);
     }
 
+    @NonNull
     @Override
     public Observable<String> getString(@NonNull String key) {
         return getValue(key);
     }
 
+    @NonNull
     @Override
     public Observable<String> saveString(@NonNull String key, String value) {
         return saveValue(key, value);
     }
 
+    @NonNull
     @Override
     public Observable<Boolean> getBoolean(@NonNull String key) {
         return getValue(key)
                 .map(this::parseBoolean);
     }
 
+    @NonNull
     @Override
     public Observable<Boolean> saveBoolean(@NonNull String key, Boolean value) {
         return saveValue(key, value.toString())
