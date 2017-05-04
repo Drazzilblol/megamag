@@ -36,13 +36,7 @@ public class InfoContentAdapter extends RecyclerView.Adapter<InfoViewHolder> {
 
     @Override
     public void onBindViewHolder(InfoViewHolder holder, int position) {
-        InfoItem item = items.get(position);
-        if (holder instanceof InfoTextViewHolder) {
-            holder.bind(item);
-        }
-        if (holder instanceof InfoImageViewHolder) {
-            holder.bind(item);
-        }
+        holder.bind(items.get(position));
     }
 
     public void setItems(@NonNull List<InfoItem> items) {

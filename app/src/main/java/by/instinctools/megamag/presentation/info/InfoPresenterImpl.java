@@ -72,13 +72,13 @@ class InfoPresenterImpl extends DisposablePresenter<InfoView> implements InfoPre
         boolean hasChildes = infoList.size() > 0;
         boolean hasContent = infoItems.size() > 0;
 
-        if (!hasTitle && !hasChildes && !hasContent) {
+        if (!hasChildes && !hasContent) {
             onLoadError(new ErrorException(new NoDataError()));
         }
 
         TreeNode<NodeGroup> root = new TreeNode<>(new NodeGroup(info.getTitle()));
         if (!hasChildes && hasContent) {
-            if (TextUtils.isEmpty(info.getTitle())) {
+            if (!hasTitle) {
                 return new TreeNode<>(new NodeInfo(infoItems));
             } else {
                 root.addChild(new TreeNode<>(new NodeInfo(infoItems)));

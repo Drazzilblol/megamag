@@ -11,7 +11,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import by.instinctools.megamag.R;
 import by.instinctools.megamag.common.utils.ImageUtils;
-import by.instinctools.megamag.data.info.items.InfoImage;
 import by.instinctools.megamag.data.info.items.InfoItem;
 
 public class InfoImageViewHolder extends InfoViewHolder {
@@ -35,7 +34,7 @@ public class InfoImageViewHolder extends InfoViewHolder {
         ImageUtils.loadImage(
                 itemView.getContext(),
                 imageView,
-                ((InfoImage) item).getImageUrl()
+                item.getData()
         );
     }
 }

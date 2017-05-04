@@ -8,9 +8,6 @@ import com.google.auto.value.AutoValue;
 public abstract class InfoImage implements InfoItem {
 
     @NonNull
-    public abstract String getImageUrl();
-
-    @NonNull
     public static InfoImage.Builder builder() {
         return new AutoValue_InfoImage.Builder();
     }
@@ -18,7 +15,7 @@ public abstract class InfoImage implements InfoItem {
     @AutoValue.Builder
     public abstract static class Builder {
 
-        public abstract InfoImage.Builder imageUrl(@NonNull String value);
+        public abstract InfoImage.Builder data(@NonNull String value);
 
         public abstract InfoImage build();
     }

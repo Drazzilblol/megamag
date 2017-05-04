@@ -32,6 +32,6 @@ public class InfoTextViewHolder extends InfoViewHolder {
 
     @Override
     void bind(@NonNull InfoItem item) {
-        textView.setText(Html.fromHtml(((InfoText) item).getText()));
+        textView.setText(Html.fromHtml(item.getData()));
     }
 }

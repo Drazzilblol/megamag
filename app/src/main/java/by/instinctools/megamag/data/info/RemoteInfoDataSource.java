@@ -59,7 +59,7 @@ public class RemoteInfoDataSource implements InfoDataSource {
         List<InfoData> infoList = new ArrayList<>();
         List<InfoItem> items1 = new ArrayList<>();
         items1.add(InfoText.builder()
-                .text("<b>Пункт 1. Зайти на сайт Интернет-Банка</b><br>" +
+                .data("<b>Пункт 1. Зайти на сайт Интернет-Банка</b><br>" +
                         "Оплата ЕРИП поддерживается интернет-банкингом более 20 банков. Выберите свой банк из списка и нажмите для перехода на страницу авторизации):\n" +
                         "- ОАО «БПС-Сбербанк»\n" +
                         "- ОАО «Белагропромбанк»\n" +
@@ -85,10 +85,10 @@ public class RemoteInfoDataSource implements InfoDataSource {
                         "Для остальных интернет-банкингов делать все по аналогии.\n")
                 .build());
         items1.add(InfoImage.builder()
-                .imageUrl("http://kinoteatr.megamag.by/templates/Cinema-new/images/howpay/var1_step1.jpg")
+                .data("http://kinoteatr.megamag.by/templates/Cinema-new/images/howpay/var1_step1.jpg")
                 .build());
         items1.add(InfoText.builder()
-                .text("<b>Пункт 2. Выбрать в Платежах \"Билеты kinoteatr.megamag.by</b><br>\"\n" +
+                .data("<b>Пункт 2. Выбрать в Платежах \"Билеты kinoteatr.megamag.by</b><br>\"\n" +
                         "Найдите в меню платежей \"Платежи Расчет\",\"Система Расчет\", \"Оплата ЕРИП\" или т.п.\n" +
                         "Появится список категорий платежей, в котором нужно выбрать \"Оплата билетов\".\n" +
                         "Далее выбираем \"ООО МагСоюз\", а затем \"Билеты kinoteatr.megamag.by\"\n" +
@@ -96,21 +96,21 @@ public class RemoteInfoDataSource implements InfoDataSource {
                         "Для остальных интернет-банкингов делать все по аналогии.")
                 .build());
         items1.add(InfoImage.builder()
-                .imageUrl("http://kinoteatr.megamag.by/templates/Cinema-new/images/howpay/var1_step2.jpg")
+                .data("http://kinoteatr.megamag.by/templates/Cinema-new/images/howpay/var1_step2.jpg")
                 .build());
         items1.add(InfoText.builder()
-                .text("<b>Пункт 3. Ввести номер заказа\n</b><br>" +
+                .data("<b>Пункт 3. Ввести номер заказа\n</b><br>" +
                         "Введите номер Вашего заказа и нажмите кнопку \"Далее\". Номер заказа можно увидеть в Кабинете пользователя, в Истории заказов, а также в письме, которое автоматически отправляется на электронную почту после оформления заказа.")
                 .build());
         items1.add(InfoImage.builder()
-                .imageUrl("http://kinoteatr.megamag.by/templates/Cinema-new/images/howpay/var1_step3.jpg")
+                .data("http://kinoteatr.megamag.by/templates/Cinema-new/images/howpay/var1_step3.jpg")
                 .build());
         items1.add(InfoText.builder()
-                .text("<b>Пункт 4. Подтвердить оплату\n</b><br>" +
+                .data("<b>Пункт 4. Подтвердить оплату\n</b><br>" +
                         "В следующем окне будет отображена информация по заказу: содержание и стоимость. Проверьте информацию о билетах, которые собираетесь оплачивать, и нажмите кнопку \"Далее\".")
                 .build());
         items1.add(InfoImage.builder()
-                .imageUrl("http://kinoteatr.megamag.by/templates/Cinema-new/images/howpay/var1_step4.jpg")
+                .data("http://kinoteatr.megamag.by/templates/Cinema-new/images/howpay/var1_step4.jpg")
                 .build());
 
         InfoData group1 = InfoData.builder()
@@ -121,21 +121,22 @@ public class RemoteInfoDataSource implements InfoDataSource {
                 .build();
 
         List<InfoItem> items2 = new ArrayList<>();
-        items2.add(InfoText.builder().text("<b>Пункт 1. Выбрать в Платежах \"Билеты kinoteatr.megamag.by\".\n</b><br>" +
-                "Оплата возможна с использованием следующих типов терминалов - скачать\n" +
-                "У каждого банкомата и инфокиоска свои особенности выбора пункта платежа \"Билеты kinoteatr.megamag.by\".\n" +
-                "Для банков ОАО \"Технобанк\", ОАО \"Банк БелВЭБ», ЗАО \"Альфа-Банк\", ОАО \"Банк Москва-Минск\", ЗАО \"БелСвиссБанк\", ЗАО \"РРБ-Банк\" в банкоматах и инфокиосках установлена одинаковая система работы с покупателем. Опишем для них способ выбора услуги, для других он будет схож. Выбрать пункт \"ОПЛАТА УСЛУГ\". Далее пункт меню \"СИСТЕМА \"РАСЧЕТ\" (ЕРИП)\". Следующим выбрать \"Оплата билетов\". Отобразится страница с списком поставщиков услуг. На первой странице не будет нужного пункта меню. Нажимаем кнопку \"Вперед\", пока не появится ООО \"МагСоюз\". Выбираем этот пункт меню и затем выбираем \"Билеты kinoteatr.megamag.by\"")
+        items2.add(InfoText.builder()
+                .data("<b>Пункт 1. Выбрать в Платежах \"Билеты kinoteatr.megamag.by\".\n</b><br>" +
+                        "Оплата возможна с использованием следующих типов терминалов - скачать\n" +
+                        "У каждого банкомата и инфокиоска свои особенности выбора пункта платежа \"Билеты kinoteatr.megamag.by\".\n" +
+                        "Для банков ОАО \"Технобанк\", ОАО \"Банк БелВЭБ», ЗАО \"Альфа-Банк\", ОАО \"Банк Москва-Минск\", ЗАО \"БелСвиссБанк\", ЗАО \"РРБ-Банк\" в банкоматах и инфокиосках установлена одинаковая система работы с покупателем. Опишем для них способ выбора услуги, для других он будет схож. Выбрать пункт \"ОПЛАТА УСЛУГ\". Далее пункт меню \"СИСТЕМА \"РАСЧЕТ\" (ЕРИП)\". Следующим выбрать \"Оплата билетов\". Отобразится страница с списком поставщиков услуг. На первой странице не будет нужного пункта меню. Нажимаем кнопку \"Вперед\", пока не появится ООО \"МагСоюз\". Выбираем этот пункт меню и затем выбираем \"Билеты kinoteatr.megamag.by\"")
                 .build());
         items2.add(InfoText.builder()
-                .text("<b>Пункт 2. Ввести номер заказа\n</b><br>" +
+                .data("<b>Пункт 2. Ввести номер заказа\n</b><br>" +
                         "Введите номер Вашего заказа и нажмите кнопку \"Далее\". Номер заказа можно увидеть в Кабинете пользователя, в Истории заказов, а также в письме, которое автоматически отправляется на электронную почту после оформления заказа.")
                 .build());
         items2.add(InfoText.builder()
-                .text("<b>Пункт 3. Подтвердить оплату\n</b><br>" +
+                .data("<b>Пункт 3. Подтвердить оплату\n</b><br>" +
                         "В следующем окне будет отображена информация по заказу: содержание и стоимость. Проверьте информацию о билетах, которые собираетесь оплачивать и нажмите кнопку \"Далее\".")
                 .build());
         items2.add(InfoText.builder()
-                .text("<b>Пункт 4. Завершить оплату\n</b><br>" +
+                .data("<b>Пункт 4. Завершить оплату\n</b><br>" +
                         "Завершите платеж путем ввода персонального пин кода пластиковой банковской карточки.")
                 .build());
 
@@ -156,19 +157,19 @@ public class RemoteInfoDataSource implements InfoDataSource {
 
         List<InfoItem> items1 = new ArrayList<>();
         items1.add(InfoText.builder()
-                .text("Бронирование билетов доступно ТОЛЬКО зарегистрированным клиентам системы Мегамаг, поэтому первым шагом является регистрация на сайте.\n")
+                .data("Бронирование билетов доступно ТОЛЬКО зарегистрированным клиентам системы Мегамаг, поэтому первым шагом является регистрация на сайте.\n")
                 .build());
         items1.add(InfoImage.builder()
-                .imageUrl("http://kinoteatr.megamag.by/templates/Cinema-new/images/howbronned/step0_1.jpg")
+                .data("http://kinoteatr.megamag.by/templates/Cinema-new/images/howbronned/step0_1.jpg")
                 .build());
         items1.add(InfoText.builder()
-                .text("Если регистрация прошла успешно, то в правой верхней части сайта появится надпись – ваше имя.\n")
+                .data("Если регистрация прошла успешно, то в правой верхней части сайта появится надпись – ваше имя.\n")
                 .build());
         items1.add(InfoImage.builder()
-                .imageUrl("http://kinoteatr.megamag.by/templates/Cinema-new/images/howbronned/step0_2.jpg")
+                .data("http://kinoteatr.megamag.by/templates/Cinema-new/images/howbronned/step0_2.jpg")
                 .build());
         items1.add(InfoText.builder()
-                .text("После регистрации или авторизации на сайте (для зарегистрированных ранее) можно переходить к бронированию билетов.")
+                .data("После регистрации или авторизации на сайте (для зарегистрированных ранее) можно переходить к бронированию билетов.")
                 .build());
 
         InfoData group1 = InfoData.builder()
@@ -180,20 +181,20 @@ public class RemoteInfoDataSource implements InfoDataSource {
 
         List<InfoItem> items2 = new ArrayList<>();
         items2.add(InfoText.builder()
-                .text("1.1. Выбор по дате, по объекту через вспомогательную область сеансов.\n"
+                .data("1.1. Выбор по дате, по объекту через вспомогательную область сеансов.\n"
                         + "Вспомогательная область сеансов находится в верхней части сайта.\n")
                 .build());
         items2.add(InfoImage.builder()
-                .imageUrl("http://kinoteatr.megamag.by/templates/Cinema-new/images/howbronned/step1_1_1.jpg")
+                .data("http://kinoteatr.megamag.by/templates/Cinema-new/images/howbronned/step1_1_1.jpg")
                 .build());
         items2.add(InfoText.builder()
-                .text("После выбора времени (нажатия на выбранное время) отобразиться план зала, где будет проходить выбранное мероприятие.\n")
+                .data("После выбора времени (нажатия на выбранное время) отобразиться план зала, где будет проходить выбранное мероприятие.\n")
                 .build());
         items2.add(InfoImage.builder()
-                .imageUrl("http://kinoteatr.megamag.by/templates/Cinema-new/images/howbronned/step1_1_2.jpg")
+                .data("http://kinoteatr.megamag.by/templates/Cinema-new/images/howbronned/step1_1_2.jpg")
                 .build());
         items2.add(InfoText.builder()
-                .text("На этом изображении необходимо выбрать места. Выбранные места на плане зала окрашиваются в фиолетовый цвет. После выбора мест можно переходить в следующий этап.")
+                .data("На этом изображении необходимо выбрать места. Выбранные места на плане зала окрашиваются в фиолетовый цвет. После выбора мест можно переходить в следующий этап.")
                 .build());
 
         List<InfoData> groups = new ArrayList<>();
@@ -206,20 +207,20 @@ public class RemoteInfoDataSource implements InfoDataSource {
 
         List<InfoItem> items3 = new ArrayList<>();
         items3.add(InfoText.builder()
-                .text("Меню \"Кино и театры региона\" находится в левой части сайта, под главным меню.\n")
+                .data("Меню \"Кино и театры региона\" находится в левой части сайта, под главным меню.\n")
                 .build());
         items3.add(InfoImage.builder()
-                .imageUrl("http://kinoteatr.megamag.by/templates/Cinema-new/images/howbronned/step1_2_1.jpg")
+                .data("http://kinoteatr.megamag.by/templates/Cinema-new/images/howbronned/step1_2_1.jpg")
                 .build());
         items3.add(InfoText.builder()
-                .text("Выбрать (нажать на название) необходимый объект из списка\n"
+                .data("Выбрать (нажать на название) необходимый объект из списка\n"
                         + "После выбора кино или мероприятия, ниже выбираем время (нажатие на выбранное время). Отобразиться план зала, где будет проходить выбранное мероприятие.\n")
                 .build());
         items3.add(InfoImage.builder()
-                .imageUrl("http://kinoteatr.megamag.by/templates/Cinema-new/images/howbronned/step1_2_2.jpg")
+                .data("http://kinoteatr.megamag.by/templates/Cinema-new/images/howbronned/step1_2_2.jpg")
                 .build());
         items3.add(InfoText.builder()
-                .text("На этом изображении необходимо выбрать места. Выбранные места на плане зала окрашиваются в фиолетовый цвет. После выбора мест можно переходить в следующий этап.")
+                .data("На этом изображении необходимо выбрать места. Выбранные места на плане зала окрашиваются в фиолетовый цвет. После выбора мест можно переходить в следующий этап.")
                 .build());
 
         groups.add(InfoData.builder()
@@ -246,7 +247,7 @@ public class RemoteInfoDataSource implements InfoDataSource {
 
         List<InfoItem> itemList = new ArrayList<>();
         itemList.add(InfoText.builder()
-                .text("<b>Правила киновидеообслуживания населения</b><br>\n" +
+                .data("<b>Правила киновидеообслуживания населения</b><br>\n" +
                         "Договор на оказание услуг между пользователем и ООО «МагСоюз»\n" +
                         "Термины и определения.\n" +
                         "МагСоюз — Общество с ограниченной ответственностью «МагСоюз».\n" +
