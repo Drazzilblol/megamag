@@ -1,7 +1,9 @@
 package by.instinctools.megamag.presentation.main.menu;
 
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import by.instinctools.megamag.common.errors.ErrorException;
@@ -9,6 +11,7 @@ import by.instinctools.megamag.common.errors.NoDataError;
 import by.instinctools.megamag.domain.GetMenuUseCase;
 import by.instinctools.megamag.domain.models.MenuV;
 import by.instinctools.megamag.presentation.DisposablePresenter;
+import by.instinctools.megamag.presentation.main.menu.models.MenuViewModel;
 import hugo.weaving.DebugLog;
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -17,6 +20,12 @@ import io.reactivex.schedulers.Schedulers;
 public class MenuPresenterImpl extends DisposablePresenter<MenuView> implements MenuPresenter {
 
     private static final int EMPTY_LIST_SIZE = 0;
+
+    private static final int INFO_GROUP_ID = 1000;
+    private static final int ANNOUNCEMENT_GROUP_ID = 1001;
+
+    @NonNull
+    private List<MenuViewModel> menuList = new ArrayList<>();
 
     @NonNull
     GetMenuUseCase menuUseCase = new GetMenuUseCase();
@@ -31,6 +40,7 @@ public class MenuPresenterImpl extends DisposablePresenter<MenuView> implements 
                         .observeOn(AndroidSchedulers.mainThread())
                         .filter(infoList -> infoList.size() > EMPTY_LIST_SIZE)
                         .switchIfEmpty(Observable.error(new ErrorException(new NoDataError())))
+                        .map(this::buildMenu)
                         .subscribe(
                                 this::onLoadSuccess,
                                 this::onLoadError
@@ -39,13 +49,26 @@ public class MenuPresenterImpl extends DisposablePresenter<MenuView> implements 
     }
 
     @DebugLog
-    private void onLoadSuccess(@NonNull List<MenuV> menuList) {
+    private void onLoadSuccess(@NonNull List<MenuViewModel> menuList) {
         if (isViewAttached()) {
             MenuView view = getView();
             view.hideProgress();
             view.hideError();
+            this.menuList = menuList;
             view.showMenu(menuList);
         }
+    }
+
+    private List<MenuViewModel> buildMenu(List<MenuV> menuList) {
+        List<MenuViewModel> menuViewModels = new ArrayList<>();
+        for (MenuV menu : menuList) {
+            menuViewModels.add(MenuViewModel.builder()
+                    .title(menu.getTitle())
+                    .menuId(menu.getMenuId())
+                    .targetId(menu.getTargetId())
+                    .build());
+        }
+        return menuViewModels;
     }
 
     @DebugLog
@@ -60,9 +83,23 @@ public class MenuPresenterImpl extends DisposablePresenter<MenuView> implements 
 
     @Override
     public void onMenuPressed(int id) {
-        if (isViewAttached()) {
+        MenuViewModel menuViewModel = getMenuById(id);
+        if (isViewAttached() && menuViewModel != null) {
             MenuView view = getView();
-            view.goToInfoScreen(id);
+            if (menuViewModel.getTargetId() == INFO_GROUP_ID) {
+                view.goToInfoScreen(id);
+            }
         }
+    }
+
+    @Nullable
+    private MenuViewModel getMenuById(int id) {
+        MenuViewModel menuViewModel = null;
+        for (MenuViewModel menu : menuList) {
+            if (menu.getMenuId() == id) {
+                menuViewModel = menu;
+            }
+        }
+        return menuViewModel;
     }
 }

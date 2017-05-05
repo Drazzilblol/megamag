@@ -1,7 +1,6 @@
 package by.instinctools.megamag.data.info;
 
 import android.support.annotation.NonNull;
-import android.text.TextUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,9 +13,11 @@ import io.reactivex.Observable;
 
 public class RemoteInfoDataSource implements InfoDataSource {
 
-    public static final String HOW_PAY = "how_pay";
-    public static final String HOW_BOOK = "how_book";
-    public static final String RULES = "rules";
+    public static final int HOW_PAY = 100;
+    public static final int HOW_BOOK = 101;
+    public static final int RULES = 102;
+
+    public static final int INFO_GROUP_ID = 1000;
 
     @NonNull
     @Override
@@ -39,9 +40,9 @@ public class RemoteInfoDataSource implements InfoDataSource {
     @DebugLog
     @NonNull
     public Observable<List<InfoData>> getAll(int infoId) {
-        if (TextUtils.equals(infoId, HOW_PAY)) {
+        if (infoId == HOW_PAY) {
             return Observable.just(getStubPayInfo(infoId));
-        } else if (TextUtils.equals(infoId, HOW_BOOK)) {
+        } else if (infoId == HOW_BOOK) {
             return Observable.just(getStubBookInfo(infoId));
         } else {
             return Observable.just(getStubRulesInfo(infoId));
@@ -54,7 +55,7 @@ public class RemoteInfoDataSource implements InfoDataSource {
         throw new UnsupportedOperationException();
     }
 
-    private List<InfoData> getStubPayInfo(@NonNull String infoId) {
+    private List<InfoData> getStubPayInfo(int infoId) {
         List<InfoData> infoList = new ArrayList<>();
         List<InfoItem> items1 = new ArrayList<>();
         items1.add(InfoText.builder()
@@ -151,7 +152,7 @@ public class RemoteInfoDataSource implements InfoDataSource {
         return infoList;
     }
 
-    private List<InfoData> getStubBookInfo(@NonNull String infoId) {
+    private List<InfoData> getStubBookInfo(int infoId) {
         List<InfoData> infoList = new ArrayList<>();
 
         List<InfoItem> items1 = new ArrayList<>();
@@ -241,7 +242,7 @@ public class RemoteInfoDataSource implements InfoDataSource {
         return infoList;
     }
 
-    private List<InfoData> getStubRulesInfo(@NonNull String infoId) {
+    private List<InfoData> getStubRulesInfo(int infoId) {
         List<InfoData> infoList = new ArrayList<>();
 
         List<InfoItem> itemList = new ArrayList<>();

@@ -10,12 +10,13 @@ public abstract class MenuV {
     @NonNull
     public abstract String getTitle();
 
-    @NonNull
-    public abstract String getMenuId();
+    public abstract int getMenuId();
+
+    public abstract int getTargetId();
 
     @NonNull
     public static MenuV.Builder builder() {
-        return new AutoValue_Menu.Builder();
+        return new AutoValue_MenuV.Builder();
     }
 
     @AutoValue.Builder
@@ -23,7 +24,9 @@ public abstract class MenuV {
 
         public abstract MenuV.Builder title(@NonNull String value);
 
-        public abstract MenuV.Builder menuId(@NonNull String value);
+        public abstract MenuV.Builder menuId(int value);
+
+        public abstract MenuV.Builder targetId(int value);
 
         public abstract MenuV build();
     }

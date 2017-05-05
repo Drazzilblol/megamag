@@ -12,7 +12,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import by.instinctools.megamag.R;
 import by.instinctools.megamag.data.info.items.InfoItem;
-import by.instinctools.megamag.data.info.items.InfoText;
 
 public class InfoTextViewHolder extends InfoViewHolder {
 

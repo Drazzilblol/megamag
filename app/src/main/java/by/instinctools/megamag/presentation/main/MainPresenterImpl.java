@@ -2,8 +2,6 @@ package by.instinctools.megamag.presentation.main;
 
 import android.support.annotation.NonNull;
 
-import by.instinctools.megamag.data.info.RemoteInfoDataSource;
-import by.instinctools.megamag.presentation.BasePresenter;
 import by.instinctools.megamag.presentation.DisposablePresenter;
 
 class MainPresenterImpl extends DisposablePresenter<MainView> implements MainPresenter {

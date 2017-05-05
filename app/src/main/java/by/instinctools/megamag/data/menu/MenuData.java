@@ -1,7 +1,6 @@
 package by.instinctools.megamag.data.menu;
 
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 
 import com.google.auto.value.AutoValue;
 

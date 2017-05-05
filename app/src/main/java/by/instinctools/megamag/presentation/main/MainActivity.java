@@ -27,6 +27,7 @@ import by.instinctools.megamag.presentation.main.announcements.AnnouncementsFrag
 import by.instinctools.megamag.presentation.main.menu.MenuPresenter;
 import by.instinctools.megamag.presentation.main.menu.MenuPresenterImpl;
 import by.instinctools.megamag.presentation.main.menu.MenuView;
+import by.instinctools.megamag.presentation.main.menu.models.MenuViewModel;
 import by.instinctools.megamag.presentation.main.tickets.TicketsFragment;
 
 public class MainActivity extends AppCompatActivity
@@ -48,8 +49,8 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ButterKnife.bind(this);
         setContentView(R.layout.activity_main);
+        ButterKnife.bind(this);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle(R.string.announcements_toolbar_title);
         setSupportActionBar(toolbar);
@@ -160,10 +161,17 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public void showMenu(@NonNull List<MenuV> menuList) {
+    public void showMenu(@NonNull List<MenuViewModel> menuList) {
         Menu menu = navigationView.getMenu();
-        for (MenuV menuView : menuList) {
-            menu.add(menuView.getTitle());
+        for (MenuViewModel menuView : menuList) {
+            menu.add(menuView.getTargetId(), menuView.getMenuId(), Menu.NONE, menuView.getTitle());
         }
+    }
+
+
+    @Override
+    public void addMenuItem(@NonNull MenuV menuV, int groupId) {
+        Menu menu = navigationView.getMenu();
+        menu.add(groupId, menuV.getMenuId(), Menu.NONE, menuV.getTitle());
     }
 }
