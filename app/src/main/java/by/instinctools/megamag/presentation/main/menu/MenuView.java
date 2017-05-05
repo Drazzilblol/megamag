@@ -12,6 +12,10 @@ public interface MenuView extends MvpView {
 
     void goToInfoScreen(int infoId);
 
+    void goToAnnouncementsScreen();
+
+    void goToTicketsScreen();
+
     void showMenu(@NonNull List<MenuViewModel> menuList);
 
     void addMenuItem(@NonNull MenuV menu, int groupId);

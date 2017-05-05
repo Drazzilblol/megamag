@@ -83,6 +83,7 @@ public class MenuPresenterImpl extends DisposablePresenter<MenuView> implements 
         }
     }
 
+    @DebugLog
     @Override
     public void onMenuPressed(int id) {
         MenuViewModel menuViewModel = getMenuById(id);
@@ -92,7 +93,11 @@ public class MenuPresenterImpl extends DisposablePresenter<MenuView> implements 
                 view.goToInfoScreen(id);
             }
             if (menuViewModel.getTargetId() == ANNOUNCEMENT_GROUP_ID) {
-                Timber.i("Announcement group");
+                if (menuViewModel.getMenuId() == 200) {
+                    view.goToAnnouncementsScreen();
+                } else {
+                    view.goToTicketsScreen();
+                }
             }
             if (menuViewModel.getTargetId() == THEATER_GROUP_ID) {
                 Timber.i("Theater group");
