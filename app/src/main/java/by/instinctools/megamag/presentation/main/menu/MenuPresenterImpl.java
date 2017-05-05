@@ -25,6 +25,12 @@ public class MenuPresenterImpl extends DisposablePresenter<MenuView> implements 
     private static final int INFO_GROUP_ID = 1000;
     private static final int ANNOUNCEMENT_GROUP_ID = 1001;
     private static final int THEATER_GROUP_ID = 1002;
+    private static final int SUPPORT_ID = 104;
+    public static final int DISTRICT_ID = 400;
+    public static final int SETTINGS_GROUP_ID = 1004;
+    public static final int ABOUT_ID = 401;
+    public static final int SHARE_ID = 402;
+    public static final int SETTINGS_ID = 404;
 
     @NonNull
     private List<MenuViewModel> menuList = new ArrayList<>();
@@ -42,7 +48,7 @@ public class MenuPresenterImpl extends DisposablePresenter<MenuView> implements 
                         .observeOn(AndroidSchedulers.mainThread())
                         .filter(infoList -> infoList.size() > EMPTY_LIST_SIZE)
                         .switchIfEmpty(Observable.error(new ErrorException(new NoDataError())))
-                        .map(this::buildMenu)
+                        .map(this::createMenu)
                         .subscribe(
                                 this::onLoadSuccess,
                                 this::onLoadError
@@ -57,11 +63,11 @@ public class MenuPresenterImpl extends DisposablePresenter<MenuView> implements 
             view.hideProgress();
             view.hideError();
             this.menuList.addAll(menuList);
-            view.showMenu(menuList);
+            view.showMenu(this.menuList);
         }
     }
 
-    private List<MenuViewModel> buildMenu(List<MenuV> menuList) {
+    private List<MenuViewModel> createMenu(List<MenuV> menuList) {
         List<MenuViewModel> menuViewModels = new ArrayList<>();
         for (MenuV menu : menuList) {
             menuViewModels.add(MenuViewModel.builder()
@@ -70,7 +76,45 @@ public class MenuPresenterImpl extends DisposablePresenter<MenuView> implements 
                     .targetId(menu.getTargetId())
                     .build());
         }
+
+        if (menuViewModels.get(menuViewModels.size() - 1).getTargetId() == INFO_GROUP_ID) {
+            addSupportMenuItem(menuViewModels);
+        }
+        if (menuViewModels.get(menuViewModels.size() - 1).getTargetId() == THEATER_GROUP_ID) {
+            addSettingsMenuGroup(menuViewModels);
+        }
         return menuViewModels;
+    }
+
+    private void addSupportMenuItem(List<MenuViewModel> menu) {
+        menu.add(menu.size(), MenuViewModel.builder()
+                .title("Support")
+                .menuId(SUPPORT_ID)
+                .targetId(INFO_GROUP_ID)
+                .build());
+    }
+
+    private void addSettingsMenuGroup(List<MenuViewModel> menu) {
+        menu.add(MenuViewModel.builder()
+                .title("District")
+                .menuId(DISTRICT_ID)
+                .targetId(SETTINGS_GROUP_ID)
+                .build());
+        menu.add(MenuViewModel.builder()
+                .title("About")
+                .menuId(ABOUT_ID)
+                .targetId(SETTINGS_GROUP_ID)
+                .build());
+        menu.add(MenuViewModel.builder()
+                .title("Share")
+                .menuId(SHARE_ID)
+                .targetId(SETTINGS_GROUP_ID)
+                .build());
+        menu.add(MenuViewModel.builder()
+                .title("Settings")
+                .menuId(SETTINGS_ID)
+                .targetId(SETTINGS_GROUP_ID)
+                .build());
     }
 
     @DebugLog
@@ -78,7 +122,6 @@ public class MenuPresenterImpl extends DisposablePresenter<MenuView> implements 
         if (isViewAttached()) {
             MenuView view = getView();
             view.hideProgress();
-            // view.hideData();
             showError(throwable);
         }
     }
@@ -89,7 +132,7 @@ public class MenuPresenterImpl extends DisposablePresenter<MenuView> implements 
         MenuViewModel menuViewModel = getMenuById(id);
         if (isViewAttached() && menuViewModel != null) {
             MenuView view = getView();
-            if (menuViewModel.getTargetId() == INFO_GROUP_ID) {
+            if (menuViewModel.getTargetId() == INFO_GROUP_ID && menuViewModel.getMenuId() != SUPPORT_ID) {
                 view.goToInfoScreen(id);
             }
             if (menuViewModel.getTargetId() == ANNOUNCEMENT_GROUP_ID) {

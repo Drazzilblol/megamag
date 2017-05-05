@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
-        
+
         navigationView.setNavigationItemSelectedListener(this);
     }
 
@@ -164,6 +164,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void showMenu(@NonNull List<MenuViewModel> menuList) {
         Menu menu = navigationView.getMenu();
+        menu.clear();
         for (MenuViewModel menuView : menuList) {
             menu.add(menuView.getTargetId(), menuView.getMenuId(), Menu.NONE, menuView.getTitle());
         }
