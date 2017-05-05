@@ -21,9 +21,9 @@ public class InfoConverter extends BaseConverter<InfoData, Info> {
 
         return Info.builder()
                 .title(infoData.getTitle())
-                .text(infoData.getText())
                 .infoList(infoList)
                 .infoId(infoData.getInfoId())
+                .itemList(infoData.getItemList())
                 .build();
     }
 }

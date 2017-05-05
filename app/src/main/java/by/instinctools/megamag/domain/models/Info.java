@@ -7,6 +7,8 @@ import com.google.auto.value.AutoValue;
 
 import java.util.List;
 
+import by.instinctools.megamag.data.info.items.InfoItem;
+
 @AutoValue
 public abstract class Info {
 
@@ -16,11 +18,11 @@ public abstract class Info {
     @Nullable
     public abstract String getTitle();
 
-    @Nullable
-    public abstract String getText();
-
     @NonNull
     public abstract List<Info> getInfoList();
+
+    @NonNull
+    public abstract List<InfoItem> getItemList();
 
     @NonNull
     public static Info.Builder builder() {
@@ -34,7 +36,7 @@ public abstract class Info {
 
         public abstract Info.Builder title(@Nullable String value);
 
-        public abstract Info.Builder text(@Nullable String value);
+        public abstract Info.Builder itemList(@NonNull List<InfoItem> list);
 
         public abstract Info.Builder infoList(@NonNull List<Info> list);
 

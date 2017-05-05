@@ -10,5 +10,5 @@ import io.reactivex.Observable;
 public interface InfoRepository extends Repository {
 
     @NonNull
-    Observable<List<InfoData>> getInfoList(String infoId);
+    Observable<List<InfoData>> getInfoList(@NonNull String infoId);
 }

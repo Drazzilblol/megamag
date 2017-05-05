@@ -1,5 +1,6 @@
 package by.instinctools.megamag.presentation.info.adapter.holders;
 
+import android.support.annotation.NonNull;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -22,10 +23,12 @@ public class GroupViewHolder extends TreeViewBinder.ViewHolder {
         ButterKnife.bind(this, itemView);
     }
 
+    @NonNull
     public ImageView getImageView() {
         return imageView;
     }
 
+    @NonNull
     public TextView getTitleView() {
         return titleView;
     }
