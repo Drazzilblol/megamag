@@ -16,6 +16,7 @@ import hugo.weaving.DebugLog;
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
+import timber.log.Timber;
 
 public class MenuPresenterImpl extends DisposablePresenter<MenuView> implements MenuPresenter {
 
@@ -23,6 +24,7 @@ public class MenuPresenterImpl extends DisposablePresenter<MenuView> implements 
 
     private static final int INFO_GROUP_ID = 1000;
     private static final int ANNOUNCEMENT_GROUP_ID = 1001;
+    private static final int THEATER_GROUP_ID = 1002;
 
     @NonNull
     private List<MenuViewModel> menuList = new ArrayList<>();
@@ -54,7 +56,7 @@ public class MenuPresenterImpl extends DisposablePresenter<MenuView> implements 
             MenuView view = getView();
             view.hideProgress();
             view.hideError();
-            this.menuList = menuList;
+            this.menuList.addAll(menuList);
             view.showMenu(menuList);
         }
     }
@@ -88,6 +90,12 @@ public class MenuPresenterImpl extends DisposablePresenter<MenuView> implements 
             MenuView view = getView();
             if (menuViewModel.getTargetId() == INFO_GROUP_ID) {
                 view.goToInfoScreen(id);
+            }
+            if (menuViewModel.getTargetId() == ANNOUNCEMENT_GROUP_ID) {
+                Timber.i("Announcement group");
+            }
+            if (menuViewModel.getTargetId() == THEATER_GROUP_ID) {
+                Timber.i("Theater group");
             }
         }
     }

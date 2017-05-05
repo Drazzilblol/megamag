@@ -13,12 +13,6 @@ import io.reactivex.Observable;
 
 public class RemoteInfoDataSource implements InfoDataSource {
 
-    public static final int HOW_PAY = 100;
-    public static final int HOW_BOOK = 101;
-    public static final int RULES = 102;
-
-    public static final int INFO_GROUP_ID = 1000;
-
     @NonNull
     @Override
     public Observable<InfoData> getValue(@NonNull String key) {

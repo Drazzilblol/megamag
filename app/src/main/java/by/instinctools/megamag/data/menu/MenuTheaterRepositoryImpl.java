@@ -7,10 +7,10 @@ import java.util.List;
 import by.instinctools.megamag.data.DataSource;
 import io.reactivex.Observable;
 
-public class MenuRepositoryImpl implements MenuRepository {
+public class MenuTheaterRepositoryImpl implements MenuRepository {
 
     @NonNull
-    DataSource<String, MenuData> dataSource = new LocalMenuDataSource();
+    DataSource<String, MenuData> dataSource = new MenuTheaterDataSource();
 
     @NonNull
     @Override

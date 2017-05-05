@@ -5,10 +5,9 @@ import android.support.annotation.NonNull;
 import java.util.ArrayList;
 import java.util.List;
 
-import by.instinctools.megamag.data.info.RemoteInfoDataSource;
 import io.reactivex.Observable;
 
-public class LocalMenuDataSource implements MenuDataSource {
+public class MenuTheaterDataSource implements MenuDataSource {
 
     @NonNull
     @Override
@@ -34,23 +33,32 @@ public class LocalMenuDataSource implements MenuDataSource {
         throw new UnsupportedOperationException();
     }
 
-
     private List<MenuData> getStubMenus() {
         List<MenuData> tickets = new ArrayList<>();
         tickets.add(MenuData.builder()
-                .title("How To Pay")
-                .menuId(RemoteInfoDataSource.HOW_PAY)
-                .targetId(RemoteInfoDataSource.INFO_GROUP_ID)
+                .title("Космос")
+                .menuId(300)
+                .targetId(1002)
                 .build());
         tickets.add(MenuData.builder()
-                .title("How To Book")
-                .menuId(RemoteInfoDataSource.HOW_BOOK)
-                .targetId(RemoteInfoDataSource.INFO_GROUP_ID)
+                .title("Красная Звезда")
+                .menuId(301)
+                .targetId(1002)
                 .build());
         tickets.add(MenuData.builder()
-                .title("Rules")
-                .menuId(RemoteInfoDataSource.RULES)
-                .targetId(RemoteInfoDataSource.INFO_GROUP_ID)
+                .title("Октябрь")
+                .menuId(302)
+                .targetId(1002)
+                .build());
+        tickets.add(MenuData.builder()
+                .title("Драмматический Театр")
+                .menuId(303)
+                .targetId(1002)
+                .build());
+        tickets.add(MenuData.builder()
+                .title("Театр Кукол")
+                .menuId(304)
+                .targetId(1002)
                 .build());
         return tickets;
     }
