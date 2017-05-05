@@ -5,5 +5,5 @@ import android.support.annotation.NonNull;
 public interface InfoItem {
 
     @NonNull
-    public abstract String getData();
+    String getData();
 }
