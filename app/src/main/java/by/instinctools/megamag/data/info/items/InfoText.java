@@ -8,6 +8,9 @@ import com.google.auto.value.AutoValue;
 public abstract class InfoText implements InfoItem {
 
     @NonNull
+    public abstract String getData();
+
+    @NonNull
     public static InfoText.Builder builder() {
         return new AutoValue_InfoText.Builder();
     }
