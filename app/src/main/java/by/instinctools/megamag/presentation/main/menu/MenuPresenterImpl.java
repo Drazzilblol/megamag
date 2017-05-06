@@ -29,7 +29,7 @@ public class MenuPresenterImpl extends DisposablePresenter<MenuView> implements 
     private static final int ANNOUNCEMENT_GROUP_ID = 1001;
     private static final int THEATER_GROUP_ID = 1002;
     private static final int SETTINGS_GROUP_ID = 1004;
-    
+
     private static final int SUPPORT_ID = 104;
     private static final int REGION_ID = 400;
     private static final int ABOUT_ID = 401;
