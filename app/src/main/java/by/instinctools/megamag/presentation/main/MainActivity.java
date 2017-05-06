@@ -22,7 +22,7 @@ import butterknife.ButterKnife;
 import by.instinctools.megamag.R;
 import by.instinctools.megamag.common.errors.Error;
 import by.instinctools.megamag.common.utils.Navigator;
-import by.instinctools.megamag.domain.models.MenuV;
+import by.instinctools.megamag.domain.models.MenuDomain;
 import by.instinctools.megamag.presentation.main.announcements.AnnouncementsFragment;
 import by.instinctools.megamag.presentation.main.menu.MenuPresenter;
 import by.instinctools.megamag.presentation.main.menu.MenuPresenterImpl;
@@ -172,8 +172,8 @@ public class MainActivity extends AppCompatActivity
 
 
     @Override
-    public void addMenuItem(@NonNull MenuV menuV, int groupId) {
+    public void addMenuItem(@NonNull MenuDomain menuDomain, int groupId) {
         Menu menu = navigationView.getMenu();
-        menu.add(groupId, menuV.getMenuId(), Menu.NONE, menuV.getTitle());
+        menu.add(groupId, menuDomain.getMenuId(), Menu.NONE, menuDomain.getTitle());
     }
 }

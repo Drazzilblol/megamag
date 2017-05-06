@@ -12,7 +12,7 @@ import by.instinctools.megamag.R;
 import by.instinctools.megamag.common.errors.ErrorException;
 import by.instinctools.megamag.common.errors.NoDataError;
 import by.instinctools.megamag.domain.GetMenuUseCase;
-import by.instinctools.megamag.domain.models.MenuV;
+import by.instinctools.megamag.domain.models.MenuDomain;
 import by.instinctools.megamag.presentation.DisposablePresenter;
 import by.instinctools.megamag.presentation.main.menu.models.MenuViewModel;
 import hugo.weaving.DebugLog;
@@ -70,9 +70,9 @@ public class MenuPresenterImpl extends DisposablePresenter<MenuView> implements 
         }
     }
 
-    private List<MenuViewModel> createMenu(List<MenuV> menuList) {
+    private List<MenuViewModel> createMenu(List<MenuDomain> menuList) {
         List<MenuViewModel> menuViewModels = new ArrayList<>();
-        for (MenuV menu : menuList) {
+        for (MenuDomain menu : menuList) {
             menuViewModels.add(MenuViewModel.builder()
                     .title(menu.getTitle())
                     .menuId(menu.getMenuId())

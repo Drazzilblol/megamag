@@ -11,13 +11,13 @@ import by.instinctools.megamag.data.menu.MenuInfoRepositoryImpl;
 import by.instinctools.megamag.data.menu.MenuRepository;
 import by.instinctools.megamag.data.menu.MenuTheaterRepositoryImpl;
 import by.instinctools.megamag.domain.common.converters.MenuConverter;
-import by.instinctools.megamag.domain.models.MenuV;
+import by.instinctools.megamag.domain.models.MenuDomain;
 import io.reactivex.Observable;
 
-public class GetMenuUseCase implements UseCase<List<MenuV>> {
+public class GetMenuUseCase implements UseCase<List<MenuDomain>> {
 
     @NonNull
-    ListConverter<MenuData, MenuV> converter = new MenuConverter();
+    ListConverter<MenuData, MenuDomain> converter = new MenuConverter();
 
     @NonNull
     MenuRepository infoRepository = new MenuInfoRepositoryImpl();
@@ -29,7 +29,7 @@ public class GetMenuUseCase implements UseCase<List<MenuV>> {
     MenuRepository theaterRepository = new MenuTheaterRepositoryImpl();
 
     @Override
-    public Observable<List<MenuV>> execute() {
+    public Observable<List<MenuDomain>> execute() {
         return announcementRepository.getMenuList()
                 .concatWith(theaterRepository.getMenuList())
                 .concatWith(infoRepository.getMenuList())
