@@ -1,11 +1,14 @@
 package by.instinctools.megamag.presentation.main.menu;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import by.instinctools.megamag.Application;
+import by.instinctools.megamag.R;
 import by.instinctools.megamag.common.errors.ErrorException;
 import by.instinctools.megamag.common.errors.NoDataError;
 import by.instinctools.megamag.domain.GetMenuUseCase;
@@ -87,31 +90,33 @@ public class MenuPresenterImpl extends DisposablePresenter<MenuView> implements 
     }
 
     private void addSupportMenuItem(List<MenuViewModel> menu) {
+        Context context = Application.getAppContext();
         menu.add(menu.size(), MenuViewModel.builder()
-                .title("Support")
+                .title(context.getString(R.string.drawer_menu_support))
                 .menuId(SUPPORT_ID)
                 .targetId(INFO_GROUP_ID)
                 .build());
     }
 
     private void addSettingsMenuGroup(List<MenuViewModel> menu) {
+        Context context = Application.getAppContext();
         menu.add(MenuViewModel.builder()
-                .title("District")
+                .title(context.getString(R.string.drawer_menu_region))
                 .menuId(DISTRICT_ID)
                 .targetId(SETTINGS_GROUP_ID)
                 .build());
         menu.add(MenuViewModel.builder()
-                .title("About")
+                .title(context.getString(R.string.drawer_menu_about))
                 .menuId(ABOUT_ID)
                 .targetId(SETTINGS_GROUP_ID)
                 .build());
         menu.add(MenuViewModel.builder()
-                .title("Share")
+                .title(context.getString(R.string.drawer_menu_share))
                 .menuId(SHARE_ID)
                 .targetId(SETTINGS_GROUP_ID)
                 .build());
         menu.add(MenuViewModel.builder()
-                .title("Settings")
+                .title(context.getString(R.string.drawer_menu_settings))
                 .menuId(SETTINGS_ID)
                 .targetId(SETTINGS_GROUP_ID)
                 .build());

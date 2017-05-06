@@ -10,7 +10,7 @@ import io.reactivex.Observable;
 public class MenuAnnouncementRepositoryImpl implements MenuRepository {
 
     @NonNull
-    DataSource<String, MenuData> dataSource = new MenuAnnouncementDataSource();
+    DataSource<String, MenuData> dataSource = new LocalMenuAnnouncementDataSource();
 
     @NonNull
     @Override

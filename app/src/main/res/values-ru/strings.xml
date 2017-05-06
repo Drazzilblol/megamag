@@ -8,4 +8,17 @@
     <!--main-->
     <string name="announcements_toolbar_title">Анонсы</string>
     <string name="tickets_toolbar_title">Билеты</string>
+
+    <!--menu-->
+    <string name="drawer_menu_profile">Профиль</string>
+    <string name="drawer_menu_tickets">Билеты</string>
+    <string name="drawer_menu_announcements">Анонсы</string>
+    <string name="drawer_menu_region">Регион</string>
+    <string name="drawer_menu_about">О приложении</string>
+    <string name="drawer_menu_share">Поделиться</string>
+    <string name="drawer_menu_settings">Настройки</string>
+    <string name="drawer_menu_how_to_book">Как забронировать?</string>
+    <string name="drawer_menu_how_to_pay">Как оплатить?</string>
+    <string name="drawer_menu_rules">Правила</string>
+    <string name="drawer_menu_support">Тех. поддержка</string>
 </resources>
