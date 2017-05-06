@@ -28,12 +28,13 @@ public class MenuPresenterImpl extends DisposablePresenter<MenuView> implements 
     private static final int INFO_GROUP_ID = 1000;
     private static final int ANNOUNCEMENT_GROUP_ID = 1001;
     private static final int THEATER_GROUP_ID = 1002;
+    private static final int SETTINGS_GROUP_ID = 1004;
     private static final int SUPPORT_ID = 104;
-    public static final int DISTRICT_ID = 400;
-    public static final int SETTINGS_GROUP_ID = 1004;
-    public static final int ABOUT_ID = 401;
-    public static final int SHARE_ID = 402;
-    public static final int SETTINGS_ID = 404;
+    private static final int DISTRICT_ID = 400;
+    private static final int ABOUT_ID = 401;
+    private static final int SHARE_ID = 402;
+    private static final int SETTINGS_ID = 404;
+    private static final int ANNOUNCEMENTS_ID = 200;
 
     @NonNull
     private List<MenuViewModel> menuList = new ArrayList<>();
@@ -70,6 +71,7 @@ public class MenuPresenterImpl extends DisposablePresenter<MenuView> implements 
         }
     }
 
+    @NonNull
     private List<MenuViewModel> createMenu(List<MenuDomain> menuList) {
         List<MenuViewModel> menuViewModels = new ArrayList<>();
         for (MenuDomain menu : menuList) {
@@ -141,7 +143,7 @@ public class MenuPresenterImpl extends DisposablePresenter<MenuView> implements 
                 view.goToInfoScreen(id);
             }
             if (menuViewModel.getTargetId() == ANNOUNCEMENT_GROUP_ID) {
-                if (menuViewModel.getMenuId() == 200) {
+                if (menuViewModel.getMenuId() == ANNOUNCEMENTS_ID) {
                     view.goToAnnouncementsScreen();
                 } else {
                     view.goToTicketsScreen();
