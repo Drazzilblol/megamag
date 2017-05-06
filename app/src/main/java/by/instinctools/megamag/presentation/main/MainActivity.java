@@ -14,6 +14,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 
 import java.util.List;
 
@@ -31,10 +34,14 @@ import by.instinctools.megamag.presentation.main.menu.models.MenuViewModel;
 import by.instinctools.megamag.presentation.main.tickets.TicketsFragment;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, MainView, MenuView {
+        implements NavigationView.OnNavigationItemSelectedListener, MainView, MenuView, View.OnClickListener {
 
     @BindView(R.id.nav_view)
     NavigationView navigationView;
+
+    Button button;
+
+    TextView profileView;
 
     @NonNull
     private MainPresenter mainPresenter = new MainPresenterImpl();
@@ -64,6 +71,10 @@ public class MainActivity extends AppCompatActivity
         toggle.syncState();
 
         navigationView.setNavigationItemSelectedListener(this);
+        View header = navigationView.getHeaderView(0);
+        button = (Button) header.findViewById(R.id.nav_header_dropdown_button);
+        profileView = (TextView) header.findViewById(R.id.nav_header_profile);
+        profileView.setOnClickListener(this);
     }
 
     @Override
@@ -170,10 +181,20 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-
     @Override
     public void addMenuItem(@NonNull MenuDomain menuDomain, int groupId) {
         Menu menu = navigationView.getMenu();
         menu.add(groupId, menuDomain.getMenuId(), Menu.NONE, menuDomain.getTitle());
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (v.isSelected()) {
+            v.setSelected(false);
+            button.setBackgroundResource(R.drawable.ic_arrow_drop_down_white_24dp);
+        } else {
+            v.setSelected(true);
+            button.setBackgroundResource(R.drawable.ic_arrow_drop_up_white_24dp);
+        }
     }
 }
