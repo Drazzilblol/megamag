@@ -192,9 +192,11 @@ public class MainActivity extends AppCompatActivity
         if (v.isSelected()) {
             v.setSelected(false);
             button.setBackgroundResource(R.drawable.ic_arrow_drop_down_white_24dp);
+            menuPresenter.onProfilePressed(true);
         } else {
             v.setSelected(true);
             button.setBackgroundResource(R.drawable.ic_arrow_drop_up_white_24dp);
+            menuPresenter.onProfilePressed(false);
         }
     }
 }

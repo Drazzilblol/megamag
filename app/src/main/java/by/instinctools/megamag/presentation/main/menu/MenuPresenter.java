@@ -5,4 +5,6 @@ import by.instinctools.megamag.presentation.MvpPresenter;
 public interface MenuPresenter extends MvpPresenter<MenuView> {
 
     void onMenuPressed(int id);
+
+    void onProfilePressed(boolean isSelected);
 }

@@ -8,7 +8,7 @@ import io.reactivex.disposables.Disposable;
 public class DisposablePresenter<V extends MvpView> extends BasePresenter<V> {
 
     @NonNull
-    private final CompositeDisposable disposables = new CompositeDisposable();
+    private CompositeDisposable disposables = new CompositeDisposable();
 
     protected void addDisposable(Disposable disposable) {
         disposables.add(disposable);
@@ -22,5 +22,13 @@ public class DisposablePresenter<V extends MvpView> extends BasePresenter<V> {
     public void detach() {
         super.detach();
         disposables.dispose();
+    }
+
+    @Override
+    public void attach(@NonNull V view) {
+        super.attach(view);
+        if (disposables.isDisposed()){
+            disposables = new CompositeDisposable();
+        }
     }
 }

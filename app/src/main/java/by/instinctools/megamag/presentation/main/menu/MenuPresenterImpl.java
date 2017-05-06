@@ -12,6 +12,7 @@ import by.instinctools.megamag.R;
 import by.instinctools.megamag.common.errors.ErrorException;
 import by.instinctools.megamag.common.errors.NoDataError;
 import by.instinctools.megamag.domain.GetMenuUseCase;
+import by.instinctools.megamag.domain.GetProfileMenuUseCase;
 import by.instinctools.megamag.domain.models.MenuDomain;
 import by.instinctools.megamag.presentation.DisposablePresenter;
 import by.instinctools.megamag.presentation.main.menu.models.MenuViewModel;
@@ -29,6 +30,7 @@ public class MenuPresenterImpl extends DisposablePresenter<MenuView> implements 
     private static final int ANNOUNCEMENT_GROUP_ID = 1001;
     private static final int THEATER_GROUP_ID = 1002;
     private static final int SETTINGS_GROUP_ID = 1004;
+    private static final int PROFILE_GROUP_ID = 1005;
 
     private static final int SUPPORT_ID = 104;
     private static final int REGION_ID = 400;
@@ -43,10 +45,81 @@ public class MenuPresenterImpl extends DisposablePresenter<MenuView> implements 
     @NonNull
     GetMenuUseCase menuUseCase = new GetMenuUseCase();
 
+    @NonNull
+    GetProfileMenuUseCase profileUseCase = new GetProfileMenuUseCase();
+
     @Override
     public void attach(@NonNull MenuView menuView) {
         super.attach(menuView);
         menuView.showProgress();
+        loadMenuCommon();
+    }
+
+    @DebugLog
+    @Override
+    public void onMenuPressed(int id) {
+        MenuViewModel menuViewModel = getMenuById(id);
+        if (isViewAttached() && menuViewModel != null) {
+            MenuView view = getView();
+            if (menuViewModel.getTargetId() == INFO_GROUP_ID && menuViewModel.getMenuId() != SUPPORT_ID) {
+                view.goToInfoScreen(id);
+            }
+            if (menuViewModel.getTargetId() == ANNOUNCEMENT_GROUP_ID) {
+                if (menuViewModel.getMenuId() == ANNOUNCEMENTS_ID) {
+                    view.goToAnnouncementsScreen();
+                } else {
+                    view.goToTicketsScreen();
+                }
+            }
+            if (menuViewModel.getTargetId() == THEATER_GROUP_ID) {
+                Timber.i("Theater group");
+            }
+            if (menuViewModel.getTargetId() == PROFILE_GROUP_ID) {
+                Timber.i("Profile group");
+            }
+        }
+    }
+
+    @Nullable
+    private MenuViewModel getMenuById(int id) {
+        MenuViewModel menuViewModel = null;
+        for (MenuViewModel menu : menuList) {
+            if (menu.getMenuId() == id) {
+                menuViewModel = menu;
+            }
+        }
+        return menuViewModel;
+    }
+
+    @Override
+    public void onProfilePressed(boolean isSelected) {
+        if (isSelected) {
+            menuList.clear();
+            loadMenuCommon();
+        } else {
+            menuList.clear();
+            loadMenuProfile();
+        }
+    }
+
+    @DebugLog
+    private void loadMenuProfile() {
+        addDisposable(
+                profileUseCase.execute()
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .filter(infoList -> infoList.size() > EMPTY_LIST_SIZE)
+                        .switchIfEmpty(Observable.error(new ErrorException(new NoDataError())))
+                        .map(this::createMenu)
+                        .subscribe(
+                                this::onLoadSuccess,
+                                this::onLoadError
+                        )
+        );
+    }
+
+    @DebugLog
+    private void loadMenuCommon() {
         addDisposable(
                 menuUseCase.execute()
                         .subscribeOn(Schedulers.io())
@@ -132,38 +205,5 @@ public class MenuPresenterImpl extends DisposablePresenter<MenuView> implements 
             view.hideProgress();
             showError(throwable);
         }
-    }
-
-    @DebugLog
-    @Override
-    public void onMenuPressed(int id) {
-        MenuViewModel menuViewModel = getMenuById(id);
-        if (isViewAttached() && menuViewModel != null) {
-            MenuView view = getView();
-            if (menuViewModel.getTargetId() == INFO_GROUP_ID && menuViewModel.getMenuId() != SUPPORT_ID) {
-                view.goToInfoScreen(id);
-            }
-            if (menuViewModel.getTargetId() == ANNOUNCEMENT_GROUP_ID) {
-                if (menuViewModel.getMenuId() == ANNOUNCEMENTS_ID) {
-                    view.goToAnnouncementsScreen();
-                } else {
-                    view.goToTicketsScreen();
-                }
-            }
-            if (menuViewModel.getTargetId() == THEATER_GROUP_ID) {
-                Timber.i("Theater group");
-            }
-        }
-    }
-
-    @Nullable
-    private MenuViewModel getMenuById(int id) {
-        MenuViewModel menuViewModel = null;
-        for (MenuViewModel menu : menuList) {
-            if (menu.getMenuId() == id) {
-                menuViewModel = menu;
-            }
-        }
-        return menuViewModel;
     }
 }
