@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import java.util.List;
 
 import by.instinctools.megamag.data.DataSource;
+import by.instinctools.megamag.data.menu.local.LocalMenuAnnouncementDataSource;
 import io.reactivex.Observable;
 
 public class MenuAnnouncementRepositoryImpl implements MenuRepository {
