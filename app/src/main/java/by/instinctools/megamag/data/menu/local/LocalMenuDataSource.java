@@ -13,13 +13,13 @@ import by.instinctools.megamag.common.database.menu.MenuDbHelper;
 import by.instinctools.megamag.data.menu.MenuData;
 import by.instinctools.megamag.data.menu.MenuDataSource;
 
-public abstract class LocalMenuDataSource implements MenuDataSource {
+abstract class LocalMenuDataSource implements MenuDataSource {
 
     @NonNull
-    private MenuDbHelper dbHelper = new MenuDbHelper(Application.getAppContext());
+    MenuDbHelper dbHelper = new MenuDbHelper(Application.getAppContext());
 
     @NonNull
-    protected List<MenuData> getMenusFromDb(int targetId) {
+    List<MenuData> getMenusFromDb(int targetId) {
         String selection = MenuContract.COLUMN_NAME_TARGET_ID + " = " + targetId;
 
         SQLiteDatabase db = dbHelper.getWritableDatabase();
@@ -34,13 +34,15 @@ public abstract class LocalMenuDataSource implements MenuDataSource {
         );
 
         List<MenuData> resultList = new ArrayList<>();
-        while (!cursor.isLast()) {
-            cursor.moveToNext();
-            resultList.add(MenuData.builder()
-                    .menuId(cursor.getInt(0))
-                    .title(cursor.getString(1))
-                    .targetId(cursor.getInt(2))
-                    .build());
+        if (cursor.getCount() != 0) {
+            while (!cursor.isLast()) {
+                cursor.moveToNext();
+                resultList.add(MenuData.builder()
+                        .menuId(cursor.getInt(0))
+                        .title(cursor.getString(1))
+                        .targetId(cursor.getInt(2))
+                        .build());
+            }
         }
         db.close();
         return resultList;

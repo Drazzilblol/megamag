@@ -29,8 +29,9 @@ public class MenuPresenterImpl extends DisposablePresenter<MenuView> implements 
     private static final int ANNOUNCEMENT_GROUP_ID = 1001;
     private static final int THEATER_GROUP_ID = 1002;
     private static final int SETTINGS_GROUP_ID = 1004;
+    
     private static final int SUPPORT_ID = 104;
-    private static final int DISTRICT_ID = 400;
+    private static final int REGION_ID = 400;
     private static final int ABOUT_ID = 401;
     private static final int SHARE_ID = 402;
     private static final int SETTINGS_ID = 404;
@@ -104,7 +105,7 @@ public class MenuPresenterImpl extends DisposablePresenter<MenuView> implements 
         Context context = Application.getAppContext();
         menu.add(MenuViewModel.builder()
                 .title(context.getString(R.string.drawer_menu_region))
-                .menuId(DISTRICT_ID)
+                .menuId(REGION_ID)
                 .targetId(SETTINGS_GROUP_ID)
                 .build());
         menu.add(MenuViewModel.builder()

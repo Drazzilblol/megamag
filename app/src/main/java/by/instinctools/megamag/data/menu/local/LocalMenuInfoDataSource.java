@@ -1,19 +1,11 @@
 package by.instinctools.megamag.data.menu.local;
 
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.support.annotation.NonNull;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import by.instinctools.megamag.Application;
-import by.instinctools.megamag.common.database.menu.MenuContract;
-import by.instinctools.megamag.common.database.menu.MenuDbHelper;
-import by.instinctools.megamag.data.announcements.AnnouncementDataSource;
 import by.instinctools.megamag.data.info.InfoDataSource;
 import by.instinctools.megamag.data.menu.MenuData;
-import by.instinctools.megamag.data.menu.MenuDataSource;
 import io.reactivex.Observable;
 
 public class LocalMenuInfoDataSource extends LocalMenuDataSource {

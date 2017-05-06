@@ -6,7 +6,6 @@ import java.util.List;
 
 import by.instinctools.megamag.data.announcements.AnnouncementDataSource;
 import by.instinctools.megamag.data.menu.MenuData;
-import by.instinctools.megamag.data.menu.MenuDataSource;
 import io.reactivex.Observable;
 
 public class LocalMenuAnnouncementDataSource extends LocalMenuDataSource {

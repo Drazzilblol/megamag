@@ -74,40 +74,5 @@ public class MenuDbHelper extends SQLiteOpenHelper {
         values5.put(MenuContract.COLUMN_NAME_TARGET_ID, AnnouncementDataSource.ANNOUNCEMENT_GROUP_ID);
 
         db.insert(MenuContract.TABLE_NAME, null, values5);
-
-        ContentValues values6 = new ContentValues();
-        values6.put(MenuContract.COLUMN_NAME_MENU_ID, 300);
-        values6.put(MenuContract.COLUMN_NAME_TITLE, "Космос");
-        values6.put(MenuContract.COLUMN_NAME_TARGET_ID, 1002);
-
-        db.insert(MenuContract.TABLE_NAME, null, values6);
-
-        ContentValues values7 = new ContentValues();
-        values7.put(MenuContract.COLUMN_NAME_MENU_ID, 301);
-        values7.put(MenuContract.COLUMN_NAME_TITLE, "Красная Звезда");
-        values7.put(MenuContract.COLUMN_NAME_TARGET_ID, 1002);
-
-        db.insert(MenuContract.TABLE_NAME, null, values7);
-
-        ContentValues values8 = new ContentValues();
-        values8.put(MenuContract.COLUMN_NAME_MENU_ID, 302);
-        values8.put(MenuContract.COLUMN_NAME_TITLE, "Октябрь");
-        values8.put(MenuContract.COLUMN_NAME_TARGET_ID, 1002);
-
-        db.insert(MenuContract.TABLE_NAME, null, values8);
-
-        ContentValues values9 = new ContentValues();
-        values9.put(MenuContract.COLUMN_NAME_MENU_ID, 303);
-        values9.put(MenuContract.COLUMN_NAME_TITLE, "Драмматический Театр");
-        values9.put(MenuContract.COLUMN_NAME_TARGET_ID, 1002);
-
-        db.insert(MenuContract.TABLE_NAME, null, values9);
-
-        ContentValues values10 = new ContentValues();
-        values10.put(MenuContract.COLUMN_NAME_MENU_ID, 304);
-        values10.put(MenuContract.COLUMN_NAME_TITLE, "Театр Кукол");
-        values10.put(MenuContract.COLUMN_NAME_TARGET_ID, 1002);
-
-        db.insert(MenuContract.TABLE_NAME, null, values10);
     }
 }
