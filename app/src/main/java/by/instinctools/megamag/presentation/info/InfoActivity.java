@@ -5,8 +5,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.widget.ContentLoadingProgressBar;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -40,6 +42,9 @@ public class InfoActivity extends AppCompatActivity implements InfoView {
     @BindView(R.id.info_progress_bar)
     ContentLoadingProgressBar progressBar;
 
+    @BindView(R.id.info_toolbar)
+    Toolbar toolbar;
+
     @NonNull
     private InfoPresenter infoPresenter = new InfoPresenterImpl();
 
@@ -63,6 +68,12 @@ public class InfoActivity extends AppCompatActivity implements InfoView {
     }
 
     @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return super.onSupportNavigateUp();
+    }
+
+    @Override
     protected void onStart() {
         super.onStart();
         infoPresenter.attach(this);
@@ -78,6 +89,17 @@ public class InfoActivity extends AppCompatActivity implements InfoView {
     public void showData(@NonNull List<TreeNode> infoList) {
         initRecyclerView(infoList);
         recyclerView.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void showToolbar(@NonNull String type) {
+        setSupportActionBar(toolbar);
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setTitle(type);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+        }
     }
 
     private void initRecyclerView(List<TreeNode> list) {

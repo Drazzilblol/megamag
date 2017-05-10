@@ -23,6 +23,8 @@ class InfoPresenterImpl extends DisposablePresenter<InfoView> implements InfoPre
 
     private static final int EMPTY_LIST_SIZE = 0;
 
+    private static String type;
+
     private int infoId;
 
     @NonNull
@@ -61,6 +63,7 @@ class InfoPresenterImpl extends DisposablePresenter<InfoView> implements InfoPre
             view.hideProgress();
             view.hideError();
             view.showData(infoList);
+            view.showToolbar(type);
         }
     }
 
@@ -75,6 +78,8 @@ class InfoPresenterImpl extends DisposablePresenter<InfoView> implements InfoPre
         if (!hasChildes && !hasContent) {
             throw new ErrorException(new NoDataError());
         }
+
+        type = info.getType();
 
         TreeNode root;
         if (!hasChildes) {

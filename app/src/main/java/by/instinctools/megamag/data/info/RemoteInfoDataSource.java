@@ -116,6 +116,7 @@ public class RemoteInfoDataSource implements InfoDataSource {
                 .infoList(new ArrayList<>())
                 .infoId(infoId)
                 .itemList(items1)
+                .type("Как оплатить")
                 .build();
 
         List<InfoItem> items2 = new ArrayList<>();
@@ -143,6 +144,7 @@ public class RemoteInfoDataSource implements InfoDataSource {
                 .infoId(infoId)
                 .infoList(new ArrayList<>())
                 .itemList(items2)
+                .type("Как оплатить")
                 .build();
 
         infoList.add(group1);
@@ -175,6 +177,7 @@ public class RemoteInfoDataSource implements InfoDataSource {
                 .infoId(infoId)
                 .infoList(new ArrayList<>())
                 .itemList(items1)
+                .type("Как забронировать")
                 .build();
 
         List<InfoItem> items2 = new ArrayList<>();
@@ -201,6 +204,7 @@ public class RemoteInfoDataSource implements InfoDataSource {
                 .infoId(infoId)
                 .infoList(new ArrayList<>())
                 .itemList(items2)
+                .type("Как забронировать")
                 .build());
 
         List<InfoItem> items3 = new ArrayList<>();
@@ -226,6 +230,7 @@ public class RemoteInfoDataSource implements InfoDataSource {
                 .infoId(infoId)
                 .itemList(items3)
                 .infoList(new ArrayList<>())
+                .type("Как забронровать")
                 .build());
 
         InfoData group2 = InfoData.builder()
@@ -233,6 +238,7 @@ public class RemoteInfoDataSource implements InfoDataSource {
                 .infoList(groups)
                 .itemList(new ArrayList<>())
                 .infoId(infoId)
+                .type("Как забронировать")
                 .build();
 
         infoList.add(group1);
@@ -308,6 +314,7 @@ public class RemoteInfoDataSource implements InfoDataSource {
                         .infoId(infoId)
                         .infoList(new ArrayList<>())
                         .itemList(itemList)
+                        .type("Правила")
                         .build()
         );
 

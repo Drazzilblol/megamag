@@ -23,6 +23,9 @@ public abstract class Info {
     @NonNull
     public abstract List<InfoItem> getItemList();
 
+    @Nullable
+    public abstract String getType();
+
     @NonNull
     public static Info.Builder builder() {
         return new AutoValue_Info.Builder();
@@ -38,6 +41,8 @@ public abstract class Info {
         public abstract Info.Builder itemList(@NonNull List<InfoItem> list);
 
         public abstract Info.Builder infoList(@NonNull List<Info> list);
+
+        public abstract Info.Builder type(@Nullable String value);
 
         public abstract Info build();
     }
