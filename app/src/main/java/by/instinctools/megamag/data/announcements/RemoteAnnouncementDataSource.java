@@ -2,11 +2,18 @@ package by.instinctools.megamag.data.announcements;
 
 import android.support.annotation.NonNull;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import by.instinctools.megamag.Application;
 import hugo.weaving.DebugLog;
 import io.reactivex.Observable;
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import timber.log.Timber;
 
 class RemoteAnnouncementDataSource implements AnnouncementDataSource {
 
@@ -54,7 +61,28 @@ class RemoteAnnouncementDataSource implements AnnouncementDataSource {
                 .coverUrl("http://kinoteatr.megamag.by/images/newsdesk_img/piraty_mertvecy_b1.jpg")
                 .build()
         );
-
+        
         return announcements;
+    }
+
+
+    private List<AnnouncementData> getAnnouncements() {
+        Call<ResponseBody> response = Application.getApi().getData();
+        response.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                try {
+                    Timber.d(response.body().string());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+            }
+        });
+        return new ArrayList<>();
     }
 }

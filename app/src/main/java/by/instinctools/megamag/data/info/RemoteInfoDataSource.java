@@ -2,17 +2,24 @@ package by.instinctools.megamag.data.info;
 
 import android.support.annotation.NonNull;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import by.instinctools.megamag.Application;
 import by.instinctools.megamag.common.errors.ErrorException;
 import by.instinctools.megamag.common.errors.NoDataError;
-import by.instinctools.megamag.data.type.factory.ItemTypeFactory;
 import by.instinctools.megamag.data.info.items.InfoImage;
 import by.instinctools.megamag.data.info.items.InfoItem;
 import by.instinctools.megamag.data.info.items.InfoText;
+import by.instinctools.megamag.data.type.factory.ItemTypeFactory;
 import hugo.weaving.DebugLog;
 import io.reactivex.Observable;
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import timber.log.Timber;
 
 public class RemoteInfoDataSource implements InfoDataSource {
 
@@ -310,11 +317,35 @@ public class RemoteInfoDataSource implements InfoDataSource {
                         .itemList(itemList)
                         .build()
         );
+        getRulesInfo(infoId);
 
         return infoList;
     }
 
     private String replaceNToBr(String str) {
         return str.replaceAll("\n", "<br>");
+    }
+
+    private List<InfoData> getRulesInfo(int infoId) {
+
+        Call<ResponseBody> call = Application.getApi().getRulesInfo();
+
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                try {
+                    Timber.d(response.body().string());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+            }
+        });
+
+        return new ArrayList<>();
     }
 }

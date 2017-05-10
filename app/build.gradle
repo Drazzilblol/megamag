@@ -58,6 +58,8 @@ dependencies {
 
     compile 'com.github.TellH:RecyclerTreeView:1.2.0'
 
+    compile 'com.squareup.retrofit2:retrofit:2.2.0'
+
     testCompile 'junit:junit:4.12'
 }
 
