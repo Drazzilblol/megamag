@@ -40,9 +40,23 @@ public class InfoContentAdapter extends RecyclerView.Adapter<InfoViewHolder> {
     }
 
     public void setItems(@NonNull List<InfoItem> items) {
-        this.items.clear();
-        this.items.addAll(items);
-        notifyDataSetChanged();
+        int size = items.size();
+        int currentSize = this.items.size();
+
+        if (currentSize > size) {
+            this.items.subList(size, currentSize).clear();
+            notifyItemRangeRemoved(size, currentSize);
+        }
+
+        for (int i = 0; i < size; i++) {
+            if (this.items.size() <= i) {
+                this.items.add(items.get(i));
+                notifyItemInserted(i);
+            } else if (!this.items.get(i).equals(items.get(i))) {
+                this.items.set(i, items.get(i));
+                notifyItemChanged(i);
+            }
+        }
     }
 
     @Override

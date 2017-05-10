@@ -110,5 +110,4 @@ public class AnnouncementsFragment extends Fragment implements AnnouncementsView
     public void hideProgress() {
         progressBar.hide();
     }
-
 }

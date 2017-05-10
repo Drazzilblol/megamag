@@ -30,8 +30,22 @@ public class AnnouncementsListAdapter extends RecyclerView.Adapter<AnnouncementH
     }
 
     public void setAnnouncements(@NonNull List<Announcement> announcements) {
-        this.announcements.clear();
-        this.announcements.addAll(announcements);
-        notifyDataSetChanged();
+        int size = announcements.size();
+        int currentSize = this.announcements.size();
+
+        if (currentSize > size) {
+            this.announcements.subList(size, currentSize).clear();
+            notifyItemRangeRemoved(size, currentSize);
+        }
+
+        for (int i = 0; i < size; i++) {
+            if (this.announcements.size() <= i) {
+                this.announcements.add(announcements.get(i));
+                notifyItemInserted(i);
+            } else if (!this.announcements.get(i).equals(announcements.get(i))) {
+                this.announcements.set(i, announcements.get(i));
+                notifyItemChanged(i);
+            }
+        }
     }
 }

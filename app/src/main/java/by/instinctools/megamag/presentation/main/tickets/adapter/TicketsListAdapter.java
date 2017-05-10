@@ -30,8 +30,22 @@ public class TicketsListAdapter extends RecyclerView.Adapter<TicketHolder> {
     }
 
     public void setTickets(@NonNull List<Ticket> tickets) {
-        this.tickets.clear();
-        this.tickets.addAll(tickets);
-        notifyDataSetChanged();
+        int size = tickets.size();
+        int currentSize = this.tickets.size();
+
+        if (currentSize > size) {
+            this.tickets.subList(size, currentSize).clear();
+            notifyItemRangeRemoved(size, currentSize);
+        }
+
+        for (int i = 0; i < size; i++) {
+            if (this.tickets.size() <= i) {
+                this.tickets.add(tickets.get(i));
+                notifyItemInserted(i);
+            } else if (!this.tickets.get(i).equals(tickets.get(i))) {
+                this.tickets.set(i, tickets.get(i));
+                notifyItemChanged(i);
+            }
+        }
     }
 }
