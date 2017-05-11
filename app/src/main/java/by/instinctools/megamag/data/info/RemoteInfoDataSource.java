@@ -15,8 +15,6 @@ import by.instinctools.megamag.data.info.parsers.InfoParser;
 import by.instinctools.megamag.data.type.factory.ItemTypeFactory;
 import hugo.weaving.DebugLog;
 import io.reactivex.Observable;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.schedulers.Schedulers;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 
@@ -58,9 +56,7 @@ public class RemoteInfoDataSource implements InfoDataSource {
 
         return Observable.defer(() -> Observable.just(call.execute()))
                 .flatMap(Observable::just)
-                .map(r -> InfoParser.parseRules(infoId, r.body().string()))
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread());
+                .map(r -> InfoParser.parseRules(infoId, r.body().string()));
     }
 
     private Observable<List<InfoData>> getHowToPayInfo(int infoId) {
@@ -68,9 +64,7 @@ public class RemoteInfoDataSource implements InfoDataSource {
 
         return Observable.defer(() -> Observable.just(call.execute()))
                 .flatMap(Observable::just)
-                .map(r -> InfoParser.parseHowToTay(infoId, r.body().string()))
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread());
+                .map(r -> InfoParser.parseHowToTay(infoId, r.body().string()));
     }
 
     @NonNull
