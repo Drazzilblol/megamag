@@ -61,7 +61,7 @@ class RemoteAnnouncementDataSource implements AnnouncementDataSource {
                 .coverUrl("http://kinoteatr.megamag.by/images/newsdesk_img/piraty_mertvecy_b1.jpg")
                 .build()
         );
-        
+
         return announcements;
     }
 
