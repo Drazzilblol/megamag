@@ -9,9 +9,6 @@ public interface MegamagApi {
     @GET("/index.php")
     Call<ResponseBody> getData();
 
-    @GET("/howto_bronned.php")
-    Call<ResponseBody> getHowToBookInfo();
-
     @GET("/howto_pay.php")
     Call<ResponseBody> getHowToPayInfo();
 

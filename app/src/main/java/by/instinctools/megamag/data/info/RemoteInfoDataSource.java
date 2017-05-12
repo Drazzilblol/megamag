@@ -11,7 +11,6 @@ import by.instinctools.megamag.common.errors.NoDataError;
 import by.instinctools.megamag.data.info.items.InfoImage;
 import by.instinctools.megamag.data.info.items.InfoItem;
 import by.instinctools.megamag.data.info.items.InfoText;
-import by.instinctools.megamag.data.info.parsers.InfoParser;
 import by.instinctools.megamag.data.type.factory.ItemTypeFactory;
 import hugo.weaving.DebugLog;
 import io.reactivex.Observable;
@@ -64,7 +63,7 @@ public class RemoteInfoDataSource implements InfoDataSource {
 
         return Observable.defer(() -> Observable.just(call.execute()))
                 .flatMap(Observable::just)
-                .map(r -> InfoParser.parseHowToTay(infoId, r.body().string()));
+                .map(r -> InfoParser.parseHowToPay(infoId, r.body().string()));
     }
 
     @NonNull

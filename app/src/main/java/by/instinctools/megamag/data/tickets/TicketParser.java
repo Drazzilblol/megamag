@@ -12,23 +12,34 @@ import java.util.List;
 
 class TicketParser {
 
+    private static final String IMAGE_URL_SELECTOR = "src";
+    private static final String TICKET_ITEM_SELECTOR = "cinema_today_event";
+    private static final String TICKET_IMAGE_SELECTOR = "cinema_today_image";
+    private static final String TICKET_TITLE_SELECTOR = "cinema_today_title";
+    private static final String TICKET_DATE_SELECTOR = "cinema_today_date";
+
     static List<TicketData> parseTickets(@NonNull String sourceHtml) {
         Document document = Jsoup.parse(sourceHtml);
         List<TicketData> ticketList = new ArrayList<>();
-        Elements tickets = document.getElementsByClass("cinema_today_event");
+        Elements tickets = document.getElementsByClass(TICKET_ITEM_SELECTOR);
         for (Element ticket : tickets) {
-            String imgUrl = getHQCover(ticket.getElementsByClass("cinema_today_image").first().child(0).child(0).absUrl("src"));
+            String imgUrl = getHQCover(ticket.getElementsByClass(TICKET_IMAGE_SELECTOR)
+                    .first()
+                    .child(0)
+                    .child(0)
+                    .absUrl(IMAGE_URL_SELECTOR));
 
             ticketList.add(TicketData.builder()
-                    .title(ticket.getElementsByClass("cinema_today_title").text())
-                    .beginsWith(ticket.getElementsByClass("cinema_today_date").text())
+                    .title(ticket.getElementsByClass(TICKET_TITLE_SELECTOR).text())
+                    .beginsWith(ticket.getElementsByClass(TICKET_DATE_SELECTOR).text())
                     .coverUrl(imgUrl)
                     .build());
         }
         return ticketList;
     }
 
-    private static String getHQCover(String url) {
-        return url.replace("categories_sec", "newsdesk_img").replace("_6", "_b1");
+    private static String getHQCover(@NonNull String url) {
+        return url.replace("categories_sec", "newsdesk_img")
+                .replace("_6", "_b1");
     }
 }

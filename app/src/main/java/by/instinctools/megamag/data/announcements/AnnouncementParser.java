@@ -14,24 +14,36 @@ import java.util.List;
 
 class AnnouncementParser {
 
+    private static final String YEAR = "Год";
+    private static final String COUNTRY = "Страна";
+    private static final String GENRE = "Жанр";
+    private static final String AUTHOR = "Автор";
+    private static final String ANNOUNCEMENTS_LIST_SELECTOR = "newsdesk_sticky";
+    private static final String ANNOUNCEMENT_ITEM_SELECTOR = "film_item";
+    private static final String ANNOUNCEMET_HEADER_SELECTOR = "tableBoxArea1Contents";
+    private static final String ANNOUNCEMENT_BODY_SELECTOR = "smallText";
+    private static final String IMAGE_URL_SELECTOR = "href";
+
     static List<AnnouncementData> parseAnnouncements(@NonNull String sourceHtml) {
         Document document = Jsoup.parse(sourceHtml);
         List<AnnouncementData> announcementList = new ArrayList<>();
 
-        Element announcementsRoot = document.getElementById("newsdesk_sticky");
-        Elements announcements = announcementsRoot.getElementsByClass("film_item");
+        Element announcementsRoot = document.getElementById(ANNOUNCEMENTS_LIST_SELECTOR);
+        Elements announcements = announcementsRoot.getElementsByClass(ANNOUNCEMENT_ITEM_SELECTOR);
 
         for (Element announcement : announcements) {
             AnnouncementData.Builder builder = AnnouncementData.builder();
-            Elements headerItems = announcement.getElementsByClass("tableBoxArea1Contents");
+            Elements headerItems = announcement.getElementsByClass(ANNOUNCEMET_HEADER_SELECTOR);
             String header = headerItems.text();
             builder.place(header.split(" / ")[0]);
             builder.title(header.split(" / ")[1]);
 
-            Element bodyItem = announcement.getElementsByClass("smallText").first();
-            builder.coverUrl(bodyItem.child(0).absUrl("href"));
+            Element bodyItem = announcement.getElementsByClass(ANNOUNCEMENT_BODY_SELECTOR).first();
+            builder.coverUrl(bodyItem.child(0).absUrl(IMAGE_URL_SELECTOR));
             if (bodyItem.child(1).children().size() > 1) {
-                builder.description(bodyItem.child(1).child(1).text());
+                builder.description(bodyItem.child(1)
+                        .child(1)
+                        .text());
             }
 
             String year = null;
@@ -39,19 +51,22 @@ class AnnouncementParser {
             String genre = null;
             String author = null;
 
-            String[] detailsItem = bodyItem.child(1).child(0).html().split("<br>");
-            for (int i = 0; i < detailsItem.length; i++) {
-                if (detailsItem[i].contains("Год")) {
-                    year = detailsItem[i].substring(detailsItem[i].lastIndexOf("> ") + 2);
+            String[] detailsItem = bodyItem.child(1)
+                    .child(0)
+                    .html()
+                    .split("<br>");
+            for (String aDetailsItem : detailsItem) {
+                if (aDetailsItem.contains(YEAR)) {
+                    year = aDetailsItem.substring(aDetailsItem.lastIndexOf("> ") + 2);
                 }
-                if (detailsItem[i].contains("Страна")) {
-                    county = detailsItem[i].substring(detailsItem[i].lastIndexOf("> ") + 2);
+                if (aDetailsItem.contains(COUNTRY)) {
+                    county = aDetailsItem.substring(aDetailsItem.lastIndexOf("> ") + 2);
                 }
-                if (detailsItem[i].contains("Жанр")) {
-                    genre = detailsItem[i].substring(detailsItem[i].lastIndexOf("> ") + 2);
+                if (aDetailsItem.contains(GENRE)) {
+                    genre = aDetailsItem.substring(aDetailsItem.lastIndexOf("> ") + 2);
                 }
-                if (detailsItem[i].contains("Автор")) {
-                    author = detailsItem[i].substring(detailsItem[i].lastIndexOf("> ") + 2);
+                if (aDetailsItem.contains(AUTHOR)) {
+                    author = aDetailsItem.substring(aDetailsItem.lastIndexOf("> ") + 2);
                 }
             }
 
