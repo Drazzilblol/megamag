@@ -6,12 +6,17 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.widget.ContentLoadingProgressBar;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.arellomobile.mvp.MvpAppCompatActivity;
+import com.arellomobile.mvp.presenter.InjectPresenter;
+import com.arellomobile.mvp.presenter.PresenterType;
+import com.arellomobile.mvp.presenter.ProvidePresenter;
+import com.arellomobile.mvp.presenter.ProvidePresenterTag;
 
 import java.util.Arrays;
 import java.util.List;
@@ -28,7 +33,7 @@ import by.instinctools.megamag.presentation.info.adapter.holders.GroupViewHolder
 import tellh.com.recyclertreeview_lib.TreeNode;
 import tellh.com.recyclertreeview_lib.TreeViewAdapter;
 
-public class InfoActivity extends AppCompatActivity implements InfoView {
+public class InfoActivity extends MvpAppCompatActivity implements InfoView {
 
     @NonNull
     private static final String INFO_ACTIVITY_SCREEN_ID = "INFO_ACTIVITY_SCREEN_ID";
@@ -45,15 +50,33 @@ public class InfoActivity extends AppCompatActivity implements InfoView {
     @BindView(R.id.info_toolbar)
     Toolbar toolbar;
 
+    private int infoId;
+
     private ActionBar actionBar;
 
-    @NonNull
-    private InfoPresenter infoPresenter = new InfoPresenterImpl();
+    @InjectPresenter(type = PresenterType.LOCAL)
+    InfoPresenterImpl infoPresenter;
 
     public static Intent createIntent(@NonNull Context context, int id) {
         Intent intent = new Intent(context, InfoActivity.class);
         intent.putExtra(INFO_ACTIVITY_SCREEN_ID, id);
         return intent;
+    }
+
+    @ProvidePresenterTag(presenterClass = InfoPresenterImpl.class, type = PresenterType.LOCAL)
+    String provideRepositoryPresenterTag() {
+        Intent intent = getIntent();
+        if (intent != null && intent.hasExtra(INFO_ACTIVITY_SCREEN_ID)) {
+            infoId = intent.getIntExtra(INFO_ACTIVITY_SCREEN_ID, 0);
+        } else {
+            throw new ErrorException(new NoIdError());
+        }
+        return String.valueOf(infoId);
+    }
+
+    @ProvidePresenter(type = PresenterType.LOCAL)
+    InfoPresenterImpl provideRepositoryPresenter() {
+        return new InfoPresenterImpl(infoId);
     }
 
     @Override
@@ -62,12 +85,6 @@ public class InfoActivity extends AppCompatActivity implements InfoView {
         setContentView(R.layout.activity_info);
         ButterKnife.bind(this);
         initToolbar();
-        Intent intent = getIntent();
-        if (intent != null && intent.hasExtra(INFO_ACTIVITY_SCREEN_ID)) {
-            infoPresenter.setInitialValue(intent.getIntExtra(INFO_ACTIVITY_SCREEN_ID, 0));
-        } else {
-            throw new ErrorException(new NoIdError());
-        }
     }
 
     private void initToolbar() {
@@ -83,18 +100,6 @@ public class InfoActivity extends AppCompatActivity implements InfoView {
     public boolean onSupportNavigateUp() {
         onBackPressed();
         return super.onSupportNavigateUp();
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        infoPresenter.attach(this);
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        infoPresenter.detach();
     }
 
     @Override

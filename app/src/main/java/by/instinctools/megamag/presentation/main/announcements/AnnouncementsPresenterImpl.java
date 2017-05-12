@@ -2,6 +2,8 @@ package by.instinctools.megamag.presentation.main.announcements;
 
 import android.support.annotation.NonNull;
 
+import com.arellomobile.mvp.InjectViewState;
+
 import java.util.List;
 
 import by.instinctools.megamag.common.errors.ErrorException;
@@ -14,19 +16,17 @@ import hugo.weaving.DebugLog;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
-class AnnouncementsPresenterImpl extends DisposablePresenter<AnnouncementsView>
-        implements AnnouncementsPresenter {
+@InjectViewState
+public class AnnouncementsPresenterImpl extends DisposablePresenter<AnnouncementsView> {
 
     private static final int EMPTY_LIST_SIZE = 0;
 
     @NonNull
-    UseCase<List<Announcement>> getAnnouncementsUseCase = new GetAnnouncementsUseCase();
+    private UseCase<List<Announcement>> getAnnouncementsUseCase = new GetAnnouncementsUseCase();
 
-    @DebugLog
     @Override
-    public void attach(@NonNull AnnouncementsView view) {
-        super.attach(view);
-        view.showProgress();
+    protected void onFirstViewAttach() {
+        super.onFirstViewAttach();
         addDisposable(
                 getAnnouncementsUseCase.execute()
                         .subscribeOn(Schedulers.io())
@@ -42,7 +42,7 @@ class AnnouncementsPresenterImpl extends DisposablePresenter<AnnouncementsView>
     private void onLoadSuccess(@NonNull List<Announcement> announcementList) {
         if (isViewAttached()) {
             if (announcementList.size() != EMPTY_LIST_SIZE) {
-                AnnouncementsView view = getView();
+                AnnouncementsView view = getViewState();
                 view.hideProgress();
                 view.hideError();
                 view.showData(announcementList);
@@ -55,7 +55,7 @@ class AnnouncementsPresenterImpl extends DisposablePresenter<AnnouncementsView>
     @DebugLog
     private void onLoadError(@NonNull Throwable throwable) {
         if (isViewAttached()) {
-            AnnouncementsView view = getView();
+            AnnouncementsView view = getViewState();
             view.hideProgress();
             view.hideData();
             showError(throwable);

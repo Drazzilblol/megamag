@@ -4,6 +4,8 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
+import com.arellomobile.mvp.InjectViewState;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,7 +27,8 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 import timber.log.Timber;
 
-public class MenuPresenterImpl extends DisposablePresenter<MenuView> implements MenuPresenter {
+@InjectViewState
+public class MenuPresenterImpl extends DisposablePresenter<MenuView> {
 
     private static final int EMPTY_LIST_SIZE = 0;
 
@@ -42,28 +45,32 @@ public class MenuPresenterImpl extends DisposablePresenter<MenuView> implements 
     private GetProfileMenuUseCase profileUseCase = new GetProfileMenuUseCase();
 
     @Override
-    public void attach(@NonNull MenuView menuView) {
-        super.attach(menuView);
-        menuView.showProgress();
+    public void attachView(@NonNull MenuView menuView) {
+        super.attachView(menuView);
         loadMenuCommon();
-        menuView.goToAnnouncementsScreen();
     }
 
     @Override
-    public void detach() {
-        super.detach();
+    protected void onFirstViewAttach() {
+        super.onFirstViewAttach();
+        getViewState().goToAnnouncementsScreen();
+    }
+
+    @Override
+    public void detachView(MenuView view) {
+        super.detachView(view);
         menuProfileList.clear();
         menuCommonList.clear();
     }
 
     @DebugLog
-    @Override
     public void onMenuPressed(int id) {
         Menu menu = getMenuById(id);
         if (isViewAttached() && menu != null) {
             ItemType menuType = menu.getType();
             GroupType menuGroupType = menu.getGroupType();
-            MenuView view = getView();
+
+            MenuView view = getViewState();
             if (menuGroupType.equals(GroupTypeFactory.getInfoGroupType()) && !menuType.equals(ItemTypeFactory.getSupportType())) {
                 view.goToInfoScreen(id);
             }
@@ -99,9 +106,8 @@ public class MenuPresenterImpl extends DisposablePresenter<MenuView> implements 
         return menuModel;
     }
 
-    @Override
     public void onProfilePressed(boolean isSelected) {
-        MenuView view = getView();
+        MenuView view = getViewState();
         if (isSelected) {
             if (menuCommonList.isEmpty()) {
                 loadMenuCommon();
@@ -151,7 +157,7 @@ public class MenuPresenterImpl extends DisposablePresenter<MenuView> implements 
     @DebugLog
     private void onCommonLoadSuccess(@NonNull List<Menu> menuList) {
         if (isViewAttached()) {
-            MenuView view = getView();
+            MenuView view = getViewState();
             view.hideProgress();
             view.hideError();
             menuCommonList.addAll(menuList);
@@ -162,7 +168,7 @@ public class MenuPresenterImpl extends DisposablePresenter<MenuView> implements 
     @DebugLog
     private void onProfileLoadSuccess(@NonNull List<Menu> menuList) {
         if (isViewAttached()) {
-            MenuView view = getView();
+            MenuView view = getViewState();
             view.hideProgress();
             view.hideError();
             menuProfileList.addAll(menuList);
@@ -236,10 +242,9 @@ public class MenuPresenterImpl extends DisposablePresenter<MenuView> implements 
     @DebugLog
     private void onLoadError(@NonNull Throwable throwable) {
         if (isViewAttached()) {
-            MenuView view = getView();
+            MenuView view = getViewState();
             view.hideProgress();
             showError(throwable);
         }
     }
-
 }

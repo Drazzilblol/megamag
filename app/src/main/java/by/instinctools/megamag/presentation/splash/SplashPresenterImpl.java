@@ -2,6 +2,8 @@ package by.instinctools.megamag.presentation.splash;
 
 import android.support.annotation.NonNull;
 
+import com.arellomobile.mvp.InjectViewState;
+
 import java.util.concurrent.TimeUnit;
 
 import by.instinctools.megamag.domain.IncrementAndGetStartupCounterUseCase;
@@ -13,7 +15,8 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 import timber.log.Timber;
 
-class SplashPresenterImpl extends DisposablePresenter<SplashView> implements SplashPresenter {
+@InjectViewState
+public class SplashPresenterImpl extends DisposablePresenter<SplashView> {
 
     private static final long DELAY_MILLIS = 1000L;
     private static final int FRESH_START_COUNT = 1;
@@ -23,8 +26,8 @@ class SplashPresenterImpl extends DisposablePresenter<SplashView> implements Spl
 
     @DebugLog
     @Override
-    public void attach(@NonNull SplashView view) {
-        super.attach(view);
+    public void attachView(@NonNull SplashView view) {
+        super.attachView(view);
         view.showProgress();
         addDisposable(
                 Observable.timer(DELAY_MILLIS, TimeUnit.MILLISECONDS)
@@ -44,7 +47,7 @@ class SplashPresenterImpl extends DisposablePresenter<SplashView> implements Spl
     @DebugLog
     private void onLoadSuccess(boolean isFreshStart) {
         if (isViewAttached()) {
-            SplashView view = getView();
+            SplashView view = getViewState();
             view.hideProgress();
             Timber.i("is fresh start: " + isFreshStart);
             if (isFreshStart) {
@@ -58,8 +61,7 @@ class SplashPresenterImpl extends DisposablePresenter<SplashView> implements Spl
     @DebugLog
     private void onLoadError(@NonNull Throwable throwable) {
         if (isViewAttached()) {
-            SplashView view = getView();
-            view.hideProgress();
+            getViewState().hideProgress();
             showError(throwable);
         }
     }

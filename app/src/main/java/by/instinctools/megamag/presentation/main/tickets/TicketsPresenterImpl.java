@@ -2,6 +2,8 @@ package by.instinctools.megamag.presentation.main.tickets;
 
 import android.support.annotation.NonNull;
 
+import com.arellomobile.mvp.InjectViewState;
+
 import java.util.List;
 
 import by.instinctools.megamag.common.errors.ErrorException;
@@ -14,17 +16,17 @@ import hugo.weaving.DebugLog;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
-class TicketsPresenterImpl extends DisposablePresenter<TicketsView> implements TicketsPresenter {
+@InjectViewState
+public class TicketsPresenterImpl extends DisposablePresenter<TicketsView> {
 
     private static final int EMPTY_LIST_SIZE = 0;
 
     @NonNull
-    UseCase<List<Ticket>> getTicketsUseCase = new GetTicketsUseCase();
+    private UseCase<List<Ticket>> getTicketsUseCase = new GetTicketsUseCase();
 
     @Override
-    public void attach(@NonNull TicketsView view) {
-        super.attach(view);
-        view.showProgress();
+    protected void onFirstViewAttach() {
+        getViewState().showProgress();
         addDisposable(
                 getTicketsUseCase.execute()
                         .subscribeOn(Schedulers.io())
@@ -40,7 +42,7 @@ class TicketsPresenterImpl extends DisposablePresenter<TicketsView> implements T
     private void onLoadSuccess(@NonNull List<Ticket> ticketsList) {
         if (isViewAttached()) {
             if (ticketsList.size() != EMPTY_LIST_SIZE) {
-                TicketsView view = getView();
+                TicketsView view = getViewState();
                 view.hideProgress();
                 view.hideError();
                 view.showData(ticketsList);
@@ -53,7 +55,7 @@ class TicketsPresenterImpl extends DisposablePresenter<TicketsView> implements T
     @DebugLog
     private void onLoadError(@NonNull Throwable throwable) {
         if (isViewAttached()) {
-            TicketsView view = getView();
+            TicketsView view = getViewState();
             view.hideProgress();
             view.hideData();
             showError(throwable);

@@ -10,11 +10,14 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
+
+import com.arellomobile.mvp.MvpAppCompatActivity;
+import com.arellomobile.mvp.presenter.InjectPresenter;
 
 import java.util.List;
 
@@ -25,21 +28,21 @@ import by.instinctools.megamag.common.errors.Error;
 import by.instinctools.megamag.common.utils.Navigator;
 import by.instinctools.megamag.domain.models.Menu;
 import by.instinctools.megamag.presentation.main.announcements.AnnouncementsFragment;
-import by.instinctools.megamag.presentation.main.menu.MenuPresenter;
 import by.instinctools.megamag.presentation.main.menu.MenuPresenterImpl;
 import by.instinctools.megamag.presentation.main.menu.MenuView;
 import by.instinctools.megamag.presentation.main.tickets.TicketsFragment;
 
-public class MainActivity extends AppCompatActivity
+
+public class MainActivity extends MvpAppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, MenuView, View.OnClickListener {
 
     @BindView(R.id.nav_view)
     NavigationView navigationView;
 
-    private TextView profileView;
+    TextView profileView;
 
-    @NonNull
-    private MenuPresenter menuPresenter = new MenuPresenterImpl();
+    @InjectPresenter
+    MenuPresenterImpl menuPresenter;
 
     public static Intent createIntent(Context context) {
         return new Intent(context, MainActivity.class);
@@ -84,7 +87,6 @@ public class MainActivity extends AppCompatActivity
                 .commit();
     }
 
-
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -120,18 +122,6 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        menuPresenter.attach(this);
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        menuPresenter.detach();
     }
 
     @Override

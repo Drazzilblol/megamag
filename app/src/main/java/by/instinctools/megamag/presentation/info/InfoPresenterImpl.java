@@ -3,6 +3,8 @@ package by.instinctools.megamag.presentation.info;
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
 
+import com.arellomobile.mvp.InjectViewState;
+
 import java.util.List;
 
 import by.instinctools.megamag.common.errors.ErrorException;
@@ -21,7 +23,8 @@ import io.reactivex.schedulers.Schedulers;
 import tellh.com.recyclertreeview_lib.TreeNode;
 import timber.log.Timber;
 
-class InfoPresenterImpl extends DisposablePresenter<InfoView> implements InfoPresenter {
+@InjectViewState
+public class InfoPresenterImpl extends DisposablePresenter<InfoView> {
 
     private static final int EMPTY_LIST_SIZE = 0;
 
@@ -33,15 +36,13 @@ class InfoPresenterImpl extends DisposablePresenter<InfoView> implements InfoPre
     @NonNull
     private GetInfoTitleUseCase getInfoTitleUseCase = new GetInfoTitleUseCase();
 
-    @Override
-    public void setInitialValue(int infoId) {
+    InfoPresenterImpl(int infoId) {
         this.infoId = infoId;
     }
 
-    @Override
-    public void attach(@NonNull InfoView view) {
-        super.attach(view);
-        view.showProgress();
+    protected void onFirstViewAttach() {
+        super.onFirstViewAttach();
+        getViewState().showProgress();
         loadInfo();
         loadInfoToolbarTitle();
     }
@@ -97,7 +98,7 @@ class InfoPresenterImpl extends DisposablePresenter<InfoView> implements InfoPre
     @DebugLog
     private void onLoadInfoSuccess(@NonNull List<TreeNode> infoList) {
         if (isViewAttached()) {
-            InfoView view = getView();
+            InfoView view = getViewState();
             view.hideProgress();
             view.hideError();
             view.showData(infoList);
@@ -119,7 +120,7 @@ class InfoPresenterImpl extends DisposablePresenter<InfoView> implements InfoPre
     @DebugLog
     private void onLoadToolbarTitleSuccess(@NonNull String title) {
         if (isViewAttached()) {
-            InfoView view = getView();
+            InfoView view = getViewState();
             view.setToolbarTitle(title);
         }
     }
@@ -127,7 +128,7 @@ class InfoPresenterImpl extends DisposablePresenter<InfoView> implements InfoPre
     @DebugLog
     private void onLoadInfoError(@NonNull Throwable throwable) {
         if (isViewAttached()) {
-            InfoView view = getView();
+            InfoView view = getViewState();
             view.hideProgress();
             view.hideData();
             showError(throwable);

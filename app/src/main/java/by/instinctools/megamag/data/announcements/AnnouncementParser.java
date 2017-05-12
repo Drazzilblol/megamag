@@ -4,7 +4,6 @@ import android.support.annotation.NonNull;
 import android.text.Html;
 import android.text.TextUtils;
 
-import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
