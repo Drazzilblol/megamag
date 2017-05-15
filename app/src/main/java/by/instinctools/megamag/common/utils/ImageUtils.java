@@ -100,10 +100,30 @@ public final class ImageUtils {
         }
     }
 
-    private static Bitmap addBackgroundBlur(Bitmap bitmap) {
+
+    @Nullable
+    private static Bitmap getBitmap(@NonNull Context context, @Nullable String image) {
+        Bitmap bitmap = null;
+        try {
+            bitmap = Glide.with(context)
+                    .load(image)
+                    .asBitmap()
+                    .into(-1, -1)
+                    .get();
+        } catch (InterruptedException | ExecutionException e) {
+            Timber.e(e);
+        }
+        return bitmap;
+    }
+
+    @Nullable
+    private static Bitmap addBackgroundBlur(@NonNull Bitmap bitmap) {
         Bitmap cropped = cropDrawable(bitmap);
         Bitmap blurred = blur(cropped, 7);
         cropped.recycle();
+        if (blurred == null) {
+            return null;
+        }
         Bitmap result = Bitmap.createBitmap(
                 blurred,
                 0,
@@ -123,22 +143,7 @@ public final class ImageUtils {
         return result;
     }
 
-    @Nullable
-    private static Bitmap getBitmap(@NonNull Context context, @Nullable String image) {
-        Bitmap bitmap = null;
-        try {
-            bitmap = Glide.with(context)
-                    .load(image)
-                    .asBitmap()
-                    .into(-1, -1)
-                    .get();
-        } catch (InterruptedException | ExecutionException e) {
-            Timber.e(e);
-        }
-        return bitmap;
-    }
-
-    private static Bitmap cropDrawable(Bitmap source) {
+    private static Bitmap cropDrawable(@NonNull Bitmap source) {
         Bitmap bitmap;
         if (source.getWidth() >= source.getHeight()) {
             bitmap = Bitmap.createBitmap(
@@ -160,7 +165,8 @@ public final class ImageUtils {
         return bitmap;
     }
 
-    private static Bitmap blur(Bitmap sentBitmap, int radius) {
+    @Nullable
+    private static Bitmap blur(@NonNull Bitmap sentBitmap, int radius) {
         Bitmap bitmap = sentBitmap.copy(sentBitmap.getConfig(), true);
 
         if (radius < 1) {
