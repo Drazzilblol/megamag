@@ -37,4 +37,6 @@
     <color name="nav_header_text_secondary">@color/white_text_secondary</color>
     <color name="nav_header_text_primary">@color/white_text_primary</color>
 
+    <color name="collapsing_toolbar_text_primary">@color/white_text_primary</color>
+
 </resources>

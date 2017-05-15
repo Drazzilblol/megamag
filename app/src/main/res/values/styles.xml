@@ -14,6 +14,9 @@
     <style name="MainTheme" parent="AppTheme">
     </style>
 
+    <style name="DetailsTheme" parent="AppTheme">
+    </style>
+
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
@@ -110,5 +113,11 @@
     <style name="NavHeaderDropdownButton">
         <item name="android:layout_gravity">bottom|end</item>
         <item name="android:layout_margin">@dimen/nav_header_dropdown_button_margin</item>
+    </style>
+
+    <style name="EventDetailsTitleView">
+        <item name="android:layout_margin">@dimen/collapsing_toolbar_title_margins</item>
+        <item name="android:textSize">@dimen/event_details_collapsing_toolbar_title_text_size</item>
+        <item name="android:textColor">@color/collapsing_toolbar_text_primary</item>
     </style>
 </resources>

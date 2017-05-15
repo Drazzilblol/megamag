@@ -38,6 +38,8 @@
 
     <dimen name="tree_item_left_padding">@dimen/std_top_or_bottom_item_padding</dimen>
 
+    <dimen name="collapsing_toolbar_title_margins">@dimen/std_top_or_bottom_item_padding</dimen>
+
     <!--specific-->
 
     <dimen name="splash_progress_padding">@dimen/item_padding_large</dimen>
@@ -80,5 +82,9 @@
     <dimen name="nav_header_item_margin">@dimen/nav_header_padding_large</dimen>
     <dimen name="nav_header_dropdown_button_size">@dimen/icon_size</dimen>
     <dimen name="nav_header_dropdown_button_margin">@dimen/nav_header_padding_large</dimen>
+
+    <dimen name="event_details_collapsing_toolbar_title_margin">@dimen/collapsing_toolbar_title_margins</dimen>
+    <dimen name="event_details_collapsing_toolbar_title_text_size">@dimen/std_text_size_primary</dimen>
+
 
 </resources>
