@@ -116,14 +116,11 @@ public final class ImageUtils {
         return bitmap;
     }
 
-    @Nullable
+    @NonNull
     private static Bitmap addBackgroundBlur(@NonNull Bitmap bitmap) {
         Bitmap cropped = cropDrawable(bitmap);
         Bitmap blurred = blur(cropped, 7);
         cropped.recycle();
-        if (blurred == null) {
-            return null;
-        }
         Bitmap result = Bitmap.createBitmap(
                 blurred,
                 0,
@@ -165,12 +162,12 @@ public final class ImageUtils {
         return bitmap;
     }
 
-    @Nullable
+    @NonNull
     private static Bitmap blur(@NonNull Bitmap sentBitmap, int radius) {
         Bitmap bitmap = sentBitmap.copy(sentBitmap.getConfig(), true);
 
         if (radius < 1) {
-            return (null);
+            radius = 1;
         }
 
         int w = bitmap.getWidth();
