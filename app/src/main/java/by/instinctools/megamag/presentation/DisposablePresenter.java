@@ -27,7 +27,7 @@ public class DisposablePresenter<V extends MvpView> extends BasePresenter<V> {
     @Override
     public void attach(@NonNull V view) {
         super.attach(view);
-        if (disposables.isDisposed()){
+        if (disposables.isDisposed()) {
             disposables = new CompositeDisposable();
         }
     }

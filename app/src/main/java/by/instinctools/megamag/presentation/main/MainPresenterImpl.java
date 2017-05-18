@@ -9,5 +9,6 @@ class MainPresenterImpl extends DisposablePresenter<MainView> implements MainPre
     @Override
     public void attach(@NonNull MainView view) {
         super.attach(view);
+        view.goToAnnouncementsScreen();
     }
 }

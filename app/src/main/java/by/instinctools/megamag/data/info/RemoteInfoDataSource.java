@@ -5,6 +5,8 @@ import android.support.annotation.NonNull;
 import java.util.ArrayList;
 import java.util.List;
 
+import by.instinctools.megamag.common.errors.ErrorException;
+import by.instinctools.megamag.common.errors.NoDataError;
 import by.instinctools.megamag.data.info.items.InfoImage;
 import by.instinctools.megamag.data.info.items.InfoItem;
 import by.instinctools.megamag.data.info.items.InfoText;
@@ -38,9 +40,10 @@ public class RemoteInfoDataSource implements InfoDataSource {
             return Observable.just(getStubPayInfo(infoId));
         } else if (infoId == HOW_BOOK) {
             return Observable.just(getStubBookInfo(infoId));
-        } else {
+        } else if (infoId == RULES) {
             return Observable.just(getStubRulesInfo(infoId));
         }
+        return Observable.error(new ErrorException(new NoDataError()));
     }
 
     @NonNull

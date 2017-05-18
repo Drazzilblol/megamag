@@ -5,34 +5,16 @@ import android.support.annotation.NonNull;
 import java.util.ArrayList;
 import java.util.List;
 
+import by.instinctools.megamag.data.BaseRemoteDataSource;
 import by.instinctools.megamag.data.menu.MenuData;
-import by.instinctools.megamag.data.menu.MenuDataSource;
 import io.reactivex.Observable;
 
-public class RemoteMenuTheaterDataSource implements MenuDataSource {
-
-    @NonNull
-    @Override
-    public Observable<MenuData> getValue(@NonNull String key) {
-        throw new UnsupportedOperationException();
-    }
-
-    @NonNull
-    @Override
-    public Observable<MenuData> saveValue(@NonNull String key, @NonNull MenuData value) {
-        throw new UnsupportedOperationException();
-    }
+public class MenuTheaterRemoteDataSource extends BaseRemoteDataSource<String, MenuData> {
 
     @NonNull
     @Override
     public Observable<List<MenuData>> getAll() {
         return Observable.just(getStubMenus());
-    }
-
-    @NonNull
-    @Override
-    public Observable<List<MenuData>> saveAll(List<MenuData> collection) {
-        throw new UnsupportedOperationException();
     }
 
     private List<MenuData> getStubMenus() {

@@ -5,15 +5,13 @@ import android.support.annotation.NonNull;
 import java.util.List;
 
 import by.instinctools.megamag.data.DataSource;
-import by.instinctools.megamag.data.menu.local.LocalMenuProfileDataSource;
-import by.instinctools.megamag.data.menu.local.LocalMenuTheaterDataSource;
-import by.instinctools.megamag.data.menu.remote.RemoteMenuTheaterDataSource;
+import by.instinctools.megamag.data.menu.local.MenuProfileLocalDataSource;
 import io.reactivex.Observable;
 
 public class MenuProfileRepositoryImpl implements MenuRepository {
 
     @NonNull
-    DataSource<String, MenuData> localDataSource = new LocalMenuProfileDataSource();
+    private DataSource<String, MenuData> localDataSource = new MenuProfileLocalDataSource();
 
     @NonNull
     @Override

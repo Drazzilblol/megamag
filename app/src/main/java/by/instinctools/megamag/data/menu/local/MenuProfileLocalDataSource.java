@@ -8,37 +8,23 @@ import java.util.List;
 
 import by.instinctools.megamag.Application;
 import by.instinctools.megamag.R;
+import by.instinctools.megamag.data.BaseLocalDataSource;
 import by.instinctools.megamag.data.menu.MenuData;
 import io.reactivex.Observable;
 
-public class LocalMenuProfileDataSource extends LocalMenuDataSource {
+public class MenuProfileLocalDataSource extends BaseLocalDataSource<String, MenuData> {
 
     @NonNull
-    @Override
-    public Observable<MenuData> getValue(@NonNull String key) {
-        throw new UnsupportedOperationException();
-    }
-
-    @NonNull
-    @Override
-    public Observable<MenuData> saveValue(@NonNull String key, @NonNull MenuData value) {
-        throw new UnsupportedOperationException();
-    }
+    private static final List<MenuData> menuList = getMenus();
 
     @NonNull
     @Override
     public Observable<List<MenuData>> getAll() {
-        return Observable.just(getStubMenus());
+        return Observable.just(menuList);
     }
 
     @NonNull
-    @Override
-    public Observable<List<MenuData>> saveAll(List<MenuData> collection) {
-        throw new UnsupportedOperationException();
-    }
-
-    @NonNull
-    private List<MenuData> getStubMenus() {
+    private static List<MenuData> getMenus() {
         List<MenuData> menus = new ArrayList<>();
         Context context = Application.getAppContext();
         menus.add(MenuData.builder()
