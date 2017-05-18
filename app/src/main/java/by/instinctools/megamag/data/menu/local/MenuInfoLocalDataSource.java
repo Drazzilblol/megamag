@@ -31,16 +31,19 @@ public class MenuInfoLocalDataSource extends BaseLocalDataSource<String, MenuDat
                 .title(context.getString(R.string.drawer_menu_how_to_pay))
                 .menuId(InfoDataSource.HOW_PAY)
                 .targetId(InfoDataSource.INFO_GROUP_ID)
+                .icon(R.drawable.ic_payment_black_24dp)
                 .build());
         menus.add(MenuData.builder()
                 .title(context.getString(R.string.drawer_menu_how_to_book))
                 .menuId(InfoDataSource.HOW_BOOK)
                 .targetId(InfoDataSource.INFO_GROUP_ID)
+                .icon(R.drawable.ic_add_shopping_cart_black_24dp)
                 .build());
         menus.add(MenuData.builder()
                 .title(context.getString(R.string.drawer_menu_rules))
                 .menuId(InfoDataSource.RULES)
                 .targetId(InfoDataSource.INFO_GROUP_ID)
+                .icon(R.drawable.ic_announcement_black_24dp)
                 .build());
         return menus;
     }

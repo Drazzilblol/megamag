@@ -12,7 +12,8 @@ public class MenuDbHelper extends SQLiteOpenHelper {
             "CREATE TABLE " + MenuContract.TABLE_NAME + " (" +
                     MenuContract.COLUMN_NAME_MENU_ID + " INTEGER PRIMARY KEY," +
                     MenuContract.COLUMN_NAME_TITLE + " TEXT, " +
-                    MenuContract.COLUMN_NAME_TARGET_ID + " INTEGER" + " )";
+                    MenuContract.COLUMN_NAME_TARGET_ID + " INTEGER" +
+                    MenuContract.COLUMN_NAME_ICON_RES_ID + " INTEGER" + " )";
 
     private static final String SQL_DELETE_MENUS =
             "DROP TABLE IF EXISTS " + MenuContract.TABLE_NAME;

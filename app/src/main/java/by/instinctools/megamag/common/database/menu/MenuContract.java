@@ -6,4 +6,5 @@ public final class MenuContract {
     public static final String COLUMN_NAME_MENU_ID = "menuid";
     public static final String COLUMN_NAME_TITLE = "title";
     public static final String COLUMN_NAME_TARGET_ID = "targetid";
+    public static final String COLUMN_NAME_ICON_RES_ID = "iconresid";
 }

@@ -37,6 +37,7 @@ public class MenuTheaterLocalDataSource extends BaseLocalDataSource<String, Menu
             values.put(MenuContract.COLUMN_NAME_MENU_ID, menudata.getMenuId());
             values.put(MenuContract.COLUMN_NAME_TITLE, menudata.getTitle());
             values.put(MenuContract.COLUMN_NAME_TARGET_ID, menudata.getTargetId());
+            values.put(MenuContract.COLUMN_NAME_ICON_RES_ID, menudata.getIcon());
             db.insert(MenuContract.TABLE_NAME, null, values);
         }
         db.setTransactionSuccessful();
@@ -68,6 +69,7 @@ public class MenuTheaterLocalDataSource extends BaseLocalDataSource<String, Menu
                         .menuId(cursor.getInt(0))
                         .title(cursor.getString(1))
                         .targetId(cursor.getInt(2))
+                        .icon(cursor.getInt(3))
                         .build());
             }
         }

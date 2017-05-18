@@ -31,26 +31,31 @@ public class MenuProfileLocalDataSource extends BaseLocalDataSource<String, Menu
                 .title(context.getString(R.string.drawer_menu_bucket))
                 .menuId(500)
                 .targetId(1005)
+                .icon(R.drawable.ic_shopping_cart_black_24dp)
                 .build());
         menus.add(MenuData.builder()
                 .title(context.getString(R.string.drawer_menu_info))
                 .menuId(501)
                 .targetId(1005)
+                .icon(R.drawable.ic_info_black_24dp)
                 .build());
         menus.add(MenuData.builder()
                 .title(context.getString(R.string.drawer_menu_history))
                 .menuId(502)
                 .targetId(1005)
+                .icon(R.drawable.ic_history_black_24dp)
                 .build());
         menus.add(MenuData.builder()
                 .title(context.getString(R.string.drawer_menu_edit))
                 .menuId(503)
                 .targetId(1005)
+                .icon(R.drawable.ic_edit_black_24dp)
                 .build());
         menus.add(MenuData.builder()
                 .title(context.getString(R.string.drawer_menu_exit))
                 .menuId(504)
                 .targetId(1005)
+                .icon(R.drawable.ic_exit_to_app_black_24dp)
                 .build());
         return menus;
     }

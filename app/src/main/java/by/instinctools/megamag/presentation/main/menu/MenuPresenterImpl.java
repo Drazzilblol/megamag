@@ -182,6 +182,7 @@ public class MenuPresenterImpl extends DisposablePresenter<MenuView> implements 
                     .title(menu.getTitle())
                     .menuId(menu.getMenuId())
                     .targetId(menu.getTargetId())
+                    .icon(menu.getIcon())
                     .build());
         }
 
@@ -198,6 +199,7 @@ public class MenuPresenterImpl extends DisposablePresenter<MenuView> implements 
                 .title(context.getString(R.string.drawer_menu_support))
                 .menuId(SUPPORT_ID)
                 .targetId(INFO_GROUP_ID)
+                .icon(R.drawable.ic_person_black_24dp)
                 .build());
     }
 
@@ -207,21 +209,25 @@ public class MenuPresenterImpl extends DisposablePresenter<MenuView> implements 
                 .title(context.getString(R.string.drawer_menu_region))
                 .menuId(REGION_ID)
                 .targetId(SETTINGS_GROUP_ID)
+                .icon(R.drawable.ic_add_location_black_24dp)
                 .build());
         menu.add(Menu.builder()
                 .title(context.getString(R.string.drawer_menu_about))
                 .menuId(ABOUT_ID)
                 .targetId(SETTINGS_GROUP_ID)
+                .icon(R.drawable.ic_info_black_24dp)
                 .build());
         menu.add(Menu.builder()
                 .title(context.getString(R.string.drawer_menu_share))
                 .menuId(SHARE_ID)
                 .targetId(SETTINGS_GROUP_ID)
+                .icon(R.drawable.ic_share_black_24dp)
                 .build());
         menu.add(Menu.builder()
                 .title(context.getString(R.string.drawer_menu_settings))
                 .menuId(SETTINGS_ID)
                 .targetId(SETTINGS_GROUP_ID)
+                .icon(R.drawable.ic_settings_applications_black_24dp)
                 .build());
     }
 

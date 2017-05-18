@@ -174,13 +174,8 @@ public class MainActivity extends AppCompatActivity
         menu.clear();
         for (Menu menuView : menuList) {
             menu.add(menuView.getTargetId(), menuView.getMenuId(), android.view.Menu.NONE, menuView.getTitle());
+            menu.getItem(menu.size() - 1).setIcon(menuView.getIcon());
         }
-    }
-
-    @Override
-    public void addMenuItem(@NonNull Menu menuDomain, int groupId) {
-        android.view.Menu menu = navigationView.getMenu();
-        menu.add(groupId, menuDomain.getMenuId(), android.view.Menu.NONE, menuDomain.getTitle());
     }
 
     @Override

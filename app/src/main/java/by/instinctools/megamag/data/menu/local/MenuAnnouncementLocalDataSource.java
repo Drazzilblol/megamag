@@ -31,11 +31,13 @@ public class MenuAnnouncementLocalDataSource extends BaseLocalDataSource<String,
                 .title(context.getString(R.string.drawer_menu_announcements))
                 .menuId(AnnouncementDataSource.ANNOUNCEMENT_ID)
                 .targetId(AnnouncementDataSource.ANNOUNCEMENT_GROUP_ID)
+                .icon(R.drawable.ic_today_black_24dp)
                 .build());
         menus.add(MenuData.builder()
                 .title(context.getString(R.string.drawer_menu_tickets))
                 .menuId(AnnouncementDataSource.TICKET_ID)
                 .targetId(AnnouncementDataSource.ANNOUNCEMENT_GROUP_ID)
+                .icon(R.drawable.ic_local_movies_black_24dp)
                 .build());
         return menus;
     }

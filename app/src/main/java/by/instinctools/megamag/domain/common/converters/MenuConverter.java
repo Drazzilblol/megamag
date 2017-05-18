@@ -15,6 +15,7 @@ public class MenuConverter extends BaseConverter<MenuData, Menu> {
                 .menuId(menuData.getMenuId())
                 .title(menuData.getTitle())
                 .targetId(menuData.getTargetId())
+                .icon(menuData.getIcon())
                 .build();
     }
 }
