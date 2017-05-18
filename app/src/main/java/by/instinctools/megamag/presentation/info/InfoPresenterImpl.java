@@ -29,8 +29,8 @@ class InfoPresenterImpl extends DisposablePresenter<InfoView> implements InfoPre
     GetInfoUseCase infoUseCase = new GetInfoUseCase();
 
     @Override
-    public void setInitialValue(int activityId) {
-        infoId = activityId;
+    public void setInitialValue(int infoId) {
+        this.infoId = infoId;
     }
 
     @Override
