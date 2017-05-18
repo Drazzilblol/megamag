@@ -14,6 +14,7 @@ import by.instinctools.megamag.common.database.menu.MenuDbHelper;
 import by.instinctools.megamag.data.BaseLocalDataSource;
 import by.instinctools.megamag.data.menu.MenuData;
 import io.reactivex.Observable;
+import timber.log.Timber;
 
 public class MenuTheaterLocalDataSource extends BaseLocalDataSource<String, MenuData> {
 
@@ -23,7 +24,14 @@ public class MenuTheaterLocalDataSource extends BaseLocalDataSource<String, Menu
     @NonNull
     @Override
     public Observable<List<MenuData>> getAll() {
-        return Observable.just(getMenusFromDb(1002));
+        List<MenuData> list = new ArrayList<>();
+        try {
+            list = getMenusFromDb(1002);
+        } catch (Exception e) {
+            Timber.e(e);
+        }
+
+        return Observable.just(list);
     }
 
     @NonNull
