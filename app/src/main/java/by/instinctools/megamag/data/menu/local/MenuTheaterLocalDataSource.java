@@ -46,7 +46,7 @@ public class MenuTheaterLocalDataSource extends BaseLocalDataSource<String, Menu
     }
 
     @NonNull
-    List<MenuData> getMenusFromDb(int targetId) {
+    private List<MenuData> getMenusFromDb(int targetId) {
         String selection = MenuContract.COLUMN_NAME_TARGET_ID + " = " + targetId;
 
         SQLiteDatabase db = dbHelper.getWritableDatabase();
@@ -71,7 +71,7 @@ public class MenuTheaterLocalDataSource extends BaseLocalDataSource<String, Menu
                         .build());
             }
         }
-        db.close();
+        cursor.close();
         return resultList;
     }
 }

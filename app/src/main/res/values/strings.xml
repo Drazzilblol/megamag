@@ -3,6 +3,7 @@
     <string name="app_name">Megamag</string>
     <string name="no_data_exception_message">No data</string>
     <string name="unknown_error_message">Unknown error</string>
+    <string name="no_id_error_message">No ID</string>
 
     <!--drawer-->
     <string name="navigation_drawer_open">Open navigation drawer</string>
