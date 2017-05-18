@@ -22,7 +22,7 @@
     <string name="drawer_menu_how_to_pay">Как оплатить?</string>
     <string name="drawer_menu_rules">Правила</string>
     <string name="drawer_menu_support">Тех. поддержка</string>
-    <string name="drawer_menu_bucket">Корзина</string>
+    <string name="drawer_menu_basket">Корзина</string>
     <string name="drawer_menu_info">Информация</string>
     <string name="drawer_menu_history">Исторяи Заказов</string>
     <string name="drawer_menu_edit">Редактировать</string>

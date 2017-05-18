@@ -57,6 +57,13 @@ public class MenuPresenterImpl extends DisposablePresenter<MenuView> implements 
         loadMenuCommon();
     }
 
+    @Override
+    public void detach() {
+        super.detach();
+        menuProfileList.clear();
+        menuCommonList.clear();
+    }
+
     @DebugLog
     @Override
     public void onMenuPressed(int id) {
@@ -239,4 +246,5 @@ public class MenuPresenterImpl extends DisposablePresenter<MenuView> implements 
             showError(throwable);
         }
     }
+
 }

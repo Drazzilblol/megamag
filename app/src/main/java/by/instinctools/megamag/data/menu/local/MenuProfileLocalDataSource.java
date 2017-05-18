@@ -28,7 +28,7 @@ public class MenuProfileLocalDataSource extends BaseLocalDataSource<String, Menu
         List<MenuData> menus = new ArrayList<>();
         Context context = Application.getAppContext();
         menus.add(MenuData.builder()
-                .title(context.getString(R.string.drawer_menu_bucket))
+                .title(context.getString(R.string.drawer_menu_basket))
                 .menuId(500)
                 .targetId(1005)
                 .icon(R.drawable.ic_shopping_cart_black_24dp)
