@@ -11,11 +11,10 @@ import by.instinctools.megamag.Application;
 import by.instinctools.megamag.R;
 import by.instinctools.megamag.common.errors.ErrorException;
 import by.instinctools.megamag.common.errors.NoDataError;
-import by.instinctools.megamag.domain.GetMenuUseCase;
+import by.instinctools.megamag.domain.GetCommonMenuUseCase;
 import by.instinctools.megamag.domain.GetProfileMenuUseCase;
-import by.instinctools.megamag.domain.models.MenuDomain;
+import by.instinctools.megamag.domain.models.Menu;
 import by.instinctools.megamag.presentation.DisposablePresenter;
-import by.instinctools.megamag.presentation.main.menu.models.MenuViewModel;
 import hugo.weaving.DebugLog;
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -40,13 +39,16 @@ public class MenuPresenterImpl extends DisposablePresenter<MenuView> implements 
     private static final int ANNOUNCEMENTS_ID = 200;
 
     @NonNull
-    private List<MenuViewModel> menuList = new ArrayList<>();
+    private List<Menu> menuCommonList = new ArrayList<>();
 
     @NonNull
-    GetMenuUseCase menuUseCase = new GetMenuUseCase();
+    private List<Menu> menuProfileList = new ArrayList<>();
 
     @NonNull
-    GetProfileMenuUseCase profileUseCase = new GetProfileMenuUseCase();
+    private GetCommonMenuUseCase menuUseCase = new GetCommonMenuUseCase();
+
+    @NonNull
+    private GetProfileMenuUseCase profileUseCase = new GetProfileMenuUseCase();
 
     @Override
     public void attach(@NonNull MenuView menuView) {
@@ -58,7 +60,7 @@ public class MenuPresenterImpl extends DisposablePresenter<MenuView> implements 
     @DebugLog
     @Override
     public void onMenuPressed(int id) {
-        MenuViewModel menuViewModel = getMenuById(id);
+        Menu menuViewModel = getMenuById(id);
         if (isViewAttached() && menuViewModel != null) {
             MenuView view = getView();
             if (menuViewModel.getTargetId() == INFO_GROUP_ID && menuViewModel.getMenuId() != SUPPORT_ID) {
@@ -81,9 +83,14 @@ public class MenuPresenterImpl extends DisposablePresenter<MenuView> implements 
     }
 
     @Nullable
-    private MenuViewModel getMenuById(int id) {
-        MenuViewModel menuViewModel = null;
-        for (MenuViewModel menu : menuList) {
+    private Menu getMenuById(int id) {
+        Menu menuViewModel = null;
+        for (Menu menu : menuCommonList) {
+            if (menu.getMenuId() == id) {
+                menuViewModel = menu;
+            }
+        }
+        for (Menu menu : menuProfileList) {
             if (menu.getMenuId() == id) {
                 menuViewModel = menu;
             }
@@ -94,10 +101,8 @@ public class MenuPresenterImpl extends DisposablePresenter<MenuView> implements 
     @Override
     public void onProfilePressed(boolean isSelected) {
         if (isSelected) {
-            menuList.clear();
             loadMenuCommon();
         } else {
-            menuList.clear();
             loadMenuProfile();
         }
     }
@@ -110,9 +115,8 @@ public class MenuPresenterImpl extends DisposablePresenter<MenuView> implements 
                         .observeOn(AndroidSchedulers.mainThread())
                         .filter(infoList -> infoList.size() > EMPTY_LIST_SIZE)
                         .switchIfEmpty(Observable.error(new ErrorException(new NoDataError())))
-                        .map(this::createMenu)
                         .subscribe(
-                                this::onLoadSuccess,
+                                this::onProfileLoadSuccess,
                                 this::onLoadError
                         )
         );
@@ -128,28 +132,44 @@ public class MenuPresenterImpl extends DisposablePresenter<MenuView> implements 
                         .switchIfEmpty(Observable.error(new ErrorException(new NoDataError())))
                         .map(this::createMenu)
                         .subscribe(
-                                this::onLoadSuccess,
+                                this::onCommonLoadSuccess,
                                 this::onLoadError
                         )
         );
     }
 
     @DebugLog
-    private void onLoadSuccess(@NonNull List<MenuViewModel> menuList) {
+    private void onCommonLoadSuccess(@NonNull List<Menu> menuList) {
         if (isViewAttached()) {
             MenuView view = getView();
             view.hideProgress();
             view.hideError();
-            this.menuList.addAll(menuList);
-            view.showMenu(this.menuList);
+            menuCommonList.addAll(menuList);
+            view.showMenu(menuCommonList);
+        }
+    }
+
+    @DebugLog
+    private void onProfileLoadSuccess(@NonNull List<Menu> menuList) {
+        if (isViewAttached()) {
+            MenuView view = getView();
+            view.hideProgress();
+            view.hideError();
+            menuProfileList.addAll(menuList);
+            view.showMenu(menuProfileList);
         }
     }
 
     @NonNull
-    private List<MenuViewModel> createMenu(List<MenuDomain> menuList) {
-        List<MenuViewModel> menuViewModels = new ArrayList<>();
-        for (MenuDomain menu : menuList) {
-            menuViewModels.add(MenuViewModel.builder()
+    private List<Menu> createMenu(List<Menu> menuList) {
+        List<Menu> menuViewModels = new ArrayList<>();
+        for (Menu menu : menuList) {
+            if (!menuViewModels.isEmpty() &&
+                    menuViewModels.get(menuViewModels.size() - 1).getTargetId() == THEATER_GROUP_ID &&
+                    menu.getTargetId() == INFO_GROUP_ID) {
+                addSettingsMenuGroup(menuViewModels);
+            }
+            menuViewModels.add(Menu.builder()
                     .title(menu.getTitle())
                     .menuId(menu.getMenuId())
                     .targetId(menu.getTargetId())
@@ -159,39 +179,37 @@ public class MenuPresenterImpl extends DisposablePresenter<MenuView> implements 
         if (menuViewModels.get(menuViewModels.size() - 1).getTargetId() == INFO_GROUP_ID) {
             addSupportMenuItem(menuViewModels);
         }
-        if (menuViewModels.get(menuViewModels.size() - 1).getTargetId() == THEATER_GROUP_ID) {
-            addSettingsMenuGroup(menuViewModels);
-        }
+
         return menuViewModels;
     }
 
-    private void addSupportMenuItem(List<MenuViewModel> menu) {
+    private void addSupportMenuItem(List<Menu> menu) {
         Context context = Application.getAppContext();
-        menu.add(menu.size(), MenuViewModel.builder()
+        menu.add(menu.size(), Menu.builder()
                 .title(context.getString(R.string.drawer_menu_support))
                 .menuId(SUPPORT_ID)
                 .targetId(INFO_GROUP_ID)
                 .build());
     }
 
-    private void addSettingsMenuGroup(List<MenuViewModel> menu) {
+    private void addSettingsMenuGroup(List<Menu> menu) {
         Context context = Application.getAppContext();
-        menu.add(MenuViewModel.builder()
+        menu.add(Menu.builder()
                 .title(context.getString(R.string.drawer_menu_region))
                 .menuId(REGION_ID)
                 .targetId(SETTINGS_GROUP_ID)
                 .build());
-        menu.add(MenuViewModel.builder()
+        menu.add(Menu.builder()
                 .title(context.getString(R.string.drawer_menu_about))
                 .menuId(ABOUT_ID)
                 .targetId(SETTINGS_GROUP_ID)
                 .build());
-        menu.add(MenuViewModel.builder()
+        menu.add(Menu.builder()
                 .title(context.getString(R.string.drawer_menu_share))
                 .menuId(SHARE_ID)
                 .targetId(SETTINGS_GROUP_ID)
                 .build());
-        menu.add(MenuViewModel.builder()
+        menu.add(Menu.builder()
                 .title(context.getString(R.string.drawer_menu_settings))
                 .menuId(SETTINGS_ID)
                 .targetId(SETTINGS_GROUP_ID)

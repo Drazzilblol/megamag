@@ -4,9 +4,8 @@ import android.support.annotation.NonNull;
 
 import java.util.List;
 
-import by.instinctools.megamag.domain.models.MenuDomain;
+import by.instinctools.megamag.domain.models.Menu;
 import by.instinctools.megamag.presentation.MvpView;
-import by.instinctools.megamag.presentation.main.menu.models.MenuViewModel;
 
 public interface MenuView extends MvpView {
 
@@ -16,7 +15,7 @@ public interface MenuView extends MvpView {
 
     void goToTicketsScreen();
 
-    void showMenu(@NonNull List<MenuViewModel> menuList);
+    void showMenu(@NonNull List<Menu> menuList);
 
-    void addMenuItem(@NonNull MenuDomain menu, int groupId);
+    void addMenuItem(@NonNull Menu menu, int groupId);
 }

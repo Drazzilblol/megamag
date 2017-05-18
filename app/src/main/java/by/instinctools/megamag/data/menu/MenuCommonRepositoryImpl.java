@@ -30,11 +30,11 @@ public class MenuCommonRepositoryImpl implements MenuRepository {
     @Override
     public Observable<List<MenuData>> getMenuList() {
         return Observable.zip(
+                menuAnnouncementLocalDataSource.getAll(),
                 theaterLocalDataSource.getAll()
                         .filter(list -> list.size() > 0)
                         .switchIfEmpty(theaterRemoteDataSource.getAll()
                                 .flatMap(theaterLocalDataSource::saveAll)),
-                menuAnnouncementLocalDataSource.getAll(),
                 menuInfoLocalDataSource.getAll(),
                 this::mergeLists
         );

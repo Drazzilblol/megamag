@@ -12,7 +12,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -25,12 +24,11 @@ import butterknife.ButterKnife;
 import by.instinctools.megamag.R;
 import by.instinctools.megamag.common.errors.Error;
 import by.instinctools.megamag.common.utils.Navigator;
-import by.instinctools.megamag.domain.models.MenuDomain;
+import by.instinctools.megamag.domain.models.Menu;
 import by.instinctools.megamag.presentation.main.announcements.AnnouncementsFragment;
 import by.instinctools.megamag.presentation.main.menu.MenuPresenter;
 import by.instinctools.megamag.presentation.main.menu.MenuPresenterImpl;
 import by.instinctools.megamag.presentation.main.menu.MenuView;
-import by.instinctools.megamag.presentation.main.menu.models.MenuViewModel;
 import by.instinctools.megamag.presentation.main.tickets.TicketsFragment;
 
 public class MainActivity extends AppCompatActivity
@@ -105,7 +103,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
+    public boolean onCreateOptionsMenu(android.view.Menu menu) {
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
@@ -171,18 +169,18 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public void showMenu(@NonNull List<MenuViewModel> menuList) {
-        Menu menu = navigationView.getMenu();
+    public void showMenu(@NonNull List<Menu> menuList) {
+        android.view.Menu menu = navigationView.getMenu();
         menu.clear();
-        for (MenuViewModel menuView : menuList) {
-            menu.add(menuView.getTargetId(), menuView.getMenuId(), Menu.NONE, menuView.getTitle());
+        for (Menu menuView : menuList) {
+            menu.add(menuView.getTargetId(), menuView.getMenuId(), android.view.Menu.NONE, menuView.getTitle());
         }
     }
 
     @Override
-    public void addMenuItem(@NonNull MenuDomain menuDomain, int groupId) {
-        Menu menu = navigationView.getMenu();
-        menu.add(groupId, menuDomain.getMenuId(), Menu.NONE, menuDomain.getTitle());
+    public void addMenuItem(@NonNull Menu menuDomain, int groupId) {
+        android.view.Menu menu = navigationView.getMenu();
+        menu.add(groupId, menuDomain.getMenuId(), android.view.Menu.NONE, menuDomain.getTitle());
     }
 
     @Override
