@@ -100,10 +100,19 @@ public class MenuPresenterImpl extends DisposablePresenter<MenuView> implements 
 
     @Override
     public void onProfilePressed(boolean isSelected) {
+        MenuView view = getView();
         if (isSelected) {
-            loadMenuCommon();
+            if (menuCommonList.isEmpty()) {
+                loadMenuCommon();
+            } else {
+                view.showMenu(menuCommonList);
+            }
         } else {
-            loadMenuProfile();
+            if (menuProfileList.isEmpty()) {
+                loadMenuProfile();
+            } else {
+                view.showMenu(menuProfileList);
+            }
         }
     }
 
