@@ -10,7 +10,7 @@ import org.jsoup.select.Elements;
 class EventInfoParser {
 
     private static final String DETAILS_IMAGE_SELECTOR = "image-popup-fit-width";
-    private static final String IMAGE_URL_SELECTOR = "href";
+    private static final String VIDEO_URL_SELECTOR = "href";
 
     static EventInfoData parseEventInfo(@NonNull Document document) {
         Element infoItem = document.getElementsByClass(DETAILS_IMAGE_SELECTOR).first().parent();
@@ -30,6 +30,17 @@ class EventInfoParser {
             }
         }
         builder.description(description.toString());
+
+        Elements videoItem = document.select("strong:contains(Кликните по иконке(ам) для просмотра видеофайлов:)");
+        if (videoItem.size() != 0) {
+            builder.trailerUrl(videoItem.last()
+                    .parent()
+                    .children()
+                    .last()
+                    .child(0)
+                    .absUrl(VIDEO_URL_SELECTOR));
+        }
+
         return builder.build();
     }
 
