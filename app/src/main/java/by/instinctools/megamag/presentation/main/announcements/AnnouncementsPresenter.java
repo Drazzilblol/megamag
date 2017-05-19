@@ -62,4 +62,9 @@ public class AnnouncementsPresenter extends DisposablePresenter<AnnouncementsVie
         view.hideData();
         showError(throwable);
     }
+
+    void onAnnouncementItemClick(@NonNull String detailsId) {
+        getViewState().goToDetailsScreen(detailsId);
+    }
+
 }

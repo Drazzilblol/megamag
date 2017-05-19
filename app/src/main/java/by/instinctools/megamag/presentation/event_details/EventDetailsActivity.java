@@ -27,6 +27,9 @@ import by.instinctools.megamag.presentation.event_details.adapter.DetailsPageAda
 
 public class EventDetailsActivity extends MvpAppCompatActivity implements EventDetailsView {
 
+    @NonNull
+    private static final String EVENT_DETAILS_ID = "EVENT_DETAILS_ID";
+
     @InjectPresenter
     EventDetailsPresenter presenter;
 
@@ -39,8 +42,10 @@ public class EventDetailsActivity extends MvpAppCompatActivity implements EventD
     @BindView(R.id.collapsing_toolbar)
     CollapsingToolbarLayout collapsingToolbarLayout;
 
-    public static Intent createIntent(Context context) {
-        return new Intent(context, EventDetailsActivity.class);
+    public static Intent createIntent(@NonNull Context context, @NonNull String id) {
+        Intent intent = new Intent(context, EventDetailsActivity.class);
+        intent.putExtra(EVENT_DETAILS_ID, id);
+        return intent;
     }
 
     @Override
@@ -48,6 +53,11 @@ public class EventDetailsActivity extends MvpAppCompatActivity implements EventD
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
         ButterKnife.bind(this);
+
+        Intent intent = getIntent();
+        if (intent != null) {
+            presenter.setInitialValue(intent.getStringExtra(EVENT_DETAILS_ID));
+        }
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.event_details_toolbar);
         setSupportActionBar(toolbar);

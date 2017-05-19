@@ -21,12 +21,14 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import by.instinctools.megamag.R;
 import by.instinctools.megamag.common.errors.Error;
+import by.instinctools.megamag.common.utils.Navigator;
 import by.instinctools.megamag.domain.models.Announcement;
 import by.instinctools.megamag.presentation.common.decorator.OffsetItemDecorator;
 import by.instinctools.megamag.presentation.main.announcements.adapter.AnnouncementsListAdapter;
+import by.instinctools.megamag.presentation.main.callbacks.OnItemClickListener;
 import hugo.weaving.DebugLog;
 
-public class AnnouncementsFragment extends MvpAppCompatFragment implements AnnouncementsView {
+public class AnnouncementsFragment extends MvpAppCompatFragment implements AnnouncementsView, OnItemClickListener {
 
     @BindView(R.id.announcements_recycler_view)
     RecyclerView recyclerView;
@@ -41,7 +43,7 @@ public class AnnouncementsFragment extends MvpAppCompatFragment implements Annou
     AnnouncementsPresenter announcementsPresenter;
 
     @NonNull
-    private AnnouncementsListAdapter adapter = new AnnouncementsListAdapter();
+    private AnnouncementsListAdapter adapter = new AnnouncementsListAdapter(this);
 
     public static AnnouncementsFragment newInstance() {
         return new AnnouncementsFragment();
@@ -82,6 +84,11 @@ public class AnnouncementsFragment extends MvpAppCompatFragment implements Annou
     }
 
     @Override
+    public void goToDetailsScreen(String detailsId) {
+        Navigator.goToEventDetailsScreen(this.getContext(), detailsId);
+    }
+
+    @Override
     public void showError(@NonNull Error error) {
         errorView.setText(error.getErrorMessage());
         errorView.setVisibility(View.VISIBLE);
@@ -100,5 +107,11 @@ public class AnnouncementsFragment extends MvpAppCompatFragment implements Annou
     @Override
     public void hideProgress() {
         progressBar.hide();
+    }
+
+
+    @Override
+    public void onClick(String itemId) {
+        announcementsPresenter.onAnnouncementItemClick(itemId);
     }
 }

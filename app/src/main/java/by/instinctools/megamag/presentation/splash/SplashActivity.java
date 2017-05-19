@@ -37,7 +37,7 @@ public class SplashActivity extends MvpAppCompatActivity implements SplashView {
     @DebugLog
     @Override
     public void goToMainScreen() {
-        Navigator.goToEventDetailsScreen(this);
+        Navigator.goToMainScreen(this);
         finish();
     }
 

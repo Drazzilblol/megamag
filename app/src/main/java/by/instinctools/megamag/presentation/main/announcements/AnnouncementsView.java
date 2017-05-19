@@ -18,4 +18,6 @@ interface AnnouncementsView extends MvpView {
 
     @StateStrategyType(AddToEndSingleStrategy.class)
     void hideData();
+
+    void goToDetailsScreen(String detailsId);
 }

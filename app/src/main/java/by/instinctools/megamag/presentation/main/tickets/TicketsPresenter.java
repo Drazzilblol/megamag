@@ -61,4 +61,8 @@ public class TicketsPresenter extends DisposablePresenter<TicketsView> {
         view.hideData();
         showError(throwable);
     }
+
+    void onTicketItemClick(@NonNull String detailsId) {
+        getViewState().goToDetailsScreen(detailsId);
+    }
 }

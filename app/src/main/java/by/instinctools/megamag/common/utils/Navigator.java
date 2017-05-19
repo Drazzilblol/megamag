@@ -26,8 +26,8 @@ public final class Navigator {
         context.startActivity(i);
     }
 
-    public static void goToEventDetailsScreen(@NonNull Context context) {
-        Intent i = EventDetailsActivity.createIntent(context);
+    public static void goToEventDetailsScreen(@NonNull Context context, @NonNull String eventId) {
+        Intent i = EventDetailsActivity.createIntent(context, eventId);
         context.startActivity(i);
     }
 }

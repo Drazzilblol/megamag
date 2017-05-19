@@ -14,8 +14,9 @@ import butterknife.ButterKnife;
 import by.instinctools.megamag.R;
 import by.instinctools.megamag.common.utils.ImageUtils;
 import by.instinctools.megamag.domain.models.Ticket;
+import by.instinctools.megamag.presentation.main.callbacks.OnItemClickListener;
 
-class TicketHolder extends RecyclerView.ViewHolder {
+class TicketHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
     @BindView(R.id.ticket_title_view)
     TextView titleTextView;
@@ -26,18 +27,26 @@ class TicketHolder extends RecyclerView.ViewHolder {
     @BindView(R.id.ticket_cover)
     ImageView imageView;
 
+    @NonNull
+    private OnItemClickListener listener;
+
+    private Ticket ticket;
+
     private static View inflateView(@NonNull ViewGroup parent) {
         Context context = parent.getContext();
         LayoutInflater layoutInflater = LayoutInflater.from(context);
         return layoutInflater.inflate(R.layout.item_ticket, parent, false);
     }
 
-    TicketHolder(@NonNull ViewGroup parent) {
+    TicketHolder(@NonNull ViewGroup parent, @NonNull OnItemClickListener listener) {
         super(inflateView(parent));
+        this.listener = listener;
         ButterKnife.bind(this, itemView);
+        itemView.setOnClickListener(this);
     }
 
     void bindData(@NonNull Ticket ticket) {
+        this.ticket = ticket;
         titleTextView.setText(ticket.getTitle());
         beginWithTextView.setText(ticket.getBeginsWith());
         ImageUtils.loadImageWithBlur(
@@ -46,5 +55,10 @@ class TicketHolder extends RecyclerView.ViewHolder {
                 ticket.getCoverUrl(),
                 ticket.getCoverUrlLQ()
         );
+    }
+
+    @Override
+    public void onClick(View v) {
+        listener.onClick(ticket.getEventId());
     }
 }

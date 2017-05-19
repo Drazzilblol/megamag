@@ -2,8 +2,6 @@ package by.instinctools.megamag.domain;
 
 import android.support.annotation.NonNull;
 
-import java.util.List;
-
 import by.instinctools.megamag.data.event_details_info.EventInfoRepository;
 import by.instinctools.megamag.data.event_details_info.EventInfoRepositoryImpl;
 import by.instinctools.megamag.domain.common.converters.EventInfoConverter;

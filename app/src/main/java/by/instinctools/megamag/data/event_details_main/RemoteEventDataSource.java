@@ -12,7 +12,7 @@ public class RemoteEventDataSource implements EventDataSource {
     @NonNull
     @Override
     public Observable<EventData> getValue(@NonNull String key) {
-        throw new UnsupportedOperationException();
+        return getEvent();
     }
 
     @NonNull
@@ -24,7 +24,7 @@ public class RemoteEventDataSource implements EventDataSource {
     @NonNull
     @Override
     public Observable<List<EventData>> getAll() {
-        return getEvent();
+        throw new UnsupportedOperationException();
     }
 
     @NonNull
@@ -33,8 +33,7 @@ public class RemoteEventDataSource implements EventDataSource {
         throw new UnsupportedOperationException();
     }
 
-
-    private Observable<List<EventData>> getEvent() {
+    private Observable<EventData> getEvent() {
         return Application.getApi()
                 .getDetails("" + 3416)
                 .map(EventParser::parseEvent);

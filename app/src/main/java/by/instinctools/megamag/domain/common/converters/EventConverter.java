@@ -3,10 +3,8 @@ package by.instinctools.megamag.domain.common.converters;
 import android.support.annotation.NonNull;
 
 import by.instinctools.megamag.common.converters.BaseConverter;
-import by.instinctools.megamag.data.event_details_info.EventInfoData;
 import by.instinctools.megamag.data.event_details_main.EventData;
 import by.instinctools.megamag.domain.models.Event;
-import by.instinctools.megamag.domain.models.EventInfo;
 
 public class EventConverter extends BaseConverter<EventData, Event> {
 

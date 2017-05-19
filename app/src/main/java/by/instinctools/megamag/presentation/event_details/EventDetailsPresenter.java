@@ -16,8 +16,14 @@ import io.reactivex.schedulers.Schedulers;
 @InjectViewState
 public class EventDetailsPresenter extends DisposablePresenter<EventDetailsView> {
 
+    private String detailsId;
+
     @NonNull
     UseCase<Event> getEventUseCase = new GetEventUseCase();
+
+    public void setInitialValue(String detailsId) {
+        this.detailsId = detailsId;
+    }
 
     @Override
     protected void onFirstViewAttach() {
