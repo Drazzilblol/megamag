@@ -13,4 +13,6 @@ interface EventDetailsView extends MvpView{
     void showData(@NonNull Event event);
 
     void hideData();
+
+    void initPagerFragments(@NonNull String eventId);
 }

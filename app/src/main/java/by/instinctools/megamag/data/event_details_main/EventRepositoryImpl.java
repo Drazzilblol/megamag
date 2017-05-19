@@ -10,7 +10,7 @@ public class EventRepositoryImpl implements EventRepository {
     private EventDataSource dataSource = new RemoteEventDataSource();
 
     @Override
-    public Observable<EventData> getEventInfo(String id) {
+    public Observable<EventData> getEvent(String id) {
         return dataSource.getValue(id);
     }
 }

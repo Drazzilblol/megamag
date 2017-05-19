@@ -22,7 +22,7 @@ public class GetEventUseCase implements UseCase<Event> {
     }
 
     public Observable<Event> execute(String id) {
-        return repository.getEventInfo(id)
+        return repository.getEvent(id)
                 .map(converter::convert);
     }
 }

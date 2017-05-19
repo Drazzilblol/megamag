@@ -1,6 +1,7 @@
 package by.instinctools.megamag.presentation.event_details.adapter;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
@@ -11,21 +12,24 @@ import by.instinctools.megamag.presentation.event_details.info_page.EventInfoFra
 
 public class DetailsPageAdapter extends FragmentStatePagerAdapter {
 
-    public DetailsPageAdapter(FragmentManager fm) {
+    private final String eventId;
+
+    public DetailsPageAdapter(@NonNull FragmentManager fm, @NonNull String eventId) {
         super(fm);
+        this.eventId = eventId;
     }
 
     @Override
     public Fragment getItem(int position) {
         switch (position) {
             case 0:
-                return EventInfoFragment.newInstance();
+                return EventInfoFragment.newInstance(eventId);
             case 1:
-                return EventInfoFragment.newInstance();
+                return EventInfoFragment.newInstance(eventId);
             case 2:
-                return EventInfoFragment.newInstance();
+                return EventInfoFragment.newInstance(eventId);
             default:
-                return EventInfoFragment.newInstance();
+                return EventInfoFragment.newInstance(eventId);
         }
     }
 

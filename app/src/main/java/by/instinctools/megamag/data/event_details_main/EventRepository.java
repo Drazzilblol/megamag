@@ -4,5 +4,5 @@ import by.instinctools.megamag.data.Repository;
 import io.reactivex.Observable;
 
 public interface EventRepository extends Repository {
-    Observable<EventData> getEventInfo(String id);
+    Observable<EventData> getEvent(String id);
 }

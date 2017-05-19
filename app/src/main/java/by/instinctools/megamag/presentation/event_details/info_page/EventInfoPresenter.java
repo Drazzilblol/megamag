@@ -18,6 +18,12 @@ public class EventInfoPresenter extends DisposablePresenter<EventInfoView> {
     private
     GetEventInfoUseCase getEventInfoUseCase = new GetEventInfoUseCase();
 
+    private String eventId;
+
+    void setInitialValue(String eventId) {
+        this.eventId = eventId;
+    }
+
     @DebugLog
     @Override
     protected void onFirstViewAttach() {
@@ -25,7 +31,7 @@ public class EventInfoPresenter extends DisposablePresenter<EventInfoView> {
         EventInfoView view = getViewState();
         view.showProgress();
         addDisposable(
-                getEventInfoUseCase.execute()
+                getEventInfoUseCase.execute(eventId)
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(

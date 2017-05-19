@@ -7,7 +7,7 @@ import java.util.List;
 import by.instinctools.megamag.Application;
 import io.reactivex.Observable;
 
-public class RemoteEventDataSource implements EventDataSource {
+class RemoteEventDataSource implements EventDataSource {
 
     @NonNull
     @Override

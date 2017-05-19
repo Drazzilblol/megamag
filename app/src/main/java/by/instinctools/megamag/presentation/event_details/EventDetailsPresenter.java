@@ -8,6 +8,10 @@ import com.arellomobile.mvp.InjectViewState;
 import by.instinctools.megamag.domain.GetEventUseCase;
 import by.instinctools.megamag.domain.UseCase;
 import by.instinctools.megamag.domain.models.Event;
+
+import android.support.annotation.NonNull;
+
+
 import by.instinctools.megamag.presentation.DisposablePresenter;
 import hugo.weaving.DebugLog;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -16,14 +20,10 @@ import io.reactivex.schedulers.Schedulers;
 @InjectViewState
 public class EventDetailsPresenter extends DisposablePresenter<EventDetailsView> {
 
-    private String detailsId;
+    private String eventId;
 
     @NonNull
     UseCase<Event> getEventUseCase = new GetEventUseCase();
-
-    public void setInitialValue(String detailsId) {
-        this.detailsId = detailsId;
-    }
 
     @Override
     protected void onFirstViewAttach() {
@@ -54,6 +54,11 @@ public class EventDetailsPresenter extends DisposablePresenter<EventDetailsView>
         view.showData(event);
     }
 
+    public void setInitialValue(@NonNull String eventId) {
+        this.eventId = eventId;
+        getViewState().initPagerFragments(eventId);
+    }
+
     @DebugLog
     private void onLoadError(@NonNull Throwable throwable) {
         EventDetailsView view = getViewState();
@@ -61,4 +66,5 @@ public class EventDetailsPresenter extends DisposablePresenter<EventDetailsView>
         view.hideData();
         showError(throwable);
     }
+
 }

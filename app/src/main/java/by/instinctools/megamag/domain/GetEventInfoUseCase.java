@@ -16,10 +16,13 @@ public class GetEventInfoUseCase implements UseCase<EventInfo> {
     @NonNull
     private EventInfoConverter converter = new EventInfoConverter();
 
+    public Observable<EventInfo> execute(@NonNull String eventId) {
+        return repository.getEventInfo(eventId)
+                .map(converter::convert);
+    }
+
     @Override
     public Observable<EventInfo> execute() {
-        return repository.getEventInfo()
-                .map(eventInfoDatas -> eventInfoDatas.get(0))
-                .map(converter::convert);
+        throw new UnsupportedOperationException();
     }
 }

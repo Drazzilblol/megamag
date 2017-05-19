@@ -12,6 +12,7 @@ import by.instinctools.megamag.domain.GetTicketsUseCase;
 import by.instinctools.megamag.domain.UseCase;
 import by.instinctools.megamag.domain.models.Ticket;
 import by.instinctools.megamag.presentation.DisposablePresenter;
+
 import hugo.weaving.DebugLog;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;

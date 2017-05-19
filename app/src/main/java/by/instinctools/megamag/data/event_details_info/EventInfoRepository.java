@@ -1,11 +1,10 @@
 package by.instinctools.megamag.data.event_details_info;
 
-import java.util.List;
+import android.support.annotation.NonNull;
 
 import by.instinctools.megamag.data.Repository;
-import by.instinctools.megamag.domain.models.EventInfo;
 import io.reactivex.Observable;
 
 public interface EventInfoRepository extends Repository {
-    public Observable<List<EventInfoData>> getEventInfo();
+    Observable<EventInfoData> getEventInfo(@NonNull String eventId);
 }

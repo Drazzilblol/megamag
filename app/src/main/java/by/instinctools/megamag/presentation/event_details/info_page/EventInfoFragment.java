@@ -21,6 +21,7 @@ import hugo.weaving.DebugLog;
 
 public class EventInfoFragment extends MvpAppCompatFragment implements EventInfoView {
 
+    private static final String EVENT_ID = "EVENT_ID";
     @BindView(R.id.details_info_details_view)
     TextView detailsView;
 
@@ -36,8 +37,12 @@ public class EventInfoFragment extends MvpAppCompatFragment implements EventInfo
     @InjectPresenter
     EventInfoPresenter presenter;
 
-    public static EventInfoFragment newInstance() {
-        return new EventInfoFragment();
+    public static EventInfoFragment newInstance(@NonNull String eventId) {
+        EventInfoFragment fragment = new EventInfoFragment();
+        Bundle args = new Bundle();
+        args.putString(EVENT_ID, eventId);
+        fragment.setArguments(args);
+        return fragment;
     }
 
     @DebugLog
@@ -47,6 +52,9 @@ public class EventInfoFragment extends MvpAppCompatFragment implements EventInfo
         super.onCreateView(inflater, container, savedInstanceState);
         View view = inflater.inflate(R.layout.fragment_details_info, container, false);
         ButterKnife.bind(this, view);
+        if (getArguments() != null) {
+            presenter.setInitialValue(getArguments().getString(EVENT_ID));
+        }
         return view;
     }
 

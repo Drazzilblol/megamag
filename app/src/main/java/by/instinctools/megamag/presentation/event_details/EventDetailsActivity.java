@@ -95,13 +95,12 @@ public class EventDetailsActivity extends MvpAppCompatActivity implements EventD
         coverView.setVisibility(View.VISIBLE);
         collapsingToolbarLayout.setTitle(event.getTitle());
         collapsingToolbarLayout.setVisibility(View.VISIBLE);
-
-        initPager();
     }
 
-    private void initPager() {
+    @Override
+    public void initPagerFragments(@NonNull String eventId) {
         FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentStatePagerAdapter pagerAdapter = new DetailsPageAdapter(fragmentManager);
+        FragmentStatePagerAdapter pagerAdapter = new DetailsPageAdapter(fragmentManager, eventId);
         viewPager.setAdapter(pagerAdapter);
         TabLayout tabLayout = (TabLayout) findViewById(R.id.activity_details_tab_layout);
         tabLayout.setupWithViewPager(viewPager);
