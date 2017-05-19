@@ -70,23 +70,18 @@ public class EventDetailsActivity extends MvpAppCompatActivity implements EventD
 
     @Override
     public void showError(@NonNull Error error) {
-
     }
 
     @Override
     public void hideError() {
-
     }
 
     @Override
     public void showProgress() {
-
-
     }
 
     @Override
     public void hideProgress() {
-
     }
 
     @Override

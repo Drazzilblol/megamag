@@ -15,8 +15,7 @@ import io.reactivex.schedulers.Schedulers;
 public class EventInfoPresenter extends DisposablePresenter<EventInfoView> {
 
     @NonNull
-    private
-    GetEventInfoUseCase getEventInfoUseCase = new GetEventInfoUseCase();
+    private GetEventInfoUseCase getEventInfoUseCase = new GetEventInfoUseCase();
 
     private String eventId;
 

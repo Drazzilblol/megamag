@@ -21,7 +21,9 @@ import hugo.weaving.DebugLog;
 
 public class EventInfoFragment extends MvpAppCompatFragment implements EventInfoView {
 
+    @NonNull
     private static final String EVENT_ID = "EVENT_ID";
+
     @BindView(R.id.details_info_details_view)
     TextView detailsView;
 
