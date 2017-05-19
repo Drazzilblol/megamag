@@ -10,7 +10,7 @@ import by.instinctools.megamag.domain.common.converters.EventInfoConverter;
 import by.instinctools.megamag.domain.models.EventInfo;
 import io.reactivex.Observable;
 
-public class GetEventInfoUseCase implements UseCase<List<EventInfo>> {
+public class GetEventInfoUseCase implements UseCase<EventInfo> {
 
     @NonNull
     private EventInfoRepository repository = new EventInfoRepositoryImpl();
@@ -19,8 +19,9 @@ public class GetEventInfoUseCase implements UseCase<List<EventInfo>> {
     private EventInfoConverter converter = new EventInfoConverter();
 
     @Override
-    public Observable<List<EventInfo>> execute() {
+    public Observable<EventInfo> execute() {
         return repository.getEventInfo()
+                .map(eventInfoDatas -> eventInfoDatas.get(0))
                 .map(converter::convert);
     }
 }

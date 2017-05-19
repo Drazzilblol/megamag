@@ -10,6 +10,11 @@
     <string name="announcements_toolbar_title">Анонсы</string>
     <string name="tickets_toolbar_title">Билеты</string>
 
+    <!--details-->
+    <string name="details_view_pager_info">Информация</string>
+    <string name="details_view_pager_session">Сеансы</string>
+    <string name="details_view_pager_comments">Комментарии</string>
+
     <!--menu-->
     <string name="drawer_menu_profile">Профиль</string>
     <string name="drawer_menu_tickets">Билеты</string>

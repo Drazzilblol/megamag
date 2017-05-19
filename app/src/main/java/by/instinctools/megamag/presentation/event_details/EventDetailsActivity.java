@@ -5,6 +5,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -19,18 +23,25 @@ import by.instinctools.megamag.R;
 import by.instinctools.megamag.common.errors.Error;
 import by.instinctools.megamag.common.utils.ImageUtils;
 import by.instinctools.megamag.domain.models.Event;
+import by.instinctools.megamag.presentation.event_details.adapter.DetailsPageAdapter;
 
 public class EventDetailsActivity extends MvpAppCompatActivity implements EventDetailsView {
 
     @InjectPresenter
-    EventDetailsPresenterImpl presenter;
+    EventDetailsPresenter presenter;
 
     @BindView(R.id.event_cover)
     ImageView coverView;
 
+    @BindView(R.id.event_details_view_pager)
+    ViewPager viewPager;
+
     @BindView(R.id.collapsing_toolbar)
     CollapsingToolbarLayout collapsingToolbarLayout;
 
+    public static Intent createIntent(Context context) {
+        return new Intent(context, EventDetailsActivity.class);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,11 +57,6 @@ public class EventDetailsActivity extends MvpAppCompatActivity implements EventD
             getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
     }
-
-    public static Intent createIntent(Context context) {
-        return new Intent(context, EventDetailsActivity.class);
-    }
-
 
     @Override
     public void showError(@NonNull Error error) {
@@ -79,7 +85,18 @@ public class EventDetailsActivity extends MvpAppCompatActivity implements EventD
         coverView.setVisibility(View.VISIBLE);
         collapsingToolbarLayout.setTitle(event.getTitle());
         collapsingToolbarLayout.setVisibility(View.VISIBLE);
+
+        initPager();
     }
+
+    private void initPager() {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentStatePagerAdapter pagerAdapter = new DetailsPageAdapter(fragmentManager);
+        viewPager.setAdapter(pagerAdapter);
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.activity_details_tab_layout);
+        tabLayout.setupWithViewPager(viewPager);
+    }
+
 
     @Override
     public void hideData() {
