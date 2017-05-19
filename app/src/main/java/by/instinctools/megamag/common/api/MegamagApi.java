@@ -4,6 +4,7 @@ import org.jsoup.nodes.Document;
 
 import io.reactivex.Observable;
 import retrofit2.http.GET;
+import retrofit2.http.Query;
 
 public interface MegamagApi {
 
@@ -14,5 +15,10 @@ public interface MegamagApi {
     Observable<Document> getHowToPayInfo();
 
     @GET("/howto_rules.php")
+
     Observable<Document> getRulesInfo();
+
+    @GET("/newsdesk_info.php")
+    Observable<Document> getDetails(@Query("newsdesk_id") String id);
+
 }
