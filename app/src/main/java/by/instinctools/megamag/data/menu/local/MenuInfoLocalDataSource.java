@@ -33,19 +33,19 @@ public class MenuInfoLocalDataSource extends BaseLocalDataSource<String, MenuDat
             menus.add(MenuData.builder()
                     .title(context.getString(R.string.drawer_menu_how_to_pay))
                     .type(ItemTypeFactory.getHowPayType())
-                    .groupType(GroupTypeFactory.getInfoGroupId())
+                    .groupType(GroupTypeFactory.getInfoGroupType())
                     .icon(R.drawable.ic_payment_black_24dp)
                     .build());
             menus.add(MenuData.builder()
                     .title(context.getString(R.string.drawer_menu_how_to_book))
                     .type(ItemTypeFactory.getHowBookType())
-                    .groupType(GroupTypeFactory.getInfoGroupId())
+                    .groupType(GroupTypeFactory.getInfoGroupType())
                     .icon(R.drawable.ic_add_shopping_cart_black_24dp)
                     .build());
             menus.add(MenuData.builder()
                     .title(context.getString(R.string.drawer_menu_rules))
                     .type(ItemTypeFactory.getRulesType())
-                    .groupType(GroupTypeFactory.getInfoGroupId())
+                    .groupType(GroupTypeFactory.getInfoGroupType())
                     .icon(R.drawable.ic_announcement_black_24dp)
                     .build());
         } catch (Exception e) {

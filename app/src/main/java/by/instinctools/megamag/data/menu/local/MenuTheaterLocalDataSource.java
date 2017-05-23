@@ -29,7 +29,7 @@ public class MenuTheaterLocalDataSource extends BaseLocalDataSource<String, Menu
     public Observable<List<MenuData>> getAll() {
         List<MenuData> list = new ArrayList<>();
         try {
-            list = getMenusFromDb(GroupTypeFactory.getTheaterGroupId().getId());
+            list = getMenusFromDb(GroupTypeFactory.getTheaterGroupType().getId());
         } catch (Exception e) {
             Timber.e(e);
         }

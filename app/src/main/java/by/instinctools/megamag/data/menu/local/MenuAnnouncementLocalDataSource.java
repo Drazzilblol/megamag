@@ -33,13 +33,13 @@ public class MenuAnnouncementLocalDataSource extends BaseLocalDataSource<String,
             menus.add(MenuData.builder()
                     .title(context.getString(R.string.drawer_menu_announcements))
                     .type(ItemTypeFactory.getAnnouncementsType())
-                    .groupType(GroupTypeFactory.getAnnouncementGroupId())
+                    .groupType(GroupTypeFactory.getAnnouncementGroupType())
                     .icon(R.drawable.ic_today_black_24dp)
                     .build());
             menus.add(MenuData.builder()
                     .title(context.getString(R.string.drawer_menu_tickets))
                     .type(ItemTypeFactory.getTicketType())
-                    .groupType(GroupTypeFactory.getAnnouncementGroupId())
+                    .groupType(GroupTypeFactory.getAnnouncementGroupType())
                     .icon(R.drawable.ic_local_movies_black_24dp)
                     .build());
         } catch (Exception e) {

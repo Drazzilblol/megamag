@@ -25,31 +25,31 @@ public class MenuTheaterRemoteDataSource extends BaseRemoteDataSource<String, Me
         menus.add(MenuData.builder()
                 .title("Космос")
                 .type(new ItemType(300))
-                .groupType(GroupTypeFactory.getTheaterGroupId())
+                .groupType(GroupTypeFactory.getTheaterGroupType())
                 .icon(R.drawable.ic_empty_24dp)
                 .build());
         menus.add(MenuData.builder()
                 .title("Красная Звезда")
                 .type(new ItemType(301))
-                .groupType(GroupTypeFactory.getTheaterGroupId())
+                .groupType(GroupTypeFactory.getTheaterGroupType())
                 .icon(R.drawable.ic_empty_24dp)
                 .build());
         menus.add(MenuData.builder()
                 .title("Октябрь")
                 .type(new ItemType(302))
-                .groupType(GroupTypeFactory.getTheaterGroupId())
+                .groupType(GroupTypeFactory.getTheaterGroupType())
                 .icon(R.drawable.ic_empty_24dp)
                 .build());
         menus.add(MenuData.builder()
                 .title("Драмматический Театр")
                 .type(new ItemType(303))
-                .groupType(GroupTypeFactory.getTheaterGroupId())
+                .groupType(GroupTypeFactory.getTheaterGroupType())
                 .icon(R.drawable.ic_empty_24dp)
                 .build());
         menus.add(MenuData.builder()
                 .title("Театр Кукол")
                 .type(new ItemType(304))
-                .groupType(GroupTypeFactory.getTheaterGroupId())
+                .groupType(GroupTypeFactory.getTheaterGroupType())
                 .icon(R.drawable.ic_empty_24dp)
                 .build());
         return menus;
