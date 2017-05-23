@@ -31,8 +31,8 @@ public class MenuCommonRepositoryImpl implements MenuRepository {
     @Override
     public Observable<List<MenuData>> getMenuList() {
         return Observable.zip(
-                this.addErrorHandling(menuAnnouncementLocalDataSource.getAll()),
-                this.addErrorHandling(theaterLocalDataSource.getAll()
+                addErrorHandling(menuAnnouncementLocalDataSource.getAll()),
+                addErrorHandling(theaterLocalDataSource.getAll()
                         .filter(list -> list.size() > 0)
                         .switchIfEmpty(theaterRemoteDataSource.getAll()
                                 .flatMap(theaterLocalDataSource::saveAll))),
