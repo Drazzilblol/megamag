@@ -36,8 +36,8 @@ public class MenuCommonRepositoryImpl implements MenuRepository {
                         .filter(list -> list.size() > 0)
                         .switchIfEmpty(theaterRemoteDataSource.getAll()
                                 .flatMap(theaterLocalDataSource::saveAll))),
-                this.addErrorHandling(menuInfoLocalDataSource.getAll()),
-                this::mergeLists
+                addErrorHandling(menuInfoLocalDataSource.getAll()),
+                this::zipLists
         );
     }
 
@@ -47,7 +47,7 @@ public class MenuCommonRepositoryImpl implements MenuRepository {
                 .defaultIfEmpty(Collections.emptyList());
     }
 
-    private List<MenuData> mergeLists(List<MenuData> list1, List<MenuData> list2, List<MenuData> list3) {
+    private List<MenuData> zipLists(List<MenuData> list1, List<MenuData> list2, List<MenuData> list3) {
         List<MenuData> list = new ArrayList<>();
         list.addAll(list1);
         list.addAll(list2);
