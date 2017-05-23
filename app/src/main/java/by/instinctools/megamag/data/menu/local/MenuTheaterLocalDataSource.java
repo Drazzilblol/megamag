@@ -13,6 +13,8 @@ import by.instinctools.megamag.common.database.menu.MenuContract;
 import by.instinctools.megamag.common.database.menu.MenuDbHelper;
 import by.instinctools.megamag.data.BaseLocalDataSource;
 import by.instinctools.megamag.data.menu.MenuData;
+import by.instinctools.megamag.data.type.GroupType;
+import by.instinctools.megamag.data.type.ItemType;
 import io.reactivex.Observable;
 import timber.log.Timber;
 
@@ -42,9 +44,9 @@ public class MenuTheaterLocalDataSource extends BaseLocalDataSource<String, Menu
         db.beginTransaction();
         for (MenuData menudata : collection) {
             ContentValues values = new ContentValues();
-            values.put(MenuContract.COLUMN_NAME_MENU_ID, menudata.getMenuId());
+            values.put(MenuContract.COLUMN_NAME_MENU_ID, menudata.getType().getId());
             values.put(MenuContract.COLUMN_NAME_TITLE, menudata.getTitle());
-            values.put(MenuContract.COLUMN_NAME_TARGET_ID, menudata.getTargetId());
+            values.put(MenuContract.COLUMN_NAME_TARGET_ID, menudata.getGroupType().getId());
             values.put(MenuContract.COLUMN_NAME_ICON_RES_ID, menudata.getIcon());
             db.insert(MenuContract.TABLE_NAME, null, values);
         }
@@ -74,9 +76,9 @@ public class MenuTheaterLocalDataSource extends BaseLocalDataSource<String, Menu
             while (!cursor.isLast()) {
                 cursor.moveToNext();
                 resultList.add(MenuData.builder()
-                        .menuId(cursor.getInt(0))
+                        .type(new ItemType(cursor.getInt(0)))
                         .title(cursor.getString(1))
-                        .targetId(cursor.getInt(2))
+                        .groupType(new GroupType(cursor.getInt(2)))
                         .icon(cursor.getInt(3))
                         .build());
             }

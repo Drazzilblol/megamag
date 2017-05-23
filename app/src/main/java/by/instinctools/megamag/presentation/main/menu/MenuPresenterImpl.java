@@ -11,6 +11,9 @@ import by.instinctools.megamag.Application;
 import by.instinctools.megamag.R;
 import by.instinctools.megamag.common.errors.ErrorException;
 import by.instinctools.megamag.common.errors.NoDataError;
+import by.instinctools.megamag.common.factory.GroupTypeFactory;
+import by.instinctools.megamag.common.factory.ItemTypeFactory;
+import by.instinctools.megamag.data.type.Type;
 import by.instinctools.megamag.domain.GetCommonMenuUseCase;
 import by.instinctools.megamag.domain.GetProfileMenuUseCase;
 import by.instinctools.megamag.domain.models.Menu;
@@ -24,19 +27,6 @@ import timber.log.Timber;
 public class MenuPresenterImpl extends DisposablePresenter<MenuView> implements MenuPresenter {
 
     private static final int EMPTY_LIST_SIZE = 0;
-
-    private static final int INFO_GROUP_ID = 1000;
-    private static final int ANNOUNCEMENT_GROUP_ID = 1001;
-    private static final int THEATER_GROUP_ID = 1002;
-    private static final int SETTINGS_GROUP_ID = 1004;
-    private static final int PROFILE_GROUP_ID = 1005;
-
-    private static final int SUPPORT_ID = 104;
-    private static final int REGION_ID = 400;
-    private static final int ABOUT_ID = 401;
-    private static final int SHARE_ID = 402;
-    private static final int SETTINGS_ID = 404;
-    private static final int ANNOUNCEMENTS_ID = 200;
 
     @NonNull
     private List<Menu> menuCommonList = new ArrayList<>();
@@ -68,23 +58,25 @@ public class MenuPresenterImpl extends DisposablePresenter<MenuView> implements 
     @DebugLog
     @Override
     public void onMenuPressed(int id) {
-        Menu menuViewModel = getMenuById(id);
-        if (isViewAttached() && menuViewModel != null) {
+        Menu menu = getMenuById(id);
+        if (isViewAttached() && menu != null) {
+            Type menuType = menu.getType();
+            Type menuGroupType = menu.getGroupType();
             MenuView view = getView();
-            if (menuViewModel.getTargetId() == INFO_GROUP_ID && menuViewModel.getMenuId() != SUPPORT_ID) {
+            if (menuGroupType.equals(GroupTypeFactory.getInfoGroupId()) && !menuType.equals(ItemTypeFactory.getSupportType())) {
                 view.goToInfoScreen(id);
             }
-            if (menuViewModel.getTargetId() == ANNOUNCEMENT_GROUP_ID) {
-                if (menuViewModel.getMenuId() == ANNOUNCEMENTS_ID) {
+            if (menuGroupType.equals(GroupTypeFactory.getAnnouncementGroupId())) {
+                if (menuType.equals(ItemTypeFactory.getAnnouncementsType())) {
                     view.goToAnnouncementsScreen();
                 } else {
                     view.goToTicketsScreen();
                 }
             }
-            if (menuViewModel.getTargetId() == THEATER_GROUP_ID) {
+            if (menuGroupType.equals(GroupTypeFactory.getTheaterGroupId())) {
                 Timber.i("Theater group");
             }
-            if (menuViewModel.getTargetId() == PROFILE_GROUP_ID) {
+            if (menuGroupType.equals(GroupTypeFactory.getProfileGroupId())) {
                 Timber.i("Profile group");
             }
         }
@@ -92,18 +84,18 @@ public class MenuPresenterImpl extends DisposablePresenter<MenuView> implements 
 
     @Nullable
     private Menu getMenuById(int id) {
-        Menu menuViewModel = null;
+        Menu menuModel = null;
         for (Menu menu : menuCommonList) {
-            if (menu.getMenuId() == id) {
-                menuViewModel = menu;
+            if (menu.getType().getId() == id) {
+                menuModel = menu;
             }
         }
         for (Menu menu : menuProfileList) {
-            if (menu.getMenuId() == id) {
-                menuViewModel = menu;
+            if (menu.getType().getId() == id) {
+                menuModel = menu;
             }
         }
-        return menuViewModel;
+        return menuModel;
     }
 
     @Override
@@ -182,19 +174,19 @@ public class MenuPresenterImpl extends DisposablePresenter<MenuView> implements 
         List<Menu> menus = new ArrayList<>();
         for (Menu menu : menuList) {
             if (!menus.isEmpty() &&
-                    menus.get(menus.size() - 1).getTargetId() == THEATER_GROUP_ID &&
-                    menu.getTargetId() == INFO_GROUP_ID) {
+                    menus.get(menus.size() - 1).getGroupType().equals(GroupTypeFactory.getTheaterGroupId()) &&
+                    menu.getGroupType().equals(GroupTypeFactory.getInfoGroupId())) {
                 addSettingsMenuGroup(menus);
             }
             menus.add(Menu.builder()
                     .title(menu.getTitle())
-                    .menuId(menu.getMenuId())
-                    .targetId(menu.getTargetId())
+                    .type(menu.getType())
+                    .groupType(menu.getGroupType())
                     .icon(menu.getIcon())
                     .build());
         }
 
-        if (menus.get(menus.size() - 1).getTargetId() == INFO_GROUP_ID) {
+        if (menus.get(menus.size() - 1).getGroupType().equals(GroupTypeFactory.getInfoGroupId())) {
             addSupportMenuItem(menus);
         }
 
@@ -205,8 +197,8 @@ public class MenuPresenterImpl extends DisposablePresenter<MenuView> implements 
         Context context = Application.getAppContext();
         menu.add(menu.size(), Menu.builder()
                 .title(context.getString(R.string.drawer_menu_support))
-                .menuId(SUPPORT_ID)
-                .targetId(INFO_GROUP_ID)
+                .type(ItemTypeFactory.getSupportType())
+                .groupType(GroupTypeFactory.getInfoGroupId())
                 .icon(R.drawable.ic_person_black_24dp)
                 .build());
     }
@@ -215,26 +207,26 @@ public class MenuPresenterImpl extends DisposablePresenter<MenuView> implements 
         Context context = Application.getAppContext();
         menu.add(Menu.builder()
                 .title(context.getString(R.string.drawer_menu_region))
-                .menuId(REGION_ID)
-                .targetId(SETTINGS_GROUP_ID)
+                .type(ItemTypeFactory.getRegionType())
+                .groupType(GroupTypeFactory.getSettingsGroupId())
                 .icon(R.drawable.ic_add_location_black_24dp)
                 .build());
         menu.add(Menu.builder()
                 .title(context.getString(R.string.drawer_menu_about))
-                .menuId(ABOUT_ID)
-                .targetId(SETTINGS_GROUP_ID)
+                .type(ItemTypeFactory.getAboutType())
+                .groupType(GroupTypeFactory.getSettingsGroupId())
                 .icon(R.drawable.ic_info_black_24dp)
                 .build());
         menu.add(Menu.builder()
                 .title(context.getString(R.string.drawer_menu_share))
-                .menuId(SHARE_ID)
-                .targetId(SETTINGS_GROUP_ID)
+                .type(ItemTypeFactory.getShareType())
+                .groupType(GroupTypeFactory.getSettingsGroupId())
                 .icon(R.drawable.ic_share_black_24dp)
                 .build());
         menu.add(Menu.builder()
                 .title(context.getString(R.string.drawer_menu_settings))
-                .menuId(SETTINGS_ID)
-                .targetId(SETTINGS_GROUP_ID)
+                .type(ItemTypeFactory.getSettingsType())
+                .groupType(GroupTypeFactory.getSettingsGroupId())
                 .icon(R.drawable.ic_settings_applications_black_24dp)
                 .build());
     }

@@ -5,15 +5,20 @@ import android.support.annotation.NonNull;
 
 import com.google.auto.value.AutoValue;
 
+import by.instinctools.megamag.data.type.GroupType;
+import by.instinctools.megamag.data.type.ItemType;
+
 @AutoValue
 public abstract class MenuData {
 
     @NonNull
     public abstract String getTitle();
 
-    public abstract int getMenuId();
+    @NonNull
+    public abstract ItemType getType();
 
-    public abstract int getTargetId();
+    @NonNull
+    public abstract GroupType getGroupType();
 
     @DrawableRes
     public abstract int getIcon();
@@ -28,9 +33,9 @@ public abstract class MenuData {
 
         public abstract MenuData.Builder title(@NonNull String value);
 
-        public abstract MenuData.Builder menuId(int value);
+        public abstract MenuData.Builder type(@NonNull ItemType value);
 
-        public abstract MenuData.Builder targetId(int value);
+        public abstract MenuData.Builder groupType(@NonNull GroupType value);
 
         public abstract MenuData.Builder icon(@DrawableRes int value);
 

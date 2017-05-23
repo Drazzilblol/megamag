@@ -12,9 +12,9 @@ public class MenuConverter extends BaseConverter<MenuData, Menu> {
     @Override
     public Menu convert(@NonNull MenuData menuData) {
         return Menu.builder()
-                .menuId(menuData.getMenuId())
+                .type(menuData.getType())
                 .title(menuData.getTitle())
-                .targetId(menuData.getTargetId())
+                .groupType(menuData.getGroupType())
                 .icon(menuData.getIcon())
                 .build();
     }

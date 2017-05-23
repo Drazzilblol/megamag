@@ -8,8 +8,9 @@ import java.util.List;
 
 import by.instinctools.megamag.Application;
 import by.instinctools.megamag.R;
+import by.instinctools.megamag.common.factory.GroupTypeFactory;
+import by.instinctools.megamag.common.factory.ItemTypeFactory;
 import by.instinctools.megamag.data.BaseLocalDataSource;
-import by.instinctools.megamag.data.info.InfoDataSource;
 import by.instinctools.megamag.data.menu.MenuData;
 import io.reactivex.Observable;
 
@@ -29,20 +30,20 @@ public class MenuInfoLocalDataSource extends BaseLocalDataSource<String, MenuDat
         List<MenuData> menus = new ArrayList<>();
         menus.add(MenuData.builder()
                 .title(context.getString(R.string.drawer_menu_how_to_pay))
-                .menuId(InfoDataSource.HOW_PAY)
-                .targetId(InfoDataSource.INFO_GROUP_ID)
+                .type(ItemTypeFactory.getHowPayType())
+                .groupType(GroupTypeFactory.getInfoGroupId())
                 .icon(R.drawable.ic_payment_black_24dp)
                 .build());
         menus.add(MenuData.builder()
                 .title(context.getString(R.string.drawer_menu_how_to_book))
-                .menuId(InfoDataSource.HOW_BOOK)
-                .targetId(InfoDataSource.INFO_GROUP_ID)
+                .type(ItemTypeFactory.getHowBookType())
+                .groupType(GroupTypeFactory.getInfoGroupId())
                 .icon(R.drawable.ic_add_shopping_cart_black_24dp)
                 .build());
         menus.add(MenuData.builder()
                 .title(context.getString(R.string.drawer_menu_rules))
-                .menuId(InfoDataSource.RULES)
-                .targetId(InfoDataSource.INFO_GROUP_ID)
+                .type(ItemTypeFactory.getRulesType())
+                .groupType(GroupTypeFactory.getInfoGroupId())
                 .icon(R.drawable.ic_announcement_black_24dp)
                 .build());
         return menus;

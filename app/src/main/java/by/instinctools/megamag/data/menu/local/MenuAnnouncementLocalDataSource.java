@@ -8,8 +8,9 @@ import java.util.List;
 
 import by.instinctools.megamag.Application;
 import by.instinctools.megamag.R;
+import by.instinctools.megamag.common.factory.GroupTypeFactory;
+import by.instinctools.megamag.common.factory.ItemTypeFactory;
 import by.instinctools.megamag.data.BaseLocalDataSource;
-import by.instinctools.megamag.data.announcements.AnnouncementDataSource;
 import by.instinctools.megamag.data.menu.MenuData;
 import io.reactivex.Observable;
 
@@ -29,14 +30,14 @@ public class MenuAnnouncementLocalDataSource extends BaseLocalDataSource<String,
         List<MenuData> menus = new ArrayList<>();
         menus.add(MenuData.builder()
                 .title(context.getString(R.string.drawer_menu_announcements))
-                .menuId(AnnouncementDataSource.ANNOUNCEMENT_ID)
-                .targetId(AnnouncementDataSource.ANNOUNCEMENT_GROUP_ID)
+                .type(ItemTypeFactory.getAnnouncementsType())
+                .groupType(GroupTypeFactory.getAnnouncementGroupId())
                 .icon(R.drawable.ic_today_black_24dp)
                 .build());
         menus.add(MenuData.builder()
                 .title(context.getString(R.string.drawer_menu_tickets))
-                .menuId(AnnouncementDataSource.TICKET_ID)
-                .targetId(AnnouncementDataSource.ANNOUNCEMENT_GROUP_ID)
+                .type(ItemTypeFactory.getTicketType())
+                .groupType(GroupTypeFactory.getAnnouncementGroupId())
                 .icon(R.drawable.ic_local_movies_black_24dp)
                 .build());
         return menus;

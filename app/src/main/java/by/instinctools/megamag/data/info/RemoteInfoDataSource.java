@@ -7,6 +7,7 @@ import java.util.List;
 
 import by.instinctools.megamag.common.errors.ErrorException;
 import by.instinctools.megamag.common.errors.NoDataError;
+import by.instinctools.megamag.common.factory.ItemTypeFactory;
 import by.instinctools.megamag.data.info.items.InfoImage;
 import by.instinctools.megamag.data.info.items.InfoItem;
 import by.instinctools.megamag.data.info.items.InfoText;
@@ -36,11 +37,11 @@ public class RemoteInfoDataSource implements InfoDataSource {
     @DebugLog
     @NonNull
     public Observable<List<InfoData>> getAll(int infoId) {
-        if (infoId == HOW_PAY) {
+        if (infoId == ItemTypeFactory.getHowPayType().getId()) {
             return Observable.just(getStubPayInfo(infoId));
-        } else if (infoId == HOW_BOOK) {
+        } else if (infoId == ItemTypeFactory.getHowBookType().getId()) {
             return Observable.just(getStubBookInfo(infoId));
-        } else if (infoId == RULES) {
+        } else if (infoId == ItemTypeFactory.getRulesType().getId()) {
             return Observable.just(getStubRulesInfo(infoId));
         }
         return Observable.error(new ErrorException(new NoDataError()));
