@@ -1,5 +1,7 @@
 package by.instinctools.megamag.common.factory;
 
+import android.support.annotation.NonNull;
+
 import by.instinctools.megamag.data.type.ItemType;
 
 public final class ItemTypeFactory {
@@ -23,62 +25,77 @@ public final class ItemTypeFactory {
     private static final int EDIT = 503;
     private static final int EXIT = 503;
 
+    @NonNull
     public static ItemType getAboutType() {
         return new ItemType(ABOUT_ID);
     }
 
+    @NonNull
     public static ItemType getAnnouncementsType() {
         return new ItemType(ANNOUNCEMENTS_ID);
     }
 
+    @NonNull
     public static ItemType getTicketType() {
         return new ItemType(TICKET_ID);
     }
 
+    @NonNull
     public static ItemType getRegionType() {
         return new ItemType(REGION_ID);
     }
 
+    @NonNull
     public static ItemType getSettingsType() {
         return new ItemType(SETTINGS_ID);
     }
 
+    @NonNull
     public static ItemType getShareType() {
         return new ItemType(SHARE_ID);
     }
 
+    @NonNull
     public static ItemType getSupportType() {
         return new ItemType(SUPPORT_ID);
     }
 
+    @NonNull
     public static ItemType getHowBookType() {
         return new ItemType(HOW_BOOK);
     }
 
+    @NonNull
     public static ItemType getHowPayType() {
         return new ItemType(HOW_PAY);
     }
 
+    @NonNull
     public static ItemType getRulesType() {
         return new ItemType(RULES);
     }
 
+    @NonNull
     public static ItemType getBasketType() {
         return new ItemType(BASKET);
     }
 
+    @NonNull
     public static ItemType getEditType() {
         return new ItemType(EDIT);
     }
 
+    @NonNull
     public static ItemType getExitType() {
         return new ItemType(EXIT);
     }
 
+    @NonNull
     public static ItemType getHistoryType() {
         return new ItemType(HISTORY);
     }
 
+    @NonNull
     public static ItemType getInfoType() {
         return new ItemType(INFO);
     }

@@ -21,7 +21,6 @@ public class ItemType implements Type {
         ItemType itemType = (ItemType) o;
 
         return id == itemType.id;
-
     }
 
     @Override

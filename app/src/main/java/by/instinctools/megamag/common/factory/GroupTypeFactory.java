@@ -1,5 +1,7 @@
 package by.instinctools.megamag.common.factory;
 
+import android.support.annotation.NonNull;
+
 import by.instinctools.megamag.data.type.GroupType;
 
 public final class GroupTypeFactory {
@@ -10,22 +12,27 @@ public final class GroupTypeFactory {
     private static final int SETTINGS_GROUP_ID = 1004;
     private static final int PROFILE_GROUP_ID = 1005;
 
+    @NonNull
     public static GroupType getAnnouncementGroupType() {
         return new GroupType(ANNOUNCEMENT_GROUP_ID);
     }
 
+    @NonNull
     public static GroupType getInfoGroupType() {
         return new GroupType(INFO_GROUP_ID);
     }
 
+    @NonNull
     public static GroupType getProfileGroupType() {
         return new GroupType(PROFILE_GROUP_ID);
     }
 
+    @NonNull
     public static GroupType getSettingsGroupType() {
         return new GroupType(SETTINGS_GROUP_ID);
     }
 
+    @NonNull
     public static GroupType getTheaterGroupType() {
         return new GroupType(THEATER_GROUP_ID);
     }

@@ -21,7 +21,6 @@ public class GroupType implements Type {
         GroupType groupType = (GroupType) o;
 
         return id == groupType.id;
-
     }
 
     @Override
