@@ -18,6 +18,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import by.instinctools.megamag.R;
 import by.instinctools.megamag.common.errors.Error;
+import by.instinctools.megamag.common.errors.ErrorException;
+import by.instinctools.megamag.common.errors.NoIdError;
 import by.instinctools.megamag.presentation.info.adapter.binders.GroupBinder;
 import by.instinctools.megamag.presentation.info.adapter.binders.InfoBinder;
 import by.instinctools.megamag.presentation.info.adapter.holders.GroupViewHolder;
@@ -41,7 +43,7 @@ public class InfoActivity extends AppCompatActivity implements InfoView {
     @NonNull
     private InfoPresenter infoPresenter = new InfoPresenterImpl();
 
-    public static Intent createIntent(Context context, String id) {
+    public static Intent createIntent(@NonNull Context context, int id) {
         Intent intent = new Intent(context, InfoActivity.class);
         intent.putExtra(INFO_ACTIVITY_SCREEN_ID, id);
         return intent;
@@ -53,8 +55,10 @@ public class InfoActivity extends AppCompatActivity implements InfoView {
         setContentView(R.layout.activity_info);
         ButterKnife.bind(this);
         Intent intent = getIntent();
-        if (intent != null) {
-            infoPresenter.setInitialValue(intent.getStringExtra(INFO_ACTIVITY_SCREEN_ID));
+        if (intent != null && intent.hasExtra(INFO_ACTIVITY_SCREEN_ID)) {
+            infoPresenter.setInitialValue(intent.getIntExtra(INFO_ACTIVITY_SCREEN_ID, 0));
+        } else {
+            throw new ErrorException(new NoIdError());
         }
     }
 

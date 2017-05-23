@@ -3,9 +3,29 @@
     <!--common-->
     <string name="no_data_exception_message">Нет данных</string>
     <string name="unknown_error_message">Неизвестаня ошибка</string>
+    <string name="no_id_error_message">Нет ID</string>
     <string name="action_settings">Настройки</string>
 
     <!--main-->
     <string name="announcements_toolbar_title">Анонсы</string>
     <string name="tickets_toolbar_title">Билеты</string>
+
+    <!--menu-->
+    <string name="drawer_menu_profile">Профиль</string>
+    <string name="drawer_menu_tickets">Билеты</string>
+    <string name="drawer_menu_announcements">Анонсы</string>
+    <string name="drawer_menu_region">Регион</string>
+    <string name="drawer_menu_about">О приложении</string>
+    <string name="drawer_menu_share">Поделиться</string>
+    <string name="drawer_menu_settings">Настройки</string>
+    <string name="drawer_menu_how_to_book">Как забронировать?</string>
+    <string name="drawer_menu_how_to_pay">Как оплатить?</string>
+    <string name="drawer_menu_rules">Правила</string>
+    <string name="drawer_menu_support">Тех. поддержка</string>
+    <string name="drawer_menu_basket">Корзина</string>
+    <string name="drawer_menu_info">Информация</string>
+    <string name="drawer_menu_history">Исторяи Заказов</string>
+    <string name="drawer_menu_edit">Редактировать</string>
+    <string name="drawer_menu_exit">Выход</string>
+
 </resources>

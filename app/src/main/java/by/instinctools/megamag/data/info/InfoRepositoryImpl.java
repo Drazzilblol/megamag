@@ -13,7 +13,7 @@ public class InfoRepositoryImpl implements InfoRepository {
 
     @NonNull
     @Override
-    public Observable<List<InfoData>> getInfoList(String infoId) {
+    public Observable<List<InfoData>> getInfoList(int infoId) {
         return dataSource.getAll(infoId);
     }
 }

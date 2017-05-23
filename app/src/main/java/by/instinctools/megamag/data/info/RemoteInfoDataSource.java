@@ -1,11 +1,13 @@
 package by.instinctools.megamag.data.info;
 
 import android.support.annotation.NonNull;
-import android.text.TextUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import by.instinctools.megamag.common.errors.ErrorException;
+import by.instinctools.megamag.common.errors.NoDataError;
+import by.instinctools.megamag.data.type.factory.ItemTypeFactory;
 import by.instinctools.megamag.data.info.items.InfoImage;
 import by.instinctools.megamag.data.info.items.InfoItem;
 import by.instinctools.megamag.data.info.items.InfoText;
@@ -13,10 +15,6 @@ import hugo.weaving.DebugLog;
 import io.reactivex.Observable;
 
 public class RemoteInfoDataSource implements InfoDataSource {
-
-    public static final String HOW_PAY = "how_pay";
-    public static final String HOW_BOOK = "how_book";
-    public static final String RULES = "rules";
 
     @NonNull
     @Override
@@ -33,20 +31,20 @@ public class RemoteInfoDataSource implements InfoDataSource {
     @NonNull
     @Override
     public Observable<List<InfoData>> getAll() {
-
         throw new UnsupportedOperationException();
     }
 
     @DebugLog
     @NonNull
-    public Observable<List<InfoData>> getAll(@NonNull String infoId) {
-        if (TextUtils.equals(infoId, HOW_PAY)) {
+    public Observable<List<InfoData>> getAll(int infoId) {
+        if (infoId == ItemTypeFactory.getHowPayType().getId()) {
             return Observable.just(getStubPayInfo(infoId));
-        } else if (TextUtils.equals(infoId, HOW_BOOK)) {
+        } else if (infoId == ItemTypeFactory.getHowBookType().getId()) {
             return Observable.just(getStubBookInfo(infoId));
-        } else {
+        } else if (infoId == ItemTypeFactory.getRulesType().getId()) {
             return Observable.just(getStubRulesInfo(infoId));
         }
+        return Observable.error(new ErrorException(new NoDataError()));
     }
 
     @NonNull
@@ -55,7 +53,7 @@ public class RemoteInfoDataSource implements InfoDataSource {
         throw new UnsupportedOperationException();
     }
 
-    private List<InfoData> getStubPayInfo(@NonNull String infoId) {
+    private List<InfoData> getStubPayInfo(int infoId) {
         List<InfoData> infoList = new ArrayList<>();
         List<InfoItem> items1 = new ArrayList<>();
         items1.add(InfoText.builder()
@@ -152,7 +150,7 @@ public class RemoteInfoDataSource implements InfoDataSource {
         return infoList;
     }
 
-    private List<InfoData> getStubBookInfo(@NonNull String infoId) {
+    private List<InfoData> getStubBookInfo(int infoId) {
         List<InfoData> infoList = new ArrayList<>();
 
         List<InfoItem> items1 = new ArrayList<>();
@@ -242,7 +240,7 @@ public class RemoteInfoDataSource implements InfoDataSource {
         return infoList;
     }
 
-    private List<InfoData> getStubRulesInfo(@NonNull String infoId) {
+    private List<InfoData> getStubRulesInfo(int infoId) {
         List<InfoData> infoList = new ArrayList<>();
 
         List<InfoItem> itemList = new ArrayList<>();

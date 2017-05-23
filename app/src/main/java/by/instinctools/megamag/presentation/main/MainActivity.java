@@ -12,19 +12,34 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
+import java.util.List;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import by.instinctools.megamag.R;
 import by.instinctools.megamag.common.errors.Error;
 import by.instinctools.megamag.common.utils.Navigator;
+import by.instinctools.megamag.domain.models.Menu;
 import by.instinctools.megamag.presentation.main.announcements.AnnouncementsFragment;
+import by.instinctools.megamag.presentation.main.menu.MenuPresenter;
+import by.instinctools.megamag.presentation.main.menu.MenuPresenterImpl;
+import by.instinctools.megamag.presentation.main.menu.MenuView;
 import by.instinctools.megamag.presentation.main.tickets.TicketsFragment;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, MainView {
+        implements NavigationView.OnNavigationItemSelectedListener, MenuView, View.OnClickListener {
 
-    private MainPresenter presenter = new MainPresenterImpl();
+    @BindView(R.id.nav_view)
+    NavigationView navigationView;
+
+    private TextView profileView;
+
+    @NonNull
+    private MenuPresenter menuPresenter = new MenuPresenterImpl();
 
     public static Intent createIntent(Context context) {
         return new Intent(context, MainActivity.class);
@@ -34,6 +49,7 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ButterKnife.bind(this);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle(R.string.announcements_toolbar_title);
         setSupportActionBar(toolbar);
@@ -44,8 +60,10 @@ public class MainActivity extends AppCompatActivity
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        View header = navigationView.getHeaderView(0);
+        profileView = (TextView) header.findViewById(R.id.nav_header_profile);
+        profileView.setOnClickListener(this);
     }
 
     @Override
@@ -66,10 +84,6 @@ public class MainActivity extends AppCompatActivity
                 .commit();
     }
 
-    @Override
-    public void goToInfoScreen(@NonNull String infoId) {
-        Navigator.goToInfoScreen(this, infoId);
-    }
 
     @Override
     public void onBackPressed() {
@@ -82,7 +96,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
+    public boolean onCreateOptionsMenu(android.view.Menu menu) {
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
@@ -101,15 +115,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
-        if (id == R.id.menu_info_pay) {
-            presenter.onMenuPayPressed();
-        }
-        if (id == R.id.menu_info_book) {
-            presenter.onMenuBookPressed();
-        }
-        if (id == R.id.menu_info_rules) {
-            presenter.onMenuRulesPressed();
-        }
+        menuPresenter.onMenuPressed(id);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
@@ -119,13 +125,13 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onStart() {
         super.onStart();
-        presenter.attach(this);
+        menuPresenter.attach(this);
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        presenter.detach();
+        menuPresenter.detach();
     }
 
     @Override
@@ -146,5 +152,32 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void hideProgress() {
 
+    }
+
+    @Override
+    public void goToInfoScreen(int infoId) {
+        Navigator.goToInfoScreen(this, infoId);
+    }
+
+    @Override
+    public void showMenu(@NonNull List<Menu> menuList) {
+        android.view.Menu menu = navigationView.getMenu();
+        menu.clear();
+        for (Menu menuView : menuList) {
+            int i = menuView.getGroupType().getId();
+            menu.add(i, menuView.getType().getId(), android.view.Menu.NONE, menuView.getTitle())
+                    .setIcon(menuView.getIcon());
+        }
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (v.isSelected()) {
+            v.setSelected(false);
+            menuPresenter.onProfilePressed(true);
+        } else {
+            v.setSelected(true);
+            menuPresenter.onProfilePressed(false);
+        }
     }
 }

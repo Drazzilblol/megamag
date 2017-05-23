@@ -12,8 +12,7 @@ import by.instinctools.megamag.data.info.items.InfoItem;
 @AutoValue
 public abstract class Info {
 
-    @NonNull
-    public abstract String getInfoId();
+    public abstract int getInfoId();
 
     @Nullable
     public abstract String getTitle();
@@ -32,7 +31,7 @@ public abstract class Info {
     @AutoValue.Builder
     public abstract static class Builder {
 
-        public abstract Info.Builder infoId(@NonNull String value);
+        public abstract Info.Builder infoId(int value);
 
         public abstract Info.Builder title(@Nullable String value);
 

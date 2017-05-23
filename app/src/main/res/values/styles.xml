@@ -11,6 +11,9 @@
         <item name="android:windowIsTranslucent">true</item>
     </style>
 
+    <style name="MainTheme" parent="AppTheme">
+    </style>
+
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
@@ -87,4 +90,26 @@
         <item name="android:layout_marginLeft">@dimen/info_left_padding</item>
     </style>
 
+    <style name="BaseNavHeaderItem">
+        <item name="android:textColor">@color/nav_header_text_primary</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:maxLines">1</item>
+    </style>
+
+    <style name="NavHeaderName" parent="BaseNavHeaderItem">
+    </style>
+
+    <style name="NavHeaderEmail" parent="BaseNavHeaderItem">
+        <item name="android:textColor">@color/nav_header_text_secondary</item>
+    </style>
+
+    <style name="NavHeaderProfile" parent="BaseNavHeaderItem">
+        <item name="android:layout_gravity">bottom</item>
+        <item name="android:layout_margin">@dimen/nav_header_item_margin</item>
+    </style>
+
+    <style name="NavHeaderDropdownButton">
+        <item name="android:layout_gravity">bottom|end</item>
+        <item name="android:layout_margin">@dimen/nav_header_dropdown_button_margin</item>
+    </style>
 </resources>
