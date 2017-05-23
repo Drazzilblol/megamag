@@ -174,7 +174,8 @@ public class MenuPresenterImpl extends DisposablePresenter<MenuView> implements 
         List<Menu> menus = new ArrayList<>();
         for (Menu menu : menuList) {
             if (!menus.isEmpty() &&
-                    menus.get(menus.size() - 1).getGroupType().equals(GroupTypeFactory.getTheaterGroupId()) &&
+                    (menus.get(menus.size() - 1).getGroupType().equals(GroupTypeFactory.getTheaterGroupId()) ||
+                            menus.get(menus.size() - 1).getGroupType().equals(GroupTypeFactory.getAnnouncementGroupId())) &&
                     menu.getGroupType().equals(GroupTypeFactory.getInfoGroupId())) {
                 addSettingsMenuGroup(menus);
             }

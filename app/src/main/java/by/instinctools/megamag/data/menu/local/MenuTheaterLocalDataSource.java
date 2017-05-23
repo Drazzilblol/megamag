@@ -11,6 +11,7 @@ import java.util.List;
 import by.instinctools.megamag.Application;
 import by.instinctools.megamag.common.database.menu.MenuContract;
 import by.instinctools.megamag.common.database.menu.MenuDbHelper;
+import by.instinctools.megamag.common.factory.GroupTypeFactory;
 import by.instinctools.megamag.data.BaseLocalDataSource;
 import by.instinctools.megamag.data.menu.MenuData;
 import by.instinctools.megamag.data.type.GroupType;
@@ -28,7 +29,7 @@ public class MenuTheaterLocalDataSource extends BaseLocalDataSource<String, Menu
     public Observable<List<MenuData>> getAll() {
         List<MenuData> list = new ArrayList<>();
         try {
-            list = getMenusFromDb(1002);
+            list = getMenusFromDb(GroupTypeFactory.getTheaterGroupId().getId());
         } catch (Exception e) {
             Timber.e(e);
         }

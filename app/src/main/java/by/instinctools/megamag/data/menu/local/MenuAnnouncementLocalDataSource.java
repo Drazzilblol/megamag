@@ -13,6 +13,7 @@ import by.instinctools.megamag.common.factory.ItemTypeFactory;
 import by.instinctools.megamag.data.BaseLocalDataSource;
 import by.instinctools.megamag.data.menu.MenuData;
 import io.reactivex.Observable;
+import timber.log.Timber;
 
 public class MenuAnnouncementLocalDataSource extends BaseLocalDataSource<String, MenuData> {
 
@@ -28,18 +29,22 @@ public class MenuAnnouncementLocalDataSource extends BaseLocalDataSource<String,
     private static List<MenuData> getMenus() {
         Context context = Application.getAppContext();
         List<MenuData> menus = new ArrayList<>();
-        menus.add(MenuData.builder()
-                .title(context.getString(R.string.drawer_menu_announcements))
-                .type(ItemTypeFactory.getAnnouncementsType())
-                .groupType(GroupTypeFactory.getAnnouncementGroupId())
-                .icon(R.drawable.ic_today_black_24dp)
-                .build());
-        menus.add(MenuData.builder()
-                .title(context.getString(R.string.drawer_menu_tickets))
-                .type(ItemTypeFactory.getTicketType())
-                .groupType(GroupTypeFactory.getAnnouncementGroupId())
-                .icon(R.drawable.ic_local_movies_black_24dp)
-                .build());
+        try {
+            menus.add(MenuData.builder()
+                    .title(context.getString(R.string.drawer_menu_announcements))
+                    .type(ItemTypeFactory.getAnnouncementsType())
+                    .groupType(GroupTypeFactory.getAnnouncementGroupId())
+                    .icon(R.drawable.ic_today_black_24dp)
+                    .build());
+            menus.add(MenuData.builder()
+                    .title(context.getString(R.string.drawer_menu_tickets))
+                    .type(ItemTypeFactory.getTicketType())
+                    .groupType(GroupTypeFactory.getAnnouncementGroupId())
+                    .icon(R.drawable.ic_local_movies_black_24dp)
+                    .build());
+        } catch (Exception e) {
+            Timber.e(e);
+        }
         return menus;
     }
 }

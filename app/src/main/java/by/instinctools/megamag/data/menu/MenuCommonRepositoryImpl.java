@@ -41,10 +41,10 @@ public class MenuCommonRepositoryImpl implements MenuRepository {
     }
 
     private List<MenuData> mergeLists(List<MenuData> list1, List<MenuData> list2, List<MenuData> list3) {
-        List<MenuData> resultLulst = new ArrayList<>();
-        resultLulst.addAll(list1);
-        resultLulst.addAll(list2);
-        resultLulst.addAll(list3);
-        return resultLulst;
+        List<MenuData> list = new ArrayList<>();
+        list.addAll(list1);
+        list.addAll(list2);
+        list.addAll(list3);
+        return list;
     }
 }
