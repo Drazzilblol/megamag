@@ -31,30 +31,18 @@ public class MenuCommonRepositoryImpl implements MenuRepository {
     @Override
     public Observable<List<MenuData>> getMenuList() {
         return Observable.zip(
-                getAnnouncementMenu(),
-                getTheaterMenu(),
-                getInfoMenu(),
+                this.addErrorHandling(menuAnnouncementLocalDataSource.getAll()),
+                this.addErrorHandling(theaterLocalDataSource.getAll()
+                        .filter(list -> list.size() > 0)
+                        .switchIfEmpty(theaterRemoteDataSource.getAll()
+                                .flatMap(theaterLocalDataSource::saveAll))),
+                this.addErrorHandling(menuInfoLocalDataSource.getAll()),
                 this::mergeLists
         );
     }
-
-    private Observable<List<MenuData>> getInfoMenu() {
-        return menuInfoLocalDataSource.getAll()
-                .onErrorReturnItem(Collections.emptyList())
-                .defaultIfEmpty(Collections.emptyList());
-    }
-
-    private Observable<List<MenuData>> getTheaterMenu() {
-        return theaterLocalDataSource.getAll()
-                .filter(list -> list.size() > 0)
-                .switchIfEmpty(theaterRemoteDataSource.getAll()
-                        .flatMap(theaterLocalDataSource::saveAll))
-                .onErrorReturnItem(Collections.emptyList())
-                .defaultIfEmpty(Collections.emptyList());
-    }
-
-    private Observable<List<MenuData>> getAnnouncementMenu() {
-        return menuAnnouncementLocalDataSource.getAll()
+    
+    private Observable<List<MenuData>> addErrorHandling(Observable<List<MenuData>> observable) {
+        return observable
                 .onErrorReturnItem(Collections.emptyList())
                 .defaultIfEmpty(Collections.emptyList());
     }
