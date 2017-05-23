@@ -11,11 +11,11 @@ import java.util.List;
 import by.instinctools.megamag.Application;
 import by.instinctools.megamag.common.database.menu.MenuContract;
 import by.instinctools.megamag.common.database.menu.MenuDbHelper;
-import by.instinctools.megamag.common.factory.GroupTypeFactory;
 import by.instinctools.megamag.data.BaseLocalDataSource;
 import by.instinctools.megamag.data.menu.MenuData;
 import by.instinctools.megamag.data.type.GroupType;
 import by.instinctools.megamag.data.type.ItemType;
+import by.instinctools.megamag.data.type.factory.GroupTypeFactory;
 import io.reactivex.Observable;
 import timber.log.Timber;
 
@@ -84,9 +84,9 @@ public class MenuTheaterLocalDataSource extends BaseLocalDataSource<String, Menu
             while (!cursor.isLast()) {
                 cursor.moveToNext();
                 resultList.add(MenuData.builder()
-                        .type(new ItemType(cursor.getInt(0)))
+                        .type(ItemType.create(cursor.getInt(0)))
                         .title(cursor.getString(1))
-                        .groupType(new GroupType(cursor.getInt(2)))
+                        .groupType(GroupType.create(cursor.getInt(2)))
                         .icon(cursor.getInt(3))
                         .build());
             }

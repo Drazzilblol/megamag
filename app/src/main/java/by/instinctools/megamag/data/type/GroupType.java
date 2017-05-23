@@ -1,30 +1,13 @@
 package by.instinctools.megamag.data.type;
 
-public class GroupType implements Type {
+import com.google.auto.value.AutoValue;
 
-    private final int id;
+@AutoValue
+public abstract class GroupType {
 
-    public GroupType(int id) {
-        this.id = id;
-    }
+    public abstract int getId();
 
-    @Override
-    public int getId() {
-        return id;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        GroupType groupType = (GroupType) o;
-
-        return id == groupType.id;
-    }
-
-    @Override
-    public int hashCode() {
-        return id;
+    public static GroupType create(int id) {
+        return new AutoValue_GroupType(id);
     }
 }

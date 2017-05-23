@@ -7,7 +7,7 @@ import java.util.List;
 
 import by.instinctools.megamag.common.errors.ErrorException;
 import by.instinctools.megamag.common.errors.NoDataError;
-import by.instinctools.megamag.common.factory.ItemTypeFactory;
+import by.instinctools.megamag.data.type.factory.ItemTypeFactory;
 import by.instinctools.megamag.data.info.items.InfoImage;
 import by.instinctools.megamag.data.info.items.InfoItem;
 import by.instinctools.megamag.data.info.items.InfoText;

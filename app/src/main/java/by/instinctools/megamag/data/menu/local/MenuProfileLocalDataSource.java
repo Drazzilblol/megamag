@@ -8,8 +8,8 @@ import java.util.List;
 
 import by.instinctools.megamag.Application;
 import by.instinctools.megamag.R;
-import by.instinctools.megamag.common.factory.GroupTypeFactory;
-import by.instinctools.megamag.common.factory.ItemTypeFactory;
+import by.instinctools.megamag.data.type.factory.GroupTypeFactory;
+import by.instinctools.megamag.data.type.factory.ItemTypeFactory;
 import by.instinctools.megamag.data.BaseLocalDataSource;
 import by.instinctools.megamag.data.menu.MenuData;
 import io.reactivex.Observable;

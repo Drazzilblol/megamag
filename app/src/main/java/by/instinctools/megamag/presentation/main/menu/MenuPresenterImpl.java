@@ -11,9 +11,10 @@ import by.instinctools.megamag.Application;
 import by.instinctools.megamag.R;
 import by.instinctools.megamag.common.errors.ErrorException;
 import by.instinctools.megamag.common.errors.NoDataError;
-import by.instinctools.megamag.common.factory.GroupTypeFactory;
-import by.instinctools.megamag.common.factory.ItemTypeFactory;
-import by.instinctools.megamag.data.type.Type;
+import by.instinctools.megamag.data.type.GroupType;
+import by.instinctools.megamag.data.type.ItemType;
+import by.instinctools.megamag.data.type.factory.GroupTypeFactory;
+import by.instinctools.megamag.data.type.factory.ItemTypeFactory;
 import by.instinctools.megamag.domain.GetCommonMenuUseCase;
 import by.instinctools.megamag.domain.GetProfileMenuUseCase;
 import by.instinctools.megamag.domain.models.Menu;
@@ -60,8 +61,8 @@ public class MenuPresenterImpl extends DisposablePresenter<MenuView> implements 
     public void onMenuPressed(int id) {
         Menu menu = getMenuById(id);
         if (isViewAttached() && menu != null) {
-            Type menuType = menu.getType();
-            Type menuGroupType = menu.getGroupType();
+            ItemType menuType = menu.getType();
+            GroupType menuGroupType = menu.getGroupType();
             MenuView view = getView();
             if (menuGroupType.equals(GroupTypeFactory.getInfoGroupType()) && !menuType.equals(ItemTypeFactory.getSupportType())) {
                 view.goToInfoScreen(id);

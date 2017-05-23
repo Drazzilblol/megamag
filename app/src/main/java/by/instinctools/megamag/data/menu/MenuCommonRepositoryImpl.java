@@ -40,7 +40,7 @@ public class MenuCommonRepositoryImpl implements MenuRepository {
                 this::mergeLists
         );
     }
-    
+
     private Observable<List<MenuData>> addErrorHandling(Observable<List<MenuData>> observable) {
         return observable
                 .onErrorReturnItem(Collections.emptyList())

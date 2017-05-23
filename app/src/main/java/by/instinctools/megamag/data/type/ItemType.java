@@ -1,30 +1,13 @@
 package by.instinctools.megamag.data.type;
 
-public class ItemType implements Type {
+import com.google.auto.value.AutoValue;
 
-    private final int id;
+@AutoValue
+public abstract class ItemType {
 
-    public ItemType(int id) {
-        this.id = id;
-    }
+    public abstract int getId();
 
-    @Override
-    public int getId() {
-        return id;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        ItemType itemType = (ItemType) o;
-
-        return id == itemType.id;
-    }
-
-    @Override
-    public int hashCode() {
-        return id;
+    public static ItemType create(int id) {
+        return new AutoValue_ItemType(id);
     }
 }
