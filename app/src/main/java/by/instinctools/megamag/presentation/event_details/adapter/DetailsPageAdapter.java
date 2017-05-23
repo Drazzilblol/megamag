@@ -8,6 +8,8 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 
 import by.instinctools.megamag.Application;
 import by.instinctools.megamag.R;
+import by.instinctools.megamag.presentation.event_details.info_comments.EventCommentFragment;
+import by.instinctools.megamag.presentation.event_details.info_comments.EventCommentPresenter;
 import by.instinctools.megamag.presentation.event_details.info_page.EventInfoFragment;
 
 public class DetailsPageAdapter extends FragmentStatePagerAdapter {
@@ -27,7 +29,7 @@ public class DetailsPageAdapter extends FragmentStatePagerAdapter {
             case 1:
                 return EventInfoFragment.newInstance(eventId);
             case 2:
-                return EventInfoFragment.newInstance(eventId);
+                return EventCommentFragment.newInstance(eventId);
             default:
                 return EventInfoFragment.newInstance(eventId);
         }
