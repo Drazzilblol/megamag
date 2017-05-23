@@ -6,97 +6,97 @@ import by.instinctools.megamag.data.type.ItemType;
 
 public final class ItemTypeFactory {
 
-    private static final int REGION_ID = 400;
-    private static final int ABOUT_ID = 401;
-    private static final int SHARE_ID = 402;
-    private static final int SETTINGS_ID = 404;
+    private static final ItemType REGION = new ItemType(400);
+    private static final ItemType ABOUT = new ItemType(401);
+    private static final ItemType SHARE = new ItemType(402);
+    private static final ItemType SETTINGS = new ItemType(404);
 
-    private static final int ANNOUNCEMENTS_ID = 200;
-    private static final int TICKET_ID = 201;
+    private static final ItemType ANNOUNCEMENTS = new ItemType(200);
+    private static final ItemType TICKET = new ItemType(201);
 
-    private static final int HOW_PAY = 100;
-    private static final int HOW_BOOK = 101;
-    private static final int RULES = 102;
-    private static final int SUPPORT_ID = 103;
+    private static final ItemType HOW_PAY = new ItemType(100);
+    private static final ItemType HOW_BOOK = new ItemType(101);
+    private static final ItemType RULES = new ItemType(102);
+    private static final ItemType SUPPORT_ID = new ItemType(103);
 
-    private static final int BASKET = 500;
-    private static final int INFO = 501;
-    private static final int HISTORY = 502;
-    private static final int EDIT = 503;
-    private static final int EXIT = 503;
+    private static final ItemType BASKET = new ItemType(500);
+    private static final ItemType INFO = new ItemType(501);
+    private static final ItemType HISTORY = new ItemType(502);
+    private static final ItemType EDIT = new ItemType(503);
+    private static final ItemType EXIT = new ItemType(503);
 
     @NonNull
     public static ItemType getAboutType() {
-        return new ItemType(ABOUT_ID);
+        return ABOUT;
     }
 
     @NonNull
     public static ItemType getAnnouncementsType() {
-        return new ItemType(ANNOUNCEMENTS_ID);
+        return ANNOUNCEMENTS;
     }
 
     @NonNull
     public static ItemType getTicketType() {
-        return new ItemType(TICKET_ID);
+        return TICKET;
     }
 
     @NonNull
     public static ItemType getRegionType() {
-        return new ItemType(REGION_ID);
+        return REGION;
     }
 
     @NonNull
     public static ItemType getSettingsType() {
-        return new ItemType(SETTINGS_ID);
+        return SETTINGS;
     }
 
     @NonNull
     public static ItemType getShareType() {
-        return new ItemType(SHARE_ID);
+        return SHARE;
     }
 
     @NonNull
     public static ItemType getSupportType() {
-        return new ItemType(SUPPORT_ID);
+        return SUPPORT_ID;
     }
 
     @NonNull
     public static ItemType getHowBookType() {
-        return new ItemType(HOW_BOOK);
+        return HOW_BOOK;
     }
 
     @NonNull
     public static ItemType getHowPayType() {
-        return new ItemType(HOW_PAY);
+        return HOW_PAY;
     }
 
     @NonNull
     public static ItemType getRulesType() {
-        return new ItemType(RULES);
+        return RULES;
     }
 
     @NonNull
     public static ItemType getBasketType() {
-        return new ItemType(BASKET);
+        return BASKET;
     }
 
     @NonNull
     public static ItemType getEditType() {
-        return new ItemType(EDIT);
+        return EDIT;
     }
 
     @NonNull
     public static ItemType getExitType() {
-        return new ItemType(EXIT);
+        return EXIT;
     }
 
     @NonNull
     public static ItemType getHistoryType() {
-        return new ItemType(HISTORY);
+        return HISTORY;
     }
 
     @NonNull
     public static ItemType getInfoType() {
-        return new ItemType(INFO);
+        return INFO;
     }
 }

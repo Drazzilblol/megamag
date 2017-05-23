@@ -6,35 +6,34 @@ import by.instinctools.megamag.data.type.GroupType;
 
 public final class GroupTypeFactory {
 
-    private static final int INFO_GROUP_ID = 1000;
-    private static final int ANNOUNCEMENT_GROUP_ID = 1001;
-    private static final int THEATER_GROUP_ID = 1002;
-    private static final int SETTINGS_GROUP_ID = 1004;
-    private static final int PROFILE_GROUP_ID = 1005;
+    private static final GroupType INFO_GROUP = new GroupType(1000);
+    private static final GroupType ANNOUNCEMENT_GROUP = new GroupType(1001);
+    private static final GroupType THEATER_GROUP = new GroupType(1002);
+    private static final GroupType SETTINGS_GROUP = new GroupType(1004);
+    private static final GroupType PROFILE_GROUP = new GroupType(1005);
 
     @NonNull
     public static GroupType getAnnouncementGroupType() {
-        return new GroupType(ANNOUNCEMENT_GROUP_ID);
+        return ANNOUNCEMENT_GROUP;
     }
 
     @NonNull
     public static GroupType getInfoGroupType() {
-        return new GroupType(INFO_GROUP_ID);
+        return INFO_GROUP;
     }
 
     @NonNull
     public static GroupType getProfileGroupType() {
-        return new GroupType(PROFILE_GROUP_ID);
+        return PROFILE_GROUP;
     }
 
     @NonNull
     public static GroupType getSettingsGroupType() {
-        return new GroupType(SETTINGS_GROUP_ID);
+        return SETTINGS_GROUP;
     }
 
     @NonNull
     public static GroupType getTheaterGroupType() {
-        return new GroupType(THEATER_GROUP_ID);
+        return THEATER_GROUP;
     }
-
 }
