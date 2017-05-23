@@ -46,15 +46,11 @@ public class MenuCommonRepositoryImpl implements MenuRepository {
 
     private Observable<List<MenuData>> getTheaterMenu() {
         return theaterLocalDataSource.getAll()
-                .onErrorReturnItem(Collections.emptyList())
-                .defaultIfEmpty(Collections.emptyList())
                 .filter(list -> list.size() > 0)
                 .switchIfEmpty(theaterRemoteDataSource.getAll()
-                        .onErrorReturnItem(Collections.emptyList())
-                        .defaultIfEmpty(Collections.emptyList())
-                        .flatMap(theaterLocalDataSource::saveAll)
-                        .onErrorReturnItem(Collections.emptyList())
-                        .defaultIfEmpty(Collections.emptyList()));
+                        .flatMap(theaterLocalDataSource::saveAll))
+                .onErrorReturnItem(Collections.emptyList())
+                .defaultIfEmpty(Collections.emptyList());
     }
 
     private Observable<List<MenuData>> getAnnouncementMenu() {
