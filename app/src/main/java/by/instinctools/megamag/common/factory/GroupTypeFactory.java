@@ -2,7 +2,7 @@ package by.instinctools.megamag.common.factory;
 
 import by.instinctools.megamag.data.type.GroupType;
 
-public class GroupTypeFactory {
+public final class GroupTypeFactory {
 
     private static final int INFO_GROUP_ID = 1000;
     private static final int ANNOUNCEMENT_GROUP_ID = 1001;
