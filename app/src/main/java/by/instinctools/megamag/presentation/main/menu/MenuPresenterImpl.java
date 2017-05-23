@@ -55,6 +55,7 @@ public class MenuPresenterImpl extends DisposablePresenter<MenuView> implements 
         super.attach(menuView);
         menuView.showProgress();
         loadMenuCommon();
+        menuView.goToAnnouncementsScreen();
     }
 
     @Override
@@ -178,14 +179,14 @@ public class MenuPresenterImpl extends DisposablePresenter<MenuView> implements 
 
     @NonNull
     private List<Menu> createMenu(List<Menu> menuList) {
-        List<Menu> menuViewModels = new ArrayList<>();
+        List<Menu> menus = new ArrayList<>();
         for (Menu menu : menuList) {
-            if (!menuViewModels.isEmpty() &&
-                    menuViewModels.get(menuViewModels.size() - 1).getTargetId() == THEATER_GROUP_ID &&
+            if (!menus.isEmpty() &&
+                    menus.get(menus.size() - 1).getTargetId() == THEATER_GROUP_ID &&
                     menu.getTargetId() == INFO_GROUP_ID) {
-                addSettingsMenuGroup(menuViewModels);
+                addSettingsMenuGroup(menus);
             }
-            menuViewModels.add(Menu.builder()
+            menus.add(Menu.builder()
                     .title(menu.getTitle())
                     .menuId(menu.getMenuId())
                     .targetId(menu.getTargetId())
@@ -193,11 +194,11 @@ public class MenuPresenterImpl extends DisposablePresenter<MenuView> implements 
                     .build());
         }
 
-        if (menuViewModels.get(menuViewModels.size() - 1).getTargetId() == INFO_GROUP_ID) {
-            addSupportMenuItem(menuViewModels);
+        if (menus.get(menus.size() - 1).getTargetId() == INFO_GROUP_ID) {
+            addSupportMenuItem(menus);
         }
 
-        return menuViewModels;
+        return menus;
     }
 
     private void addSupportMenuItem(List<Menu> menu) {

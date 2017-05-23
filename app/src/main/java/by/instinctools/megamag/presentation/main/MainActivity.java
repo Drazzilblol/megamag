@@ -14,7 +14,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.List;
@@ -32,17 +31,12 @@ import by.instinctools.megamag.presentation.main.menu.MenuView;
 import by.instinctools.megamag.presentation.main.tickets.TicketsFragment;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, MainView, MenuView, View.OnClickListener {
+        implements NavigationView.OnNavigationItemSelectedListener, MenuView, View.OnClickListener {
 
     @BindView(R.id.nav_view)
     NavigationView navigationView;
 
-    Button button;
-
-    TextView profileView;
-
-    @NonNull
-    private MainPresenter mainPresenter = new MainPresenterImpl();
+    private TextView profileView;
 
     @NonNull
     private MenuPresenter menuPresenter = new MenuPresenterImpl();
@@ -131,14 +125,12 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onStart() {
         super.onStart();
-        mainPresenter.attach(this);
         menuPresenter.attach(this);
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        mainPresenter.detach();
         menuPresenter.detach();
     }
 
