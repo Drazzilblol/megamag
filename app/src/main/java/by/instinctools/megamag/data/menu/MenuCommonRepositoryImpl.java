@@ -3,6 +3,7 @@ package by.instinctools.megamag.data.menu;
 import android.support.annotation.NonNull;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import by.instinctools.megamag.data.DataSource;
@@ -30,14 +31,36 @@ public class MenuCommonRepositoryImpl implements MenuRepository {
     @Override
     public Observable<List<MenuData>> getMenuList() {
         return Observable.zip(
-                menuAnnouncementLocalDataSource.getAll(),
-                theaterLocalDataSource.getAll()
-                        .filter(list -> list.size() > 0)
-                        .switchIfEmpty(theaterRemoteDataSource.getAll()
-                                .flatMap(theaterLocalDataSource::saveAll)),
-                menuInfoLocalDataSource.getAll(),
+                getAnnouncementMenu(),
+                getTheaterMenu(),
+                getInfoMenu(),
                 this::mergeLists
         );
+    }
+
+    private Observable<List<MenuData>> getInfoMenu() {
+        return menuInfoLocalDataSource.getAll()
+                .onErrorReturnItem(Collections.emptyList())
+                .defaultIfEmpty(Collections.emptyList());
+    }
+
+    private Observable<List<MenuData>> getTheaterMenu() {
+        return theaterLocalDataSource.getAll()
+                .onErrorReturnItem(Collections.emptyList())
+                .defaultIfEmpty(Collections.emptyList())
+                .filter(list -> list.size() > 0)
+                .switchIfEmpty(theaterRemoteDataSource.getAll()
+                        .onErrorReturnItem(Collections.emptyList())
+                        .defaultIfEmpty(Collections.emptyList())
+                        .flatMap(theaterLocalDataSource::saveAll)
+                        .onErrorReturnItem(Collections.emptyList())
+                        .defaultIfEmpty(Collections.emptyList()));
+    }
+
+    private Observable<List<MenuData>> getAnnouncementMenu() {
+        return menuAnnouncementLocalDataSource.getAll()
+                .onErrorReturnItem(Collections.emptyList())
+                .defaultIfEmpty(Collections.emptyList());
     }
 
     private List<MenuData> mergeLists(List<MenuData> list1, List<MenuData> list2, List<MenuData> list3) {

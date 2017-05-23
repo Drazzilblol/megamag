@@ -27,19 +27,28 @@ public class MenuTheaterLocalDataSource extends BaseLocalDataSource<String, Menu
     @NonNull
     @Override
     public Observable<List<MenuData>> getAll() {
-        List<MenuData> list = new ArrayList<>();
         try {
-            list = getMenusFromDb(GroupTypeFactory.getTheaterGroupType().getId());
+            List<MenuData> list = getMenusFromDb(GroupTypeFactory.getTheaterGroupType().getId());
+            return Observable.just(list);
         } catch (Exception e) {
             Timber.e(e);
+            return Observable.error(e);
         }
-
-        return Observable.just(list);
     }
 
     @NonNull
     @Override
     public Observable<List<MenuData>> saveAll(List<MenuData> collection) {
+        try {
+            saveMenusToDb(collection);
+            return Observable.just(collection);
+        } catch (Exception e) {
+            Timber.e(e);
+            return Observable.error(e);
+        }
+    }
+
+    private void saveMenusToDb(List<MenuData> collection) {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
 
         db.beginTransaction();
@@ -53,8 +62,6 @@ public class MenuTheaterLocalDataSource extends BaseLocalDataSource<String, Menu
         }
         db.setTransactionSuccessful();
         db.endTransaction();
-
-        return Observable.just(collection);
     }
 
     @NonNull
