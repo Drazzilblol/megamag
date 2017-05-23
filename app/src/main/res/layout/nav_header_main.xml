@@ -47,13 +47,6 @@
         style="@style/NavHeaderProfile"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:drawableRight="@drawable/profile_drawable"
         android:text="@string/drawer_menu_profile"/>
-
-    <Button
-        android:id="@+id/nav_header_dropdown_button"
-        style="@style/NavHeaderDropdownButton"
-        android:layout_width="@dimen/nav_header_dropdown_button_size"
-        android:layout_height="@dimen/nav_header_dropdown_button_size"
-        android:background="@drawable/ic_arrow_drop_down_white_24dp"
-        android:clickable="false"/>
 </FrameLayout>

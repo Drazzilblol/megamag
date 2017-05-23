@@ -68,7 +68,6 @@ public class MainActivity extends AppCompatActivity
 
         navigationView.setNavigationItemSelectedListener(this);
         View header = navigationView.getHeaderView(0);
-        button = (Button) header.findViewById(R.id.nav_header_dropdown_button);
         profileView = (TextView) header.findViewById(R.id.nav_header_profile);
         profileView.setOnClickListener(this);
     }
@@ -173,8 +172,8 @@ public class MainActivity extends AppCompatActivity
         android.view.Menu menu = navigationView.getMenu();
         menu.clear();
         for (Menu menuView : menuList) {
-            menu.add(menuView.getTargetId(), menuView.getMenuId(), android.view.Menu.NONE, menuView.getTitle());
-            menu.getItem(menu.size() - 1).setIcon(menuView.getIcon());
+            menu.add(menuView.getTargetId(), menuView.getMenuId(), android.view.Menu.NONE, menuView.getTitle())
+                    .setIcon(menuView.getIcon());
         }
     }
 
@@ -182,11 +181,9 @@ public class MainActivity extends AppCompatActivity
     public void onClick(View v) {
         if (v.isSelected()) {
             v.setSelected(false);
-            button.setBackgroundResource(R.drawable.ic_arrow_drop_down_white_24dp);
             menuPresenter.onProfilePressed(true);
         } else {
             v.setSelected(true);
-            button.setBackgroundResource(R.drawable.ic_arrow_drop_up_white_24dp);
             menuPresenter.onProfilePressed(false);
         }
     }
