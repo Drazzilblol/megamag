@@ -45,6 +45,8 @@ public class InfoActivity extends AppCompatActivity implements InfoView {
     @BindView(R.id.info_toolbar)
     Toolbar toolbar;
 
+    private ActionBar actionBar;
+
     @NonNull
     private InfoPresenter infoPresenter = new InfoPresenterImpl();
 
@@ -59,11 +61,21 @@ public class InfoActivity extends AppCompatActivity implements InfoView {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_info);
         ButterKnife.bind(this);
+        initToolbar();
         Intent intent = getIntent();
         if (intent != null && intent.hasExtra(INFO_ACTIVITY_SCREEN_ID)) {
             infoPresenter.setInitialValue(intent.getIntExtra(INFO_ACTIVITY_SCREEN_ID, 0));
         } else {
             throw new ErrorException(new NoIdError());
+        }
+    }
+
+    private void initToolbar() {
+        setSupportActionBar(toolbar);
+        actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
     }
 
@@ -91,17 +103,6 @@ public class InfoActivity extends AppCompatActivity implements InfoView {
         recyclerView.setVisibility(View.VISIBLE);
     }
 
-    @Override
-    public void showToolbar(@NonNull String type) {
-        setSupportActionBar(toolbar);
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setTitle(type);
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setDisplayShowHomeEnabled(true);
-        }
-    }
-
     private void initRecyclerView(List<TreeNode> list) {
         TreeViewAdapter adapter = new TreeViewAdapter(list, Arrays.asList(new InfoBinder(), new GroupBinder()));
         adapter.setOnTreeNodeListener(new TreeViewAdapter.OnTreeNodeListener() {
@@ -125,6 +126,13 @@ public class InfoActivity extends AppCompatActivity implements InfoView {
             }
         });
         recyclerView.setAdapter(adapter);
+    }
+
+    @Override
+    public void showToolbar(@NonNull String type) {
+        if (actionBar != null) {
+            actionBar.setTitle(type);
+        }
     }
 
     @Override

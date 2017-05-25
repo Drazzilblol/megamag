@@ -2,16 +2,19 @@ package by.instinctools.megamag.data.menu.local;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.text.TextUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import by.instinctools.megamag.Application;
 import by.instinctools.megamag.R;
-import by.instinctools.megamag.data.type.factory.GroupTypeFactory;
-import by.instinctools.megamag.data.type.factory.ItemTypeFactory;
+import by.instinctools.megamag.common.errors.ErrorException;
+import by.instinctools.megamag.common.errors.NoDataError;
 import by.instinctools.megamag.data.BaseLocalDataSource;
 import by.instinctools.megamag.data.menu.MenuData;
+import by.instinctools.megamag.data.type.factory.GroupTypeFactory;
+import by.instinctools.megamag.data.type.factory.ItemTypeFactory;
 import io.reactivex.Observable;
 
 public class MenuInfoLocalDataSource extends BaseLocalDataSource<String, MenuData> {
@@ -47,5 +50,16 @@ public class MenuInfoLocalDataSource extends BaseLocalDataSource<String, MenuDat
                 .icon(R.drawable.ic_announcement_black_24dp)
                 .build());
         return menus;
+    }
+
+    @NonNull
+    @Override
+    public Observable<MenuData> getValue(@NonNull String key) {
+        for (MenuData menu : menuList) {
+            if (TextUtils.equals(menu.getType().getId() + "", key)) {
+                return Observable.just(menu);
+            }
+        }
+        return Observable.error(new ErrorException(new NoDataError()));
     }
 }

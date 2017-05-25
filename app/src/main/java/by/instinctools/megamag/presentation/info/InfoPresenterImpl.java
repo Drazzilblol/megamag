@@ -8,6 +8,7 @@ import java.util.List;
 import by.instinctools.megamag.common.errors.ErrorException;
 import by.instinctools.megamag.common.errors.NoDataError;
 import by.instinctools.megamag.data.info.items.InfoItem;
+import by.instinctools.megamag.domain.GetInfoToolbarTitleUseCase;
 import by.instinctools.megamag.domain.GetInfoUseCase;
 import by.instinctools.megamag.domain.models.Info;
 import by.instinctools.megamag.presentation.DisposablePresenter;
@@ -23,12 +24,13 @@ class InfoPresenterImpl extends DisposablePresenter<InfoView> implements InfoPre
 
     private static final int EMPTY_LIST_SIZE = 0;
 
-    private static String type;
-
     private int infoId;
 
     @NonNull
-    GetInfoUseCase infoUseCase = new GetInfoUseCase();
+    private GetInfoUseCase infoUseCase = new GetInfoUseCase();
+
+    @NonNull
+    private GetInfoToolbarTitleUseCase getInfoToolbarTitleUseCase = new GetInfoToolbarTitleUseCase();
 
     @Override
     public void setInitialValue(int infoId) {
@@ -39,6 +41,11 @@ class InfoPresenterImpl extends DisposablePresenter<InfoView> implements InfoPre
     public void attach(@NonNull InfoView view) {
         super.attach(view);
         view.showProgress();
+        loadInfo();
+        loadInfoToolbarTitle();
+    }
+
+    private void loadInfo() {
         addDisposable(
                 infoUseCase.execute(infoId)
                         .filter(infoList -> infoList.size() > EMPTY_LIST_SIZE)
@@ -50,21 +57,10 @@ class InfoPresenterImpl extends DisposablePresenter<InfoView> implements InfoPre
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(
-                                this::onLoadSuccess,
+                                this::onLoadInfoSuccess,
                                 this::onLoadError
                         )
         );
-    }
-
-    @DebugLog
-    private void onLoadSuccess(@NonNull List<TreeNode> infoList) {
-        if (isViewAttached()) {
-            InfoView view = getView();
-            view.hideProgress();
-            view.hideError();
-            view.showData(infoList);
-            view.showToolbar(type);
-        }
     }
 
     private TreeNode buildTree(@NonNull Info info) {
@@ -78,8 +74,6 @@ class InfoPresenterImpl extends DisposablePresenter<InfoView> implements InfoPre
         if (!hasChildes && !hasContent) {
             throw new ErrorException(new NoDataError());
         }
-
-        type = info.getType();
 
         TreeNode root;
         if (!hasChildes) {
@@ -100,6 +94,37 @@ class InfoPresenterImpl extends DisposablePresenter<InfoView> implements InfoPre
     }
 
     @DebugLog
+    private void onLoadInfoSuccess(@NonNull List<TreeNode> infoList) {
+        if (isViewAttached()) {
+            InfoView view = getView();
+            view.hideProgress();
+            view.hideError();
+            view.showData(infoList);
+        }
+    }
+
+    private void loadInfoToolbarTitle() {
+        addDisposable(
+                getInfoToolbarTitleUseCase.execute(infoId)
+                        .switchIfEmpty(Observable.error(new ErrorException(new NoDataError())))
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe(
+                                this::onLoadToolbarTitleSuccess,
+                                this::onLoadError
+                        )
+        );
+    }
+
+    @DebugLog
+    private void onLoadToolbarTitleSuccess(@NonNull String title) {
+        if (isViewAttached()) {
+            InfoView view = getView();
+            view.showToolbar(title);
+        }
+    }
+
+    @DebugLog
     private void onLoadError(@NonNull Throwable throwable) {
         if (isViewAttached()) {
             InfoView view = getView();
@@ -108,6 +133,4 @@ class InfoPresenterImpl extends DisposablePresenter<InfoView> implements InfoPre
             showError(throwable);
         }
     }
-
-
 }
