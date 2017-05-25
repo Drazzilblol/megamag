@@ -19,6 +19,7 @@ import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 import tellh.com.recyclertreeview_lib.TreeNode;
+import timber.log.Timber;
 
 class InfoPresenterImpl extends DisposablePresenter<InfoView> implements InfoPresenter {
 
@@ -58,7 +59,7 @@ class InfoPresenterImpl extends DisposablePresenter<InfoView> implements InfoPre
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(
                                 this::onLoadInfoSuccess,
-                                this::onLoadError
+                                this::onLoadInfoError
                         )
         );
     }
@@ -109,7 +110,9 @@ class InfoPresenterImpl extends DisposablePresenter<InfoView> implements InfoPre
                         .switchIfEmpty(Observable.error(new ErrorException(new NoDataError())))
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe(this::onLoadToolbarTitleSuccess)
+                        .subscribe(
+                                this::onLoadToolbarTitleSuccess,
+                                this::onLoadToolbarTitleError)
         );
     }
 
@@ -122,12 +125,17 @@ class InfoPresenterImpl extends DisposablePresenter<InfoView> implements InfoPre
     }
 
     @DebugLog
-    private void onLoadError(@NonNull Throwable throwable) {
+    private void onLoadInfoError(@NonNull Throwable throwable) {
         if (isViewAttached()) {
             InfoView view = getView();
             view.hideProgress();
             view.hideData();
             showError(throwable);
         }
+    }
+
+    @DebugLog
+    private void onLoadToolbarTitleError(@NonNull Throwable throwable) {
+        Timber.i(throwable);
     }
 }
