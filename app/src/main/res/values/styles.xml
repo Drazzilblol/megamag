@@ -51,6 +51,23 @@
         <item name="android:layout_marginTop">@dimen/announcement_card_items_padding</item>
     </style>
 
+    <style name="BaseDetailsCardViewItem">
+        <item name="android:layout_marginLeft">@dimen/announcement_card_items_padding</item>
+        <item name="android:layout_marginRight">@dimen/announcement_card_items_padding</item>
+        <item name="android:textSize">@dimen/announcement_card_text_support</item>
+        <item name="android:textColor">@color/announcement_text_secondary</item>
+    </style>
+
+    <style name="DetailsCardCommentTitle" parent="BaseDetailsCardViewItem">
+        <item name="android:textColor">@color/announcement_text_primary</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:maxLines">1</item>
+    </style>
+
+    <style name="DetailsCardCommentText" parent="BaseDetailsCardViewItem">
+        <item name="android:layout_marginTop">@dimen/announcement_card_items_padding</item>
+    </style>
+
     <style name="BaseTicketCardViewItem">
         <item name="android:layout_marginLeft">@dimen/announcement_card_items_padding</item>
         <item name="android:layout_marginRight">@dimen/announcement_card_items_padding</item>

@@ -86,5 +86,9 @@
     <dimen name="event_details_collapsing_toolbar_title_margin">@dimen/collapsing_toolbar_title_margins</dimen>
     <dimen name="event_details_collapsing_toolbar_title_text_size">@dimen/std_text_size_primary</dimen>
 
+    <dimen name="event_details_comment_list_item_offset">@dimen/item_padding_normal</dimen>
+    <dimen name="event_details_comment_list_padding">@dimen/item_padding_normal</dimen>
+    <dimen name="event_details_comment_list_error_padding">@dimen/item_padding_large</dimen>
+
 
 </resources>

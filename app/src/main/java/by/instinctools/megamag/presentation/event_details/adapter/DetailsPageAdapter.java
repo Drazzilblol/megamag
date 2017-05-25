@@ -9,7 +9,6 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import by.instinctools.megamag.Application;
 import by.instinctools.megamag.R;
 import by.instinctools.megamag.presentation.event_details.info_comments.EventCommentFragment;
-import by.instinctools.megamag.presentation.event_details.info_comments.EventCommentPresenter;
 import by.instinctools.megamag.presentation.event_details.info_page.EventInfoFragment;
 
 public class DetailsPageAdapter extends FragmentStatePagerAdapter {

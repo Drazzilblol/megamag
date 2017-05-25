@@ -4,9 +4,11 @@ import android.support.annotation.NonNull;
 
 import java.util.List;
 
+import by.instinctools.megamag.Application;
 import io.reactivex.Observable;
 
 public class EventCommentRemoteDataSource implements EventCommentDataSource {
+
     @NonNull
     @Override
     public Observable<EventCommentData> getValue(@NonNull String key) {
@@ -33,6 +35,12 @@ public class EventCommentRemoteDataSource implements EventCommentDataSource {
 
     @Override
     public Observable<List<EventCommentData>> getAll(@NonNull String eventId) {
-        return null;
+        return getComments(eventId);
+    }
+
+    private Observable<List<EventCommentData>> getComments(String id) {
+        return Application.getApi()
+                .getDetails(1515 + "")
+                .map(CommentParser::parseComments);
     }
 }
