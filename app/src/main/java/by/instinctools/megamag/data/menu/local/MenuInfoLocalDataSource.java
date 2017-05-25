@@ -2,16 +2,18 @@ package by.instinctools.megamag.data.menu.local;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.text.TextUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import by.instinctools.megamag.Application;
 import by.instinctools.megamag.R;
-import by.instinctools.megamag.data.type.factory.GroupTypeFactory;
-import by.instinctools.megamag.data.type.factory.ItemTypeFactory;
 import by.instinctools.megamag.data.BaseLocalDataSource;
 import by.instinctools.megamag.data.menu.MenuData;
+import by.instinctools.megamag.data.type.factory.GroupTypeFactory;
+import by.instinctools.megamag.data.type.factory.ItemTypeFactory;
 import io.reactivex.Observable;
 
 public class MenuInfoLocalDataSource extends BaseLocalDataSource<String, MenuData> {
@@ -47,5 +49,24 @@ public class MenuInfoLocalDataSource extends BaseLocalDataSource<String, MenuDat
                 .icon(R.drawable.ic_announcement_black_24dp)
                 .build());
         return menus;
+    }
+
+    @NonNull
+    @Override
+    public Observable<MenuData> getValue(@NonNull String key) {
+        return Observable.just(menuList)
+                .map(list -> getMenuItemById(list, key));
+    }
+
+    @Nullable
+    private MenuData getMenuItemById(@NonNull List<MenuData> list, @NonNull String itemId) {
+        for (MenuData menu : list) {
+            String menuItemId = String.valueOf(menu.getType().getId());
+            boolean isIdEquals = TextUtils.equals(menuItemId, itemId);
+            if (isIdEquals) {
+                return menu;
+            }
+        }
+        return null;
     }
 }

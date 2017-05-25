@@ -5,8 +5,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.widget.ContentLoadingProgressBar;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -40,6 +42,11 @@ public class InfoActivity extends AppCompatActivity implements InfoView {
     @BindView(R.id.info_progress_bar)
     ContentLoadingProgressBar progressBar;
 
+    @BindView(R.id.info_toolbar)
+    Toolbar toolbar;
+
+    private ActionBar actionBar;
+
     @NonNull
     private InfoPresenter infoPresenter = new InfoPresenterImpl();
 
@@ -54,12 +61,28 @@ public class InfoActivity extends AppCompatActivity implements InfoView {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_info);
         ButterKnife.bind(this);
+        initToolbar();
         Intent intent = getIntent();
         if (intent != null && intent.hasExtra(INFO_ACTIVITY_SCREEN_ID)) {
             infoPresenter.setInitialValue(intent.getIntExtra(INFO_ACTIVITY_SCREEN_ID, 0));
         } else {
             throw new ErrorException(new NoIdError());
         }
+    }
+
+    private void initToolbar() {
+        setSupportActionBar(toolbar);
+        actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+        }
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return super.onSupportNavigateUp();
     }
 
     @Override
@@ -103,6 +126,13 @@ public class InfoActivity extends AppCompatActivity implements InfoView {
             }
         });
         recyclerView.setAdapter(adapter);
+    }
+
+    @Override
+    public void setToolbarTitle(@NonNull String title) {
+        if (actionBar != null) {
+            actionBar.setTitle(title);
+        }
     }
 
     @Override
