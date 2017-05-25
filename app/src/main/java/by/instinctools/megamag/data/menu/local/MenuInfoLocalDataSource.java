@@ -63,7 +63,9 @@ public class MenuInfoLocalDataSource extends BaseLocalDataSource<String, MenuDat
     @Nullable
     private Observable<MenuData> getMenuItemById(@NonNull List<MenuData> list, @NonNull String itemId) {
         for (MenuData menu : list) {
-            if (TextUtils.equals(String.valueOf(menu.getType().getId()), itemId)) {
+            String menuItemId = String.valueOf(menu.getType().getId());
+            boolean isIdEquals = TextUtils.equals(menuItemId, itemId);
+            if (isIdEquals) {
                 return Observable.just(menu);
             }
         }
