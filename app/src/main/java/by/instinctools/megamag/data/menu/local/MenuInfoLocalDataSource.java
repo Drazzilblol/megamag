@@ -10,8 +10,6 @@ import java.util.List;
 
 import by.instinctools.megamag.Application;
 import by.instinctools.megamag.R;
-import by.instinctools.megamag.common.errors.ErrorException;
-import by.instinctools.megamag.common.errors.NoDataError;
 import by.instinctools.megamag.data.BaseLocalDataSource;
 import by.instinctools.megamag.data.menu.MenuData;
 import by.instinctools.megamag.data.type.factory.GroupTypeFactory;
@@ -57,18 +55,18 @@ public class MenuInfoLocalDataSource extends BaseLocalDataSource<String, MenuDat
     @Override
     public Observable<MenuData> getValue(@NonNull String key) {
         return Observable.just(menuList)
-                .flatMap(list -> getMenuItemById(list, key));
+                .map(list -> getMenuItemById(list, key));
     }
 
     @Nullable
-    private Observable<MenuData> getMenuItemById(@NonNull List<MenuData> list, @NonNull String itemId) {
+    private MenuData getMenuItemById(@NonNull List<MenuData> list, @NonNull String itemId) {
         for (MenuData menu : list) {
             String menuItemId = String.valueOf(menu.getType().getId());
             boolean isIdEquals = TextUtils.equals(menuItemId, itemId);
             if (isIdEquals) {
-                return Observable.just(menu);
+                return menu;
             }
         }
-        return Observable.error(new ErrorException(new NoDataError()));
+        return null;
     }
 }
