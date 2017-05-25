@@ -8,7 +8,7 @@ import java.util.List;
 import by.instinctools.megamag.common.errors.ErrorException;
 import by.instinctools.megamag.common.errors.NoDataError;
 import by.instinctools.megamag.data.info.items.InfoItem;
-import by.instinctools.megamag.domain.GetInfoToolbarTitleUseCase;
+import by.instinctools.megamag.domain.GetInfoTitleUseCase;
 import by.instinctools.megamag.domain.GetInfoUseCase;
 import by.instinctools.megamag.domain.models.Info;
 import by.instinctools.megamag.presentation.DisposablePresenter;
@@ -30,7 +30,7 @@ class InfoPresenterImpl extends DisposablePresenter<InfoView> implements InfoPre
     private GetInfoUseCase infoUseCase = new GetInfoUseCase();
 
     @NonNull
-    private GetInfoToolbarTitleUseCase getInfoToolbarTitleUseCase = new GetInfoToolbarTitleUseCase();
+    private GetInfoTitleUseCase getInfoTitleUseCase = new GetInfoTitleUseCase();
 
     @Override
     public void setInitialValue(int infoId) {
@@ -105,14 +105,11 @@ class InfoPresenterImpl extends DisposablePresenter<InfoView> implements InfoPre
 
     private void loadInfoToolbarTitle() {
         addDisposable(
-                getInfoToolbarTitleUseCase.execute(infoId)
+                getInfoTitleUseCase.execute(infoId)
                         .switchIfEmpty(Observable.error(new ErrorException(new NoDataError())))
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe(
-                                this::onLoadToolbarTitleSuccess,
-                                this::onLoadError
-                        )
+                        .subscribe(this::onLoadToolbarTitleSuccess)
         );
     }
 
@@ -120,7 +117,7 @@ class InfoPresenterImpl extends DisposablePresenter<InfoView> implements InfoPre
     private void onLoadToolbarTitleSuccess(@NonNull String title) {
         if (isViewAttached()) {
             InfoView view = getView();
-            view.showToolbar(title);
+            view.setToolbarTitle(title);
         }
     }
 

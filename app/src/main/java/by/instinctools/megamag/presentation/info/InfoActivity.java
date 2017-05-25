@@ -129,9 +129,9 @@ public class InfoActivity extends AppCompatActivity implements InfoView {
     }
 
     @Override
-    public void showToolbar(@NonNull String type) {
+    public void setToolbarTitle(@NonNull String title) {
         if (actionBar != null) {
-            actionBar.setTitle(type);
+            actionBar.setTitle(title);
         }
     }
 

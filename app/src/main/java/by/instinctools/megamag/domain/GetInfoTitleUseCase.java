@@ -7,7 +7,7 @@ import by.instinctools.megamag.data.menu.MenuData;
 import hugo.weaving.DebugLog;
 import io.reactivex.Observable;
 
-public class GetInfoToolbarTitleUseCase implements UseCase<String> {
+public class GetInfoTitleUseCase implements UseCase<String> {
 
     @NonNull
     private MenuCommonRepositoryImpl repository = new MenuCommonRepositoryImpl();

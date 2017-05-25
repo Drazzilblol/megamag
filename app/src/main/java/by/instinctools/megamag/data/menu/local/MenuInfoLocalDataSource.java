@@ -2,6 +2,7 @@ package by.instinctools.megamag.data.menu.local;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.text.TextUtils;
 
 import java.util.ArrayList;
@@ -55,8 +56,14 @@ public class MenuInfoLocalDataSource extends BaseLocalDataSource<String, MenuDat
     @NonNull
     @Override
     public Observable<MenuData> getValue(@NonNull String key) {
-        for (MenuData menu : menuList) {
-            if (TextUtils.equals(menu.getType().getId() + "", key)) {
+        return Observable.just(menuList)
+                .flatMap(list -> getMenuItemById(list, key));
+    }
+
+    @Nullable
+    private Observable<MenuData> getMenuItemById(@NonNull List<MenuData> list, @NonNull String itemId) {
+        for (MenuData menu : list) {
+            if (TextUtils.equals(String.valueOf(menu.getType().getId()), itemId)) {
                 return Observable.just(menu);
             }
         }

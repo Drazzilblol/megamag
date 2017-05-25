@@ -11,7 +11,7 @@ interface InfoView extends MvpView {
 
     void showData(@NonNull List<TreeNode> infoList);
 
-    void showToolbar(@NonNull String type);
+    void setToolbarTitle(@NonNull String title);
 
     void hideData();
 }
