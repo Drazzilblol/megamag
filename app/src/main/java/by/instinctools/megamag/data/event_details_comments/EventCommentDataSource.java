@@ -9,5 +9,5 @@ import io.reactivex.Observable;
 
 interface EventCommentDataSource extends DataSource<String, EventCommentData> {
 
-    public Observable<List<EventCommentData>> getAll(@NonNull String eventId);
+    Observable<List<EventCommentData>> getAll(@NonNull String eventId);
 }
