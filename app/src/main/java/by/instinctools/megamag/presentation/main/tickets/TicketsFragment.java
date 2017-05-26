@@ -81,7 +81,7 @@ public class TicketsFragment extends Fragment implements TicketsView {
 
     @Override
     public void showData(@NonNull List<Ticket> ticketsList) {
-        adapter.setTickets(ticketsList);
+        adapter.addItems(ticketsList);
         recyclerView.setVisibility(View.VISIBLE);
     }
 

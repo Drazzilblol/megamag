@@ -1,7 +1,6 @@
 package by.instinctools.megamag.presentation.main.announcements;
 
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -13,7 +12,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -71,7 +69,7 @@ public class AnnouncementsFragment extends Fragment implements AnnouncementsView
 
     @Override
     public void showData(@NonNull List<Announcement> announcementList) {
-        adapter.setAnnouncements(announcementList);
+        adapter.addItems(announcementList);
         recyclerView.setVisibility(View.VISIBLE);
     }
 
