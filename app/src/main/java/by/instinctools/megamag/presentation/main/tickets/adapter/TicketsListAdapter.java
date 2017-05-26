@@ -33,18 +33,43 @@ public class TicketsListAdapter extends RecyclerView.Adapter<TicketHolder> {
         int size = tickets.size();
         int currentSize = this.tickets.size();
 
-        if (currentSize > size) {
-            this.tickets.subList(size, currentSize).clear();
-            notifyItemRangeRemoved(size, currentSize);
+        if (currentSize == 0) {
+            this.tickets.addAll(tickets);
+            notifyDataSetChanged();
         }
 
-        for (int i = 0; i < size; i++) {
-            if (this.tickets.size() <= i) {
-                this.tickets.add(tickets.get(i));
-                notifyItemInserted(i);
-            } else if (!this.tickets.get(i).equals(tickets.get(i))) {
-                this.tickets.set(i, tickets.get(i));
-                notifyItemChanged(i);
+        if (currentSize > size) {
+            for (int i = 0; i < currentSize; i++) {
+                Ticket item = this.tickets.get(i);
+                int itemIndex = tickets.indexOf(item);
+                if (itemIndex == -1 && currentSize > size) {
+                    this.tickets.remove(i);
+                    notifyItemRemoved(i);
+                    currentSize = this.tickets.size();
+                }
+            }
+        }
+
+        if (currentSize < size) {
+            for (int i = 0; i < size; i++) {
+                Ticket item = tickets.get(i);
+                int itemIndex = this.tickets.indexOf(item);
+                if (itemIndex == -1 && currentSize < size) {
+                    this.tickets.add(i, item);
+                    notifyItemInserted(i);
+                    currentSize = this.tickets.size();
+                }
+            }
+        }
+
+        if (currentSize == size) {
+            for (int i = 0; i < size; i++) {
+                Ticket item = tickets.get(i);
+                int itemIndex = this.tickets.indexOf(item);
+                if (itemIndex == -1) {
+                    this.tickets.set(i, item);
+                    notifyItemChanged(i);
+                }
             }
         }
     }

@@ -38,7 +38,7 @@ class RemoteAnnouncementDataSource implements AnnouncementDataSource {
     private List<AnnouncementData> getStubAnnouncements() {
         List<AnnouncementData> announcements = new ArrayList<>();
         announcements.add(AnnouncementData.builder()
-                .title("Затерянный город Z")
+                .title("Затерянный город Z1")
                 .place("Анонсы")
                 .details("США (2016) боевик, драма, приключения, биография, история")
                 .description("Эльдорадо, таинственная столица инков, загадочный Город Z… Вымысел или реальность? В 1925 году экспедиция полковника Фоссета, члена Королевского Географического общества, бесследно исчезла в джунглях Амазонии в поисках Города Z…")
@@ -47,7 +47,7 @@ class RemoteAnnouncementDataSource implements AnnouncementDataSource {
         );
 
         announcements.add(AnnouncementData.builder()
-                .title("Затерянный город Z")
+                .title("Затерянный город Z2")
                 .place("Анонсы")
                 .details("США (2016) боевик, драма, приключения, биография, история")
                 .description("Эльдорадо, таинственная столица инков, загадочный Город Z… Вымысел или реальность? В 1925 году экспедиция полковника Фоссета, члена Королевского Географического общества, бесследно исчезла в джунглях Амазонии в поисках Города Z…")
@@ -56,7 +56,7 @@ class RemoteAnnouncementDataSource implements AnnouncementDataSource {
         );
 
         announcements.add(AnnouncementData.builder()
-                .title("Затерянный город Z")
+                .title("Затерянный город Z3")
                 .place("Анонсы")
                 .details("США (2016) боевик, драма, приключения, биография, история")
                 .description("Эльдорадо, таинственная столица инков, загадочный Город Z… Вымысел или реальность? В 1925 году экспедиция полковника Фоссета, члена Королевского Географического общества, бесследно исчезла в джунглях Амазонии в поисках Города Z…")

@@ -1,6 +1,7 @@
 package by.instinctools.megamag.presentation.main.announcements;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -12,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -52,6 +54,15 @@ public class AnnouncementsFragment extends Fragment implements AnnouncementsView
         View view = inflater.inflate(R.layout.fragment_announcements, container, false);
         ButterKnife.bind(this, view);
         initRecyclerView();
+
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                adapter.setAnnouncements(getStubAnnouncements());
+            }
+        }, 2000);
+
         return view;
     }
 
@@ -109,5 +120,45 @@ public class AnnouncementsFragment extends Fragment implements AnnouncementsView
     @Override
     public void hideProgress() {
         progressBar.hide();
+    }
+
+    private List<Announcement> getStubAnnouncements() {
+        List<Announcement> announcements = new ArrayList<>();
+        announcements.add(Announcement.builder()
+                .title("Затерянный город Z1")
+                .place("Анонсы")
+                .details("США (2016) боевик, драма, приключения, биография, история")
+                .description("Эльдорадо, таинственная столица инков, загадочный Город Z… Вымысел или реальность? В 1925 году экспедиция полковника Фоссета, члена Королевского Географического общества, бесследно исчезла в джунглях Амазонии в поисках Города Z…")
+                .coverUrl("http://kinoteatr.megamag.by/images/newsdesk_img/zateryanniy_gorod_b1.jpg")
+                .build()
+        );
+
+        announcements.add(Announcement.builder()
+                .title("Затерянный город Z2")
+                .place("Анонсы")
+                .details("США (2016) боевик, драма, приключения, биография, история")
+                .description("Эльдорадо, таинственная столица инков, загадочный Город Z… Вымысел или реальность? В 1925 году экспедиция полковника Фоссета, члена Королевского Географического общества, бесследно исчезла в джунглях Амазонии в поисках Города Z…")
+                .coverUrl("http://kinoteatr.megamag.by/images/newsdesk_img/zateryanniy_gorod_b1.jpg")
+                .build()
+        );
+        
+        announcements.add(Announcement.builder()
+                .title("Затерянный город Z4")
+                .place("Анонсы")
+                .details("США (2016) боевик, драма, приключения, биография, история")
+                .description("Эльдорадо, таинственная столица инков, загадочный Город Z… Вымысел или реальность? В 1925 году экспедиция полковника Фоссета, члена Королевского Географического общества, бесследно исчезла в джунглях Амазонии в поисках Города Z…")
+                .coverUrl("http://kinoteatr.megamag.by/images/newsdesk_img/zateryanniy_gorod_b1.jpg")
+                .build()
+        );
+
+        announcements.add(Announcement.builder()
+                .title("Затерянный город Z3")
+                .place("Анонсы")
+                .details("США (2016) боевик, драма, приключения, биография, история")
+                .description("Эльдорадо, таинственная столица инков, загадочный Город Z… Вымысел или реальность? В 1925 году экспедиция полковника Фоссета, члена Королевского Географического общества, бесследно исчезла в джунглях Амазонии в поисках Города Z…")
+                .coverUrl("http://kinoteatr.megamag.by/images/newsdesk_img/zateryanniy_gorod_b1.jpg")
+                .build()
+        );
+        return announcements;
     }
 }

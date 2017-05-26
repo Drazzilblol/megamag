@@ -33,18 +33,43 @@ public class AnnouncementsListAdapter extends RecyclerView.Adapter<AnnouncementH
         int size = announcements.size();
         int currentSize = this.announcements.size();
 
-        if (currentSize > size) {
-            this.announcements.subList(size, currentSize).clear();
-            notifyItemRangeRemoved(size, currentSize);
+        if (currentSize == 0) {
+            this.announcements.addAll(announcements);
+            notifyDataSetChanged();
         }
 
-        for (int i = 0; i < size; i++) {
-            if (this.announcements.size() <= i) {
-                this.announcements.add(announcements.get(i));
-                notifyItemInserted(i);
-            } else if (!this.announcements.get(i).equals(announcements.get(i))) {
-                this.announcements.set(i, announcements.get(i));
-                notifyItemChanged(i);
+        if (currentSize > size) {
+            for (int i = 0; i < currentSize; i++) {
+                Announcement item = this.announcements.get(i);
+                int itemIndex = announcements.indexOf(item);
+                if (itemIndex == -1 && currentSize > size) {
+                    this.announcements.remove(i);
+                    notifyItemRemoved(i);
+                    currentSize = this.announcements.size();
+                }
+            }
+        }
+
+        if (currentSize < size) {
+            for (int i = 0; i < size; i++) {
+                Announcement item = announcements.get(i);
+                int itemIndex = this.announcements.indexOf(item);
+                if (itemIndex == -1 && currentSize < size) {
+                    this.announcements.add(i, item);
+                    notifyItemInserted(i);
+                    currentSize = this.announcements.size();
+                }
+            }
+        }
+
+        if (currentSize == size) {
+            for (int i = 0; i < size; i++) {
+                Announcement item = announcements.get(i);
+                int itemIndex = this.announcements.indexOf(item);
+                if (itemIndex == -1) {
+                    this.announcements.set(i, item);
+                    notifyItemChanged(i);
+                }
             }
         }
     }

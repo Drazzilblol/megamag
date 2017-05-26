@@ -43,18 +43,43 @@ public class InfoContentAdapter extends RecyclerView.Adapter<InfoViewHolder> {
         int size = items.size();
         int currentSize = this.items.size();
 
-        if (currentSize > size) {
-            this.items.subList(size, currentSize).clear();
-            notifyItemRangeRemoved(size, currentSize);
+        if (currentSize == 0) {
+            this.items.addAll(items);
+            notifyDataSetChanged();
         }
 
-        for (int i = 0; i < size; i++) {
-            if (this.items.size() <= i) {
-                this.items.add(items.get(i));
-                notifyItemInserted(i);
-            } else if (!this.items.get(i).equals(items.get(i))) {
-                this.items.set(i, items.get(i));
-                notifyItemChanged(i);
+        if (currentSize > size) {
+            for (int i = 0; i < currentSize; i++) {
+                InfoItem item = this.items.get(i);
+                int itemIndex = items.indexOf(item);
+                if (itemIndex == -1 && currentSize > size) {
+                    this.items.remove(i);
+                    notifyItemRemoved(i);
+                    currentSize = this.items.size();
+                }
+            }
+        }
+
+        if (currentSize < size) {
+            for (int i = 0; i < size; i++) {
+                InfoItem item = items.get(i);
+                int itemIndex = this.items.indexOf(item);
+                if (itemIndex == -1 && currentSize < size) {
+                    this.items.add(i, item);
+                    notifyItemInserted(i);
+                    currentSize = this.items.size();
+                }
+            }
+        }
+
+        if (currentSize == size) {
+            for (int i = 0; i < size; i++) {
+                InfoItem item = items.get(i);
+                int itemIndex = this.items.indexOf(item);
+                if (itemIndex == -1) {
+                    this.items.set(i, item);
+                    notifyItemChanged(i);
+                }
             }
         }
     }
