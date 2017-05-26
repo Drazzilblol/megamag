@@ -2,9 +2,11 @@ package by.instinctools.megamag.presentation.main.announcements.adapter;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.ViewGroup;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import by.instinctools.megamag.domain.models.Announcement;
@@ -35,42 +37,53 @@ public class AnnouncementsListAdapter extends RecyclerView.Adapter<AnnouncementH
 
         if (currentSize == 0) {
             this.announcements.addAll(announcements);
-            notifyDataSetChanged();
+            notifyItemRangeInserted(0, size - 1);
         }
 
-        if (currentSize > size) {
-            for (int i = 0; i < currentSize; i++) {
-                Announcement item = this.announcements.get(i);
-                int itemIndex = announcements.indexOf(item);
-                if (itemIndex == -1 && currentSize > size) {
-                    this.announcements.remove(i);
-                    notifyItemRemoved(i);
-                    currentSize = this.announcements.size();
-                }
+        Iterator<Announcement> iterator = this.announcements.iterator();
+
+        int i = 0;
+        while (iterator.hasNext()) {
+            Announcement item = iterator.next();
+            int result = compare(announcements, item);
+            if (result == -1) {
+                iterator.remove();
+                notifyItemRemoved(i);
+                i--;
             }
+            i++;
         }
 
-        if (currentSize < size) {
-            for (int i = 0; i < size; i++) {
-                Announcement item = announcements.get(i);
-                int itemIndex = this.announcements.indexOf(item);
-                if (itemIndex == -1 && currentSize < size) {
-                    this.announcements.add(i, item);
-                    notifyItemInserted(i);
-                    currentSize = this.announcements.size();
-                }
+        iterator = announcements.iterator();
+        i = 0;
+        while (iterator.hasNext()) {
+            Announcement item = iterator.next();
+            int result = compare(this.announcements, item);
+            if (result == -1) {
+                this.announcements.add(i, item);
+                notifyItemInserted(i);
+                i++;
             }
+            i++;
         }
 
-        if (currentSize == size) {
-            for (int i = 0; i < size; i++) {
-                Announcement item = announcements.get(i);
-                int itemIndex = this.announcements.indexOf(item);
-                if (itemIndex == -1) {
-                    this.announcements.set(i, item);
-                    notifyItemChanged(i);
-                }
+        for (int j = 0; j < this.announcements.size(); j++) {
+            Announcement oldAnnouncement = this.announcements.get(j);
+            Announcement newAnnouncement = announcements.get(j);
+            if (!oldAnnouncement.equals(newAnnouncement)) {
+                this.announcements.set(j, newAnnouncement);
+                notifyItemChanged(j);
             }
         }
+    }
+    
+    private int compare(@NonNull List<Announcement> announcements, Announcement item) {
+        int res = -1;
+        for (int i = 0; i < announcements.size(); i++) {
+            if (TextUtils.equals(item.getTitle(), announcements.get(i).getTitle())) {
+                res = i;
+            }
+        }
+        return res;
     }
 }

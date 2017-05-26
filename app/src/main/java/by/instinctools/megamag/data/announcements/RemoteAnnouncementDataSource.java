@@ -63,6 +63,24 @@ class RemoteAnnouncementDataSource implements AnnouncementDataSource {
                 .coverUrl("http://kinoteatr.megamag.by/images/newsdesk_img/zateryanniy_gorod_b1.jpg")
                 .build()
         );
+
+        announcements.add(AnnouncementData.builder()
+                .title("Затерянный город Z4")
+                .place("Анонсы")
+                .details("США (2016) боевик, драма, приключения, биография, история")
+                .description("Эльдорадо, таинственная столица инков, загадочный Город Z… Вымысел или реальность? В 1925 году экспедиция полковника Фоссета, члена Королевского Географического общества, бесследно исчезла в джунглях Амазонии в поисках Города Z…")
+                .coverUrl("http://kinoteatr.megamag.by/images/newsdesk_img/zateryanniy_gorod_b1.jpg")
+                .build()
+        );
+
+        announcements.add(AnnouncementData.builder()
+                .title("Затерянный город Z5")
+                .place("Анонсы")
+                .details("США (2016) боевик, драма, приключения, биография, история")
+                .description("Эльдорадо, таинственная столица инков, загадочный Город Z… Вымысел или реальность? В 1925 году экспедиция полковника Фоссета, члена Королевского Географического общества, бесследно исчезла в джунглях Амазонии в поисках Города Z…")
+                .coverUrl("http://kinoteatr.megamag.by/images/newsdesk_img/zateryanniy_gorod_b1.jpg")
+                .build()
+        );
         return announcements;
     }
 }
