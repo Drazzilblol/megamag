@@ -17,7 +17,7 @@ public class InfoContentAdapter extends BaseDiffAdapter<InfoViewHolder, InfoItem
     private static final int TYPE_IMAGE = 1;
 
     public InfoContentAdapter(List<InfoItem> items) {
-        addItems(items);
+        changeItems(items);
     }
 
     @Override

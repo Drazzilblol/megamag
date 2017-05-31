@@ -26,7 +26,7 @@ public class InfoBinder extends TreeViewBinder<InfoViewHolder> {
             InfoContentAdapter adapter = new InfoContentAdapter(fileNode.getItems());
             infoViewHolder.getRecyclerView().setAdapter(adapter);
         } else {
-            infoContentAdapter.addItems(fileNode.getItems());
+            infoContentAdapter.changeItems(fileNode.getItems());
         }
     }
 

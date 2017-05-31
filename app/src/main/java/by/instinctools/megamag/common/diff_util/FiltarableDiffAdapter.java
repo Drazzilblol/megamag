@@ -49,7 +49,7 @@ public abstract class FiltarableDiffAdapter<VH extends RecyclerView.ViewHolder, 
 
     public void changeItems(@NonNull List<T> items) {
         this.original.clear();
-        if (items.isEmpty()) {
+        if (!items.isEmpty()) {
             this.original.addAll(items);
         }
         filter(lastFilter);

@@ -69,7 +69,7 @@ public class AnnouncementsFragment extends Fragment implements AnnouncementsView
 
     @Override
     public void showData(@NonNull List<Announcement> announcementList) {
-        adapter.addItems(announcementList);
+        adapter.changeItems(announcementList);
         recyclerView.setVisibility(View.VISIBLE);
     }
 
