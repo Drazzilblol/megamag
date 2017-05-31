@@ -4,7 +4,10 @@ import android.support.annotation.NonNull;
 
 import java.util.List;
 
+import by.instinctools.megamag.Application;
 import io.reactivex.Observable;
+import okhttp3.ResponseBody;
+import retrofit2.Call;
 
 public class RemoteEventSessionDataSource implements EventSessionDataSource {
 
@@ -34,6 +37,15 @@ public class RemoteEventSessionDataSource implements EventSessionDataSource {
 
     @Override
     public Observable<List<EventSessionData>> getAll(@NonNull String eventId) {
-        return null;
+        return getEvent(eventId);
+    }
+
+    private Observable<List<EventSessionData>> getEvent(String id) {
+        Call<ResponseBody> call = Application.getApi().getDetails(id);
+
+        return Observable.defer(() -> Observable.just(call.execute()))
+                .flatMap(Observable::just)
+                .map(r -> EventSessionParser.parseSession(r.body().string()));
+
     }
 }

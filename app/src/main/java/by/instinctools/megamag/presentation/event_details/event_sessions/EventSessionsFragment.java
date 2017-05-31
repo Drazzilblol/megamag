@@ -22,7 +22,6 @@ import by.instinctools.megamag.R;
 import by.instinctools.megamag.common.errors.Error;
 import by.instinctools.megamag.domain.models.EventSession;
 import by.instinctools.megamag.presentation.common.decorator.OffsetItemDecorator;
-import by.instinctools.megamag.presentation.event_details.info_comments.adapter.CommentsListAdapter;
 import hugo.weaving.DebugLog;
 
 public class EventSessionsFragment extends MvpAppCompatFragment implements EventSessionsView {
@@ -33,13 +32,13 @@ public class EventSessionsFragment extends MvpAppCompatFragment implements Event
     @InjectPresenter
     EventSessionsPresenterImpl presenter;
 
-    @BindView(R.id.details_comments_recycler)
+    @BindView(R.id.details_sessions_recycler)
     RecyclerView recyclerView;
 
-    @BindView(R.id.details_comments_error_view)
+    @BindView(R.id.details_sessions_error_view)
     TextView errorView;
 
-    @BindView(R.id.details_comments_progress_bar)
+    @BindView(R.id.details_sessions_progress_bar)
     ContentLoadingProgressBar progressBar;
 
     public static EventSessionsFragment newInstance(@NonNull String eventId) {
