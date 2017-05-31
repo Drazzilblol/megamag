@@ -33,6 +33,7 @@ class RemoteInfoDataSource extends InfoDataSource {
         return Observable.error(new ErrorException(new NoDataError()));
     }
 
+    @NonNull
     private Observable<List<InfoData>> getRulesInfo(int infoId) {
         Call<ResponseBody> call = Application.getApi().getRulesInfo();
 
@@ -41,6 +42,7 @@ class RemoteInfoDataSource extends InfoDataSource {
                 .map(r -> InfoParser.parseRules(infoId, r.body().string()));
     }
 
+    @NonNull
     private Observable<List<InfoData>> getHowToPayInfo(int infoId) {
         Call<ResponseBody> call = Application.getApi().getHowToPayInfo();
 
@@ -49,6 +51,7 @@ class RemoteInfoDataSource extends InfoDataSource {
                 .map(r -> InfoParser.parseHowToPay(infoId, r.body().string()));
     }
 
+    @NonNull
     private List<InfoData> getStubBookInfo(int infoId) {
         List<InfoData> infoList = new ArrayList<>();
 
@@ -139,6 +142,7 @@ class RemoteInfoDataSource extends InfoDataSource {
         return infoList;
     }
 
+    @NonNull
     private String replaceNToBr(String str) {
         return str.replaceAll("\n", "<br>");
     }

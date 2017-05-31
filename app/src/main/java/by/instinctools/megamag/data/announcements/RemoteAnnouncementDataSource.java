@@ -20,6 +20,7 @@ class RemoteAnnouncementDataSource extends BaseRemoteDataSource<String, Announce
         return getAnnouncements();
     }
 
+    @NonNull
     private Observable<List<AnnouncementData>> getAnnouncements() {
         Call<ResponseBody> call = Application.getApi().getData();
 

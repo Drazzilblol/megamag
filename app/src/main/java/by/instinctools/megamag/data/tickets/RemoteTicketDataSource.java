@@ -20,6 +20,7 @@ class RemoteTicketDataSource extends BaseRemoteDataSource<String, TicketData> {
         return getTickets();
     }
 
+    @NonNull
     private Observable<List<TicketData>> getTickets() {
         Call<ResponseBody> call = Application.getApi().getData();
 
