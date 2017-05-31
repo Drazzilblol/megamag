@@ -5,24 +5,13 @@ import android.support.annotation.NonNull;
 import java.util.List;
 
 import by.instinctools.megamag.Application;
+import by.instinctools.megamag.data.BaseRemoteDataSource;
 import hugo.weaving.DebugLog;
 import io.reactivex.Observable;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 
-public class RemoteTicketDataSource implements TicketDataSource {
-
-    @NonNull
-    @Override
-    public Observable<TicketData> getValue(@NonNull String key) {
-        throw new UnsupportedOperationException();
-    }
-
-    @NonNull
-    @Override
-    public Observable<TicketData> saveValue(@NonNull String key, @NonNull TicketData value) {
-        throw new UnsupportedOperationException();
-    }
+class RemoteTicketDataSource extends BaseRemoteDataSource<String, TicketData> {
 
     @NonNull
     @DebugLog
@@ -31,14 +20,7 @@ public class RemoteTicketDataSource implements TicketDataSource {
         return getTickets();
     }
 
-    @NonNull
-    @Override
-    public Observable<List<TicketData>> saveAll(List<TicketData> collection) {
-        throw new UnsupportedOperationException();
-    }
-
     private Observable<List<TicketData>> getTickets() {
-
         Call<ResponseBody> call = Application.getApi().getData();
 
         return Observable.defer(() -> Observable.just(call.execute()))

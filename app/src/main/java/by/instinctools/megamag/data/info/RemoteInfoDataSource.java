@@ -17,28 +17,11 @@ import io.reactivex.Observable;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 
-public class RemoteInfoDataSource implements InfoDataSource {
-
-    @NonNull
-    @Override
-    public Observable<InfoData> getValue(@NonNull String key) {
-        throw new UnsupportedOperationException();
-    }
-
-    @NonNull
-    @Override
-    public Observable<InfoData> saveValue(@NonNull String key, @NonNull InfoData value) {
-        throw new UnsupportedOperationException();
-    }
-
-    @NonNull
-    @Override
-    public Observable<List<InfoData>> getAll() {
-        throw new UnsupportedOperationException();
-    }
+class RemoteInfoDataSource extends InfoDataSource {
 
     @DebugLog
     @NonNull
+    @Override
     public Observable<List<InfoData>> getAll(int infoId) {
         if (infoId == ItemTypeFactory.getHowPayType().getId()) {
             return getHowToPayInfo(infoId);
@@ -64,12 +47,6 @@ public class RemoteInfoDataSource implements InfoDataSource {
         return Observable.defer(() -> Observable.just(call.execute()))
                 .flatMap(Observable::just)
                 .map(r -> InfoParser.parseHowToPay(infoId, r.body().string()));
-    }
-
-    @NonNull
-    @Override
-    public Observable<List<InfoData>> saveAll(List<InfoData> collection) {
-        throw new UnsupportedOperationException();
     }
 
     private List<InfoData> getStubBookInfo(int infoId) {

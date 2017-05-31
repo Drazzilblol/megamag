@@ -9,7 +9,7 @@ import io.reactivex.Observable;
 public class InfoRepositoryImpl implements InfoRepository {
 
     @NonNull
-    private RemoteInfoDataSource dataSource = new RemoteInfoDataSource();
+    private InfoDataSource dataSource = new RemoteInfoDataSource();
 
     @NonNull
     @Override
