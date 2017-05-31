@@ -24,8 +24,7 @@ class AnnouncementParser {
     private static final String ANNOUNCEMENT_BODY_SELECTOR = "smallText";
     private static final String IMAGE_URL_SELECTOR = "href";
 
-    static List<AnnouncementData> parseAnnouncements(@NonNull String sourceHtml) {
-        Document document = Jsoup.parse(sourceHtml);
+    static List<AnnouncementData> parseAnnouncements(@NonNull Document document) {
         List<AnnouncementData> announcementList = new ArrayList<>();
 
         Element announcementsRoot = document.getElementById(ANNOUNCEMENTS_LIST_SELECTOR);

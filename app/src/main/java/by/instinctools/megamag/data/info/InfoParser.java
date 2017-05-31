@@ -21,8 +21,7 @@ class InfoParser {
     private static final String PAY_STEPS_SELECTOR = "steps_var";
     private static final int STEPS_COUNT = 6;
 
-    static List<InfoData> parseRules(int infoId, @NonNull String sourceHtml) {
-        Document document = Jsoup.parse(sourceHtml);
+    static List<InfoData> parseRules(int infoId, @NonNull Document document) {
         Elements rulesElement = document.select(INFO_RULES_SELECTOR);
         ArrayList<InfoItem> items = new ArrayList<>();
         List<InfoData> infoList = new ArrayList<>();
@@ -41,9 +40,7 @@ class InfoParser {
         return infoList;
     }
 
-    static List<InfoData> parseHowToPay(int infoId, @NonNull String sourceHtml) {
-        Document document = Jsoup.parse(sourceHtml);
-
+    static List<InfoData> parseHowToPay(int infoId, @NonNull Document document) {
         List<InfoData> infoList = new ArrayList<>();
 
         for (int i = 1; i < STEPS_COUNT; i++) {

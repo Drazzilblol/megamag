@@ -2,6 +2,8 @@ package by.instinctools.megamag.data.tickets;
 
 import android.support.annotation.NonNull;
 
+import org.jsoup.nodes.Document;
+
 import java.util.List;
 
 import by.instinctools.megamag.Application;
@@ -22,9 +24,9 @@ class RemoteTicketDataSource extends BaseRemoteDataSource<String, TicketData> {
 
     @NonNull
     private Observable<List<TicketData>> getTickets() {
-        Call<ResponseBody> call = Application.getApi().getData();
+        Call<Document> call = Application.getApi().getData();
 
         return Observable.defer(() -> Observable.just(call.execute()))
-                .map(r -> TicketParser.parseTickets(r.body().string()));
+                .map(r -> TicketParser.parseTickets(r.body()));
     }
 }

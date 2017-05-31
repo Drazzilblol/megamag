@@ -2,6 +2,8 @@ package by.instinctools.megamag.data.info;
 
 import android.support.annotation.NonNull;
 
+import org.jsoup.nodes.Document;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,18 +37,18 @@ class RemoteInfoDataSource extends InfoDataSource {
 
     @NonNull
     private Observable<List<InfoData>> getRulesInfo(int infoId) {
-        Call<ResponseBody> call = Application.getApi().getRulesInfo();
+        Call<Document> call = Application.getApi().getRulesInfo();
 
         return Observable.defer(() -> Observable.just(call.execute()))
-                .map(r -> InfoParser.parseRules(infoId, r.body().string()));
+                .map(r -> InfoParser.parseRules(infoId, r.body()));
     }
 
     @NonNull
     private Observable<List<InfoData>> getHowToPayInfo(int infoId) {
-        Call<ResponseBody> call = Application.getApi().getHowToPayInfo();
+        Call<Document> call = Application.getApi().getHowToPayInfo();
 
         return Observable.defer(() -> Observable.just(call.execute()))
-                .map(r -> InfoParser.parseHowToPay(infoId, r.body().string()));
+                .map(r -> InfoParser.parseHowToPay(infoId, r.body()));
     }
 
     @NonNull

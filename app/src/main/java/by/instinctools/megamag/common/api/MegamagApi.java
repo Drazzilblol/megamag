@@ -1,5 +1,7 @@
 package by.instinctools.megamag.common.api;
 
+import org.jsoup.nodes.Document;
+
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -7,11 +9,11 @@ import retrofit2.http.GET;
 public interface MegamagApi {
 
     @GET("/index.php")
-    Call<ResponseBody> getData();
+    Call<Document> getData();
 
     @GET("/howto_pay.php")
-    Call<ResponseBody> getHowToPayInfo();
+    Call<Document> getHowToPayInfo();
 
     @GET("/howto_rules.php")
-    Call<ResponseBody> getRulesInfo();
+    Call<Document> getRulesInfo();
 }

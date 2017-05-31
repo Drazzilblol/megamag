@@ -18,8 +18,7 @@ class TicketParser {
     private static final String TICKET_TITLE_SELECTOR = "cinema_today_title";
     private static final String TICKET_DATE_SELECTOR = "cinema_today_date";
 
-    static List<TicketData> parseTickets(@NonNull String sourceHtml) {
-        Document document = Jsoup.parse(sourceHtml);
+    static List<TicketData> parseTickets(@NonNull Document document) {
         List<TicketData> ticketList = new ArrayList<>();
         Elements tickets = document.getElementsByClass(TICKET_ITEM_SELECTOR);
         for (Element ticket : tickets) {
