@@ -1,18 +1,13 @@
 package by.instinctools.megamag.presentation.main.tickets.adapter;
 
 import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.ViewGroup;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import by.instinctools.megamag.common.diff_util.BaseDiffAdapter;
 import by.instinctools.megamag.domain.models.Ticket;
 
-public class TicketsListAdapter extends RecyclerView.Adapter<TicketHolder> {
-
-    @NonNull
-    private final List<Ticket> tickets = new ArrayList<>();
+public class TicketsListAdapter extends BaseDiffAdapter<TicketHolder, Ticket> {
 
     @Override
     public TicketHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -21,17 +16,12 @@ public class TicketsListAdapter extends RecyclerView.Adapter<TicketHolder> {
 
     @Override
     public void onBindViewHolder(TicketHolder holder, int position) {
-        holder.bindData(tickets.get(position));
+        holder.bindData(getItem(position));
     }
 
     @Override
-    public int getItemCount() {
-        return tickets.size();
-    }
-
-    public void setTickets(@NonNull List<Ticket> tickets) {
-        this.tickets.clear();
-        this.tickets.addAll(tickets);
-        notifyDataSetChanged();
+    public boolean areItemsTheSame(@NonNull Ticket oldItem, @NonNull Ticket newItem) {
+        return TextUtils.equals(oldItem.getTitle(), newItem.getTitle());
     }
 }
+

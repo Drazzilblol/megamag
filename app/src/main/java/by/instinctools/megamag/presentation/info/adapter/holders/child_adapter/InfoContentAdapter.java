@@ -1,26 +1,23 @@
 package by.instinctools.megamag.presentation.info.adapter.holders.child_adapter;
 
 import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.ViewGroup;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import by.instinctools.megamag.common.diff_util.BaseDiffAdapter;
 import by.instinctools.megamag.data.info.items.InfoImage;
 import by.instinctools.megamag.data.info.items.InfoItem;
 import by.instinctools.megamag.data.info.items.InfoText;
 
-public class InfoContentAdapter extends RecyclerView.Adapter<InfoViewHolder> {
+public class InfoContentAdapter extends BaseDiffAdapter<InfoViewHolder, InfoItem> {
 
     private static final int TYPE_TEXT = 0;
     private static final int TYPE_IMAGE = 1;
 
-    @NonNull
-    private final List<InfoItem> items = new ArrayList<>();
-
     public InfoContentAdapter(List<InfoItem> items) {
-        setItems(items);
+        changeItems(items);
     }
 
     @Override
@@ -36,18 +33,12 @@ public class InfoContentAdapter extends RecyclerView.Adapter<InfoViewHolder> {
 
     @Override
     public void onBindViewHolder(InfoViewHolder holder, int position) {
-        holder.bind(items.get(position));
-    }
-
-    public void setItems(@NonNull List<InfoItem> items) {
-        this.items.clear();
-        this.items.addAll(items);
-        notifyDataSetChanged();
+        holder.bind(getItem(position));
     }
 
     @Override
     public int getItemViewType(int position) {
-        InfoItem item = items.get(position);
+        InfoItem item = getItem(position);
         if (item instanceof InfoText) {
             return TYPE_TEXT;
         } else if (item instanceof InfoImage) {
@@ -58,7 +49,7 @@ public class InfoContentAdapter extends RecyclerView.Adapter<InfoViewHolder> {
     }
 
     @Override
-    public int getItemCount() {
-        return items.size();
+    public boolean areItemsTheSame(@NonNull InfoItem oldItem, @NonNull InfoItem newItem) {
+        return TextUtils.equals(oldItem.getData(), newItem.getData());
     }
 }

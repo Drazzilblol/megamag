@@ -69,7 +69,7 @@ public class AnnouncementsFragment extends Fragment implements AnnouncementsView
 
     @Override
     public void showData(@NonNull List<Announcement> announcementList) {
-        adapter.setAnnouncements(announcementList);
+        adapter.changeItems(announcementList);
         recyclerView.setVisibility(View.VISIBLE);
     }
 
@@ -110,5 +110,4 @@ public class AnnouncementsFragment extends Fragment implements AnnouncementsView
     public void hideProgress() {
         progressBar.hide();
     }
-
 }
