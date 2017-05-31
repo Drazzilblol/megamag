@@ -45,21 +45,28 @@ class AnnouncementHolder extends RecyclerView.ViewHolder {
     }
 
     void bindData(@NonNull Announcement announcement) {
+        String details = announcement.getDetails();
+        String description = announcement.getDescription();
+
         titleView.setText(announcement.getTitle());
         placeView.setText(announcement.getPlace());
-        detailsTextView.setText(announcement.getDetails());
-        descriptionTextView.setText(announcement.getDescription());
+        detailsTextView.setText(details);
+        descriptionTextView.setText(description);
         ImageUtils.loadImage(
                 itemView.getContext(),
                 imageView,
                 announcement.getCoverUrl()
         );
 
-        if (TextUtils.isEmpty(announcement.getDetails())) {
+        if (TextUtils.isEmpty(details)) {
             detailsTextView.setVisibility(View.GONE);
+        } else {
+            detailsTextView.setVisibility(View.VISIBLE);
         }
-        if (TextUtils.isEmpty(announcement.getDescription())) {
+        if (TextUtils.isEmpty(description)) {
             descriptionTextView.setVisibility(View.GONE);
+        } else {
+            detailsTextView.setVisibility(View.VISIBLE);
         }
     }
 }
