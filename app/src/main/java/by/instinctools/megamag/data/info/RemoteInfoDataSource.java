@@ -2,8 +2,6 @@ package by.instinctools.megamag.data.info;
 
 import android.support.annotation.NonNull;
 
-import org.jsoup.nodes.Document;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,8 +14,6 @@ import by.instinctools.megamag.data.info.items.InfoText;
 import by.instinctools.megamag.data.type.factory.ItemTypeFactory;
 import hugo.weaving.DebugLog;
 import io.reactivex.Observable;
-import okhttp3.ResponseBody;
-import retrofit2.Call;
 
 class RemoteInfoDataSource extends InfoDataSource {
 
@@ -37,18 +33,16 @@ class RemoteInfoDataSource extends InfoDataSource {
 
     @NonNull
     private Observable<List<InfoData>> getRulesInfo(int infoId) {
-        Call<Document> call = Application.getApi().getRulesInfo();
-
-        return Observable.defer(() -> Observable.just(call.execute()))
-                .map(r -> InfoParser.parseRules(infoId, r.body()));
+        return Application.getApi()
+                .getRulesInfo()
+                .map(document -> InfoParser.parseRules(infoId, document));
     }
 
     @NonNull
     private Observable<List<InfoData>> getHowToPayInfo(int infoId) {
-        Call<Document> call = Application.getApi().getHowToPayInfo();
-
-        return Observable.defer(() -> Observable.just(call.execute()))
-                .map(r -> InfoParser.parseHowToPay(infoId, r.body()));
+        return Application.getApi()
+                .getHowToPayInfo()
+                .map(document -> InfoParser.parseHowToPay(infoId, document));
     }
 
     @NonNull
