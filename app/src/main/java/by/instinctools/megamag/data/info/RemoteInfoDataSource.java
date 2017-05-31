@@ -38,7 +38,6 @@ class RemoteInfoDataSource extends InfoDataSource {
         Call<ResponseBody> call = Application.getApi().getRulesInfo();
 
         return Observable.defer(() -> Observable.just(call.execute()))
-                .flatMap(Observable::just)
                 .map(r -> InfoParser.parseRules(infoId, r.body().string()));
     }
 
@@ -47,7 +46,6 @@ class RemoteInfoDataSource extends InfoDataSource {
         Call<ResponseBody> call = Application.getApi().getHowToPayInfo();
 
         return Observable.defer(() -> Observable.just(call.execute()))
-                .flatMap(Observable::just)
                 .map(r -> InfoParser.parseHowToPay(infoId, r.body().string()));
     }
 

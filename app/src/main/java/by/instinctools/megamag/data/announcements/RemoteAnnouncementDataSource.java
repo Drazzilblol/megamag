@@ -25,7 +25,6 @@ class RemoteAnnouncementDataSource extends BaseRemoteDataSource<String, Announce
         Call<ResponseBody> call = Application.getApi().getData();
 
         return Observable.defer(() -> Observable.just(call.execute()))
-                .flatMap(Observable::just)
                 .map(r -> AnnouncementParser.parseAnnouncements(r.body().string()));
     }
 }

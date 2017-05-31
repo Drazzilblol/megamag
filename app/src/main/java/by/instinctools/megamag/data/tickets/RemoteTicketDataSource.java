@@ -25,7 +25,6 @@ class RemoteTicketDataSource extends BaseRemoteDataSource<String, TicketData> {
         Call<ResponseBody> call = Application.getApi().getData();
 
         return Observable.defer(() -> Observable.just(call.execute()))
-                .flatMap(Observable::just)
                 .map(r -> TicketParser.parseTickets(r.body().string()));
     }
 }
