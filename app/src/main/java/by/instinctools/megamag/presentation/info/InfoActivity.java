@@ -14,7 +14,6 @@ import android.widget.TextView;
 
 import com.arellomobile.mvp.MvpAppCompatActivity;
 import com.arellomobile.mvp.presenter.InjectPresenter;
-import com.arellomobile.mvp.presenter.PresenterType;
 import com.arellomobile.mvp.presenter.ProvidePresenter;
 import com.arellomobile.mvp.presenter.ProvidePresenterTag;
 
@@ -63,21 +62,18 @@ public class InfoActivity extends MvpAppCompatActivity implements InfoView {
 
     @ProvidePresenterTag(presenterClass = InfoPresenter.class)
     String provideRepositoryPresenterTag() {
-        Intent intent = getIntent();
-        if (intent != null && intent.hasExtra(INFO_ACTIVITY_SCREEN_ID)) {
-            int id = intent.getIntExtra(INFO_ACTIVITY_SCREEN_ID, 0);
-            return String.format("%s:id=%s", InfoPresenter.class.getSimpleName(), id);
-        } else {
-            throw new ErrorException(new NoIdError());
-        }
+        return String.format("%s:id=%s", InfoPresenter.class.getSimpleName(), getInfoIdFromIntent());
     }
-
+    
     @ProvidePresenter
     InfoPresenter provideRepositoryPresenter() {
+        return new InfoPresenter(getInfoIdFromIntent());
+    }
+
+    private int getInfoIdFromIntent() {
         Intent intent = getIntent();
         if (intent != null && intent.hasExtra(INFO_ACTIVITY_SCREEN_ID)) {
-            int id = intent.getIntExtra(INFO_ACTIVITY_SCREEN_ID, 0);
-            return new InfoPresenter(id);
+            return intent.getIntExtra(INFO_ACTIVITY_SCREEN_ID, 0);
         } else {
             throw new ErrorException(new NoIdError());
         }
