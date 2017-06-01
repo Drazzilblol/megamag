@@ -25,4 +25,10 @@ public abstract class BaseRemoteDataSource<K, V> implements DataSource<K, V> {
     public Observable<List<V>> saveAll(List<V> collection) {
         throw new UnsupportedOperationException();
     }
+
+    @NonNull
+    @Override
+    public Observable<List<V>> getAll() {
+        throw new UnsupportedOperationException();
+    }
 }

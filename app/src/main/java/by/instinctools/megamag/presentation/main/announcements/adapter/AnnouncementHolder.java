@@ -3,6 +3,7 @@ package by.instinctools.megamag.presentation.main.announcements.adapter;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,14 +45,28 @@ class AnnouncementHolder extends RecyclerView.ViewHolder {
     }
 
     void bindData(@NonNull Announcement announcement) {
+        String details = announcement.getDetails();
+        String description = announcement.getDescription();
+
         titleView.setText(announcement.getTitle());
         placeView.setText(announcement.getPlace());
-        detailsTextView.setText(announcement.getDetails());
-        descriptionTextView.setText(announcement.getDescription());
+        detailsTextView.setText(details);
+        descriptionTextView.setText(description);
         ImageUtils.loadImage(
                 itemView.getContext(),
                 imageView,
                 announcement.getCoverUrl()
         );
+
+        if (TextUtils.isEmpty(details)) {
+            detailsTextView.setVisibility(View.GONE);
+        } else {
+            detailsTextView.setVisibility(View.VISIBLE);
+        }
+        if (TextUtils.isEmpty(description)) {
+            descriptionTextView.setVisibility(View.GONE);
+        } else {
+            detailsTextView.setVisibility(View.VISIBLE);
+        }
     }
 }
