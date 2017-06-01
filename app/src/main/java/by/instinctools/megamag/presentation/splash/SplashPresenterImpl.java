@@ -22,7 +22,7 @@ public class SplashPresenterImpl extends DisposablePresenter<SplashView> {
     private static final int FRESH_START_COUNT = 1;
 
     @NonNull
-    UseCase<Integer> incrementAndGetCounterUseCase = new IncrementAndGetStartupCounterUseCase();
+    private UseCase<Integer> incrementAndGetCounterUseCase = new IncrementAndGetStartupCounterUseCase();
 
     @DebugLog
     @Override
@@ -46,23 +46,20 @@ public class SplashPresenterImpl extends DisposablePresenter<SplashView> {
 
     @DebugLog
     private void onLoadSuccess(boolean isFreshStart) {
-        if (isViewAttached()) {
-            SplashView view = getViewState();
-            view.hideProgress();
-            Timber.i("is fresh start: " + isFreshStart);
-            if (isFreshStart) {
-                view.goToProfileScreen();
-            } else {
-                view.goToMainScreen();
-            }
+        SplashView view = getViewState();
+        view.hideProgress();
+        Timber.i("is fresh start: " + isFreshStart);
+        if (isFreshStart) {
+            view.goToProfileScreen();
+        } else {
+            view.goToMainScreen();
         }
+
     }
 
     @DebugLog
     private void onLoadError(@NonNull Throwable throwable) {
-        if (isViewAttached()) {
-            getViewState().hideProgress();
-            showError(throwable);
-        }
+        getViewState().hideProgress();
+        showError(throwable);
     }
 }

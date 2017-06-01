@@ -13,11 +13,11 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 
 import com.arellomobile.mvp.MvpAppCompatActivity;
 import com.arellomobile.mvp.presenter.InjectPresenter;
+import com.arellomobile.mvp.presenter.PresenterType;
 
 import java.util.List;
 
@@ -36,12 +36,15 @@ import by.instinctools.megamag.presentation.main.tickets.TicketsFragment;
 public class MainActivity extends MvpAppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, MenuView, View.OnClickListener {
 
+    @NonNull
+    private static final String MENU_PRESENTER_TAG = "MENU_PRESENTER_TAG";
+
     @BindView(R.id.nav_view)
     NavigationView navigationView;
 
     TextView profileView;
 
-    @InjectPresenter
+    @InjectPresenter(type = PresenterType.GLOBAL, tag = MENU_PRESENTER_TAG)
     MenuPresenterImpl menuPresenter;
 
     public static Intent createIntent(Context context) {

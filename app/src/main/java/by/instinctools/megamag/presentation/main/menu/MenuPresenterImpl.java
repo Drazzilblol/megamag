@@ -45,49 +45,38 @@ public class MenuPresenterImpl extends DisposablePresenter<MenuView> {
     private GetProfileMenuUseCase profileUseCase = new GetProfileMenuUseCase();
 
     @Override
-    public void attachView(@NonNull MenuView menuView) {
-        super.attachView(menuView);
-        loadMenuCommon();
-    }
-
-    @Override
     protected void onFirstViewAttach() {
         super.onFirstViewAttach();
+        loadMenuCommon();
         getViewState().goToAnnouncementsScreen();
     }
 
-    @Override
-    public void detachView(MenuView view) {
-        super.detachView(view);
-        menuProfileList.clear();
-        menuCommonList.clear();
-    }
 
     @DebugLog
     public void onMenuPressed(int id) {
         Menu menu = getMenuById(id);
-        if (isViewAttached() && menu != null) {
-            ItemType menuType = menu.getType();
-            GroupType menuGroupType = menu.getGroupType();
 
-            MenuView view = getViewState();
-            if (menuGroupType.equals(GroupTypeFactory.getInfoGroupType()) && !menuType.equals(ItemTypeFactory.getSupportType())) {
-                view.goToInfoScreen(id);
-            }
-            if (menuGroupType.equals(GroupTypeFactory.getAnnouncementGroupType())) {
-                if (menuType.equals(ItemTypeFactory.getAnnouncementsType())) {
-                    view.goToAnnouncementsScreen();
-                } else {
-                    view.goToTicketsScreen();
-                }
-            }
-            if (menuGroupType.equals(GroupTypeFactory.getTheaterGroupType())) {
-                Timber.i("Theater group");
-            }
-            if (menuGroupType.equals(GroupTypeFactory.getProfileGroupType())) {
-                Timber.i("Profile group");
+        ItemType menuType = menu.getType();
+        GroupType menuGroupType = menu.getGroupType();
+
+        MenuView view = getViewState();
+        if (menuGroupType.equals(GroupTypeFactory.getInfoGroupType()) && !menuType.equals(ItemTypeFactory.getSupportType())) {
+            view.goToInfoScreen(id);
+        }
+        if (menuGroupType.equals(GroupTypeFactory.getAnnouncementGroupType())) {
+            if (menuType.equals(ItemTypeFactory.getAnnouncementsType())) {
+                view.goToAnnouncementsScreen();
+            } else {
+                view.goToTicketsScreen();
             }
         }
+        if (menuGroupType.equals(GroupTypeFactory.getTheaterGroupType())) {
+            Timber.i("Theater group");
+        }
+        if (menuGroupType.equals(GroupTypeFactory.getProfileGroupType())) {
+            Timber.i("Profile group");
+        }
+
     }
 
     @Nullable
@@ -156,24 +145,20 @@ public class MenuPresenterImpl extends DisposablePresenter<MenuView> {
 
     @DebugLog
     private void onCommonLoadSuccess(@NonNull List<Menu> menuList) {
-        if (isViewAttached()) {
-            MenuView view = getViewState();
-            view.hideProgress();
-            view.hideError();
-            menuCommonList.addAll(menuList);
-            view.showMenu(menuCommonList);
-        }
+        MenuView view = getViewState();
+        view.hideProgress();
+        view.hideError();
+        menuCommonList.addAll(menuList);
+        view.showMenu(menuCommonList);
     }
 
     @DebugLog
     private void onProfileLoadSuccess(@NonNull List<Menu> menuList) {
-        if (isViewAttached()) {
-            MenuView view = getViewState();
-            view.hideProgress();
-            view.hideError();
-            menuProfileList.addAll(menuList);
-            view.showMenu(menuProfileList);
-        }
+        MenuView view = getViewState();
+        view.hideProgress();
+        view.hideError();
+        menuProfileList.addAll(menuList);
+        view.showMenu(menuProfileList);
     }
 
     @NonNull
@@ -241,10 +226,8 @@ public class MenuPresenterImpl extends DisposablePresenter<MenuView> {
 
     @DebugLog
     private void onLoadError(@NonNull Throwable throwable) {
-        if (isViewAttached()) {
-            MenuView view = getViewState();
-            view.hideProgress();
-            showError(throwable);
-        }
+        MenuView view = getViewState();
+        view.hideProgress();
+        showError(throwable);
     }
 }

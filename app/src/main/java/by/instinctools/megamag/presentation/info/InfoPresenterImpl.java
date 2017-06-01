@@ -97,12 +97,10 @@ public class InfoPresenterImpl extends DisposablePresenter<InfoView> {
 
     @DebugLog
     private void onLoadInfoSuccess(@NonNull List<TreeNode> infoList) {
-        if (isViewAttached()) {
             InfoView view = getViewState();
             view.hideProgress();
             view.hideError();
             view.showData(infoList);
-        }
     }
 
     private void loadInfoToolbarTitle() {
@@ -119,20 +117,16 @@ public class InfoPresenterImpl extends DisposablePresenter<InfoView> {
 
     @DebugLog
     private void onLoadToolbarTitleSuccess(@NonNull String title) {
-        if (isViewAttached()) {
             InfoView view = getViewState();
             view.setToolbarTitle(title);
-        }
     }
 
     @DebugLog
     private void onLoadInfoError(@NonNull Throwable throwable) {
-        if (isViewAttached()) {
             InfoView view = getViewState();
             view.hideProgress();
             view.hideData();
             showError(throwable);
-        }
     }
 
     @DebugLog

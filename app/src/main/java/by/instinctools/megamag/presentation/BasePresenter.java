@@ -8,10 +8,6 @@ import timber.log.Timber;
 
 abstract class BasePresenter<V extends MvpView> extends com.arellomobile.mvp.MvpPresenter<V> {
 
-    protected boolean isViewAttached() {
-        return getViewState() != null;
-    }
-
     protected void showError(@NonNull Throwable throwable) {
         if (throwable instanceof ErrorException) {
             Timber.i(throwable.getMessage());
@@ -23,14 +19,10 @@ abstract class BasePresenter<V extends MvpView> extends com.arellomobile.mvp.Mvp
     }
 
     protected void showError(@NonNull ErrorException error) {
-        if (isViewAttached()) {
-            getViewState().showError(error.getError());
-        }
+        getViewState().showError(error.getError());
     }
 
     protected void showUnknownError() {
-        if (isViewAttached()) {
-            getViewState().showError(new UnknownError());
-        }
+        getViewState().showError(new UnknownError());
     }
 }

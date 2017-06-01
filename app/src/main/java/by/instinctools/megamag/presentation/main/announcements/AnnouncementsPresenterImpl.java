@@ -40,25 +40,21 @@ public class AnnouncementsPresenterImpl extends DisposablePresenter<Announcement
 
     @DebugLog
     private void onLoadSuccess(@NonNull List<Announcement> announcementList) {
-        if (isViewAttached()) {
-            if (announcementList.size() != EMPTY_LIST_SIZE) {
-                AnnouncementsView view = getViewState();
-                view.hideProgress();
-                view.hideError();
-                view.showData(announcementList);
-            } else {
-                onLoadError(new ErrorException(new NoDataError()));
-            }
+        if (announcementList.size() != EMPTY_LIST_SIZE) {
+            AnnouncementsView view = getViewState();
+            view.hideProgress();
+            view.hideError();
+            view.showData(announcementList);
+        } else {
+            onLoadError(new ErrorException(new NoDataError()));
         }
     }
 
     @DebugLog
     private void onLoadError(@NonNull Throwable throwable) {
-        if (isViewAttached()) {
-            AnnouncementsView view = getViewState();
-            view.hideProgress();
-            view.hideData();
-            showError(throwable);
-        }
+        AnnouncementsView view = getViewState();
+        view.hideProgress();
+        view.hideData();
+        showError(throwable);
     }
 }

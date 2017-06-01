@@ -40,25 +40,21 @@ public class TicketsPresenterImpl extends DisposablePresenter<TicketsView> {
 
     @DebugLog
     private void onLoadSuccess(@NonNull List<Ticket> ticketsList) {
-        if (isViewAttached()) {
-            if (ticketsList.size() != EMPTY_LIST_SIZE) {
-                TicketsView view = getViewState();
-                view.hideProgress();
-                view.hideError();
-                view.showData(ticketsList);
-            } else {
-                onLoadError(new ErrorException(new NoDataError()));
-            }
+        if (ticketsList.size() != EMPTY_LIST_SIZE) {
+            TicketsView view = getViewState();
+            view.hideProgress();
+            view.hideError();
+            view.showData(ticketsList);
+        } else {
+            onLoadError(new ErrorException(new NoDataError()));
         }
     }
 
     @DebugLog
     private void onLoadError(@NonNull Throwable throwable) {
-        if (isViewAttached()) {
-            TicketsView view = getViewState();
-            view.hideProgress();
-            view.hideData();
-            showError(throwable);
-        }
+        TicketsView view = getViewState();
+        view.hideProgress();
+        view.hideData();
+        showError(throwable);
     }
 }
