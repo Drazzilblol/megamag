@@ -21,12 +21,27 @@ public class TicketsPresenterImpl extends DisposablePresenter<TicketsView> {
 
     private static final int EMPTY_LIST_SIZE = 0;
 
+    private boolean isLoaded;
+
     @NonNull
     private UseCase<List<Ticket>> getTicketsUseCase = new GetTicketsUseCase();
 
     @Override
     protected void onFirstViewAttach() {
         getViewState().showProgress();
+        loadTickets();
+    }
+
+    @Override
+    public void attachView(TicketsView view) {
+        super.attachView(view);
+        if (!isLoaded) {
+            getViewState().showProgress();
+            loadTickets();
+        }
+    }
+
+    private void loadTickets() {
         addDisposable(
                 getTicketsUseCase.execute()
                         .subscribeOn(Schedulers.io())
@@ -41,11 +56,13 @@ public class TicketsPresenterImpl extends DisposablePresenter<TicketsView> {
     @DebugLog
     private void onLoadSuccess(@NonNull List<Ticket> ticketsList) {
         if (ticketsList.size() != EMPTY_LIST_SIZE) {
+            isLoaded = true;
             TicketsView view = getViewState();
             view.hideProgress();
             view.hideError();
             view.showData(ticketsList);
         } else {
+            isLoaded = false;
             onLoadError(new ErrorException(new NoDataError()));
         }
     }

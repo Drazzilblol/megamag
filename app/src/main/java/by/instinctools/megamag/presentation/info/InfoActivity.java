@@ -54,7 +54,7 @@ public class InfoActivity extends MvpAppCompatActivity implements InfoView {
 
     private ActionBar actionBar;
 
-    @InjectPresenter(type = PresenterType.LOCAL)
+    @InjectPresenter(type = PresenterType.GLOBAL)
     InfoPresenterImpl infoPresenter;
 
     public static Intent createIntent(@NonNull Context context, int id) {
@@ -63,7 +63,7 @@ public class InfoActivity extends MvpAppCompatActivity implements InfoView {
         return intent;
     }
 
-    @ProvidePresenterTag(presenterClass = InfoPresenterImpl.class, type = PresenterType.LOCAL)
+    @ProvidePresenterTag(presenterClass = InfoPresenterImpl.class, type = PresenterType.GLOBAL)
     String provideRepositoryPresenterTag() {
         Intent intent = getIntent();
         if (intent != null && intent.hasExtra(INFO_ACTIVITY_SCREEN_ID)) {
@@ -74,7 +74,7 @@ public class InfoActivity extends MvpAppCompatActivity implements InfoView {
         return String.valueOf(infoId);
     }
 
-    @ProvidePresenter(type = PresenterType.LOCAL)
+    @ProvidePresenter(type = PresenterType.GLOBAL)
     InfoPresenterImpl provideRepositoryPresenter() {
         return new InfoPresenterImpl(infoId);
     }

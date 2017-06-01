@@ -30,6 +30,8 @@ public class InfoPresenterImpl extends DisposablePresenter<InfoView> {
 
     private int infoId;
 
+    private boolean isLoaded;
+
     @NonNull
     private GetInfoUseCase infoUseCase = new GetInfoUseCase();
 
@@ -45,6 +47,17 @@ public class InfoPresenterImpl extends DisposablePresenter<InfoView> {
         getViewState().showProgress();
         loadInfo();
         loadInfoToolbarTitle();
+    }
+
+    @Override
+    public void attachView(InfoView view) {
+        super.attachView(view);
+        if (!isLoaded) {
+            getViewState().showProgress();
+            loadInfo();
+            loadInfoToolbarTitle();
+        }
+
     }
 
     private void loadInfo() {
@@ -97,10 +110,11 @@ public class InfoPresenterImpl extends DisposablePresenter<InfoView> {
 
     @DebugLog
     private void onLoadInfoSuccess(@NonNull List<TreeNode> infoList) {
-            InfoView view = getViewState();
-            view.hideProgress();
-            view.hideError();
-            view.showData(infoList);
+        InfoView view = getViewState();
+        view.hideProgress();
+        view.hideError();
+        view.showData(infoList);
+        isLoaded = true;
     }
 
     private void loadInfoToolbarTitle() {
@@ -117,16 +131,17 @@ public class InfoPresenterImpl extends DisposablePresenter<InfoView> {
 
     @DebugLog
     private void onLoadToolbarTitleSuccess(@NonNull String title) {
-            InfoView view = getViewState();
-            view.setToolbarTitle(title);
+        InfoView view = getViewState();
+        view.setToolbarTitle(title);
     }
 
     @DebugLog
     private void onLoadInfoError(@NonNull Throwable throwable) {
-            InfoView view = getViewState();
-            view.hideProgress();
-            view.hideData();
-            showError(throwable);
+        isLoaded = false;
+        InfoView view = getViewState();
+        view.hideProgress();
+        view.hideData();
+        showError(throwable);
     }
 
     @DebugLog
