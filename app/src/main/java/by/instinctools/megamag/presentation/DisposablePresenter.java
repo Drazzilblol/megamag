@@ -21,7 +21,7 @@ public class DisposablePresenter<V extends MvpView> extends BasePresenter<V> {
     @Override
     public void detachView(V view) {
         super.detachView(view);
-        if (disposables.size() == 0) {
+        if (getAttachedViews().size() == 0) {
             dispose();
         }
     }
