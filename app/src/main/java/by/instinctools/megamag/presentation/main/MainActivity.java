@@ -28,7 +28,7 @@ import by.instinctools.megamag.common.errors.Error;
 import by.instinctools.megamag.common.utils.Navigator;
 import by.instinctools.megamag.domain.models.Menu;
 import by.instinctools.megamag.presentation.main.announcements.AnnouncementsFragment;
-import by.instinctools.megamag.presentation.main.menu.MenuPresenterImpl;
+import by.instinctools.megamag.presentation.main.menu.MenuPresenter;
 import by.instinctools.megamag.presentation.main.menu.MenuView;
 import by.instinctools.megamag.presentation.main.tickets.TicketsFragment;
 
@@ -36,16 +36,13 @@ import by.instinctools.megamag.presentation.main.tickets.TicketsFragment;
 public class MainActivity extends MvpAppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, MenuView, View.OnClickListener {
 
-    @NonNull
-    private static final String MENU_PRESENTER_TAG = "MENU_PRESENTER_TAG";
-
     @BindView(R.id.nav_view)
     NavigationView navigationView;
 
     TextView profileView;
 
-    @InjectPresenter(type = PresenterType.GLOBAL, tag = MENU_PRESENTER_TAG)
-    MenuPresenterImpl menuPresenter;
+    @InjectPresenter(type = PresenterType.GLOBAL)
+    MenuPresenter menuPresenter;
 
     public static Intent createIntent(Context context) {
         return new Intent(context, MainActivity.class);

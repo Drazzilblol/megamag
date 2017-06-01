@@ -17,11 +17,9 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
 @InjectViewState
-public class TicketsPresenterImpl extends DisposablePresenter<TicketsView> {
+public class TicketsPresenter extends DisposablePresenter<TicketsView> {
 
     private static final int EMPTY_LIST_SIZE = 0;
-
-    private boolean isLoaded;
 
     @NonNull
     private UseCase<List<Ticket>> getTicketsUseCase = new GetTicketsUseCase();
@@ -30,15 +28,6 @@ public class TicketsPresenterImpl extends DisposablePresenter<TicketsView> {
     protected void onFirstViewAttach() {
         getViewState().showProgress();
         loadTickets();
-    }
-
-    @Override
-    public void attachView(TicketsView view) {
-        super.attachView(view);
-        if (!isLoaded) {
-            getViewState().showProgress();
-            loadTickets();
-        }
     }
 
     private void loadTickets() {
@@ -56,13 +45,11 @@ public class TicketsPresenterImpl extends DisposablePresenter<TicketsView> {
     @DebugLog
     private void onLoadSuccess(@NonNull List<Ticket> ticketsList) {
         if (ticketsList.size() != EMPTY_LIST_SIZE) {
-            isLoaded = true;
             TicketsView view = getViewState();
             view.hideProgress();
             view.hideError();
             view.showData(ticketsList);
         } else {
-            isLoaded = false;
             onLoadError(new ErrorException(new NoDataError()));
         }
     }

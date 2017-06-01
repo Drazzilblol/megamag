@@ -50,12 +50,10 @@ public class InfoActivity extends MvpAppCompatActivity implements InfoView {
     @BindView(R.id.info_toolbar)
     Toolbar toolbar;
 
-    private int infoId;
-
     private ActionBar actionBar;
 
     @InjectPresenter(type = PresenterType.GLOBAL)
-    InfoPresenterImpl infoPresenter;
+    InfoPresenter infoPresenter;
 
     public static Intent createIntent(@NonNull Context context, int id) {
         Intent intent = new Intent(context, InfoActivity.class);
@@ -63,20 +61,26 @@ public class InfoActivity extends MvpAppCompatActivity implements InfoView {
         return intent;
     }
 
-    @ProvidePresenterTag(presenterClass = InfoPresenterImpl.class, type = PresenterType.GLOBAL)
+    @ProvidePresenterTag(presenterClass = InfoPresenter.class, type = PresenterType.GLOBAL)
     String provideRepositoryPresenterTag() {
         Intent intent = getIntent();
         if (intent != null && intent.hasExtra(INFO_ACTIVITY_SCREEN_ID)) {
-            infoId = intent.getIntExtra(INFO_ACTIVITY_SCREEN_ID, 0);
+            int id = intent.getIntExtra(INFO_ACTIVITY_SCREEN_ID, 0);
+            return String.format("%s:id=%s", InfoPresenter.class.getSimpleName(), id);
         } else {
             throw new ErrorException(new NoIdError());
         }
-        return String.valueOf(infoId);
     }
 
     @ProvidePresenter(type = PresenterType.GLOBAL)
-    InfoPresenterImpl provideRepositoryPresenter() {
-        return new InfoPresenterImpl(infoId);
+    InfoPresenter provideRepositoryPresenter() {
+        Intent intent = getIntent();
+        if (intent != null && intent.hasExtra(INFO_ACTIVITY_SCREEN_ID)) {
+            int id = intent.getIntExtra(INFO_ACTIVITY_SCREEN_ID, 0);
+            return new InfoPresenter(id);
+        } else {
+            throw new ErrorException(new NoIdError());
+        }
     }
 
     @Override

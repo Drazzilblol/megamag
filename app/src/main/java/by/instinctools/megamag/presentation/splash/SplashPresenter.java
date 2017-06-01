@@ -16,7 +16,7 @@ import io.reactivex.schedulers.Schedulers;
 import timber.log.Timber;
 
 @InjectViewState
-public class SplashPresenterImpl extends DisposablePresenter<SplashView> {
+public class SplashPresenter extends DisposablePresenter<SplashView> {
 
     private static final long DELAY_MILLIS = 1000L;
     private static final int FRESH_START_COUNT = 1;

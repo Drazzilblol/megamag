@@ -28,9 +28,6 @@ import hugo.weaving.DebugLog;
 
 public class AnnouncementsFragment extends MvpAppCompatFragment implements AnnouncementsView {
 
-    @NonNull
-    private static final String ANNOUNCEMENT_PRESENTER_TAG = "ANNOUNCEMENT_PRESENTER_TAG";
-
     @BindView(R.id.announcements_recycler_view)
     RecyclerView recyclerView;
 
@@ -40,8 +37,8 @@ public class AnnouncementsFragment extends MvpAppCompatFragment implements Annou
     @BindView(R.id.announcements_progress_bar)
     ContentLoadingProgressBar progressBar;
 
-    @InjectPresenter(type = PresenterType.GLOBAL, tag = ANNOUNCEMENT_PRESENTER_TAG)
-    AnnouncementsPresenterImpl presenter;
+    @InjectPresenter(type = PresenterType.GLOBAL)
+    AnnouncementsPresenter announcementsPresenter;
 
     @NonNull
     private AnnouncementsListAdapter adapter = new AnnouncementsListAdapter();

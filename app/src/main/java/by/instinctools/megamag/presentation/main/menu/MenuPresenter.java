@@ -28,7 +28,7 @@ import io.reactivex.schedulers.Schedulers;
 import timber.log.Timber;
 
 @InjectViewState
-public class MenuPresenterImpl extends DisposablePresenter<MenuView> {
+public class MenuPresenter extends DisposablePresenter<MenuView> {
 
     private static final int EMPTY_LIST_SIZE = 0;
 

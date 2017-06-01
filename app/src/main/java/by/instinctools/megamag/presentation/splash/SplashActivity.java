@@ -19,7 +19,7 @@ import hugo.weaving.DebugLog;
 public class SplashActivity extends MvpAppCompatActivity implements SplashView {
 
     @InjectPresenter
-    SplashPresenterImpl splashPresenter;
+    SplashPresenter splashPresenter;
 
     @BindView(R.id.activity_splash_progress_bar)
     ContentLoadingProgressBar progressBar;

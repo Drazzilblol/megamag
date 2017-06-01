@@ -17,29 +17,18 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
 @InjectViewState
-public class AnnouncementsPresenterImpl extends DisposablePresenter<AnnouncementsView> {
+public class AnnouncementsPresenter extends DisposablePresenter<AnnouncementsView> {
 
     private static final int EMPTY_LIST_SIZE = 0;
 
     @NonNull
     private UseCase<List<Announcement>> getAnnouncementsUseCase = new GetAnnouncementsUseCase();
 
-    private boolean isLoaded;
-
     @Override
     protected void onFirstViewAttach() {
         super.onFirstViewAttach();
         getViewState().showProgress();
         loadAnnouncements();
-    }
-
-    @Override
-    public void attachView(AnnouncementsView view) {
-        super.attachView(view);
-        if (!isLoaded) {
-            getViewState().showProgress();
-            loadAnnouncements();
-        }
     }
 
     private void loadAnnouncements() {
@@ -57,13 +46,11 @@ public class AnnouncementsPresenterImpl extends DisposablePresenter<Announcement
     @DebugLog
     private void onLoadSuccess(@NonNull List<Announcement> announcementList) {
         if (announcementList.size() != EMPTY_LIST_SIZE) {
-            isLoaded = true;
             AnnouncementsView view = getViewState();
             view.hideProgress();
             view.hideError();
             view.showData(announcementList);
         } else {
-            isLoaded = false;
             onLoadError(new ErrorException(new NoDataError()));
         }
     }

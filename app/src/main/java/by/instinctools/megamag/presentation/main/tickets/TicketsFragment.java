@@ -14,8 +14,6 @@ import android.widget.TextView;
 import com.arellomobile.mvp.MvpAppCompatFragment;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.arellomobile.mvp.presenter.PresenterType;
-import com.arellomobile.mvp.presenter.ProvidePresenter;
-import com.arellomobile.mvp.presenter.ProvidePresenterTag;
 
 import java.util.List;
 
@@ -30,9 +28,6 @@ import hugo.weaving.DebugLog;
 
 public class TicketsFragment extends MvpAppCompatFragment implements TicketsView {
 
-    @NonNull
-    private static final String TICKET_PRESENTER_TAG = "TICKET_PRESENTER_TAG";
-
     @BindView(R.id.tickets_recycler_view)
     RecyclerView recyclerView;
 
@@ -42,8 +37,8 @@ public class TicketsFragment extends MvpAppCompatFragment implements TicketsView
     @BindView(R.id.tickets_progress_bar)
     ContentLoadingProgressBar progressBar;
 
-    @InjectPresenter(type = PresenterType.GLOBAL, tag = TICKET_PRESENTER_TAG)
-    TicketsPresenterImpl presenter;
+    @InjectPresenter(type = PresenterType.GLOBAL)
+    TicketsPresenter ticketsPresenter;
 
     @NonNull
     private TicketsListAdapter adapter = new TicketsListAdapter();

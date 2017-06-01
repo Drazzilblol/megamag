@@ -24,7 +24,7 @@ import tellh.com.recyclertreeview_lib.TreeNode;
 import timber.log.Timber;
 
 @InjectViewState
-public class InfoPresenterImpl extends DisposablePresenter<InfoView> {
+public class InfoPresenter extends DisposablePresenter<InfoView> {
 
     private static final int EMPTY_LIST_SIZE = 0;
 
@@ -38,7 +38,7 @@ public class InfoPresenterImpl extends DisposablePresenter<InfoView> {
     @NonNull
     private GetInfoTitleUseCase getInfoTitleUseCase = new GetInfoTitleUseCase();
 
-    InfoPresenterImpl(int infoId) {
+    InfoPresenter(int infoId) {
         this.infoId = infoId;
     }
 
@@ -47,17 +47,6 @@ public class InfoPresenterImpl extends DisposablePresenter<InfoView> {
         getViewState().showProgress();
         loadInfo();
         loadInfoToolbarTitle();
-    }
-
-    @Override
-    public void attachView(InfoView view) {
-        super.attachView(view);
-        if (!isLoaded) {
-            getViewState().showProgress();
-            loadInfo();
-            loadInfoToolbarTitle();
-        }
-
     }
 
     private void loadInfo() {
@@ -114,7 +103,6 @@ public class InfoPresenterImpl extends DisposablePresenter<InfoView> {
         view.hideProgress();
         view.hideError();
         view.showData(infoList);
-        isLoaded = true;
     }
 
     private void loadInfoToolbarTitle() {
@@ -137,7 +125,6 @@ public class InfoPresenterImpl extends DisposablePresenter<InfoView> {
 
     @DebugLog
     private void onLoadInfoError(@NonNull Throwable throwable) {
-        isLoaded = false;
         InfoView view = getViewState();
         view.hideProgress();
         view.hideData();
