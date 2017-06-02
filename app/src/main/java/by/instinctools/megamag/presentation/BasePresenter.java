@@ -2,41 +2,11 @@ package by.instinctools.megamag.presentation;
 
 import android.support.annotation.NonNull;
 
-import java.lang.ref.WeakReference;
-
 import by.instinctools.megamag.common.errors.ErrorException;
 import by.instinctools.megamag.common.errors.UnknownError;
 import timber.log.Timber;
 
-public abstract class BasePresenter<V extends MvpView> implements MvpPresenter<V> {
-
-    private WeakReference<V> viewReference;
-
-    @Override
-    public void attach(@NonNull V view) {
-        this.viewReference = new WeakReference<>(view);
-    }
-
-    @Override
-    public void detach() {
-        if (viewReference != null) {
-            viewReference.clear();
-        }
-    }
-
-    @NonNull
-    protected V getView() {
-        V view = viewReference.get();
-        if (view != null) {
-            return view;
-        } else {
-            throw new RuntimeException();
-        }
-    }
-
-    protected boolean isViewAttached() {
-        return viewReference != null;
-    }
+abstract class BasePresenter<V extends MvpView> extends com.arellomobile.mvp.MvpPresenter<V> {
 
     protected void showError(@NonNull Throwable throwable) {
         if (throwable instanceof ErrorException) {
@@ -49,14 +19,10 @@ public abstract class BasePresenter<V extends MvpView> implements MvpPresenter<V
     }
 
     protected void showError(@NonNull ErrorException error) {
-        if (isViewAttached()) {
-            getView().showError(error.getError());
-        }
+        getViewState().showError(error.getError());
     }
 
     protected void showUnknownError() {
-        if (isViewAttached()) {
-            getView().showError(new UnknownError());
-        }
+        getViewState().showError(new UnknownError());
     }
 }

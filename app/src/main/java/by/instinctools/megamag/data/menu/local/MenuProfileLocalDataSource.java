@@ -8,10 +8,10 @@ import java.util.List;
 
 import by.instinctools.megamag.Application;
 import by.instinctools.megamag.R;
-import by.instinctools.megamag.data.type.factory.GroupTypeFactory;
-import by.instinctools.megamag.data.type.factory.ItemTypeFactory;
 import by.instinctools.megamag.data.BaseLocalDataSource;
 import by.instinctools.megamag.data.menu.MenuData;
+import by.instinctools.megamag.data.type.factory.GroupTypeFactory;
+import by.instinctools.megamag.data.type.factory.ItemTypeFactory;
 import io.reactivex.Observable;
 
 public class MenuProfileLocalDataSource extends BaseLocalDataSource<String, MenuData> {

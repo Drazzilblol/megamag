@@ -3,9 +3,11 @@ package by.instinctools.megamag.presentation.splash;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.widget.ContentLoadingProgressBar;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
+
+import com.arellomobile.mvp.MvpAppCompatActivity;
+import com.arellomobile.mvp.presenter.InjectPresenter;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -14,9 +16,10 @@ import by.instinctools.megamag.common.errors.Error;
 import by.instinctools.megamag.common.utils.Navigator;
 import hugo.weaving.DebugLog;
 
-public class SplashActivity extends AppCompatActivity implements SplashView {
+public class SplashActivity extends MvpAppCompatActivity implements SplashView {
 
-    private SplashPresenter splashPresenter = new SplashPresenterImpl();
+    @InjectPresenter
+    SplashPresenter splashPresenter;
 
     @BindView(R.id.activity_splash_progress_bar)
     ContentLoadingProgressBar progressBar;
@@ -29,18 +32,6 @@ public class SplashActivity extends AppCompatActivity implements SplashView {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
         ButterKnife.bind(this);
-    }
-
-    @Override
-    protected void onStart() {
-        splashPresenter.attach(this);
-        super.onStart();
-    }
-
-    @Override
-    protected void onStop() {
-        splashPresenter.detach();
-        super.onStop();
     }
 
     @DebugLog

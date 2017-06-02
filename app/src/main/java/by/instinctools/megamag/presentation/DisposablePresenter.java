@@ -19,14 +19,16 @@ public class DisposablePresenter<V extends MvpView> extends BasePresenter<V> {
     }
 
     @Override
-    public void detach() {
-        super.detach();
-        disposables.dispose();
+    public void detachView(V view) {
+        super.detachView(view);
+        if (getAttachedViews().size() == 0) {
+            dispose();
+        }
     }
 
     @Override
-    public void attach(@NonNull V view) {
-        super.attach(view);
+    public void attachView(V view) {
+        super.attachView(view);
         if (disposables.isDisposed()) {
             disposables = new CompositeDisposable();
         }

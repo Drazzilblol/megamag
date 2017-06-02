@@ -3,7 +3,6 @@ package by.instinctools.megamag.presentation.main.announcements;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v4.widget.ContentLoadingProgressBar;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.RecyclerView;
@@ -11,6 +10,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import com.arellomobile.mvp.MvpAppCompatFragment;
+import com.arellomobile.mvp.presenter.InjectPresenter;
+import com.arellomobile.mvp.presenter.PresenterType;
 
 import java.util.List;
 
@@ -23,7 +26,7 @@ import by.instinctools.megamag.presentation.common.decorator.OffsetItemDecorator
 import by.instinctools.megamag.presentation.main.announcements.adapter.AnnouncementsListAdapter;
 import hugo.weaving.DebugLog;
 
-public class AnnouncementsFragment extends Fragment implements AnnouncementsView {
+public class AnnouncementsFragment extends MvpAppCompatFragment implements AnnouncementsView {
 
     @BindView(R.id.announcements_recycler_view)
     RecyclerView recyclerView;
@@ -34,8 +37,8 @@ public class AnnouncementsFragment extends Fragment implements AnnouncementsView
     @BindView(R.id.announcements_progress_bar)
     ContentLoadingProgressBar progressBar;
 
-    @NonNull
-    private AnnouncementsPresenter presenter = new AnnouncementsPresenterImpl();
+    @InjectPresenter(type = PresenterType.GLOBAL)
+    AnnouncementsPresenter announcementsPresenter;
 
     @NonNull
     private AnnouncementsListAdapter adapter = new AnnouncementsListAdapter();
@@ -76,18 +79,6 @@ public class AnnouncementsFragment extends Fragment implements AnnouncementsView
     @Override
     public void hideData() {
         recyclerView.setVisibility(View.GONE);
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        presenter.attach(this);
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        presenter.detach();
     }
 
     @Override

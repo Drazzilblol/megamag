@@ -4,7 +4,7 @@ import android.support.annotation.NonNull;
 
 import by.instinctools.megamag.common.errors.Error;
 
-public interface MvpView {
+public interface MvpView extends com.arellomobile.mvp.MvpView {
 
     void showError(@NonNull Error error);
 

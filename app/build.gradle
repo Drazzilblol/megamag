@@ -63,6 +63,10 @@ dependencies {
 
     compile 'org.jsoup:jsoup:1.10.2'
 
+    compile 'com.arello-mobile:moxy:1.5.2'
+    compile 'com.arello-mobile:moxy-app-compat:1.5.2'
+    annotationProcessor 'com.arello-mobile:moxy-compiler:1.5.2'
+
     testCompile 'junit:junit:4.12'
 }
 
