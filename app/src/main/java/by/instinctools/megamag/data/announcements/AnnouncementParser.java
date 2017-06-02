@@ -4,7 +4,6 @@ import android.support.annotation.NonNull;
 import android.text.Html;
 import android.text.TextUtils;
 
-import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
@@ -34,8 +33,14 @@ class AnnouncementParser {
             AnnouncementData.Builder builder = AnnouncementData.builder();
             Elements headerItems = announcement.getElementsByClass(ANNOUNCEMET_HEADER_SELECTOR);
             String header = headerItems.text();
-            builder.place(header.split(" / ")[0]);
-            builder.title(header.split(" / ")[1]);
+            String[] headerText = header.split(" / ");
+            if (headerText.length < 2) {
+                builder.place("");
+                builder.title(header.split(" / ")[0]);
+            } else {
+                builder.place(header.split(" / ")[0]);
+                builder.title(header.split(" / ")[1]);
+            }
 
             Element bodyItem = announcement.getElementsByClass(ANNOUNCEMENT_BODY_SELECTOR).first();
             builder.coverUrl(bodyItem.child(0).absUrl(IMAGE_URL_SELECTOR));
@@ -45,10 +50,10 @@ class AnnouncementParser {
                         .text());
             }
 
-            String year = null;
-            String county = null;
-            String genre = null;
-            String author = null;
+            String year = "";
+            String county = "";
+            String genre = "";
+            String author = "";
 
             String[] detailsItem = bodyItem.child(1)
                     .child(0)

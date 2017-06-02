@@ -2,7 +2,6 @@ package by.instinctools.megamag.data.tickets;
 
 import android.support.annotation.NonNull;
 
-import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
@@ -22,11 +21,11 @@ class TicketParser {
         List<TicketData> ticketList = new ArrayList<>();
         Elements tickets = document.getElementsByClass(TICKET_ITEM_SELECTOR);
         for (Element ticket : tickets) {
-            String imgUrl = getHQCover(ticket.getElementsByClass(TICKET_IMAGE_SELECTOR)
+            String imgUrl = ticket.getElementsByClass(TICKET_IMAGE_SELECTOR)
                     .first()
                     .child(0)
                     .child(0)
-                    .absUrl(IMAGE_URL_SELECTOR));
+                    .absUrl(IMAGE_URL_SELECTOR);
 
             ticketList.add(TicketData.builder()
                     .title(ticket.getElementsByClass(TICKET_TITLE_SELECTOR).text())
@@ -35,10 +34,5 @@ class TicketParser {
                     .build());
         }
         return ticketList;
-    }
-
-    private static String getHQCover(@NonNull String url) {
-        return url.replace("categories_sec", "newsdesk_img")
-                .replace("_6", "_b1");
     }
 }
