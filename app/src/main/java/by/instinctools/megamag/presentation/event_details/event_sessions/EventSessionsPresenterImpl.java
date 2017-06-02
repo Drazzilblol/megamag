@@ -6,8 +6,6 @@ import com.arellomobile.mvp.InjectViewState;
 
 import java.util.List;
 
-import by.instinctools.megamag.common.errors.ErrorException;
-import by.instinctools.megamag.common.errors.NoDataError;
 import by.instinctools.megamag.domain.GetEventSessionUseCase;
 import by.instinctools.megamag.domain.models.EventSession;
 import hugo.weaving.DebugLog;
@@ -23,7 +21,7 @@ public class EventSessionsPresenterImpl extends EventSessionsPresenter {
     private GetEventSessionUseCase useCase = new GetEventSessionUseCase();
 
     @Override
-    void setInitialValue(String eventId) {
+    void setInitialValue(@NonNull String eventId) {
         this.eventId = eventId;
     }
 
@@ -50,23 +48,17 @@ public class EventSessionsPresenterImpl extends EventSessionsPresenter {
 
     @DebugLog
     private void onLoadSuccess(@NonNull List<EventSession> event) {
-        if (isViewAttached()) {
-            EventSessionsView view = getViewState();
-            view.hideProgress();
-            view.hideError();
-            //  view.showData(event);
-        } else {
-            onLoadError(new ErrorException(new NoDataError()));
-        }
+        EventSessionsView view = getViewState();
+        view.hideProgress();
+        view.hideError();
+        //  view.showData(event);
     }
 
     @DebugLog
     private void onLoadError(@NonNull Throwable throwable) {
-        if (isViewAttached()) {
-            EventSessionsView view = getViewState();
-            view.hideProgress();
-            view.hideData();
-            showError(throwable);
-        }
+        EventSessionsView view = getViewState();
+        view.hideProgress();
+        view.hideData();
+        showError(throwable);
     }
 }

@@ -7,7 +7,7 @@ import io.reactivex.Observable;
 public class EventRepositoryImpl implements EventRepository {
 
     @NonNull
-    private EventDataSource dataSource = new RemoteEventDataSource();
+    private EventDataSource dataSource = new EventRemoteDataSource();
 
     @Override
     public Observable<EventData> getEvent(String id) {

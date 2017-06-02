@@ -6,12 +6,7 @@ import android.support.annotation.NonNull;
 import com.arellomobile.mvp.InjectViewState;
 
 import by.instinctools.megamag.domain.GetEventUseCase;
-import by.instinctools.megamag.domain.UseCase;
 import by.instinctools.megamag.domain.models.Event;
-
-import android.support.annotation.NonNull;
-
-
 import by.instinctools.megamag.presentation.DisposablePresenter;
 import hugo.weaving.DebugLog;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -23,13 +18,13 @@ public class EventDetailsPresenter extends DisposablePresenter<EventDetailsView>
     private String eventId;
 
     @NonNull
-    UseCase<Event> getEventUseCase = new GetEventUseCase();
+    private GetEventUseCase getEventUseCase = new GetEventUseCase();
 
     @Override
     protected void onFirstViewAttach() {
         super.onFirstViewAttach();
         addDisposable(
-                getEventUseCase.execute()
+                getEventUseCase.execute(eventId)
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(
@@ -66,5 +61,4 @@ public class EventDetailsPresenter extends DisposablePresenter<EventDetailsView>
         view.hideData();
         showError(throwable);
     }
-
 }

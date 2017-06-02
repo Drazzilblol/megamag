@@ -7,12 +7,12 @@ import java.util.List;
 import by.instinctools.megamag.Application;
 import io.reactivex.Observable;
 
-class RemoteEventDataSource implements EventDataSource {
+class EventRemoteDataSource implements EventDataSource {
 
     @NonNull
     @Override
     public Observable<EventData> getValue(@NonNull String key) {
-        return getEvent();
+        return getEvent(key);
     }
 
     @NonNull
@@ -33,9 +33,9 @@ class RemoteEventDataSource implements EventDataSource {
         throw new UnsupportedOperationException();
     }
 
-    private Observable<EventData> getEvent() {
+    private Observable<EventData> getEvent(String id) {
         return Application.getApi()
-                .getDetails("" + 3416)
+                .getDetails(id)
                 .map(EventParser::parseEvent);
     }
 }

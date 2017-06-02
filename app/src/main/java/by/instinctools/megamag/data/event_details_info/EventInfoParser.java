@@ -2,7 +2,6 @@ package by.instinctools.megamag.data.event_details_info;
 
 import android.support.annotation.NonNull;
 
-import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;

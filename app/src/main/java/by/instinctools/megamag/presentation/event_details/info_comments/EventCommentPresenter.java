@@ -16,11 +16,12 @@ import io.reactivex.schedulers.Schedulers;
 @InjectViewState
 public class EventCommentPresenter extends DisposablePresenter<EventCommentView> {
 
+    @NonNull
     private GetEventCommentUseCase useCase = new GetEventCommentUseCase();
 
     private String eventId;
 
-    void setInitialValue(String eventId) {
+    void setInitialValue(@NonNull String eventId) {
         this.eventId = eventId;
     }
 

@@ -5,33 +5,10 @@ import android.support.annotation.NonNull;
 import java.util.List;
 
 import by.instinctools.megamag.Application;
+import by.instinctools.megamag.data.BaseRemoteDataSource;
 import io.reactivex.Observable;
 
-public class EventCommentRemoteDataSource implements EventCommentDataSource {
-
-    @NonNull
-    @Override
-    public Observable<EventCommentData> getValue(@NonNull String key) {
-        return null;
-    }
-
-    @NonNull
-    @Override
-    public Observable<EventCommentData> saveValue(@NonNull String key, @NonNull EventCommentData value) {
-        return null;
-    }
-
-    @NonNull
-    @Override
-    public Observable<List<EventCommentData>> getAll() {
-        return null;
-    }
-
-    @NonNull
-    @Override
-    public Observable<List<EventCommentData>> saveAll(List<EventCommentData> collection) {
-        return null;
-    }
+public class EventCommentRemoteDataSource extends BaseRemoteDataSource<String, EventCommentData> implements EventCommentDataSource {
 
     @Override
     public Observable<List<EventCommentData>> getAll(@NonNull String eventId) {

@@ -41,11 +41,8 @@ public class RemoteEventSessionDataSource implements EventSessionDataSource {
     }
 
     private Observable<List<EventSessionData>> getEvent(String id) {
-        Call<ResponseBody> call = Application.getApi().getDetails(id);
-
-        return Observable.defer(() -> Observable.just(call.execute()))
-                .flatMap(Observable::just)
-                .map(r -> EventSessionParser.parseSession(r.body().string()));
-
+       return Application.getApi()
+               .getDetails(id)
+               .map(EventSessionParser::parseSession);
     }
 }

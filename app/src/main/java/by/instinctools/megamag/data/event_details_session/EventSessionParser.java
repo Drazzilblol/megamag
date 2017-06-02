@@ -3,7 +3,6 @@ package by.instinctools.megamag.data.event_details_session;
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
 
-import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
@@ -17,8 +16,7 @@ class EventSessionParser {
 
     private static final String DETAILS_HEADER_SELECTOR = "tableBoxArea1Contents";
 
-    static List<EventSessionData> parseSession(@NonNull String sourceHtml) {
-        Document document = Jsoup.parse(sourceHtml);
+    static List<EventSessionData> parseSession(@NonNull Document document) {
 
         List<EventSessionData> resultList = new ArrayList<>();
         Elements headerItems = document.getElementsByClass(DETAILS_HEADER_SELECTOR);
