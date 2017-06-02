@@ -12,6 +12,9 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.drawable.GlideDrawable;
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.target.Target;
 
 import java.io.File;
 
@@ -81,6 +84,7 @@ public final class ImageUtils {
                     .load(image)
                     .bitmapTransform(new BlurAndCropTransformation(context))
                     .placeholder(R.drawable.loading_placeholder)
+                    .error(R.drawable.no_image_found)
                     .into(imageView);
         } else {
             imageView.setVisibility(View.GONE);
