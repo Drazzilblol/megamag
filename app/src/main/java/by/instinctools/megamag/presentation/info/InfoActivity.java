@@ -61,12 +61,12 @@ public class InfoActivity extends MvpAppCompatActivity implements InfoView {
     }
 
     @ProvidePresenterTag(presenterClass = InfoPresenter.class)
-    String provideRepositoryPresenterTag() {
+    String provideInfoPresenterTag() {
         return String.format("%s:id=%s", InfoPresenter.class.getSimpleName(), getInfoIdFromIntent());
     }
 
     @ProvidePresenter
-    InfoPresenter provideRepositoryPresenter() {
+    InfoPresenter provideInfoPresenter() {
         return new InfoPresenter(getInfoIdFromIntent());
     }
 

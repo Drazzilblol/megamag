@@ -26,9 +26,9 @@ public class SplashPresenter extends DisposablePresenter<SplashView> {
 
     @DebugLog
     @Override
-    public void attachView(@NonNull SplashView view) {
-        super.attachView(view);
-        view.showProgress();
+    protected void onFirstViewAttach() {
+        super.onFirstViewAttach();
+        getViewState().showProgress();
         addDisposable(
                 Observable.timer(DELAY_MILLIS, TimeUnit.MILLISECONDS)
                         .flatMap(c -> incrementAndGetCounterUseCase.execute())
