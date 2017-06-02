@@ -11,15 +11,18 @@ import java.util.List;
 import by.instinctools.megamag.domain.models.Menu;
 import by.instinctools.megamag.presentation.MvpView;
 
-@StateStrategyType(AddToEndSingleStrategy.class)
+
 public interface MenuView extends MvpView {
 
     @StateStrategyType(OneExecutionStateStrategy.class)
     void goToInfoScreen(int infoId);
 
+    @StateStrategyType(OneExecutionStateStrategy.class)
     void goToAnnouncementsScreen();
 
+    @StateStrategyType(OneExecutionStateStrategy.class)
     void goToTicketsScreen();
 
+    @StateStrategyType(AddToEndSingleStrategy.class)
     void showMenu(@NonNull List<Menu> menuList);
 }

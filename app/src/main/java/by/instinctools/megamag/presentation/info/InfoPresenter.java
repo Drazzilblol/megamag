@@ -30,8 +30,6 @@ public class InfoPresenter extends DisposablePresenter<InfoView> {
 
     private int infoId;
 
-    private boolean isLoaded;
-
     @NonNull
     private GetInfoUseCase infoUseCase = new GetInfoUseCase();
 
