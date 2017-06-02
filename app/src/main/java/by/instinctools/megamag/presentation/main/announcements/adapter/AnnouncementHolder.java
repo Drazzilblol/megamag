@@ -51,8 +51,8 @@ class AnnouncementHolder extends RecyclerView.ViewHolder {
         titleView.setText(announcement.getTitle());
         placeView.setText(announcement.getPlace());
 
-        detailsTextView.setText(announcement.getDetails());
-        descriptionTextView.setText(announcement.getDescription());
+        detailsTextView.setText(details);
+        descriptionTextView.setText(description);
         ImageUtils.loadImageWithBlur(
                 itemView.getContext(),
                 imageView,
