@@ -14,9 +14,10 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.animation.GlideAnimation;
+import com.bumptech.glide.request.target.SimpleTarget;
 
 import java.io.File;
-import java.util.concurrent.ExecutionException;
 
 import by.instinctools.megamag.R;
 import io.reactivex.Observable;
@@ -84,36 +85,28 @@ public final class ImageUtils {
         if (image != null) {
             imageView.setVisibility(View.VISIBLE);
 
-            Observable.defer(() -> Observable.just(getBitmap(context, image)))
-                    .flatMap(Observable::just)
-                    .map(ImageUtils::addBackgroundBlur)
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribeOn(Schedulers.io())
-                    .subscribe(
-                            imageView::setImageBitmap,
+            Glide.with(context)
+                    .load(image)
+                    .asBitmap()
+                    .into(new SimpleTarget<Bitmap>() {
 
-                            throwable -> imageView.setImageResource(R.drawable.no_image_found)
-                    );
+                        @Override
+                        public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
+                            imageView.setImageResource(R.drawable.no_image_found);
+                            Observable.just(resource)
+                                    .map(ImageUtils::addBackgroundBlur)
+                                    .observeOn(AndroidSchedulers.mainThread())
+                                    .subscribeOn(Schedulers.io())
+                                    .subscribe(
+                                            imageView::setImageBitmap,
 
+                                            throwable -> imageView.setImageResource(R.drawable.no_image_found)
+                                    );
+                        }
+                    });
         } else {
             imageView.setVisibility(View.GONE);
         }
-    }
-
-
-    @Nullable
-    private static Bitmap getBitmap(@NonNull Context context, @Nullable String image) {
-        Bitmap bitmap = null;
-        try {
-            bitmap = Glide.with(context)
-                    .load(image)
-                    .asBitmap()
-                    .into(-1, -1)
-                    .get();
-        } catch (InterruptedException | ExecutionException e) {
-            Timber.e(e);
-        }
-        return bitmap;
     }
 
     @NonNull
