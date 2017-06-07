@@ -9,7 +9,7 @@ import by.instinctools.megamag.presentation.MvpView;
 
 interface EventSessionsView extends MvpView {
 
-    void showData(@NonNull List<EventSession> eventSessions);
+    void showData(@NonNull List<List<EventSession>> eventSessions);
 
     void hideData();
 }

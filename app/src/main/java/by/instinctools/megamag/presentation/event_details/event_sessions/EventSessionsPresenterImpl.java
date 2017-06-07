@@ -1,9 +1,11 @@
 package by.instinctools.megamag.presentation.event_details.event_sessions;
 
 import android.support.annotation.NonNull;
+import android.text.TextUtils;
 
 import com.arellomobile.mvp.InjectViewState;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import by.instinctools.megamag.domain.GetEventSessionUseCase;
@@ -32,6 +34,7 @@ public class EventSessionsPresenterImpl extends EventSessionsPresenter {
                 useCase.execute(eventId)
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
+                        .map(this::sortSessionList)
                         .subscribe(
                                 this::onLoadSuccess,
                                 this::onLoadError
@@ -47,11 +50,11 @@ public class EventSessionsPresenterImpl extends EventSessionsPresenter {
     }
 
     @DebugLog
-    private void onLoadSuccess(@NonNull List<EventSession> event) {
+    private void onLoadSuccess(@NonNull List<List<EventSession>> sessions) {
         EventSessionsView view = getViewState();
         view.hideProgress();
         view.hideError();
-        //  view.showData(event);
+        view.showData(sessions);
     }
 
     @DebugLog
@@ -60,5 +63,30 @@ public class EventSessionsPresenterImpl extends EventSessionsPresenter {
         view.hideProgress();
         view.hideData();
         showError(throwable);
+    }
+
+
+    private List<List<EventSession>> sortSessionList(List<EventSession> sessionList) {
+        List<List<EventSession>> sortedList = new ArrayList<>();
+        String place = "";
+        for (EventSession session : sessionList) {
+            if (!TextUtils.equals(session.getPlace(), place)) {
+                place = session.getPlace();
+                String hall = "";
+                for (EventSession session1 : sessionList) {
+                    if (TextUtils.equals(session1.getPlace(), place) && !TextUtils.equals(session1.getHall(), hall)) {
+                        hall = session1.getHall();
+                        List<EventSession> list = new ArrayList<>();
+                        for (EventSession session2 : sessionList) {
+                            if (TextUtils.equals(session2.getPlace(), place) && TextUtils.equals(session2.getHall(), hall)) {
+                                list.add(session2);
+                            }
+                        }
+                        sortedList.add(list);
+                    }
+                }
+            }
+        }
+        return sortedList;
     }
 }

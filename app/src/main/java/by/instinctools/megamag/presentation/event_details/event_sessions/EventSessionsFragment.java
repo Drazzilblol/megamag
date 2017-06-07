@@ -22,6 +22,7 @@ import by.instinctools.megamag.R;
 import by.instinctools.megamag.common.errors.Error;
 import by.instinctools.megamag.domain.models.EventSession;
 import by.instinctools.megamag.presentation.common.decorator.OffsetItemDecorator;
+import by.instinctools.megamag.presentation.event_details.event_sessions.adapter.SessionsListAdapter;
 import hugo.weaving.DebugLog;
 
 public class EventSessionsFragment extends MvpAppCompatFragment implements EventSessionsView {
@@ -40,6 +41,9 @@ public class EventSessionsFragment extends MvpAppCompatFragment implements Event
 
     @BindView(R.id.details_sessions_progress_bar)
     ContentLoadingProgressBar progressBar;
+
+    @NonNull
+    private SessionsListAdapter sessionsListAdapter = new SessionsListAdapter();
 
     public static EventSessionsFragment newInstance(@NonNull String eventId) {
         EventSessionsFragment fragment = new EventSessionsFragment();
@@ -72,6 +76,8 @@ public class EventSessionsFragment extends MvpAppCompatFragment implements Event
         );
         recyclerView.addItemDecoration(itemDecorator);
 
+        recyclerView.setAdapter(sessionsListAdapter);
+
     }
 
     @Override
@@ -95,11 +101,11 @@ public class EventSessionsFragment extends MvpAppCompatFragment implements Event
         progressBar.hide();
     }
 
-
     @Override
-    public void showData(@NonNull List<EventSession> eventSessions) {
-        //  adapter.setComments(eventSessions);
+    public void showData(@NonNull List<List<EventSession>> eventSessions) {
+        sessionsListAdapter.addItems(eventSessions);
         recyclerView.setVisibility(View.VISIBLE);
+
     }
 
     @Override
