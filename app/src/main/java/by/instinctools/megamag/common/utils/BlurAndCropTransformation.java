@@ -31,23 +31,16 @@ public class BlurAndCropTransformation extends BitmapTransformation {
         Bitmap cropped = cropDrawable(bitmap);
         Bitmap blurred = blur(cropped, 7);
         cropped.recycle();
-        Bitmap result = Bitmap.createBitmap(
-                blurred,
-                0,
-                0,
-                blurred.getWidth(),
-                blurred.getHeight());
 
-        blurred.recycle();
-        float width = result.getHeight() * ((float) bitmap.getWidth() / bitmap.getHeight());
+        float width = blurred.getHeight() * ((float) bitmap.getWidth() / bitmap.getHeight());
         Bitmap src = Bitmap.createScaledBitmap(
                 bitmap,
                 (int) width,
-                result.getHeight(),
+                blurred.getHeight(),
                 true);
-        Canvas canvas = new Canvas(result);
-        canvas.drawBitmap(src, result.getWidth() / 2 - src.getWidth() / 2, 0f, null);
-        return result;
+        Canvas canvas = new Canvas(blurred);
+        canvas.drawBitmap(src, blurred.getWidth() / 2 - src.getWidth() / 2, 0f, null);
+        return blurred;
     }
 
     private static Bitmap cropDrawable(@NonNull Bitmap source) {
