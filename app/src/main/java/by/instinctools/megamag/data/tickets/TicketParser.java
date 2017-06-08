@@ -36,7 +36,7 @@ class TicketParser {
         }
         return ticketList;
     }
-    
+
     private static String getHQCover(@NonNull String url) {
         return url.replace("categories_sec", "newsdesk_img")
                 .replace("_6", "_b1");

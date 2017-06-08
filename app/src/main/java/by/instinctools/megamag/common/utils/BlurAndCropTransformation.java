@@ -18,7 +18,21 @@ public class BlurAndCropTransformation extends BitmapTransformation {
 
     @Override
     protected Bitmap transform(BitmapPool pool, Bitmap toTransform, int outWidth, int outHeight) {
-        return addBackgroundBlur(toTransform);
+        if (toTransform.getWidth() > outWidth && toTransform.getHeight() > outHeight) {
+            return addBackgroundBlur(resizeBitmap(toTransform, outWidth, outHeight));
+        } else {
+            return addBackgroundBlur(toTransform);
+        }
+    }
+
+    private Bitmap resizeBitmap(Bitmap toTransform, int outWidth, int outHeight) {
+        int bmWidth = toTransform.getWidth();
+        int bmHeight = toTransform.getHeight();
+        while (bmWidth > outWidth && bmHeight > outHeight) {
+            bmWidth /= 1.5;
+            bmHeight /= 1.5;
+        }
+        return Bitmap.createScaledBitmap(toTransform, bmWidth, bmHeight, true);
     }
 
     @Override
