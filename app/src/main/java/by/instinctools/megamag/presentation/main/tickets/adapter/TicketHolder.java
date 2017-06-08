@@ -43,7 +43,8 @@ class TicketHolder extends RecyclerView.ViewHolder {
         ImageUtils.loadImageWithBlur(
                 itemView.getContext(),
                 imageView,
-                ticket.getCoverUrl()
+                ticket.getCoverUrl(),
+                ticket.getCoverUrlLQ()
         );
     }
 }

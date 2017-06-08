@@ -30,9 +30,15 @@ class TicketParser {
             ticketList.add(TicketData.builder()
                     .title(ticket.getElementsByClass(TICKET_TITLE_SELECTOR).text())
                     .beginsWith(ticket.getElementsByClass(TICKET_DATE_SELECTOR).text())
-                    .coverUrl(imgUrl)
+                    .coverUrlLQ(imgUrl)
+                    .coverUrl(getHQCover(imgUrl))
                     .build());
         }
         return ticketList;
+    }
+    
+    private static String getHQCover(@NonNull String url) {
+        return url.replace("categories_sec", "newsdesk_img")
+                .replace("_6", "_b1");
     }
 }
