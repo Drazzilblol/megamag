@@ -93,8 +93,8 @@
     <dimen name="event_details_session_list_item_offset">@dimen/item_padding_normal</dimen>
     <dimen name="event_details_session_list_padding">@dimen/item_padding_normal</dimen>
     <dimen name="event_details_session_list_error_padding">@dimen/item_padding_large</dimen>
+    <dimen name="event_details_session_place_text_size">@dimen/item_title_text</dimen>
 
     <dimen name="event_details_info_item_padding">@dimen/item_padding_normal</dimen>
-
 
 </resources>
