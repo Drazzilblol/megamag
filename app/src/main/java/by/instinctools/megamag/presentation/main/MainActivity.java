@@ -34,12 +34,15 @@ import by.instinctools.megamag.presentation.main.tickets.TicketsFragment;
 
 
 public class MainActivity extends MvpAppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, MenuView, View.OnClickListener {
+        implements NavigationView.OnNavigationItemSelectedListener, MenuView, View.OnClickListener, OnFragmentCreatedListener {
 
     @BindView(R.id.nav_view)
     NavigationView navigationView;
 
     TextView profileView;
+
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
 
     @InjectPresenter(type = PresenterType.GLOBAL)
     MenuPresenter menuPresenter;
@@ -53,8 +56,7 @@ public class MainActivity extends MvpAppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle(R.string.announcements_toolbar_title);
+
         setSupportActionBar(toolbar);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -169,5 +171,10 @@ public class MainActivity extends MvpAppCompatActivity
             v.setSelected(true);
             menuPresenter.onProfilePressed(false);
         }
+    }
+
+    @Override
+    public void onFragmentCreated(String title) {
+        toolbar.setTitle(title);
     }
 }
