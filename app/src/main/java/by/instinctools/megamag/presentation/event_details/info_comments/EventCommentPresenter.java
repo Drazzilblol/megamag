@@ -19,9 +19,10 @@ public class EventCommentPresenter extends DisposablePresenter<EventCommentView>
     @NonNull
     private GetEventCommentUseCase useCase = new GetEventCommentUseCase();
 
+    @NonNull
     private String eventId;
 
-    void setInitialValue(@NonNull String eventId) {
+    EventCommentPresenter(@NonNull String eventId) {
         this.eventId = eventId;
     }
 

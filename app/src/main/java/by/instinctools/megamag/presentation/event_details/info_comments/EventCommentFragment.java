@@ -13,6 +13,8 @@ import android.widget.TextView;
 
 import com.arellomobile.mvp.MvpAppCompatFragment;
 import com.arellomobile.mvp.presenter.InjectPresenter;
+import com.arellomobile.mvp.presenter.ProvidePresenter;
+import com.arellomobile.mvp.presenter.ProvidePresenterTag;
 
 import java.util.List;
 
@@ -20,6 +22,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import by.instinctools.megamag.R;
 import by.instinctools.megamag.common.errors.Error;
+import by.instinctools.megamag.common.errors.ErrorException;
+import by.instinctools.megamag.common.errors.NoIdError;
 import by.instinctools.megamag.domain.models.EventComment;
 import by.instinctools.megamag.presentation.common.decorator.OffsetItemDecorator;
 import by.instinctools.megamag.presentation.event_details.info_comments.adapter.CommentsListAdapter;
@@ -53,6 +57,25 @@ public class EventCommentFragment extends MvpAppCompatFragment implements EventC
         return fragment;
     }
 
+    @ProvidePresenterTag(presenterClass = EventCommentPresenter.class)
+    String provideCommentsPresenterTag() {
+        return String.format("%s:id=%s", EventCommentPresenter.class.getSimpleName(), getEventIdFromArguments());
+    }
+
+    @ProvidePresenter
+    EventCommentPresenter provideCommentsPresenter() {
+        return new EventCommentPresenter(getEventIdFromArguments());
+    }
+
+    private String getEventIdFromArguments() {
+        Bundle args = getArguments();
+        if (args != null && args.containsKey(EVENT_ID)) {
+            return getArguments().getString(EVENT_ID);
+        } else {
+            throw new ErrorException(new NoIdError());
+        }
+    }
+
     @DebugLog
     @Nullable
     @Override
@@ -61,9 +84,6 @@ public class EventCommentFragment extends MvpAppCompatFragment implements EventC
         View view = inflater.inflate(R.layout.fragment_details_comments, container, false);
         ButterKnife.bind(this, view);
         initRecyclerView();
-        if (getArguments() != null) {
-            eventCommentPresenter.setInitialValue(getArguments().getString(EVENT_ID));
-        }
         return view;
     }
 

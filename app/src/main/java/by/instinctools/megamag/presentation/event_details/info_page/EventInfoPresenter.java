@@ -19,7 +19,7 @@ public class EventInfoPresenter extends DisposablePresenter<EventInfoView> {
 
     private String eventId;
 
-    void setInitialValue(@NonNull String eventId) {
+    EventInfoPresenter(@NonNull String eventId) {
         this.eventId = eventId;
     }
 

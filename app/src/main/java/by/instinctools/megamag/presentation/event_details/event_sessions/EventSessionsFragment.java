@@ -58,12 +58,12 @@ public class EventSessionsFragment extends MvpAppCompatFragment implements Event
     }
 
     @ProvidePresenterTag(presenterClass = EventSessionsPresenter.class)
-    String provideInfoPresenterTag() {
+    String provideSessionsPresenterTag() {
         return String.format("%s:id=%s", EventSessionsPresenter.class.getSimpleName(), getEventIdFromArguments());
     }
 
     @ProvidePresenter
-    EventSessionsPresenter provideInfoPresenter() {
+    EventSessionsPresenter provideSessionsPresenter() {
         return new EventSessionsPresenter(getEventIdFromArguments());
     }
 

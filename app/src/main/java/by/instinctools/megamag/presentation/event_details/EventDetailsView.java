@@ -17,6 +17,6 @@ interface EventDetailsView extends MvpView {
     @StateStrategyType(AddToEndSingleStrategy.class)
     void hideData();
 
-    @StateStrategyType(OneExecutionStateStrategy.class)
+    @StateStrategyType(AddToEndSingleStrategy.class)
     void initPagerFragments(@NonNull String eventId);
 }

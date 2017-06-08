@@ -20,6 +20,11 @@ public class EventDetailsPresenter extends DisposablePresenter<EventDetailsView>
     @NonNull
     private GetEventUseCase getEventUseCase = new GetEventUseCase();
 
+    EventDetailsPresenter(@NonNull String eventId) {
+        this.eventId = eventId;
+        getViewState().initPagerFragments(eventId);
+    }
+
     @Override
     protected void onFirstViewAttach() {
         super.onFirstViewAttach();
@@ -47,11 +52,6 @@ public class EventDetailsPresenter extends DisposablePresenter<EventDetailsView>
         view.hideProgress();
         view.hideError();
         view.showData(event);
-    }
-
-    public void setInitialValue(@NonNull String eventId) {
-        this.eventId = eventId;
-        getViewState().initPagerFragments(eventId);
     }
 
     @DebugLog

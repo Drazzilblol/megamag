@@ -11,11 +11,15 @@ import android.widget.TextView;
 
 import com.arellomobile.mvp.MvpAppCompatFragment;
 import com.arellomobile.mvp.presenter.InjectPresenter;
+import com.arellomobile.mvp.presenter.ProvidePresenter;
+import com.arellomobile.mvp.presenter.ProvidePresenterTag;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import by.instinctools.megamag.R;
 import by.instinctools.megamag.common.errors.Error;
+import by.instinctools.megamag.common.errors.ErrorException;
+import by.instinctools.megamag.common.errors.NoIdError;
 import by.instinctools.megamag.domain.models.EventInfo;
 import hugo.weaving.DebugLog;
 
@@ -47,6 +51,25 @@ public class EventInfoFragment extends MvpAppCompatFragment implements EventInfo
         return fragment;
     }
 
+    @ProvidePresenterTag(presenterClass = EventInfoPresenter.class)
+    String provideEventInfoPresenterTag() {
+        return String.format("%s:id=%s", EventInfoPresenter.class.getSimpleName(), getEventIdFromArguments());
+    }
+
+    @ProvidePresenter
+    EventInfoPresenter provideEventInfoPresenter() {
+        return new EventInfoPresenter(getEventIdFromArguments());
+    }
+
+    private String getEventIdFromArguments() {
+        Bundle args = getArguments();
+        if (args != null && args.containsKey(EVENT_ID)) {
+            return getArguments().getString(EVENT_ID);
+        } else {
+            throw new ErrorException(new NoIdError());
+        }
+    }
+
     @DebugLog
     @Nullable
     @Override
@@ -54,9 +77,6 @@ public class EventInfoFragment extends MvpAppCompatFragment implements EventInfo
         super.onCreateView(inflater, container, savedInstanceState);
         View view = inflater.inflate(R.layout.fragment_details_info, container, false);
         ButterKnife.bind(this, view);
-        if (getArguments() != null) {
-            presenter.setInitialValue(getArguments().getString(EVENT_ID));
-        }
         return view;
     }
 
