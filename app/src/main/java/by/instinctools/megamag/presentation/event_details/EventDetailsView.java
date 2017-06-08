@@ -2,17 +2,21 @@ package by.instinctools.megamag.presentation.event_details;
 
 import android.support.annotation.NonNull;
 
-import java.util.List;
+import com.arellomobile.mvp.viewstate.strategy.AddToEndSingleStrategy;
+import com.arellomobile.mvp.viewstate.strategy.OneExecutionStateStrategy;
+import com.arellomobile.mvp.viewstate.strategy.StateStrategyType;
 
-import by.instinctools.megamag.domain.models.Announcement;
 import by.instinctools.megamag.domain.models.Event;
 import by.instinctools.megamag.presentation.MvpView;
 
-interface EventDetailsView extends MvpView{
+interface EventDetailsView extends MvpView {
 
+    @StateStrategyType(AddToEndSingleStrategy.class)
     void showData(@NonNull Event event);
 
+    @StateStrategyType(AddToEndSingleStrategy.class)
     void hideData();
 
+    @StateStrategyType(OneExecutionStateStrategy.class)
     void initPagerFragments(@NonNull String eventId);
 }

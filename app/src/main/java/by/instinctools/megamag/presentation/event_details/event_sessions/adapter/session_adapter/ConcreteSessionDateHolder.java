@@ -61,12 +61,7 @@ class ConcreteSessionDateHolder extends RecyclerView.ViewHolder {
             TableRow.LayoutParams params = new TableRow.LayoutParams(CardView.LayoutParams.MATCH_PARENT, CardView.LayoutParams.WRAP_CONTENT, 1.0f);
             params.setMargins(8, 8, 8, 8);
             card.setLayoutParams(params);
-            card.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Timber.i(session.getSessionId());
-                }
-            });
+            card.setOnClickListener(v -> Timber.i(session.getSessionId()));
 
             TextView textView = new TextView(itemView.getContext());
             textView.setGravity(Gravity.CENTER);

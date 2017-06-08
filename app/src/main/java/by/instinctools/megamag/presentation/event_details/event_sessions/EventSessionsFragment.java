@@ -14,6 +14,8 @@ import android.widget.TextView;
 
 import com.arellomobile.mvp.MvpAppCompatFragment;
 import com.arellomobile.mvp.presenter.InjectPresenter;
+import com.arellomobile.mvp.presenter.ProvidePresenter;
+import com.arellomobile.mvp.presenter.ProvidePresenterTag;
 
 import java.util.List;
 
@@ -21,8 +23,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import by.instinctools.megamag.R;
 import by.instinctools.megamag.common.errors.Error;
+import by.instinctools.megamag.common.errors.ErrorException;
+import by.instinctools.megamag.common.errors.NoIdError;
 import by.instinctools.megamag.domain.models.EventSession;
-import by.instinctools.megamag.presentation.common.decorator.OffsetItemDecorator;
 import by.instinctools.megamag.presentation.event_details.event_sessions.adapter.SessionsListAdapter;
 import hugo.weaving.DebugLog;
 
@@ -32,7 +35,7 @@ public class EventSessionsFragment extends MvpAppCompatFragment implements Event
     private static final String EVENT_ID = "EVENT_ID";
 
     @InjectPresenter
-    EventSessionsPresenterImpl presenter;
+    EventSessionsPresenter presenter;
 
     @BindView(R.id.details_sessions_recycler)
     RecyclerView recyclerView;
@@ -54,6 +57,16 @@ public class EventSessionsFragment extends MvpAppCompatFragment implements Event
         return fragment;
     }
 
+    @ProvidePresenterTag(presenterClass = EventSessionsPresenter.class)
+    String provideInfoPresenterTag() {
+        return String.format("%s:id=%s", EventSessionsPresenter.class.getSimpleName(), getEventIdFromArguments());
+    }
+
+    @ProvidePresenter
+    EventSessionsPresenter provideInfoPresenter() {
+        return new EventSessionsPresenter(getEventIdFromArguments());
+    }
+
     @DebugLog
     @Nullable
     @Override
@@ -62,21 +75,22 @@ public class EventSessionsFragment extends MvpAppCompatFragment implements Event
         View view = inflater.inflate(R.layout.fragment_details_sessions, container, false);
         ButterKnife.bind(this, view);
         initRecyclerView();
-        if (getArguments() != null) {
-            presenter.setInitialValue(getArguments().getString(EVENT_ID));
-        }
+        getEventIdFromArguments();
         return view;
+    }
+
+    private String getEventIdFromArguments() {
+        Bundle args = getArguments();
+        if (args != null && args.containsKey(EVENT_ID)) {
+            return getArguments().getString(EVENT_ID);
+        } else {
+            throw new ErrorException(new NoIdError());
+        }
     }
 
     private void initRecyclerView() {
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
- /*       OffsetItemDecorator itemDecorator = new OffsetItemDecorator(
-                getContext(),
-                R.dimen.announcement_list_item_offset
-        );
-        recyclerView.addItemDecoration(itemDecorator);
-*/
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(),
                 DividerItemDecoration.VERTICAL);
         recyclerView.addItemDecoration(dividerItemDecoration);
