@@ -16,7 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:padding="@dimen/announcement_list_error_padding"
+            android:padding="@dimen/event_details_info_item_padding"
             android:visibility="gone"/>
 
         <TextView
@@ -24,7 +24,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:padding="@dimen/announcement_list_error_padding"
+            android:padding="@dimen/event_details_info_item_padding"
             android:visibility="gone"/>
 
         <TextView
@@ -32,7 +32,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|center"
-            android:padding="@dimen/announcement_list_error_padding"
+            android:padding="@dimen/event_details_info_item_padding"
             android:visibility="gone"/>
 
         <android.support.v4.widget.ContentLoadingProgressBar

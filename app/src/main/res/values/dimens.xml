@@ -90,5 +90,11 @@
     <dimen name="event_details_comment_list_padding">@dimen/item_padding_normal</dimen>
     <dimen name="event_details_comment_list_error_padding">@dimen/item_padding_large</dimen>
 
+    <dimen name="event_details_session_list_item_offset">@dimen/item_padding_normal</dimen>
+    <dimen name="event_details_session_list_padding">@dimen/item_padding_normal</dimen>
+    <dimen name="event_details_session_list_error_padding">@dimen/item_padding_large</dimen>
+
+    <dimen name="event_details_info_item_padding">@dimen/item_padding_normal</dimen>
+
 
 </resources>

@@ -17,7 +17,7 @@
             android:layout_height="match_parent"
             android:clipToPadding="false"
             android:orientation="vertical"
-            android:padding="@dimen/event_details_comment_list_padding"
+            android:padding="@dimen/event_details_session_list_padding"
             app:layoutManager="android.support.v7.widget.LinearLayoutManager"/>
 
         <TextView
@@ -25,7 +25,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|center"
-            android:padding="@dimen/announcement_list_error_padding"
+            android:padding="@dimen/event_details_session_list_error_padding"
             android:visibility="gone"/>
 
         <android.support.v4.widget.ContentLoadingProgressBar
