@@ -87,6 +87,12 @@ public class EventDetailsActivity extends MvpAppCompatActivity implements EventD
     }
 
     @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return super.onSupportNavigateUp();
+    }
+
+    @Override
     public void showError(@NonNull Error error) {
     }
 
