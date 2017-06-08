@@ -20,6 +20,9 @@ public abstract class EventSession {
     public abstract String getPlace();
 
     @NonNull
+    public abstract String getSessionId();
+
+    @NonNull
     public static EventSession.Builder builder() {
         return new AutoValue_EventSession.Builder();
     }
@@ -34,6 +37,8 @@ public abstract class EventSession {
         public abstract EventSession.Builder hall(@NonNull String value);
 
         public abstract EventSession.Builder place(@NonNull String value);
+
+        public abstract EventSession.Builder sessionId(@NonNull String value);
 
         public abstract EventSession build();
     }

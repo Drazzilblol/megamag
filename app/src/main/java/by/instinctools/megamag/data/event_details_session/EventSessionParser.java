@@ -1,5 +1,6 @@
 package by.instinctools.megamag.data.event_details_session;
 
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
 
@@ -35,9 +36,11 @@ class EventSessionParser {
                 for (int k = 1; k < times.size() - 1; k++) {
                     Element time = times.get(k);
                     if (!TextUtils.equals(time.text(), "-")) {
+                        Uri uri = Uri.parse(time.child(0).absUrl("href"));
                         EventSessionData.Builder builder = EventSessionData.builder();
                         builder.place(placeName);
                         builder.hall(hallName);
+                        builder.sessionId(uri.getQueryParameter("id"));
                         builder.day(day);
                         builder.time(time.text());
                         resultList.add(builder.build());

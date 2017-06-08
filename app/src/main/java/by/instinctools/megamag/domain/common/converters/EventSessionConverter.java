@@ -16,6 +16,7 @@ public class EventSessionConverter extends BaseConverter<EventSessionData, Event
                 .place(eventSessionData.getPlace())
                 .hall(eventSessionData.getHall())
                 .day(eventSessionData.getDay())
+                .sessionId(eventSessionData.getSessionId())
                 .build();
     }
 }
