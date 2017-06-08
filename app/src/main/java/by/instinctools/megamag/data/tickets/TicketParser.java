@@ -21,11 +21,16 @@ class TicketParser {
         List<TicketData> ticketList = new ArrayList<>();
         Elements tickets = document.getElementsByClass(TICKET_ITEM_SELECTOR);
         for (Element ticket : tickets) {
-            String imgUrl = ticket.getElementsByClass(TICKET_IMAGE_SELECTOR)
+            Element ticketCover = ticket.getElementsByClass(TICKET_IMAGE_SELECTOR)
                     .first()
-                    .child(0)
-                    .child(0)
-                    .absUrl(IMAGE_URL_SELECTOR);
+                    .child(0);
+            String imgUrl = "";
+            
+            if (ticketCover.children().size() != 0) {
+                imgUrl = ticketCover
+                        .child(0)
+                        .absUrl(IMAGE_URL_SELECTOR);
+            }
 
             ticketList.add(TicketData.builder()
                     .title(ticket.getElementsByClass(TICKET_TITLE_SELECTOR).text())
