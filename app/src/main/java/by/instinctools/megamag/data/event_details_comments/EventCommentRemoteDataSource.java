@@ -17,7 +17,8 @@ public class EventCommentRemoteDataSource extends BaseRemoteDataSource<String, E
 
     private Observable<List<EventCommentData>> getComments(String id) {
         return Application.getApi()
-                .getDetails(1515 + "")
+                //1515
+                .getDetails(id)
                 .map(CommentParser::parseComments);
     }
 }

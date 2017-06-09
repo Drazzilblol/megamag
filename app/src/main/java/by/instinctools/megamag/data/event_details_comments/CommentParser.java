@@ -2,7 +2,6 @@ package by.instinctools.megamag.data.event_details_comments;
 
 import android.support.annotation.NonNull;
 
-import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
@@ -20,29 +19,30 @@ class CommentParser {
 
         Elements comments = document.getElementById(COMMENTS_SELECTOR).child(0).children();
 
-        for (Element comment : comments) {
-            Element textField = comment.child(1)
-                    .child(0)
-                    .child(0);
-            EventCommentData.Builder builder = EventCommentData.builder();
+        if (comments.size() != 1) {
+            for (Element comment : comments) {
+                Element textField = comment.child(1)
+                        .child(0)
+                        .child(0);
+                EventCommentData.Builder builder = EventCommentData.builder();
 
-            String text = textField.child(1)
-                    .text();
-            builder.text(text);
+                String text = textField.child(1)
+                        .text();
+                builder.text(text);
 
-            String userName = textField.child(0)
-                    .child(0)
-                    .text();
-            builder.userName(userName);
+                String userName = textField.child(0)
+                        .child(0)
+                        .text();
+                builder.userName(userName);
 
-            String avatarUrl = comment.child(0)
-                    .child(0)
-                    .absUrl(AVATAR_SELECTOR);
-            builder.avatarUrl(avatarUrl);
+                String avatarUrl = comment.child(0)
+                        .child(0)
+                        .absUrl(AVATAR_SELECTOR);
+                builder.avatarUrl(avatarUrl);
 
-            commentList.add(builder.build());
+                commentList.add(builder.build());
+            }
         }
-
         return commentList;
     }
 }

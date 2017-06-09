@@ -48,7 +48,12 @@ public class EventCommentPresenter extends DisposablePresenter<EventCommentView>
         EventCommentView view = getViewState();
         view.hideProgress();
         view.hideError();
-        view.showData(comments);
+        view.hideNoComments();
+        if (!comments.isEmpty()) {
+            view.showData(comments);
+        } else {
+            view.showNoComments();
+        }
     }
 
     @DebugLog
@@ -56,6 +61,7 @@ public class EventCommentPresenter extends DisposablePresenter<EventCommentView>
         EventCommentView view = getViewState();
         view.hideProgress();
         view.hideData();
+        view.hideNoComments();
         showError(throwable);
 
     }

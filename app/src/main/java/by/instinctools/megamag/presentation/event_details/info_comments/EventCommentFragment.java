@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.arellomobile.mvp.MvpAppCompatFragment;
@@ -39,6 +40,9 @@ public class EventCommentFragment extends MvpAppCompatFragment implements EventC
 
     @BindView(R.id.details_comments_recycler)
     RecyclerView recyclerView;
+
+    @BindView(R.id.no_comments)
+    LinearLayout noComments;
 
     @BindView(R.id.details_comments_error_view)
     TextView errorView;
@@ -129,5 +133,15 @@ public class EventCommentFragment extends MvpAppCompatFragment implements EventC
     @Override
     public void hideData() {
         recyclerView.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void showNoComments() {
+        noComments.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void hideNoComments() {
+        noComments.setVisibility(View.GONE);
     }
 }

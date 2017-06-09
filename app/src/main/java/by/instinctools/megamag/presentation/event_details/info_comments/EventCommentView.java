@@ -17,4 +17,10 @@ public interface EventCommentView extends MvpView {
 
     @StateStrategyType(AddToEndSingleStrategy.class)
     void hideData();
+
+    @StateStrategyType(AddToEndSingleStrategy.class)
+    void showNoComments();
+
+    @StateStrategyType(AddToEndSingleStrategy.class)
+    void hideNoComments();
 }
