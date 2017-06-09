@@ -17,8 +17,8 @@
 
         <ImageView
             android:id="@+id/item_details_comment_avatar"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="@dimen/event_details_comment_avatar_width"
+            android:layout_height="@dimen/event_details_comment_avatar_height"
             android:layout_gravity="center_vertical"
             android:scaleType="centerCrop"
             tools:ignore="ContentDescription"
