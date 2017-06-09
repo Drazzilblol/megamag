@@ -3,6 +3,7 @@ package by.instinctools.megamag.common.utils;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Matrix;
 import android.support.annotation.NonNull;
 
 import com.bumptech.glide.load.engine.bitmap_recycle.BitmapPool;
@@ -24,7 +25,7 @@ public class BlurAndCropTransformation extends BitmapTransformation {
     protected Bitmap transform(BitmapPool pool, Bitmap toTransform, int outWidth, int outHeight) {
         Bitmap srcBitmap = toTransform;
         if (srcBitmap.getWidth() > outWidth && srcBitmap.getHeight() > outHeight) {
-            srcBitmap = resizeBitmap(srcBitmap, outWidth, outHeight);
+            srcBitmap = resizeBitmap(srcBitmap, pool, outWidth, outHeight);
         }
         try {
             return addBackgroundBlur(srcBitmap, pool, outWidth, outHeight);
@@ -35,7 +36,7 @@ public class BlurAndCropTransformation extends BitmapTransformation {
         }
     }
 
-    private Bitmap resizeBitmap(Bitmap toTransform, int outWidth, int outHeight) {
+    private Bitmap resizeBitmap(Bitmap toTransform, BitmapPool pool, int outWidth, int outHeight) {
 
         float bmWidth = toTransform.getWidth();
         float bmHeight = toTransform.getHeight();
@@ -54,7 +55,7 @@ public class BlurAndCropTransformation extends BitmapTransformation {
             resHeight = (int) (bmHeight / widthDiff);
         }
 
-        return Bitmap.createScaledBitmap(toTransform, resWidth, resHeight, true);
+        return getBitmapFromPool(toTransform, pool, resWidth, resHeight);
     }
 
     @Override
@@ -72,16 +73,31 @@ public class BlurAndCropTransformation extends BitmapTransformation {
                 .get();
         cropped.recycle();
 
-        float width = blurred.getHeight() * ((float) bitmap.getWidth() / bitmap.getHeight());
-        Bitmap scaledSrcBitmap = Bitmap.createScaledBitmap(
-                bitmap,
-                (int) width,
-                blurred.getHeight(),
-                true);
+        int width = (int) (blurred.getHeight() * ((float) bitmap.getWidth() / bitmap.getHeight()));
+        Bitmap scaledSrcBitmap = getBitmapFromPool(bitmap, pool, width, blurred.getHeight());
+
         Canvas canvas = new Canvas(blurred);
         canvas.drawBitmap(scaledSrcBitmap, blurred.getWidth() / 2 - scaledSrcBitmap.getWidth() / 2, 0f, null);
-        scaledSrcBitmap.recycle();
         return blurred;
+    }
+
+    private Bitmap getBitmapFromPool(@NonNull Bitmap bitmap, BitmapPool pool, int width, int height) {
+        Bitmap scaledSrcBitmap = pool.getDirty(width, height, null);
+        if (scaledSrcBitmap == null) {
+            scaledSrcBitmap = Bitmap.createScaledBitmap(
+                    bitmap,
+                    width,
+                    height,
+                    true);
+            pool.put(scaledSrcBitmap);
+        } else {
+            Matrix matrix = new Matrix();
+            matrix.setScale((float) scaledSrcBitmap.getWidth() / bitmap.getWidth(), (float) scaledSrcBitmap.getHeight() / bitmap.getHeight());
+
+            Canvas canvas = new Canvas(scaledSrcBitmap);
+            canvas.drawBitmap(bitmap, matrix, null);
+        }
+        return scaledSrcBitmap;
     }
 
     private static Bitmap cropDrawable(@NonNull Bitmap source, int outWidth, int outHeight) {
