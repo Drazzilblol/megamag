@@ -23,7 +23,7 @@ import by.instinctools.megamag.R;
 import by.instinctools.megamag.common.errors.Error;
 import by.instinctools.megamag.domain.models.Ticket;
 import by.instinctools.megamag.presentation.common.decorator.OffsetItemDecorator;
-import by.instinctools.megamag.presentation.main.OnFragmentCreatedListener;
+import by.instinctools.megamag.presentation.main.listeners.OnFragmentCreatedListener;
 import by.instinctools.megamag.presentation.main.tickets.adapter.TicketsListAdapter;
 import hugo.weaving.DebugLog;
 
@@ -55,7 +55,7 @@ public class TicketsFragment extends MvpAppCompatFragment implements TicketsView
         super.onCreateView(inflater, container, savedInstanceState);
         View view = inflater.inflate(R.layout.fragment_tickets, container, false);
         ButterKnife.bind(this, view);
-        ((OnFragmentCreatedListener) getActivity()).onFragmentCreated(getString(R.string.tickets_toolbar_title));
+        ticketsPresenter.onFragmentCreated();
         initRecyclerView();
         return view;
     }
@@ -81,6 +81,11 @@ public class TicketsFragment extends MvpAppCompatFragment implements TicketsView
     @Override
     public void hideData() {
         recyclerView.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void showToolbarTitle() {
+        ((OnFragmentCreatedListener) getActivity()).onFragmentCreated(getString(R.string.tickets_toolbar_title));
     }
 
     @Override

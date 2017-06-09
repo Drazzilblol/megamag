@@ -23,7 +23,7 @@ import by.instinctools.megamag.R;
 import by.instinctools.megamag.common.errors.Error;
 import by.instinctools.megamag.domain.models.Announcement;
 import by.instinctools.megamag.presentation.common.decorator.OffsetItemDecorator;
-import by.instinctools.megamag.presentation.main.OnFragmentCreatedListener;
+import by.instinctools.megamag.presentation.main.listeners.OnFragmentCreatedListener;
 import by.instinctools.megamag.presentation.main.announcements.adapter.AnnouncementsListAdapter;
 import hugo.weaving.DebugLog;
 
@@ -55,7 +55,7 @@ public class AnnouncementsFragment extends MvpAppCompatFragment implements Annou
         super.onCreateView(inflater, container, savedInstanceState);
         View view = inflater.inflate(R.layout.fragment_announcements, container, false);
         ButterKnife.bind(this, view);
-        ((OnFragmentCreatedListener) getActivity()).onFragmentCreated(getString(R.string.announcements_toolbar_title));
+        announcementsPresenter.onFragmentCreated();
         initRecyclerView();
         return view;
     }
@@ -81,6 +81,11 @@ public class AnnouncementsFragment extends MvpAppCompatFragment implements Annou
     @Override
     public void hideData() {
         recyclerView.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void showToolbarTitle() {
+        ((OnFragmentCreatedListener) getActivity()).onFragmentCreated(getString(R.string.announcements_toolbar_title));
     }
 
     @Override

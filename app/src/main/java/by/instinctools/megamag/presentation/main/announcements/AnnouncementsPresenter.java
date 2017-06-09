@@ -62,4 +62,8 @@ public class AnnouncementsPresenter extends DisposablePresenter<AnnouncementsVie
         view.hideData();
         showError(throwable);
     }
+
+    public void onFragmentCreated() {
+        getViewState().showToolbarTitle();
+    }
 }
