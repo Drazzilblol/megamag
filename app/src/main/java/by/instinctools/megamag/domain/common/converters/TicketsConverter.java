@@ -15,6 +15,7 @@ public class TicketsConverter extends BaseConverter<TicketData, Ticket> {
                 .title(ticketData.getTitle())
                 .beginsWith(ticketData.getBeginsWith())
                 .coverUrl(ticketData.getCoverUrl())
+                .coverUrlLQ(ticketData.getCoverUrlLQ())
                 .build();
     }
 }

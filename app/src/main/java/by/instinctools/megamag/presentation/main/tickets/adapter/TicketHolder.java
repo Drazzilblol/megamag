@@ -40,10 +40,11 @@ class TicketHolder extends RecyclerView.ViewHolder {
     void bindData(@NonNull Ticket ticket) {
         titleTextView.setText(ticket.getTitle());
         beginWithTextView.setText(ticket.getBeginsWith());
-        ImageUtils.loadImage(
+        ImageUtils.loadImageWithBlur(
                 itemView.getContext(),
                 imageView,
-                ticket.getCoverUrl()
+                ticket.getCoverUrl(),
+                ticket.getCoverUrlLQ()
         );
     }
 }

@@ -12,8 +12,13 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.drawable.GlideDrawable;
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.target.Target;
 
 import java.io.File;
+
+import by.instinctools.megamag.R;
 
 public final class ImageUtils {
 
@@ -68,6 +73,52 @@ public final class ImageUtils {
             );
         } else {
             return null;
+        }
+    }
+
+    public static void loadImageWithBlur(@NonNull Context context, @NonNull ImageView imageView, @Nullable String image) {
+        if (!TextUtils.isEmpty(image)) {
+            imageView.setVisibility(View.VISIBLE);
+
+            Glide.with(context)
+                    .load(image)
+                    .bitmapTransform(new BlurAndCropTransformation(context))
+                    .placeholder(R.drawable.loading_placeholder)
+                    .error(R.drawable.no_image_found)
+                    .into(imageView);
+        } else {
+            imageView.setVisibility(View.GONE);
+        }
+    }
+
+    public static void loadImageWithBlur(@NonNull Context context, @NonNull ImageView imageView, @Nullable String image, @Nullable String imageLQ) {
+        if (!TextUtils.isEmpty(image)) {
+            imageView.setVisibility(View.VISIBLE);
+
+            Glide.with(context)
+                    .load(image)
+                    .bitmapTransform(new BlurAndCropTransformation(context))
+                    .placeholder(R.drawable.loading_placeholder)
+                    .error(R.drawable.no_image_found)
+                    .listener(new RequestListener<String, GlideDrawable>() {
+                        @Override
+                        public boolean onException(Exception e, String model, Target<GlideDrawable> target, boolean isFirstResource) {
+                            Glide.with(context).load(imageLQ)
+                                    .bitmapTransform(new BlurAndCropTransformation(context))
+                                    .placeholder(R.drawable.loading_placeholder)
+                                    .error(R.drawable.no_image_found)
+                                    .into(target);
+                            return true;
+                        }
+
+                        @Override
+                        public boolean onResourceReady(GlideDrawable resource, String model, Target<GlideDrawable> target, boolean isFromMemoryCache, boolean isFirstResource) {
+                            return false;
+                        }
+                    })
+                    .into(imageView);
+        } else {
+            imageView.setVisibility(View.GONE);
         }
     }
 }

@@ -17,6 +17,9 @@ public abstract class Ticket {
     @Nullable
     public abstract String getCoverUrl();
 
+    @Nullable
+    public abstract String getCoverUrlLQ();
+
     @NonNull
     public static Ticket.Builder builder() {
         return new AutoValue_Ticket.Builder();
@@ -30,6 +33,8 @@ public abstract class Ticket {
         public abstract Ticket.Builder beginsWith(@NonNull String value);
 
         public abstract Ticket.Builder coverUrl(@Nullable String value);
+
+        public abstract Ticket.Builder coverUrlLQ(@Nullable String value);
 
         public abstract Ticket build();
     }
