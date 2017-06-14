@@ -61,8 +61,4 @@ public class TicketsPresenter extends DisposablePresenter<TicketsView> {
         view.hideData();
         showError(throwable);
     }
-
-    public void onContentShowed() {
-        getViewState().showTitle();
-    }
 }

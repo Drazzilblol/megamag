@@ -48,7 +48,9 @@ public class MenuPresenter extends DisposablePresenter<MenuView> {
     protected void onFirstViewAttach() {
         super.onFirstViewAttach();
         loadMenuCommon();
-        getViewState().goToAnnouncementsScreen();
+        MenuView view = getViewState();
+        view.goToAnnouncementsScreen();
+        view.showTitle(Application.getAppContext().getString(R.string.announcements_toolbar_title));
     }
 
 
@@ -66,8 +68,10 @@ public class MenuPresenter extends DisposablePresenter<MenuView> {
         if (menuGroupType.equals(GroupTypeFactory.getAnnouncementGroupType())) {
             if (menuType.equals(ItemTypeFactory.getAnnouncementsType())) {
                 view.goToAnnouncementsScreen();
+                view.showTitle(Application.getAppContext().getString(R.string.announcements_toolbar_title));
             } else {
                 view.goToTicketsScreen();
+                view.showTitle(Application.getAppContext().getString(R.string.tickets_toolbar_title));
             }
         }
         if (menuGroupType.equals(GroupTypeFactory.getTheaterGroupType())) {

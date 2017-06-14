@@ -62,8 +62,4 @@ public class AnnouncementsPresenter extends DisposablePresenter<AnnouncementsVie
         view.hideData();
         showError(throwable);
     }
-
-    public void onContentShowed() {
-        getViewState().showTitle();
-    }
 }
