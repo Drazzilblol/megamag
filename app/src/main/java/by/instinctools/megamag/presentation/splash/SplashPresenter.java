@@ -50,7 +50,7 @@ public class SplashPresenter extends DisposablePresenter<SplashView> {
         view.hideProgress();
         Timber.i("is fresh start: " + isFreshStart);
         if (isFreshStart) {
-            view.goToProfileScreen();
+            view.goToAuthScreen();
         } else {
             view.goToMainScreen();
         }

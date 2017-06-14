@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 
+import by.instinctools.megamag.presentation.auth.AuthActivity;
 import by.instinctools.megamag.presentation.info.InfoActivity;
 import by.instinctools.megamag.presentation.main.MainActivity;
 import by.instinctools.megamag.presentation.profile.ProfileActivity;
@@ -22,6 +23,11 @@ public final class Navigator {
 
     public static void goToInfoScreen(@NonNull Context context, int infoId) {
         Intent i = InfoActivity.createIntent(context, infoId);
+        context.startActivity(i);
+    }
+
+    public static void goToAuthScreen(@NonNull Context context) {
+        Intent i = AuthActivity.createIntent(context);
         context.startActivity(i);
     }
 }

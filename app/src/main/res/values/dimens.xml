@@ -80,5 +80,6 @@
     <dimen name="nav_header_item_margin">@dimen/nav_header_padding_large</dimen>
     <dimen name="nav_header_dropdown_button_size">@dimen/icon_size</dimen>
     <dimen name="nav_header_dropdown_button_margin">@dimen/nav_header_padding_large</dimen>
+    <dimen name="fab_margin">16dp</dimen>
 
 </resources>

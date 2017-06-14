@@ -43,8 +43,8 @@ public class SplashActivity extends MvpAppCompatActivity implements SplashView {
 
     @DebugLog
     @Override
-    public void goToProfileScreen() {
-        Navigator.goToProfileScreen(this);
+    public void goToAuthScreen() {
+        Navigator.goToAuthScreen(this);
         finish();
     }
 

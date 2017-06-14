@@ -88,6 +88,11 @@ public class MainActivity extends MvpAppCompatActivity
     }
 
     @Override
+    public void goToAuthScreen() {
+        Navigator.goToAuthScreen(this);
+    }
+
+    @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {

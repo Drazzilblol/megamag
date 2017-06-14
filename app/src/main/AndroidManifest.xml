@@ -27,6 +27,10 @@
         <activity
             android:name=".presentation.main.MainActivity"
             android:theme="@style/MainTheme" />
+        <activity
+            android:name=".presentation.auth.AuthActivity"
+            android:label="@string/title_activity_auth"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>

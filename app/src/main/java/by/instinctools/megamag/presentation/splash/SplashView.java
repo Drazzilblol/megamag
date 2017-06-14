@@ -12,6 +12,6 @@ interface SplashView extends MvpView {
     void goToMainScreen();
 
     @StateStrategyType(OneExecutionStateStrategy.class)
-    void goToProfileScreen();
+    void goToAuthScreen();
 
 }

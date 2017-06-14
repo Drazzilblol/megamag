@@ -31,5 +31,6 @@
     <string name="drawer_menu_history">History</string>
     <string name="drawer_menu_edit">Edit</string>
     <string name="drawer_menu_exit">Exit</string>
+    <string name="title_activity_auth">AuthActivity</string>
 
 </resources>

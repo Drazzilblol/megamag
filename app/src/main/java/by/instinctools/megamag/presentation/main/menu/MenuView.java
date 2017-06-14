@@ -23,6 +23,9 @@ public interface MenuView extends MvpView {
     @StateStrategyType(OneExecutionStateStrategy.class)
     void goToTicketsScreen();
 
+    @StateStrategyType(OneExecutionStateStrategy.class)
+    void goToAuthScreen();
+
     @StateStrategyType(AddToEndSingleStrategy.class)
     void showMenu(@NonNull List<Menu> menuList);
 }

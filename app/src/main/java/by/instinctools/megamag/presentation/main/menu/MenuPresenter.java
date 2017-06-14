@@ -71,6 +71,7 @@ public class MenuPresenter extends DisposablePresenter<MenuView> {
             }
         }
         if (menuGroupType.equals(GroupTypeFactory.getTheaterGroupType())) {
+            view.goToAuthScreen();
             Timber.i("Theater group");
         }
         if (menuGroupType.equals(GroupTypeFactory.getProfileGroupType())) {
