@@ -28,14 +28,13 @@ import by.instinctools.megamag.common.errors.Error;
 import by.instinctools.megamag.common.utils.Navigator;
 import by.instinctools.megamag.domain.models.Menu;
 import by.instinctools.megamag.presentation.main.announcements.AnnouncementsFragment;
-import by.instinctools.megamag.presentation.main.listeners.OnFragmentCreatedListener;
 import by.instinctools.megamag.presentation.main.menu.MenuPresenter;
 import by.instinctools.megamag.presentation.main.menu.MenuView;
 import by.instinctools.megamag.presentation.main.tickets.TicketsFragment;
 
 
 public class MainActivity extends MvpAppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, MenuView, View.OnClickListener, OnFragmentCreatedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, MenuView, View.OnClickListener {
 
     @BindView(R.id.nav_view)
     NavigationView navigationView;
@@ -175,7 +174,7 @@ public class MainActivity extends MvpAppCompatActivity
     }
 
     @Override
-    public void onFragmentCreated(String title) {
+    public void showTitle(@NonNull String title) {
         toolbar.setTitle(title);
     }
 }

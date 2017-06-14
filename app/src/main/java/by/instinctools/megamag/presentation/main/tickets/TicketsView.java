@@ -20,5 +20,5 @@ interface TicketsView extends MvpView {
     void hideData();
 
     @StateStrategyType(AddToEndSingleStrategy.class)
-    void showToolbarTitle();
+    void showTitle();
 }

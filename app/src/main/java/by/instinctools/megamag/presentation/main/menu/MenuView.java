@@ -25,4 +25,7 @@ public interface MenuView extends MvpView {
 
     @StateStrategyType(AddToEndSingleStrategy.class)
     void showMenu(@NonNull List<Menu> menuList);
+
+    @StateStrategyType(AddToEndSingleStrategy.class)
+    void showTitle(@NonNull String title);
 }

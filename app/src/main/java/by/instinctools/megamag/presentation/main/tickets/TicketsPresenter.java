@@ -62,7 +62,7 @@ public class TicketsPresenter extends DisposablePresenter<TicketsView> {
         showError(throwable);
     }
 
-    public void onFragmentCreated() {
-        getViewState().showToolbarTitle();
+    public void onContentShowed() {
+        getViewState().showTitle();
     }
 }
