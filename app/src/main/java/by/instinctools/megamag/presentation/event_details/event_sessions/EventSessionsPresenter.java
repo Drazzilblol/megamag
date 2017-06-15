@@ -64,7 +64,6 @@ public class EventSessionsPresenter extends DisposablePresenter<EventSessionsVie
         showError(throwable);
     }
 
-
     private List<List<EventSession>> sortSessionList(List<EventSession> sessionList) {
         List<List<EventSession>> sortedList = new ArrayList<>();
         String place = "";

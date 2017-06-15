@@ -1,4 +1,4 @@
-package by.instinctools.megamag.presentation.event_details.info_comments.adapter;
+package by.instinctools.megamag.presentation.event_details.event_comments.adapter;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;

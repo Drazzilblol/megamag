@@ -1,4 +1,4 @@
-package by.instinctools.megamag.presentation.event_details.info_comments;
+package by.instinctools.megamag.presentation.event_details.event_comments;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -27,7 +27,7 @@ import by.instinctools.megamag.common.errors.ErrorException;
 import by.instinctools.megamag.common.errors.NoIdError;
 import by.instinctools.megamag.domain.models.EventComment;
 import by.instinctools.megamag.presentation.common.decorator.OffsetItemDecorator;
-import by.instinctools.megamag.presentation.event_details.info_comments.adapter.CommentsListAdapter;
+import by.instinctools.megamag.presentation.event_details.event_comments.adapter.CommentsListAdapter;
 import hugo.weaving.DebugLog;
 
 public class EventCommentFragment extends MvpAppCompatFragment implements EventCommentView {

@@ -1,4 +1,4 @@
-package by.instinctools.megamag.presentation.event_details.info_page;
+package by.instinctools.megamag.presentation.event_details.event_info;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;

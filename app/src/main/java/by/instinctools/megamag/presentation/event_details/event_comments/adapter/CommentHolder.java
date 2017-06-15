@@ -1,4 +1,4 @@
-package by.instinctools.megamag.presentation.event_details.info_comments.adapter;
+package by.instinctools.megamag.presentation.event_details.event_comments.adapter;
 
 import android.content.Context;
 import android.support.annotation.NonNull;

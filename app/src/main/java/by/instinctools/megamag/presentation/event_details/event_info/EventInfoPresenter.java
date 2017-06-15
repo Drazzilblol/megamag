@@ -1,28 +1,25 @@
-package by.instinctools.megamag.presentation.event_details.info_comments;
+package by.instinctools.megamag.presentation.event_details.event_info;
 
 import android.support.annotation.NonNull;
 
 import com.arellomobile.mvp.InjectViewState;
 
-import java.util.List;
-
-import by.instinctools.megamag.domain.GetEventCommentUseCase;
-import by.instinctools.megamag.domain.models.EventComment;
+import by.instinctools.megamag.domain.GetEventInfoUseCase;
+import by.instinctools.megamag.domain.models.EventInfo;
 import by.instinctools.megamag.presentation.DisposablePresenter;
 import hugo.weaving.DebugLog;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
 @InjectViewState
-public class EventCommentPresenter extends DisposablePresenter<EventCommentView> {
+public class EventInfoPresenter extends DisposablePresenter<EventInfoView> {
 
     @NonNull
-    private GetEventCommentUseCase useCase = new GetEventCommentUseCase();
+    private GetEventInfoUseCase getEventInfoUseCase = new GetEventInfoUseCase();
 
-    @NonNull
     private String eventId;
 
-    EventCommentPresenter(@NonNull String eventId) {
+    EventInfoPresenter(@NonNull String eventId) {
         this.eventId = eventId;
     }
 
@@ -30,10 +27,10 @@ public class EventCommentPresenter extends DisposablePresenter<EventCommentView>
     @Override
     protected void onFirstViewAttach() {
         super.onFirstViewAttach();
-        EventCommentView view = getViewState();
+        EventInfoView view = getViewState();
         view.showProgress();
         addDisposable(
-                useCase.execute(eventId)
+                getEventInfoUseCase.execute(eventId)
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(
@@ -44,25 +41,18 @@ public class EventCommentPresenter extends DisposablePresenter<EventCommentView>
     }
 
     @DebugLog
-    private void onLoadSuccess(@NonNull List<EventComment> comments) {
-        EventCommentView view = getViewState();
+    private void onLoadSuccess(@NonNull EventInfo eventInfo) {
+        EventInfoView view = getViewState();
         view.hideProgress();
         view.hideError();
-        view.hideNoComments();
-        if (!comments.isEmpty()) {
-            view.showData(comments);
-        } else {
-            view.showNoComments();
-        }
+        view.showData(eventInfo);
     }
 
     @DebugLog
     private void onLoadError(@NonNull Throwable throwable) {
-        EventCommentView view = getViewState();
+        EventInfoView view = getViewState();
         view.hideProgress();
         view.hideData();
-        view.hideNoComments();
         showError(throwable);
-
     }
 }
