@@ -50,6 +50,8 @@ class SessionsHolder extends RecyclerView.ViewHolder {
         );
         recyclerView.addItemDecoration(itemDecorator);
 
+        recyclerView.setNestedScrollingEnabled(false);
+
         recyclerView.setAdapter(concreteSessionListAdapter);
 
     }

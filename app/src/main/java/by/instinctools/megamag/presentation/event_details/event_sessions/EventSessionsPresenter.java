@@ -44,18 +44,15 @@ public class EventSessionsPresenter extends DisposablePresenter<EventSessionsVie
     }
 
     @DebugLog
-    @Override
-    public void attachView(@NonNull EventSessionsView view) {
-        super.attachView(view);
-        view.showProgress();
-    }
-
-    @DebugLog
     private void onLoadSuccess(@NonNull List<List<EventSession>> sessions) {
         EventSessionsView view = getViewState();
         view.hideProgress();
         view.hideError();
-        view.showData(sessions);
+        if (!sessions.isEmpty()) {
+            view.showData(sessions);
+        } else {
+            view.showNoSessions();
+        }
     }
 
     @DebugLog
@@ -63,6 +60,7 @@ public class EventSessionsPresenter extends DisposablePresenter<EventSessionsVie
         EventSessionsView view = getViewState();
         view.hideProgress();
         view.hideData();
+        view.showNoSessions();
         showError(throwable);
     }
 

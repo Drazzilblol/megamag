@@ -17,4 +17,10 @@ interface EventSessionsView extends MvpView {
 
     @StateStrategyType(AddToEndSingleStrategy.class)
     void hideData();
+
+    @StateStrategyType(AddToEndSingleStrategy.class)
+    void showNoSessions();
+
+    @StateStrategyType(AddToEndSingleStrategy.class)
+    void hideNoSessions();
 }

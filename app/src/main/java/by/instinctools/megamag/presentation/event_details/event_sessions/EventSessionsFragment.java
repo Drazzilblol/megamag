@@ -10,6 +10,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.arellomobile.mvp.MvpAppCompatFragment;
@@ -42,6 +43,9 @@ public class EventSessionsFragment extends MvpAppCompatFragment implements Event
 
     @BindView(R.id.details_sessions_error_view)
     TextView errorView;
+
+    @BindView(R.id.no_sessions)
+    LinearLayout noSessions;
 
     @BindView(R.id.details_sessions_progress_bar)
     ContentLoadingProgressBar progressBar;
@@ -129,5 +133,15 @@ public class EventSessionsFragment extends MvpAppCompatFragment implements Event
     @Override
     public void hideData() {
         recyclerView.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void showNoSessions() {
+        noSessions.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void hideNoSessions() {
+        noSessions.setVisibility(View.GONE);
     }
 }

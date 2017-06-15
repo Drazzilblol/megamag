@@ -36,5 +36,7 @@
     <string name="drawer_menu_history">History</string>
     <string name="drawer_menu_edit">Edit</string>
     <string name="drawer_menu_exit">Exit</string>
+    <string name="no_sessions">There is to sessions.</string>
+    <string name="no_comments">There is no comments.  You could be first.</string>
 
 </resources>

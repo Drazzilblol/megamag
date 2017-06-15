@@ -100,6 +100,8 @@ public class EventCommentFragment extends MvpAppCompatFragment implements EventC
         );
         recyclerView.addItemDecoration(itemDecorator);
 
+        recyclerView.setNestedScrollingEnabled(false);
+
         recyclerView.setAdapter(adapter);
     }
 

@@ -9,8 +9,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
+        android:layout_height="match_parent"
         android:orientation="vertical">
 
         <android.support.v7.widget.RecyclerView
@@ -21,7 +20,8 @@
             android:orientation="vertical"
             android:padding="@dimen/event_details_comment_list_padding"
             android:visibility="gone"
-            app:layoutManager="android.support.v7.widget.LinearLayoutManager"/>
+            app:layoutManager="android.support.v7.widget.LinearLayoutManager"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 
         <TextView
             android:id="@+id/details_comments_error_view"
@@ -41,24 +41,25 @@
         <LinearLayout
             android:id="@+id/no_comments"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_gravity="center"
+            android:layout_margin="@dimen/event_details_comment_no_comments_margin"
             android:orientation="vertical"
             android:visibility="gone">
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
+                android:layout_gravity="center|top"
                 android:src="@drawable/text_cloud"
                 tools:src="@drawable/text_cloud"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="К настоящему времени нет отзывов.\n Вы можете стать первым."
-                tools:text="К настоящему времени нет отзывов.\n Вы можете стать первым."/>
+                android:gravity="center|bottom"
+                android:text="@string/no_comments"
+                tools:text="@string/no_comments"/>
         </LinearLayout>
     </LinearLayout>
 </android.support.v4.widget.NestedScrollView>

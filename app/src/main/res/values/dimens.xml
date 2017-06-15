@@ -40,6 +40,8 @@
 
     <dimen name="item_title_text">16sp</dimen>
 
+    <dimen name="item_margin_big">24dp</dimen>
+
     <dimen name="tree_item_left_padding">@dimen/std_top_or_bottom_item_padding</dimen>
 
     <dimen name="collapsing_toolbar_title_margins">@dimen/std_top_or_bottom_item_padding</dimen>
@@ -97,6 +99,7 @@
     <dimen name="event_details_comment_list_error_padding">@dimen/item_padding_large</dimen>
     <dimen name="event_details_comment_avatar_height">@dimen/avatar_size</dimen>
     <dimen name="event_details_comment_avatar_width">@dimen/avatar_size</dimen>
+    <dimen name="event_details_comment_no_comments_margin">@dimen/item_margin_big</dimen>
 
     <dimen name="event_details_session_list_item_offset">@dimen/item_padding_normal</dimen>
     <dimen name="event_details_session_list_padding">@dimen/item_padding_normal</dimen>
@@ -104,7 +107,9 @@
     <dimen name="event_details_session_place_text_size">@dimen/item_title_text</dimen>
     <dimen name="event_details_session_text_padding">@dimen/item_padding_normal</dimen>
     <dimen name="event_details_session_card_margin">@dimen/item_padding_small</dimen>
+    <dimen name="event_details_session_no_sessions_margin">@dimen/item_margin_big</dimen>
 
     <dimen name="event_details_info_item_padding">@dimen/item_padding_normal</dimen>
+
 
 </resources>
