@@ -17,6 +17,7 @@ import by.instinctools.megamag.data.type.GroupType;
 import by.instinctools.megamag.data.type.ItemType;
 import by.instinctools.megamag.data.type.factory.GroupTypeFactory;
 import by.instinctools.megamag.data.type.factory.ItemTypeFactory;
+import by.instinctools.megamag.domain.GetAnnouncementTitleUseCase;
 import by.instinctools.megamag.domain.GetCommonMenuUseCase;
 import by.instinctools.megamag.domain.GetProfileMenuUseCase;
 import by.instinctools.megamag.domain.models.Menu;
@@ -42,6 +43,9 @@ public class MenuPresenter extends DisposablePresenter<MenuView> {
     private GetCommonMenuUseCase menuUseCase = new GetCommonMenuUseCase();
 
     @NonNull
+    private GetAnnouncementTitleUseCase announcementTitleUseCase = new GetAnnouncementTitleUseCase();
+
+    @NonNull
     private GetProfileMenuUseCase profileUseCase = new GetProfileMenuUseCase();
 
     @Override
@@ -50,9 +54,8 @@ public class MenuPresenter extends DisposablePresenter<MenuView> {
         loadMenuCommon();
         MenuView view = getViewState();
         view.goToAnnouncementsScreen();
-        view.showTitle(Application.getAppContext().getString(R.string.announcements_toolbar_title));
+        loadAnnouncementsToolbarTitle(ItemTypeFactory.getAnnouncementsType().getId());
     }
-
 
     @DebugLog
     public void onMenuPressed(int id) {
@@ -68,10 +71,10 @@ public class MenuPresenter extends DisposablePresenter<MenuView> {
         if (menuGroupType.equals(GroupTypeFactory.getAnnouncementGroupType())) {
             if (menuType.equals(ItemTypeFactory.getAnnouncementsType())) {
                 view.goToAnnouncementsScreen();
-                view.showTitle(Application.getAppContext().getString(R.string.announcements_toolbar_title));
+                loadAnnouncementsToolbarTitle(ItemTypeFactory.getAnnouncementsType().getId());
             } else {
                 view.goToTicketsScreen();
-                view.showTitle(Application.getAppContext().getString(R.string.tickets_toolbar_title));
+                loadAnnouncementsToolbarTitle(ItemTypeFactory.getTicketType().getId());
             }
         }
         if (menuGroupType.equals(GroupTypeFactory.getTheaterGroupType())) {
@@ -80,7 +83,28 @@ public class MenuPresenter extends DisposablePresenter<MenuView> {
         if (menuGroupType.equals(GroupTypeFactory.getProfileGroupType())) {
             Timber.i("Profile group");
         }
+    }
 
+    private void loadAnnouncementsToolbarTitle(int id) {
+        addDisposable(
+                announcementTitleUseCase.execute(id)
+                        .switchIfEmpty(Observable.error(new ErrorException(new NoDataError())))
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe(
+                                this::onLoadToolbarTitleSuccess,
+                                this::onLoadToolbarTitleError)
+        );
+    }
+
+    @DebugLog
+    private void onLoadToolbarTitleSuccess(@NonNull String title) {
+        getViewState().showTitle(title);
+    }
+
+    @DebugLog
+    private void onLoadToolbarTitleError(@NonNull Throwable throwable) {
+        Timber.i(throwable);
     }
 
     @Nullable

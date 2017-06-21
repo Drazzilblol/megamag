@@ -2,6 +2,8 @@ package by.instinctools.megamag.data.menu.local;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.text.TextUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,5 +43,24 @@ public class MenuAnnouncementLocalDataSource extends BaseLocalDataSource<String,
                 .icon(R.drawable.ic_local_movies_black_24dp)
                 .build());
         return menus;
+    }
+
+    @NonNull
+    @Override
+    public Observable<MenuData> getValue(@NonNull String key) {
+        return Observable.just(menuList)
+                .map(list -> getMenuItemById(list, key));
+    }
+
+    @Nullable
+    private MenuData getMenuItemById(@NonNull List<MenuData> list, @NonNull String itemId) {
+        for (MenuData menu : list) {
+            String menuItemId = String.valueOf(menu.getType().getId());
+            boolean isIdEquals = TextUtils.equals(menuItemId, itemId);
+            if (isIdEquals) {
+                return menu;
+            }
+        }
+        return null;
     }
 }
