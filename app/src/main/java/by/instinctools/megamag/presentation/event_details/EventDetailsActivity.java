@@ -110,7 +110,7 @@ public class EventDetailsActivity extends MvpAppCompatActivity implements EventD
 
     @Override
     public void showData(@NonNull Event event) {
-        ImageUtils.loadImage(this, coverView, event.getCoverUrl());
+        ImageUtils.loadImageWithBlur(this, coverView, event.getCoverUrl());
         coverView.setVisibility(View.VISIBLE);
         collapsingToolbarLayout.setTitle(event.getTitle());
         collapsingToolbarLayout.setVisibility(View.VISIBLE);
@@ -124,7 +124,6 @@ public class EventDetailsActivity extends MvpAppCompatActivity implements EventD
         TabLayout tabLayout = (TabLayout) findViewById(R.id.activity_details_tab_layout);
         tabLayout.setupWithViewPager(viewPager);
     }
-
 
     @Override
     public void hideData() {
