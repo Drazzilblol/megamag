@@ -13,7 +13,7 @@ import by.instinctools.megamag.presentation.MvpView;
 interface EventSessionsView extends MvpView {
 
     @StateStrategyType(AddToEndSingleStrategy.class)
-    void showData(@NonNull List<List<EventSession>> eventSessions);
+    void showData(@NonNull List<EventSession> eventSessions);
 
     @StateStrategyType(AddToEndSingleStrategy.class)
     void hideData();

@@ -35,7 +35,6 @@ public class EventSessionsPresenter extends DisposablePresenter<EventSessionsVie
                 useCase.execute(eventId)
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
-                        .map(this::sortSessionList)
                         .subscribe(
                                 this::onLoadSuccess,
                                 this::onLoadError
@@ -44,7 +43,7 @@ public class EventSessionsPresenter extends DisposablePresenter<EventSessionsVie
     }
 
     @DebugLog
-    private void onLoadSuccess(@NonNull List<List<EventSession>> sessions) {
+    private void onLoadSuccess(@NonNull List<EventSession> sessions) {
         EventSessionsView view = getViewState();
         view.hideProgress();
         view.hideError();

@@ -5,7 +5,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.ContentLoadingProgressBar;
 import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.DividerItemDecoration;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,7 +27,7 @@ import by.instinctools.megamag.common.errors.Error;
 import by.instinctools.megamag.common.errors.ErrorException;
 import by.instinctools.megamag.common.errors.NoIdError;
 import by.instinctools.megamag.domain.models.EventSession;
-import by.instinctools.megamag.presentation.event_details.event_sessions.adapter.SessionsListAdapter;
+import by.instinctools.megamag.presentation.event_details.event_sessions.adapter.session_adapter.ConcreteSessionListAdapter;
 import hugo.weaving.DebugLog;
 
 public class EventSessionsFragment extends MvpAppCompatFragment implements EventSessionsView {
@@ -51,7 +51,7 @@ public class EventSessionsFragment extends MvpAppCompatFragment implements Event
     ContentLoadingProgressBar progressBar;
 
     @NonNull
-    private SessionsListAdapter sessionsListAdapter = new SessionsListAdapter();
+    private ConcreteSessionListAdapter sessionsListAdapter = new ConcreteSessionListAdapter();
 
     public static EventSessionsFragment newInstance(@NonNull String eventId) {
         EventSessionsFragment fragment = new EventSessionsFragment();
@@ -95,11 +95,30 @@ public class EventSessionsFragment extends MvpAppCompatFragment implements Event
     private void initRecyclerView() {
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
-        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(),
-                DividerItemDecoration.VERTICAL);
-        recyclerView.addItemDecoration(dividerItemDecoration);
-        recyclerView.setAdapter(sessionsListAdapter);
+/*        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(),
+                DividerItemDecoration.VERTICAL);*/
+        GridLayoutManager layoutManager = new GridLayoutManager(getContext(), 2);
+        layoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
+            @Override
+            public int getSpanSize(int position) {
+                switch (sessionsListAdapter.getItemViewType(position)) {
+                    case ConcreteSessionListAdapter.DAY:
+                        return 2;
+                    case ConcreteSessionListAdapter.PLACE:
+                        return 2;
+                    case ConcreteSessionListAdapter.HALF_TIME:
+                        return 1;
+                    case ConcreteSessionListAdapter.FULL_TIME:
+                        return 2;
+                    default:
+                        return -1;
+                }
+            }
+        });
+        recyclerView.setLayoutManager(layoutManager);
 
+        //     recyclerView.addItemDecoration(dividerItemDecoration);
+        recyclerView.setAdapter(sessionsListAdapter);
     }
 
     @Override
@@ -124,7 +143,7 @@ public class EventSessionsFragment extends MvpAppCompatFragment implements Event
     }
 
     @Override
-    public void showData(@NonNull List<List<EventSession>> eventSessions) {
+    public void showData(@NonNull List<EventSession> eventSessions) {
         sessionsListAdapter.addItems(eventSessions);
         recyclerView.setVisibility(View.VISIBLE);
 

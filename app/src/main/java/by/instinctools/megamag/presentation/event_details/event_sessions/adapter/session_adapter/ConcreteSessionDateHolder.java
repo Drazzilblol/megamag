@@ -32,7 +32,7 @@ class ConcreteSessionDateHolder extends RecyclerView.ViewHolder {
     private static View inflateView(@NonNull ViewGroup parent) {
         Context context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
-        return inflater.inflate(R.layout.item_details_session_date, parent, false);
+        return inflater.inflate(R.layout.item_details_session_time, parent, false);
     }
 
     ConcreteSessionDateHolder(@NonNull ViewGroup parent) {
@@ -73,19 +73,6 @@ class ConcreteSessionDateHolder extends RecyclerView.ViewHolder {
         int cardMargin = (int) itemView.getResources().getDimension(R.dimen.event_details_session_card_margin);
         params.setMargins(cardMargin, cardMargin, cardMargin, cardMargin);
         card.setLayoutParams(params);
-
-        TextView textView = new TextView(itemView.getContext());
-        textView.setGravity(Gravity.CENTER);
-
-        textView.setText(session.getTime());
-        if (TimeUtils.isSessionBegin(session)) {
-            textView.setPaintFlags(textView.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
-        }
-
-        int textPadding = (int) itemView.getResources().getDimension(R.dimen.event_details_session_text_padding);
-        textView.setPadding(textPadding, textPadding, textPadding, textPadding);
-
-        card.addView(textView);
         return card;
     }
 }
