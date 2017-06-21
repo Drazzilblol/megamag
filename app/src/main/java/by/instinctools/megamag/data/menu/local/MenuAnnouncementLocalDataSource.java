@@ -44,23 +44,4 @@ public class MenuAnnouncementLocalDataSource extends BaseLocalDataSource<String,
                 .build());
         return menus;
     }
-
-    @NonNull
-    @Override
-    public Observable<MenuData> getValue(@NonNull String key) {
-        return Observable.just(menuList)
-                .map(list -> getMenuItemById(list, key));
-    }
-
-    @Nullable
-    private MenuData getMenuItemById(@NonNull List<MenuData> list, @NonNull String itemId) {
-        for (MenuData menu : list) {
-            String menuItemId = String.valueOf(menu.getType().getId());
-            boolean isIdEquals = TextUtils.equals(menuItemId, itemId);
-            if (isIdEquals) {
-                return menu;
-            }
-        }
-        return null;
-    }
 }
