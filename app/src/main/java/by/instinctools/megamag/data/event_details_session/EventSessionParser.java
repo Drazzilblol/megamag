@@ -11,14 +11,11 @@ import org.jsoup.select.Elements;
 import java.util.ArrayList;
 import java.util.List;
 
-import timber.log.Timber;
-
 class EventSessionParser {
 
     private static final String DETAILS_HEADER_SELECTOR = "tableBoxArea1Contents";
 
     static List<EventSessionData> parseSession(@NonNull Document document) {
-
         List<EventSessionData> resultList = new ArrayList<>();
         Elements headerItems = document.getElementsByClass(DETAILS_HEADER_SELECTOR);
         Elements sessions = getSessions(headerItems);
@@ -35,7 +32,7 @@ class EventSessionParser {
                 Elements times = hallSessions.get(j).children();
                 for (int k = 1; k < times.size() - 1; k++) {
                     Element time = times.get(k);
-                    if (!TextUtils.equals(time.text(), "-")) {
+                    if (!TextUtils.equals(time.text(), "-") && time.children().size() != 0) {
                         Uri uri = Uri.parse(time.child(0).absUrl("href"));
                         EventSessionData.Builder builder = EventSessionData.builder();
                         builder.place(placeName);
@@ -48,7 +45,6 @@ class EventSessionParser {
                 }
             }
         }
-        Timber.i(resultList.toString());
         return resultList;
     }
 

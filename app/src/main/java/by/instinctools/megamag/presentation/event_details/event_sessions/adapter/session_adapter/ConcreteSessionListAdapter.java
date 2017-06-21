@@ -12,7 +12,6 @@ import by.instinctools.megamag.domain.models.EventSession;
 public class ConcreteSessionListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private static final int PLACE = 0;
-    private static final int TIME = 2;
     private static final int DATE = 1;
 
     private final List<List<EventSession>> sessionList = new ArrayList<>();
