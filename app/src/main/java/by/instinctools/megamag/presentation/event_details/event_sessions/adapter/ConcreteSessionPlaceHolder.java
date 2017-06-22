@@ -1,4 +1,4 @@
-package by.instinctools.megamag.presentation.event_details.event_sessions.adapter.session_adapter;
+package by.instinctools.megamag.presentation.event_details.event_sessions.adapter;
 
 import android.content.Context;
 import android.support.annotation.NonNull;

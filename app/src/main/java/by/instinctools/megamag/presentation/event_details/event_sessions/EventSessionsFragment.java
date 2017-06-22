@@ -27,7 +27,8 @@ import by.instinctools.megamag.common.errors.Error;
 import by.instinctools.megamag.common.errors.ErrorException;
 import by.instinctools.megamag.common.errors.NoIdError;
 import by.instinctools.megamag.domain.models.EventSession;
-import by.instinctools.megamag.presentation.event_details.event_sessions.adapter.session_adapter.ConcreteSessionListAdapter;
+import by.instinctools.megamag.presentation.event_details.event_sessions.decorator.SessionsDividerDecorator;
+import by.instinctools.megamag.presentation.event_details.event_sessions.adapter.ConcreteSessionListAdapter;
 import hugo.weaving.DebugLog;
 
 public class EventSessionsFragment extends MvpAppCompatFragment implements EventSessionsView {
@@ -95,8 +96,7 @@ public class EventSessionsFragment extends MvpAppCompatFragment implements Event
     private void initRecyclerView() {
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
-/*        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(),
-                DividerItemDecoration.VERTICAL);*/
+        SessionsDividerDecorator dividerItemDecoration = new SessionsDividerDecorator(recyclerView.getContext());
         GridLayoutManager layoutManager = new GridLayoutManager(getContext(), 2);
         layoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
             @Override
@@ -117,7 +117,7 @@ public class EventSessionsFragment extends MvpAppCompatFragment implements Event
         });
         recyclerView.setLayoutManager(layoutManager);
 
-        //     recyclerView.addItemDecoration(dividerItemDecoration);
+        recyclerView.addItemDecoration(dividerItemDecoration);
         recyclerView.setAdapter(sessionsListAdapter);
     }
 

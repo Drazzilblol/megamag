@@ -39,4 +39,6 @@
 
     <color name="collapsing_toolbar_text_primary">@color/white_text_primary</color>
 
+    <color name="sessions_divider_color">@color/gray</color>
+
 </resources>

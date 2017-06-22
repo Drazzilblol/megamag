@@ -1,4 +1,4 @@
-package by.instinctools.megamag.presentation.event_details.event_sessions.adapter.session_adapter;
+package by.instinctools.megamag.presentation.event_details.event_sessions.adapter;
 
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
