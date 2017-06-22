@@ -81,9 +81,10 @@ public class EventDetailsActivity extends MvpAppCompatActivity implements EventD
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setDisplayShowHomeEnabled(true);
+            actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setDisplayShowHomeEnabled(true);
         }
+
     }
 
     @Override
@@ -110,10 +111,14 @@ public class EventDetailsActivity extends MvpAppCompatActivity implements EventD
 
     @Override
     public void showData(@NonNull Event event) {
-        ImageUtils.loadImageWithBlur(this, coverView, event.getCoverUrl());
+
+        ImageUtils.loadImageWithBlur(this, coverView, event.getCoverUrl(), "");
         coverView.setVisibility(View.VISIBLE);
+
         collapsingToolbarLayout.setTitle(event.getTitle());
         collapsingToolbarLayout.setVisibility(View.VISIBLE);
+
+
     }
 
     @Override

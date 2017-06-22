@@ -12,7 +12,10 @@
     <dimen name="std_text_size_subtext">14sp</dimen>
     <dimen name="std_text_size_supporting">14sp</dimen>
     <dimen name="header_height">160dp</dimen>
+
     <dimen name="header_image_size">60dp</dimen>
+
+    <dimen name="tab_layout_height">40dp</dimen>
 
     <dimen name="std_avatar_size">100dp</dimen>
 
@@ -93,6 +96,7 @@
 
     <dimen name="event_details_collapsing_toolbar_title_margin">@dimen/collapsing_toolbar_title_margins</dimen>
     <dimen name="event_details_collapsing_toolbar_title_text_size">@dimen/std_text_size_primary</dimen>
+    <dimen name="event_details_tab_layout_height">@dimen/tab_layout_height</dimen>
 
     <dimen name="event_details_comment_list_item_offset">@dimen/item_padding_normal</dimen>
     <dimen name="event_details_comment_list_padding">@dimen/item_padding_normal</dimen>
