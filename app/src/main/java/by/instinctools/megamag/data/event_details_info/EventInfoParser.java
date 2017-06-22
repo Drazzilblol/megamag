@@ -12,34 +12,38 @@ class EventInfoParser {
     private static final String VIDEO_URL_SELECTOR = "href";
 
     static EventInfoData parseEventInfo(@NonNull Document document) {
-        Element infoItem = document.getElementsByClass(DETAILS_IMAGE_SELECTOR).first().parent();
-
+        Element infoItem = null;
+        if (document.getElementsByClass(DETAILS_IMAGE_SELECTOR).first() != null) {
+            infoItem = document.getElementsByClass(DETAILS_IMAGE_SELECTOR).first().parent();
+        }
         EventInfoData.Builder builder = EventInfoData.builder();
 
-        Elements textItems = infoItem.select("p");
+        if (infoItem != null) {
+            Elements textItems = infoItem.select("p");
 
-        String details = getText(textItems.get(0));
-        builder.details(details);
+            String details = getText(textItems.get(0));
+            builder.details(details);
 
-        StringBuilder description = new StringBuilder();
-        for (int i = 1; i < textItems.size(); i++) {
-            if (textItems.get(i).hasText()) {
-                description.append(getText(textItems.get(i)));
-                description.append("\n");
+            StringBuilder description = new StringBuilder();
+            for (int i = 1; i < textItems.size(); i++) {
+                if (textItems.get(i).hasText()) {
+                    description.append(getText(textItems.get(i)));
+                    description.append("\n");
+                }
             }
-        }
-        builder.description(description.toString());
+            builder.description(description.toString());
 
-        Elements videoItem = document.select("strong:contains(Кликните по иконке(ам) для просмотра видеофайлов:)");
-        if (videoItem.size() != 0) {
-            builder.trailerUrl(videoItem.last()
-                    .parent()
-                    .children()
-                    .last()
-                    .child(0)
-                    .absUrl(VIDEO_URL_SELECTOR));
-        }
+            Elements videoItem = document.select("strong:contains(Кликните по иконке(ам) для просмотра видеофайлов:)");
+            if (videoItem.size() != 0) {
+                builder.trailerUrl(videoItem.last()
+                        .parent()
+                        .children()
+                        .last()
+                        .child(0)
+                        .absUrl(VIDEO_URL_SELECTOR));
+            }
 
+        }
         return builder.build();
     }
 

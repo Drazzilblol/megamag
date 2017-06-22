@@ -20,8 +20,9 @@ class EventParser {
 
         Elements imageHQ = document.getElementsByClass(DETAILS_IMAGE_SELECTOR);
 
-        builder.coverUrl(imageHQ.first().absUrl(IMAGE_URL_SELECTOR));
-
+        if (imageHQ.first() != null) {
+            builder.coverUrl(imageHQ.first().absUrl(IMAGE_URL_SELECTOR));
+        }
         return builder.build();
     }
 }
