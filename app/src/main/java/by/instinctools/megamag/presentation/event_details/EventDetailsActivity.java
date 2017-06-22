@@ -151,7 +151,7 @@ public class EventDetailsActivity extends MvpAppCompatActivity implements EventD
             collapsingToolbarLayout.setStatusBarScrimColor(palette.getDarkMutedColor(commonColor));
 
             tabLayout.setBackgroundColor(ImageUtils.adjustAlpha(commonColor, 120));
-            tabLayout.setTabTextColors(ImageUtils.adjustAlpha(swatch.getBodyTextColor(), 230), ImageUtils.adjustAlpha(textColor, 190));
+            tabLayout.setTabTextColors(ImageUtils.adjustAlpha(swatch.getBodyTextColor(), 190), ImageUtils.adjustAlpha(textColor, 230));
         }
     }
 }
