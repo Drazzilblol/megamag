@@ -45,7 +45,7 @@ public class MenuCommonRepositoryImpl implements MenuRepository {
     public Observable<MenuData> getMenuInfoItem(int itemId) {
         return menuInfoLocalDataSource.getValue(String.valueOf(itemId));
     }
-    
+
     private Observable<List<MenuData>> addErrorHandling(Observable<List<MenuData>> observable) {
         return observable
                 .onErrorReturnItem(Collections.emptyList())

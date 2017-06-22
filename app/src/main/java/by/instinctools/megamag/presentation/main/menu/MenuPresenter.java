@@ -44,7 +44,7 @@ public class MenuPresenter extends DisposablePresenter<MenuView> {
     @NonNull
     private GetProfileMenuUseCase profileUseCase = new GetProfileMenuUseCase();
 
-    private boolean isFirstMenuLoad = true;
+    private boolean isFirstMenuLoaded = false;
 
     @Override
     protected void onFirstViewAttach() {
@@ -150,9 +150,11 @@ public class MenuPresenter extends DisposablePresenter<MenuView> {
         view.hideError();
         menuCommonList.addAll(menuList);
         view.showMenu(menuCommonList);
-        if (isFirstMenuLoad) {
-            onMenuPressed(menuList.get(0).getType().getId());
-            isFirstMenuLoad = false;
+        if (!isFirstMenuLoaded) {
+            if (!menuList.isEmpty() && menuList.get(0) != null) {
+                onMenuPressed(menuList.get(0).getType().getId());
+                isFirstMenuLoaded = true;
+            }
         }
     }
 
