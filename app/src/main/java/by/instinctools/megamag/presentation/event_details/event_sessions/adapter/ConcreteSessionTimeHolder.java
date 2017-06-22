@@ -30,10 +30,10 @@ class ConcreteSessionTimeHolder extends RecyclerView.ViewHolder {
         ButterKnife.bind(this, itemView);
     }
 
-    void bindData(@NonNull String place) {
-        timeTextView.setText(place);
-       /* if (TimeUtils.isSessionBegin(session)) {
-            timeTextView.setPaintFlags(textView.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
-        }*/
+    void bindData(@NonNull String time, @NonNull String day) {
+        timeTextView.setText(time);
+        if (TimeUtils.isSessionBegin(time, day)) {
+            timeTextView.setPaintFlags(timeTextView.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+        }
     }
 }

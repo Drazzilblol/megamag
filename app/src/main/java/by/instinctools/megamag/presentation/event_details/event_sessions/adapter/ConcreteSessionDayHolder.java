@@ -28,7 +28,7 @@ class ConcreteSessionDayHolder extends RecyclerView.ViewHolder {
         ButterKnife.bind(this, itemView);
     }
 
-    void bindData(@NonNull String place) {
-        dayTextView.setText(place);
+    void bindData(@NonNull String day) {
+        dayTextView.setText(day);
     }
 }

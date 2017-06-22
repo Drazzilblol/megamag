@@ -42,7 +42,8 @@ public class ConcreteSessionListAdapter extends RecyclerView.Adapter<RecyclerVie
             ((ConcreteSessionPlaceHolder) holder).bindData(nodes.get(position).getData());
         }
         if (holder instanceof ConcreteSessionTimeHolder) {
-            ((ConcreteSessionTimeHolder) holder).bindData(nodes.get(position).getData());
+            Time time = (Time) nodes.get(position);
+            ((ConcreteSessionTimeHolder) holder).bindData(time.getData(), time.getDay());
         }
         if (holder instanceof ConcreteSessionDayHolder) {
             ((ConcreteSessionDayHolder) holder).bindData(nodes.get(position).getData());
@@ -73,7 +74,6 @@ public class ConcreteSessionListAdapter extends RecyclerView.Adapter<RecyclerVie
     }
 
     public void addItems(List<EventSession> list) {
-
         String day = "";
         String place = "";
         String hall = "";
@@ -88,13 +88,12 @@ public class ConcreteSessionListAdapter extends RecyclerView.Adapter<RecyclerVie
             }
             if (!TextUtils.equals(day, session.getDay())) {
                 day = session.getDay();
-
                 counter = 0;
                 nodes.add(new Day(session.getSessionId(), day));
             }
 
             counter++;
-            nodes.add(new Time(session.getSessionId(), session.getTime(), counter));
+            nodes.add(new Time(session, counter));
         }
     }
 }

@@ -62,28 +62,4 @@ public class EventSessionsPresenter extends DisposablePresenter<EventSessionsVie
         view.showNoSessions();
         showError(throwable);
     }
-
-    private List<List<EventSession>> sortSessionList(List<EventSession> sessionList) {
-        List<List<EventSession>> sortedList = new ArrayList<>();
-        String place = "";
-        for (EventSession session : sessionList) {
-            if (!TextUtils.equals(session.getPlace(), place)) {
-                place = session.getPlace();
-                String hall = "";
-                for (EventSession session1 : sessionList) {
-                    if (TextUtils.equals(session1.getPlace(), place) && !TextUtils.equals(session1.getHall(), hall)) {
-                        hall = session1.getHall();
-                        List<EventSession> list = new ArrayList<>();
-                        for (EventSession session2 : sessionList) {
-                            if (TextUtils.equals(session2.getPlace(), place) && TextUtils.equals(session2.getHall(), hall)) {
-                                list.add(session2);
-                            }
-                        }
-                        sortedList.add(list);
-                    }
-                }
-            }
-        }
-        return sortedList;
-    }
 }

@@ -5,13 +5,9 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import by.instinctools.megamag.domain.models.EventSession;
-
 public final class TimeUtils {
 
-    public static boolean isSessionBegin(EventSession session) {
-        String time = session.getTime();
-        String day = session.getDay();
+    public static boolean isSessionBegin(String time, String day) {
         String[] russianMonths = {
                 "Январь",
                 "Февраль",
