@@ -61,6 +61,9 @@ dependencies {
 
     compile 'com.squareup.retrofit2:retrofit:2.2.0'
     compile 'com.squareup.retrofit2:adapter-rxjava2:2.2.0'
+    compile 'com.squareup.retrofit2:converter-gson:2.2.0'
+
+    compile 'com.squareup.okhttp3:logging-interceptor:3.4.1'
 
     compile 'org.jsoup:jsoup:1.10.2'
 

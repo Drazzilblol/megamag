@@ -10,5 +10,5 @@ import io.reactivex.Observable;
 public interface AnnouncementRepository extends Repository {
 
     @NonNull
-    Observable<List<AnnouncementData>> getAnnouncementList();
+    Observable<List<AnnouncementData>> getAnnouncementList(@NonNull String pageNumber);
 }

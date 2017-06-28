@@ -13,15 +13,15 @@ class RemoteAnnouncementDataSource extends BaseRemoteDataSource<String, Announce
 
     @NonNull
     @DebugLog
-    @Override
-    public Observable<List<AnnouncementData>> getAll() {
-        return getAnnouncements();
+    public Observable<List<AnnouncementData>> getAll(@NonNull String pageNumber) {
+        return getAnnouncements(pageNumber);
     }
 
     @NonNull
-    private Observable<List<AnnouncementData>> getAnnouncements() {
-        return Application.getApi()
-                .getData()
+    private Observable<List<AnnouncementData>> getAnnouncements(@NonNull String pageNumber) {
+
+        return Application.getApiGson()
+                .getPage("number_of_pages=0&current_page_number=" + pageNumber + "&max_page_links=7&action=default&lang_file=newsdesk_index.php")
                 .map(AnnouncementParser::parseAnnouncements);
     }
 }
