@@ -22,9 +22,13 @@ public class GetAnnouncementsUseCase implements UseCase<List<Announcement>> {
     private ListConverter<AnnouncementData, Announcement> converter = new AnnouncementsConverter();
 
     @DebugLog
+    public Observable<List<Announcement>> execute(@NonNull String pageNumber) {
+        return repository.getAnnouncementList(pageNumber)
+                .map(converter::convert);
+    }
+
     @Override
     public Observable<List<Announcement>> execute() {
-        return repository.getAnnouncementList()
-                .map(converter::convert);
+        throw new UnsupportedOperationException();
     }
 }

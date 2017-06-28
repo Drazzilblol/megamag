@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import android.text.Html;
 import android.text.TextUtils;
 
+import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
@@ -12,23 +13,29 @@ import org.jsoup.select.Elements;
 import java.util.ArrayList;
 import java.util.List;
 
+import by.instinctools.megamag.BuildConfig;
+import by.instinctools.megamag.common.api.pojo.PageResponse;
+
 class AnnouncementParser {
 
     private static final String YEAR = "Год";
     private static final String COUNTRY = "Страна";
     private static final String GENRE = "Жанр";
     private static final String AUTHOR = "Автор";
-    private static final String ANNOUNCEMENTS_LIST_SELECTOR = "newsdesk_sticky";
     private static final String ANNOUNCEMENT_ITEM_SELECTOR = "film_item";
     private static final String ANNOUNCEMET_HEADER_SELECTOR = "tableBoxArea1Contents";
     private static final String ANNOUNCEMENT_BODY_SELECTOR = "smallText";
     private static final String IMAGE_URL_SELECTOR = "href";
 
-    static List<AnnouncementData> parseAnnouncements(@NonNull Document document) {
+    static List<AnnouncementData> parseAnnouncements(@NonNull PageResponse response) {
         List<AnnouncementData> announcementList = new ArrayList<>();
 
-        Element announcementsRoot = document.getElementById(ANNOUNCEMENTS_LIST_SELECTOR);
-        Elements announcements = announcementsRoot.getElementsByClass(ANNOUNCEMENT_ITEM_SELECTOR);
+        String body = getNormalizeBody(response);
+
+        Document document = Jsoup.parse(body);
+        document.setBaseUri(BuildConfig.BASE_URL);
+
+        Elements announcements = document.getElementsByClass(ANNOUNCEMENT_ITEM_SELECTOR);
 
         for (Element announcement : announcements) {
             AnnouncementData.Builder builder = AnnouncementData.builder();
@@ -52,7 +59,9 @@ class AnnouncementParser {
             }
 
             Element bodyItem = announcement.getElementsByClass(ANNOUNCEMENT_BODY_SELECTOR).first();
-            builder.coverUrl(bodyItem.child(0).absUrl(IMAGE_URL_SELECTOR));
+
+            Element child = bodyItem.child(0);
+            builder.coverUrl(child.absUrl(IMAGE_URL_SELECTOR));
             if (bodyItem.child(1).children().size() > 1) {
                 builder.description(bodyItem.child(1)
                         .child(1)
@@ -88,6 +97,10 @@ class AnnouncementParser {
             announcementList.add(builder.build());
         }
         return announcementList;
+    }
+
+    private static String getNormalizeBody(@NonNull PageResponse response) {
+        return response.js.get("result_str").toString().replace("\\\"", "").replace("\\t", "").replace("\\n", "");
     }
 
     private static String buildDetails(String year, String country, String genre, String author) {

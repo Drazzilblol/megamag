@@ -9,7 +9,6 @@ import java.util.List;
 import by.instinctools.megamag.common.errors.ErrorException;
 import by.instinctools.megamag.common.errors.NoDataError;
 import by.instinctools.megamag.domain.GetAnnouncementsUseCase;
-import by.instinctools.megamag.domain.UseCase;
 import by.instinctools.megamag.domain.models.Announcement;
 import by.instinctools.megamag.presentation.DisposablePresenter;
 import hugo.weaving.DebugLog;
@@ -22,18 +21,18 @@ public class AnnouncementsPresenter extends DisposablePresenter<AnnouncementsVie
     private static final int EMPTY_LIST_SIZE = 0;
 
     @NonNull
-    private UseCase<List<Announcement>> getAnnouncementsUseCase = new GetAnnouncementsUseCase();
+    private GetAnnouncementsUseCase getAnnouncementsUseCase = new GetAnnouncementsUseCase();
 
     @Override
     protected void onFirstViewAttach() {
         super.onFirstViewAttach();
         getViewState().showProgress();
-        loadAnnouncements();
+        loadAnnouncements("1");
     }
 
-    private void loadAnnouncements() {
+    private void loadAnnouncements(@NonNull String pageNumber) {
         addDisposable(
-                getAnnouncementsUseCase.execute()
+                getAnnouncementsUseCase.execute(pageNumber)
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(
