@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.ContentLoadingProgressBar;
 import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,6 +25,7 @@ import by.instinctools.megamag.common.errors.Error;
 import by.instinctools.megamag.common.utils.Navigator;
 import by.instinctools.megamag.domain.models.Announcement;
 import by.instinctools.megamag.presentation.common.decorator.OffsetItemDecorator;
+import by.instinctools.megamag.presentation.common.scroll.EndlessOnScrollListener;
 import by.instinctools.megamag.presentation.main.announcements.adapter.AnnouncementsListAdapter;
 import by.instinctools.megamag.presentation.main.callbacks.OnItemClickListener;
 import hugo.weaving.DebugLog;
@@ -70,11 +72,20 @@ public class AnnouncementsFragment extends MvpAppCompatFragment implements Annou
         recyclerView.addItemDecoration(itemDecorator);
 
         recyclerView.setAdapter(adapter);
+
+        LinearLayoutManager layoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
+
+        recyclerView.addOnScrollListener(new EndlessOnScrollListener(layoutManager) {
+            @Override
+            public void onLoadMore(int current_page) {
+                announcementsPresenter.loadAnnouncements(current_page + "");
+            }
+        });
     }
 
     @Override
     public void showData(@NonNull List<Announcement> announcementList) {
-        adapter.changeItems(announcementList);
+        adapter.addItems(announcementList);
         recyclerView.setVisibility(View.VISIBLE);
     }
 
