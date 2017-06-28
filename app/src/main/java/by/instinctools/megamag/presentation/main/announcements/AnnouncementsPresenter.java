@@ -26,11 +26,11 @@ public class AnnouncementsPresenter extends DisposablePresenter<AnnouncementsVie
     @Override
     protected void onFirstViewAttach() {
         super.onFirstViewAttach();
-        getViewState().showProgress();
         loadAnnouncements("1");
     }
 
-    private void loadAnnouncements(@NonNull String pageNumber) {
+    public void loadAnnouncements(@NonNull String pageNumber) {
+        getViewState().showProgress();
         addDisposable(
                 getAnnouncementsUseCase.execute(pageNumber)
                         .subscribeOn(Schedulers.io())
