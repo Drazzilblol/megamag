@@ -22,6 +22,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import by.instinctools.megamag.R;
 import by.instinctools.megamag.common.errors.Error;
+import by.instinctools.megamag.common.utils.ScreenUtils;
 import by.instinctools.megamag.domain.models.Announcement;
 import by.instinctools.megamag.presentation.common.decorator.OffsetItemDecorator;
 import by.instinctools.megamag.presentation.common.scroll.EndlessOnScrollListener;
@@ -105,6 +106,11 @@ public class AnnouncementsFragment extends MvpAppCompatFragment implements Annou
 
     @Override
     public void showProgress() {
+        if (adapter.getItemCount() == 0) {
+            progressBar.setPadding(0, ScreenUtils.getScreenHeight() / 3, 0, 0);
+        } else {
+            progressBar.setPadding(0, 0, 0, 0);
+        }
         progressBar.show();
     }
 
