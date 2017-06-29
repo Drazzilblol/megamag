@@ -9,6 +9,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
@@ -41,6 +42,11 @@ public class MainActivity extends MvpAppCompatActivity
 
     TextView profileView;
 
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
+
+    private ActionBar actionBar;
+
     @InjectPresenter(type = PresenterType.GLOBAL)
     MenuPresenter menuPresenter;
 
@@ -53,9 +59,9 @@ public class MainActivity extends MvpAppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle(R.string.announcements_toolbar_title);
-        setSupportActionBar(toolbar);
+
+        initToolbar();
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -67,6 +73,11 @@ public class MainActivity extends MvpAppCompatActivity
         View header = navigationView.getHeaderView(0);
         profileView = (TextView) header.findViewById(R.id.nav_header_profile);
         profileView.setOnClickListener(this);
+    }
+
+    private void initToolbar() {
+        setSupportActionBar(toolbar);
+        actionBar = getSupportActionBar();
     }
 
     @Override
@@ -169,5 +180,10 @@ public class MainActivity extends MvpAppCompatActivity
             v.setSelected(true);
             menuPresenter.onProfilePressed(false);
         }
+    }
+
+    @Override
+    public void showTitle(@NonNull String title) {
+        actionBar.setTitle(title);
     }
 }

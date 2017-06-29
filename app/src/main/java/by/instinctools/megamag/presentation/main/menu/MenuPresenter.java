@@ -44,13 +44,13 @@ public class MenuPresenter extends DisposablePresenter<MenuView> {
     @NonNull
     private GetProfileMenuUseCase profileUseCase = new GetProfileMenuUseCase();
 
+    private boolean isFirstMenuLoaded = false;
+
     @Override
     protected void onFirstViewAttach() {
         super.onFirstViewAttach();
         loadMenuCommon();
-        getViewState().goToAnnouncementsScreen();
     }
-
 
     @DebugLog
     public void onMenuPressed(int id) {
@@ -64,6 +64,7 @@ public class MenuPresenter extends DisposablePresenter<MenuView> {
             view.goToInfoScreen(id);
         }
         if (menuGroupType.equals(GroupTypeFactory.getAnnouncementGroupType())) {
+            view.showTitle(menu.getTitle());
             if (menuType.equals(ItemTypeFactory.getAnnouncementsType())) {
                 view.goToAnnouncementsScreen();
             } else {
@@ -76,7 +77,6 @@ public class MenuPresenter extends DisposablePresenter<MenuView> {
         if (menuGroupType.equals(GroupTypeFactory.getProfileGroupType())) {
             Timber.i("Profile group");
         }
-
     }
 
     @Nullable
@@ -150,6 +150,12 @@ public class MenuPresenter extends DisposablePresenter<MenuView> {
         view.hideError();
         menuCommonList.addAll(menuList);
         view.showMenu(menuCommonList);
+        if (!isFirstMenuLoaded) {
+            if (!menuList.isEmpty() && menuList.get(0) != null) {
+                onMenuPressed(menuList.get(0).getType().getId());
+                isFirstMenuLoaded = true;
+            }
+        }
     }
 
     @DebugLog
