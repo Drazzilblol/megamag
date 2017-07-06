@@ -37,7 +37,6 @@ public class ConcreteSessionListAdapter extends RecyclerView.Adapter<RecyclerVie
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-
         if (holder instanceof ConcreteSessionPlaceHolder) {
             ((ConcreteSessionPlaceHolder) holder).bindData(nodes.get(position).getData());
         }

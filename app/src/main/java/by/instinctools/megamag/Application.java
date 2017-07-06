@@ -14,6 +14,7 @@ import timber.log.Timber;
 
 public class Application extends android.app.Application {
 
+    private static final int TIMEOUT = 10000;
     private static Context context;
 
     private static MegamagApi megamagApi;
@@ -29,8 +30,8 @@ public class Application extends android.app.Application {
         }
 
         OkHttpClient client = new OkHttpClient.Builder()
-                .connectTimeout(10000, TimeUnit.SECONDS)
-                .readTimeout(10000, TimeUnit.SECONDS).build();
+                .connectTimeout(TIMEOUT, TimeUnit.SECONDS)
+                .readTimeout(TIMEOUT, TimeUnit.SECONDS).build();
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://kinoteatr.megamag.by/")

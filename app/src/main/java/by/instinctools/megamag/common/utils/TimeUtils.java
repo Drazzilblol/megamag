@@ -5,33 +5,36 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import timber.log.Timber;
+
 public final class TimeUtils {
 
-    public static boolean isSessionBegin(String time, String day) {
-        String[] russianMonths = {
-                "Январь",
-                "Февраль",
-                "Март",
-                "Апрель",
-                "Май",
-                "Июнь",
-                "Июль",
-                "Август",
-                "Сентябрь",
-                "Октябрь",
-                "Ноябрь",
-                "Декабрь"
-        };
+    private static String[] russianMonths = {
+            "Январь",
+            "Февраль",
+            "Март",
+            "Апрель",
+            "Май",
+            "Июнь",
+            "Июль",
+            "Август",
+            "Сентябрь",
+            "Октябрь",
+            "Ноябрь",
+            "Декабрь"
+    };
 
-        String[] russianDays = {
-                "Суббота",
-                "Воскресенье",
-                "Понедельник",
-                "Вторник",
-                "Среда",
-                "Четверг",
-                "Пятница"
-        };
+    private static String[] russianDays = {
+            "Суббота",
+            "Воскресенье",
+            "Понедельник",
+            "Вторник",
+            "Среда",
+            "Четверг",
+            "Пятница"
+    };
+
+    public static boolean isSessionBegin(String time, String day) {
         DateFormatSymbols russSymbol = new DateFormatSymbols();
         russSymbol.setMonths(russianMonths);
         russSymbol.setWeekdays(russianDays);
@@ -46,7 +49,7 @@ public final class TimeUtils {
             Date sessionTime = sdf.parse(time + " " + day);
             isSessionBegin = current.after(sessionTime);
         } catch (ParseException e) {
-            e.printStackTrace();
+            Timber.e(e);
         }
 
         return isSessionBegin;

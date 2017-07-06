@@ -9,15 +9,9 @@ public class Time extends Node {
     private String day;
 
     public Time(EventSession session, int count) {
-        super(session.getSessionId());
-        this.data = session.getTime();
+        super(session.getSessionId(), session.getTime());
         this.day = session.getDay();
         this.count = count;
-    }
-
-    @Override
-    public String getData() {
-        return data;
     }
 
     public String getDay() {

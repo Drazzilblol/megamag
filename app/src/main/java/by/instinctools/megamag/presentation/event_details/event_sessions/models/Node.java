@@ -7,13 +7,16 @@ public abstract class Node {
 
     protected String data;
 
-    public Node(String id) {
+    public Node(String id, String data) {
         this.id = id;
+        this.data = data;
     }
 
     public String getId() {
         return id;
     }
 
-    public abstract String getData();
+    public String getData(){
+        return data;
+    };
 }
