@@ -2,6 +2,7 @@
     <!--common-->
     <dimen name="std_padding_large">16dp</dimen>
     <dimen name="std_padding_normal">8dp</dimen>
+    <dimen name="std_padding_small">4dp</dimen>
     <dimen name="std_top_or_bottom_item_padding">24dp</dimen>
     <dimen name="std_subtitle_top_padding">12dp</dimen>
 
@@ -11,11 +12,17 @@
     <dimen name="std_text_size_subtext">14sp</dimen>
     <dimen name="std_text_size_supporting">14sp</dimen>
     <dimen name="header_height">160dp</dimen>
+
     <dimen name="header_image_size">60dp</dimen>
+
+    <dimen name="tab_layout_height">40dp</dimen>
+
+    <dimen name="std_avatar_size">100dp</dimen>
 
     <!--base-->
     <dimen name="item_padding_large">@dimen/std_padding_large</dimen>
     <dimen name="item_padding_normal">@dimen/std_padding_normal</dimen>
+    <dimen name="item_padding_small">@dimen/std_padding_small</dimen>
 
     <dimen name="icon_size">@dimen/std_icon_size</dimen>
 
@@ -36,7 +43,13 @@
 
     <dimen name="item_title_text">16sp</dimen>
 
+    <dimen name="item_margin_big">24dp</dimen>
+
     <dimen name="tree_item_left_padding">@dimen/std_top_or_bottom_item_padding</dimen>
+
+    <dimen name="collapsing_toolbar_title_margins">@dimen/std_top_or_bottom_item_padding</dimen>
+
+    <dimen name="avatar_size">@dimen/std_avatar_size</dimen>
 
     <!--specific-->
 
@@ -80,5 +93,27 @@
     <dimen name="nav_header_item_margin">@dimen/nav_header_padding_large</dimen>
     <dimen name="nav_header_dropdown_button_size">@dimen/icon_size</dimen>
     <dimen name="nav_header_dropdown_button_margin">@dimen/nav_header_padding_large</dimen>
+
+    <dimen name="event_details_collapsing_toolbar_title_margin">@dimen/collapsing_toolbar_title_margins</dimen>
+    <dimen name="event_details_collapsing_toolbar_title_text_size">@dimen/std_text_size_primary</dimen>
+    <dimen name="event_details_tab_layout_height">@dimen/tab_layout_height</dimen>
+
+    <dimen name="event_details_comment_list_item_offset">@dimen/item_padding_normal</dimen>
+    <dimen name="event_details_comment_list_padding">@dimen/item_padding_normal</dimen>
+    <dimen name="event_details_comment_list_error_padding">@dimen/item_padding_large</dimen>
+    <dimen name="event_details_comment_avatar_height">@dimen/avatar_size</dimen>
+    <dimen name="event_details_comment_avatar_width">@dimen/avatar_size</dimen>
+    <dimen name="event_details_comment_no_comments_margin">@dimen/item_margin_big</dimen>
+
+    <dimen name="event_details_session_list_item_offset">@dimen/item_padding_normal</dimen>
+    <dimen name="event_details_session_list_padding">@dimen/item_padding_normal</dimen>
+    <dimen name="event_details_session_list_error_padding">@dimen/item_padding_large</dimen>
+    <dimen name="event_details_session_place_text_size">@dimen/item_title_text</dimen>
+    <dimen name="event_details_session_text_padding">@dimen/item_padding_normal</dimen>
+    <dimen name="event_details_session_card_margin">@dimen/item_padding_small</dimen>
+    <dimen name="event_details_session_no_sessions_margin">@dimen/item_margin_big</dimen>
+
+    <dimen name="event_details_info_item_padding">@dimen/item_padding_normal</dimen>
+
 
 </resources>

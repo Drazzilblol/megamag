@@ -24,6 +24,9 @@ public abstract class AnnouncementData {
     public abstract String getCoverUrl();
 
     @NonNull
+    public abstract String getEventId();
+
+    @NonNull
     public static Builder builder() {
         return new AutoValue_AnnouncementData.Builder();
     }
@@ -40,6 +43,8 @@ public abstract class AnnouncementData {
         public abstract Builder description(@Nullable String value);
 
         public abstract Builder coverUrl(@Nullable String value);
+
+        public abstract Builder eventId(@NonNull String value);
 
         public abstract AnnouncementData build();
     }

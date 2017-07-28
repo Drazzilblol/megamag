@@ -12,6 +12,7 @@ import by.instinctools.megamag.domain.GetTicketsUseCase;
 import by.instinctools.megamag.domain.UseCase;
 import by.instinctools.megamag.domain.models.Ticket;
 import by.instinctools.megamag.presentation.DisposablePresenter;
+
 import hugo.weaving.DebugLog;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
@@ -60,5 +61,9 @@ public class TicketsPresenter extends DisposablePresenter<TicketsView> {
         view.hideProgress();
         view.hideData();
         showError(throwable);
+    }
+
+    void onTicketItemClick(@NonNull String detailsId) {
+        getViewState().goToDetailsScreen(detailsId);
     }
 }

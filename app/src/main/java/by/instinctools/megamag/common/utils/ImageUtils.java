@@ -3,10 +3,16 @@ package by.instinctools.megamag.common.utils;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v7.graphics.Palette;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
@@ -19,6 +25,7 @@ import com.bumptech.glide.request.target.Target;
 import java.io.File;
 
 import by.instinctools.megamag.R;
+import by.instinctools.megamag.presentation.common.callbacks.OnPaletteReadyCallback;
 
 public final class ImageUtils {
 
@@ -113,6 +120,10 @@ public final class ImageUtils {
 
                         @Override
                         public boolean onResourceReady(GlideDrawable resource, String model, Target<GlideDrawable> target, boolean isFromMemoryCache, boolean isFirstResource) {
+                            Drawable d = resource.getCurrent();
+                            Bitmap bitmap = drawableToBitmap(d);
+                            Palette palette = Palette.from(bitmap).generate();
+                            Palette.Swatch swatch = palette.getVibrantSwatch();
                             return false;
                         }
                     })
@@ -120,5 +131,60 @@ public final class ImageUtils {
         } else {
             imageView.setVisibility(View.GONE);
         }
+    }
+
+    public static void loadImageWithBlur(@NonNull Context context, @NonNull ImageView imageView, @Nullable String image, @NonNull OnPaletteReadyCallback callback) {
+        if (!TextUtils.isEmpty(image)) {
+            imageView.setVisibility(View.VISIBLE);
+
+            Glide.with(context)
+                    .load(image)
+                    .bitmapTransform(new BlurAndCropTransformation(context))
+                    .placeholder(R.drawable.loading_placeholder)
+                    .error(R.drawable.no_image_found)
+                    .listener(new RequestListener<String, GlideDrawable>() {
+                        @Override
+                        public boolean onException(Exception e, String model, Target<GlideDrawable> target, boolean isFirstResource) {
+                            return false;
+                        }
+
+                        @Override
+                        public boolean onResourceReady(GlideDrawable resource, String model, Target<GlideDrawable> target, boolean isFromMemoryCache, boolean isFirstResource) {
+                            Drawable d = resource.getCurrent();
+                            Bitmap bitmap = drawableToBitmap(d);
+                            Palette palette = Palette.from(bitmap).generate();
+                            callback.onPaletteReady(palette);
+                            return false;
+                        }
+                    })
+                    .into(imageView);
+        } else {
+            imageView.setVisibility(View.GONE);
+        }
+    }
+
+    private static Bitmap drawableToBitmap(Drawable drawable) {
+        if (drawable instanceof BitmapDrawable) {
+            return ((BitmapDrawable) drawable).getBitmap();
+        }
+
+        int width = drawable.getIntrinsicWidth();
+        width = width > 0 ? width : 1;
+        int height = drawable.getIntrinsicHeight();
+        height = height > 0 ? height : 1;
+
+        Bitmap bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(bitmap);
+        drawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
+        drawable.draw(canvas);
+
+        return bitmap;
+    }
+
+    public static int adjustAlpha(int color, int alpha) {
+        int red = Color.red(color);
+        int green = Color.green(color);
+        int blue = Color.blue(color);
+        return Color.argb(alpha, red, green, blue);
     }
 }

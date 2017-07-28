@@ -21,12 +21,14 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import by.instinctools.megamag.R;
 import by.instinctools.megamag.common.errors.Error;
+import by.instinctools.megamag.common.utils.Navigator;
 import by.instinctools.megamag.domain.models.Ticket;
 import by.instinctools.megamag.presentation.common.decorator.OffsetItemDecorator;
+import by.instinctools.megamag.presentation.main.callbacks.OnItemClickListener;
 import by.instinctools.megamag.presentation.main.tickets.adapter.TicketsListAdapter;
 import hugo.weaving.DebugLog;
 
-public class TicketsFragment extends MvpAppCompatFragment implements TicketsView {
+public class TicketsFragment extends MvpAppCompatFragment implements TicketsView, OnItemClickListener {
 
     @BindView(R.id.tickets_recycler_view)
     RecyclerView recyclerView;
@@ -41,7 +43,7 @@ public class TicketsFragment extends MvpAppCompatFragment implements TicketsView
     TicketsPresenter ticketsPresenter;
 
     @NonNull
-    private TicketsListAdapter adapter = new TicketsListAdapter();
+    private TicketsListAdapter adapter = new TicketsListAdapter(this);
 
     public static TicketsFragment newInstance() {
         return new TicketsFragment();
@@ -82,6 +84,11 @@ public class TicketsFragment extends MvpAppCompatFragment implements TicketsView
     }
 
     @Override
+    public void goToDetailsScreen(String detailsId) {
+        Navigator.goToEventDetailsScreen(this.getContext(), detailsId);
+    }
+
+    @Override
     public void showError(@NonNull Error error) {
         errorView.setText(error.getErrorMessage());
         errorView.setVisibility(View.VISIBLE);
@@ -100,5 +107,10 @@ public class TicketsFragment extends MvpAppCompatFragment implements TicketsView
     @Override
     public void hideProgress() {
         progressBar.hide();
+    }
+
+    @Override
+    public void onClick(String itemId) {
+        ticketsPresenter.onTicketItemClick(itemId);
     }
 }

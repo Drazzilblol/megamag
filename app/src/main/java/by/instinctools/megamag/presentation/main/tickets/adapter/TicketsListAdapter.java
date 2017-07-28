@@ -6,12 +6,20 @@ import android.view.ViewGroup;
 
 import by.instinctools.megamag.common.diff_util.BaseDiffAdapter;
 import by.instinctools.megamag.domain.models.Ticket;
+import by.instinctools.megamag.presentation.main.callbacks.OnItemClickListener;
 
 public class TicketsListAdapter extends BaseDiffAdapter<TicketHolder, Ticket> {
 
+    @NonNull
+    private OnItemClickListener onItemClickListener;
+
+    public TicketsListAdapter(OnItemClickListener onItemClickListener) {
+        this.onItemClickListener = onItemClickListener;
+    }
+
     @Override
     public TicketHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new TicketHolder(parent);
+        return new TicketHolder(parent, onItemClickListener);
     }
 
     @Override

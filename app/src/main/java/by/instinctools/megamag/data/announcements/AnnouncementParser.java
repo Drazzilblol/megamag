@@ -1,5 +1,6 @@
 package by.instinctools.megamag.data.announcements;
 
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.text.Html;
 import android.text.TextUtils;
@@ -32,6 +33,14 @@ class AnnouncementParser {
         for (Element announcement : announcements) {
             AnnouncementData.Builder builder = AnnouncementData.builder();
             Elements headerItems = announcement.getElementsByClass(ANNOUNCEMET_HEADER_SELECTOR);
+
+            String eventUrl = headerItems.first()
+                    .child(0)
+                    .child(0)
+                    .absUrl("href");
+            Uri uri = Uri.parse(eventUrl);
+            builder.eventId(uri.getQueryParameter("newsdesk_id"));
+
             String header = headerItems.text();
             String[] headerText = header.split(" / ");
             if (headerText.length < 2) {

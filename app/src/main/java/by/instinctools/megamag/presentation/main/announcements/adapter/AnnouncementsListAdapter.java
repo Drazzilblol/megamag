@@ -6,12 +6,20 @@ import android.view.ViewGroup;
 
 import by.instinctools.megamag.common.diff_util.BaseDiffAdapter;
 import by.instinctools.megamag.domain.models.Announcement;
+import by.instinctools.megamag.presentation.main.callbacks.OnItemClickListener;
 
 public class AnnouncementsListAdapter extends BaseDiffAdapter<AnnouncementHolder, Announcement> {
 
+    @NonNull
+    private final OnItemClickListener listener;
+
+    public AnnouncementsListAdapter(OnItemClickListener listener) {
+        this.listener = listener;
+    }
+
     @Override
     public AnnouncementHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new AnnouncementHolder(parent);
+        return new AnnouncementHolder(parent, listener);
     }
 
     @Override
