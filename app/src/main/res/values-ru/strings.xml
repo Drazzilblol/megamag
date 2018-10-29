@@ -10,6 +10,11 @@
     <string name="announcements_toolbar_title">Анонсы</string>
     <string name="tickets_toolbar_title">Билеты</string>
 
+    <!--details-->
+    <string name="details_view_pager_info">Информация</string>
+    <string name="details_view_pager_session">Сеансы</string>
+    <string name="details_view_pager_comments">Комментарии</string>
+
     <!--menu-->
     <string name="drawer_menu_profile">Профиль</string>
     <string name="drawer_menu_tickets">Билеты</string>
@@ -27,5 +32,7 @@
     <string name="drawer_menu_history">Исторяи Заказов</string>
     <string name="drawer_menu_edit">Редактировать</string>
     <string name="drawer_menu_exit">Выход</string>
+    <string name="no_sessions">К настоящему времени сеансов нет.</string>
+    <string name="no_comments">К настоящему времени нет отзывов.  Вы можете стать первым.</string>
 
 </resources>

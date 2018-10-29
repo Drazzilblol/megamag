@@ -15,8 +15,12 @@ import butterknife.ButterKnife;
 import by.instinctools.megamag.R;
 import by.instinctools.megamag.common.utils.ImageUtils;
 import by.instinctools.megamag.domain.models.Announcement;
+import by.instinctools.megamag.presentation.main.callbacks.OnItemClickListener;
 
-class AnnouncementHolder extends RecyclerView.ViewHolder {
+class AnnouncementHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+
+    @NonNull
+    private final OnItemClickListener litener;
 
     @BindView(R.id.announcement_title)
     TextView titleView;
@@ -33,21 +37,26 @@ class AnnouncementHolder extends RecyclerView.ViewHolder {
     @BindView(R.id.announcement_cover)
     ImageView imageView;
 
+    private Announcement announcement;
+
     private static View inflateView(@NonNull ViewGroup parent) {
         Context context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
         return inflater.inflate(R.layout.item_announcement, parent, false);
     }
 
-    AnnouncementHolder(@NonNull ViewGroup parent) {
+    AnnouncementHolder(@NonNull ViewGroup parent, @NonNull OnItemClickListener listener) {
         super(inflateView(parent));
+        this.litener = listener;
         ButterKnife.bind(this, itemView);
+        itemView.setOnClickListener(this);
     }
 
     void bindData(@NonNull Announcement announcement) {
         String details = announcement.getDetails();
         String description = announcement.getDescription();
 
+        this.announcement = announcement;
         titleView.setText(announcement.getTitle());
         placeView.setText(announcement.getPlace());
 
@@ -69,5 +78,10 @@ class AnnouncementHolder extends RecyclerView.ViewHolder {
         } else {
             detailsTextView.setVisibility(View.VISIBLE);
         }
+    }
+
+    @Override
+    public void onClick(View v) {
+        litener.onClick(announcement.getEventId());
     }
 }

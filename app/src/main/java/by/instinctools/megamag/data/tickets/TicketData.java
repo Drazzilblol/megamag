@@ -21,6 +21,9 @@ public abstract class TicketData {
     public abstract String getCoverUrlLQ();
 
     @NonNull
+    public abstract String getEventId();
+
+    @NonNull
     public static TicketData.Builder builder() {
         return new AutoValue_TicketData.Builder();
     }
@@ -35,6 +38,8 @@ public abstract class TicketData {
         public abstract TicketData.Builder coverUrl(@Nullable String value);
 
         public abstract TicketData.Builder coverUrlLQ(@Nullable String value);
+
+        public abstract TicketData.Builder eventId(@NonNull String value);
 
         public abstract TicketData build();
     }

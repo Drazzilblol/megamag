@@ -1,0 +1,66 @@
+package by.instinctools.megamag.data.event_details_session;
+
+import android.net.Uri;
+import android.support.annotation.NonNull;
+import android.text.TextUtils;
+
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
+
+import java.util.ArrayList;
+import java.util.List;
+
+class EventSessionParser {
+
+    private static final String DETAILS_HEADER_SELECTOR = "tableBoxArea1Contents";
+
+    static List<EventSessionData> parseSession(@NonNull Document document) {
+        List<EventSessionData> resultList = new ArrayList<>();
+        Elements headerItems = document.getElementsByClass(DETAILS_HEADER_SELECTOR);
+        Elements sessions = getSessions(headerItems);
+        for (int i = 1; i < sessions.size(); i += 2) {
+            String placeName = sessions.get(i).text();
+            Elements hallSessions = sessions.get(i + 1)
+                    .child(0)
+                    .child(0)
+                    .child(0)
+                    .children();
+            String hallName = hallSessions.get(1).text();
+            for (int j = 2; j < hallSessions.size(); j++) {
+                String day = hallSessions.get(j).child(0).text();
+                Elements times = hallSessions.get(j).children();
+                for (int k = 1; k < times.size() - 1; k++) {
+                    Element time = times.get(k);
+                    if (!TextUtils.equals(time.text(), "-") && time.children().size() != 0) {
+                        Uri uri = Uri.parse(time.child(0).absUrl("href"));
+                        EventSessionData.Builder builder = EventSessionData.builder();
+                        builder.place(placeName);
+                        builder.hall(hallName);
+                        builder.sessionId(uri.getQueryParameter("id"));
+                        builder.day(day);
+                        builder.time(time.text());
+                        resultList.add(builder.build());
+                    }
+                }
+            }
+        }
+        return resultList;
+    }
+
+    private static Elements getSessions(Elements headerItems) {
+        return headerItems.first()
+                .parent()
+                .parent()
+                .parent()
+                .parent()
+                .parent()
+                .parent()
+                .child(2)
+                .child(0)
+                .child(0)
+                .child(0)
+                .children();
+    }
+
+}

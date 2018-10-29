@@ -20,10 +20,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".presentation.ticket_details.TicketDetailsActivity" />
         <activity android:name=".presentation.info.InfoActivity" />
         <activity android:name=".presentation.theater_details.TheaterDetailsActivity" />
         <activity android:name=".presentation.profile.ProfileActivity" />
+        <activity
+            android:name=".presentation.event_details.EventDetailsActivity"
+            android:theme="@style/DetailsTheme"/>
         <activity
             android:name=".presentation.main.MainActivity"
             android:theme="@style/MainTheme" />

@@ -14,6 +14,9 @@
     <style name="MainTheme" parent="AppTheme">
     </style>
 
+    <style name="DetailsTheme" parent="AppTheme">
+    </style>
+
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
@@ -45,6 +48,23 @@
 
     <style name="AnnouncementCardDescription" parent="BaseAnnouncementCardViewItem">
         <item name="android:maxLines">8</item>
+        <item name="android:layout_marginTop">@dimen/announcement_card_items_padding</item>
+    </style>
+
+    <style name="BaseDetailsCardViewItem">
+        <item name="android:layout_marginLeft">@dimen/announcement_card_items_padding</item>
+        <item name="android:layout_marginRight">@dimen/announcement_card_items_padding</item>
+        <item name="android:textSize">@dimen/announcement_card_text_support</item>
+        <item name="android:textColor">@color/announcement_text_secondary</item>
+    </style>
+
+    <style name="DetailsCardCommentTitle" parent="BaseDetailsCardViewItem">
+        <item name="android:textColor">@color/announcement_text_primary</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:maxLines">1</item>
+    </style>
+
+    <style name="DetailsCardCommentText" parent="BaseDetailsCardViewItem">
         <item name="android:layout_marginTop">@dimen/announcement_card_items_padding</item>
     </style>
 
@@ -110,5 +130,11 @@
     <style name="NavHeaderDropdownButton">
         <item name="android:layout_gravity">bottom|end</item>
         <item name="android:layout_margin">@dimen/nav_header_dropdown_button_margin</item>
+    </style>
+
+    <style name="EventDetailsTitleView">
+        <item name="android:layout_margin">@dimen/collapsing_toolbar_title_margins</item>
+        <item name="android:textSize">@dimen/event_details_collapsing_toolbar_title_text_size</item>
+        <item name="android:textColor">@color/collapsing_toolbar_text_primary</item>
     </style>
 </resources>
